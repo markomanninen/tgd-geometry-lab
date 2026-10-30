@@ -28,7 +28,7 @@ Testit: **194/194 läpi**.
 
 ## Päätöspisteet (tunniste `päätös`)
 
-Periaate: vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitkäsen artikkelit, kirjat, blogi). **Matti Pitkäselle** (cc Tuomas Sorakivi) kysytään vain se, mikä jää tutkimuksen jälkeen avoimeksi.
+Periaate: vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitkäsen artikkelit, kirjat, blogi). **Matti Pitkäselle** kysytään vain se, mikä jää tutkimuksen jälkeen avoimeksi.
 
 ### Selvitetty kirjallisuudesta 30.10.2026
 

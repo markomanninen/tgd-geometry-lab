@@ -24,6 +24,24 @@ $$
 
 Ketju on laskettu ja testattu kenttäyhtälöihin asti, ja ensimmäiset tunnetut ratkaisut on tarkistettu. Ratkaisuanalyysi on seuraava vaihe.
 
-## Tekijät ja lähteet
+## Teoria ja yhteistyö
 
-Projektia tehdään yhdessä Matti Pitkäsen (TGD:n kehittäjä) ja Tuomas Sorakiven kanssa. Ohjelmakoodi, testit ja kirjat ovat avoimia [GitHubissa](https://github.com/markomanninen/tgd-geometry-lab). Clifford-algebra tulee Dimiter Prodanovin [`clifford`](https://github.com/dprodanov/clifford)-paketista, ja rakenne seuraa [LanyonScriptsin](https://github.com/lanyonai/LanyonScripts) mallia.
+TGD on [Matti Pitkäsen](https://tgdtheory.fi/) kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt teoriaa 1980-luvun alusta lähtien. Projektia tehdään yhdessä hänen kanssaan: vastaukset haetaan ensin hänen julkaisuistaan, ja avoimeksi jäävät fysikaaliset kysymykset ratkaisee hän.
+
+## Lanyon AI:n vaikutus
+
+Työtapa on saanut vaikutteita [Lanyon AI](https://lanyon.ai/):sta, joka on Princetonissa toimiva tutkimusyhtiö. Sen perustajat ovat [Jonathan Gorard, Ammar Hakim ja Jimmy Juno](https://lanyon.ai/company/). Gorard on yhtiön toimitusjohtaja ja vastaa sen matemaattisesta suunnittelusta, ja hänet tunnetaan myös Wolfram Physics Projectin perustajajäsenenä.
+
+Lanyonin [ilmoitettu tavoite](https://lanyon.ai/blog/welcome/) on muodollisesti verifioitu perusta, joka yhdistää tekoälyn fyysiseen maailmaan. Kielimalli ehdottaa muodollisen spesifikaation, ja puhtaasti symboliset algoritmit laajentavat siitä samalla koodin ja todistuksen. Jos spesifikaatiota ei voida todistaa oikeaksi, koodia ei synny. Yhtiön ensimmäiset kohdealueet ovat ilmailu- ja avaruustekniikka sekä ydinenergia.
+
+Tästä projektista on kolme asiaa, jotka kannattaa pitää erillään:
+
+- **Periaate on sama:** tulosta ei hyväksytä pelkän ehdotuksen perusteella, vaan deterministinen tarkistus ratkaisee.
+- **Keino on eri:** tämä projekti käyttää automaattisia identiteettitestejä, ei muodollisia todistuksia.
+- **Rajaus on yhteinen:** Lanyonkin [toteaa](https://lanyon.ai/blog/welcome/), että todistus ei vielä kerro, vastaako spesifikaatio käyttäjän tarkoitusta. Samoin meidän testimme tarkistavat matematiikan, eivät TGD:n fysikaalista oikeellisuutta.
+
+TGD ei kuulu Lanyonin ilmoitettuihin kohdealueisiin. Projekti hyödyntää sen julkaisemaa lähestymistapaa ja avointa [LanyonScripts](https://github.com/lanyonai/LanyonScripts)-koodia, joka on yhtiön tutkimusmuistioiden tietokonealgebraa.
+
+## Ohjelmisto
+
+Ohjelmakoodi, testit ja kirjat ovat avoimia [GitHubissa](https://github.com/markomanninen/tgd-geometry-lab). Laskenta tehdään Maximalla, ja Clifford-algebra tulee Dimiter Prodanovin [`clifford`](https://github.com/dprodanov/clifford)-paketista.

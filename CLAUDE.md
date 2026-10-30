@@ -33,7 +33,7 @@ Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issue
 - Commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
 
 ## Yhteistyö
-- Projekti tehdään yhdessä Matti Pitkäsen (TGD:n kehittäjä) ja Tuomas Sorakiven kanssa. **Ensin tutkitaan itse:** etsi vastaus Pitkäsen julkaisuista (arXiv, tgdtheory.fi, ResearchGate, matpitka.blogspot.com) ja vahvista se mahdollisuuksien mukaan testillä (esim. tunnettu numeroarvo). Matille kysytään vain se, mikä jää tutkimuksen jälkeen avoimeksi – Claude ei ratkaise TGD:n fysikaalista tulkintaa itse.
+- Projekti tehdään yhdessä Matti Pitkäsen kanssa. Hän on teoreettisen fysiikan tohtori ja on kehittänyt TGD:tä 1980-luvun alusta lähtien. **Ensin tutkitaan itse:** etsi vastaus Pitkäsen julkaisuista (arXiv, tgdtheory.fi, ResearchGate, matpitka.blogspot.com) ja vahvista se mahdollisuuksien mukaan testillä (esim. tunnettu numeroarvo). Matille kysytään vain se, mikä jää tutkimuksen jälkeen avoimeksi – Claude ei ratkaise TGD:n fysikaalista tulkintaa itse.
 - Kun `päätös`-issue tarvitsee Matin linjausta, muotoile kysymys issueen niin, että Marko voi välittää sen sähköpostilla. Kun vastaus tulee, kirjaa se issueen ja `docs/konventiot.md`:hen ja lisää vastaava testi.
 
 ## Itsenäinen eteneminen ja päätöspisteet

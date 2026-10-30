@@ -8,7 +8,9 @@ Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä To
 
 *Symbolic differential-geometry toolkit for Maxima aimed at Topological Geometrodynamics: CP₂ Fubini–Study geometry, differential forms, curvature, embeddings into M⁴×CP₂ and the Kähler/volume action. Every module is checked by automatic identity tests.*
 
-Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/LanyonScripts) Colab-esimerkkiä, ja Clifford-algebra tulee Dimiter Prodanovin [`clifford`](https://github.com/dprodanov/clifford)-paketista.
+TGD on Matti Pitkäsen kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt sitä 1980-luvun alusta lähtien.
+
+Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/LanyonScripts) Colab-esimerkkiä, ja työtapa on saanut vaikutteita Jonathan Gorardin johtaman [Lanyon AI](https://lanyon.ai/):n verifioidusta laskennasta. Clifford-algebra tulee Dimiter Prodanovin [`clifford`](https://github.com/dprodanov/clifford)-paketista.
 
 ## Colab-kirjat
 

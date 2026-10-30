@@ -21,7 +21,7 @@ Suunnitelmassa erotetaan kolme asiaa:
 
 **Suunnitteluperiaate:** emme yritä toteuttaa koko TGD:tä kerralla. Jokaisen vaiheen pitää tuottaa itsenäisesti testattava matemaattinen tulos, jonka oikeellisuus tarkistetaan tunnetuilla identiteeteillä tai vertailulaskuilla.
 
-Tämä periaate on samassa hengessä kuin Lanyon AI:n lähestymistapa. Lanyonin tavoitteena on <em>verifioitu</em> tieteellinen laskenta: kielimalli ehdottaa spesifikaation, ja deterministinen järjestelmä tuottaa siitä sekä ajettavan koodin että todistuksen (Lean). Meillä vastaava rooli on automaattisilla identiteettitesteillä: symbolinen tulos hyväksytään vasta, kun se läpäisee riippumattomat tarkistukset.
+Periaate on samassa hengessä kuin [Lanyon AI](https://lanyon.ai/):n lähestymistapa. Lanyon on Jonathan Gorardin, Ammar Hakimin ja Jimmy Junon perustama tutkimusyhtiö, ja Gorard on sen toimitusjohtaja. Sen tavoitteena on muodollisesti verifioitu tieteellinen laskenta: kielimalli ehdottaa spesifikaation omalla formaalilla kielellä, ja symboliset algoritmit laajentavat siitä samalla koodin ja todistuksen. Jos spesifikaatiota ei voida todistaa oikeaksi, koodia ei synny ([Announcing Lanyon AI](https://lanyon.ai/blog/welcome/), 2026). Meillä vastaavaa roolia hoitavat automaattiset identiteettitestit, jotka eivät ole muodollisia todistuksia: symbolinen tulos hyväksytään vasta, kun se läpäisee riippumattomat tarkistukset.
 
 ### Tekninen toteutustapa
 
@@ -505,6 +505,7 @@ Ympäristö tarjoaa systemaattisen tavan tutkia TGD:n matemaattista rakennetta j
 - M. Pitkänen, *The Geometry of CP2 and its Relationship to Standard Model* (CP₂-normalisointi).
 - M. Pitkänen, *About the construction of p-adic QFT limit of TGD*, hep-ph/9510361 ($L_K$, $S_K(CP_2)=\pi/8\alpha_K$).
 - M. Pitkänen, matpitka.blogspot.com: massattomat ekstremaalit (8/2016), minimipintaekstremaalit (12/2016), Kähler-kytkentä k=1/k=3 (1/2017), H-H-periaate (8/2025).
+- Lanyon AI: <https://lanyon.ai/>, *Announcing Lanyon AI* (J. Gorard, 2026) ja [yhtiön esittely](https://lanyon.ai/company/).
 - LanyonScripts: <https://github.com/lanyonai/LanyonScripts> (MIT) ja Lanyonin Colab-esimerkki *Run LanyonScripts in Colab*.
 - D. Prodanov, Clifford-algebrapaketti Maximalle: <https://github.com/dprodanov/clifford> (LGPL-2.1).
 - Fubini–Study-metriikan eksplisiittiset paikalliset lausekkeet ja kaarevuus: tavanomaiset differentiaaligeometrian oppikirjat (esim. Kobayashi–Nomizu II, luku IX).
