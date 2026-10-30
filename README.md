@@ -16,12 +16,12 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 02 · $CP_2$ ja Fubini–Study | Kähler-potentiaali → metriikka → $\omega$, $J$ → Christoffel → Riemann/Ricci → karttasiirtymät | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/02_cp2_fubini_study.ipynb) |
 | 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
 
-## Mitä on varmistettu (187 testiä)
+## Mitä on varmistettu (194 testiä)
 
 | Alue | Tarkistukset |
 |---|---|
 | Metriikka | käänteismatriisi, determinantti, signatuuri, tensorimuunnos |
-| Muodot | $dx\wedge dy=-dy\wedge dx$, $d^2=0$, Leibniz, Hodge $\star\star=\pm1$ |
+| Muodot | $dx\wedge dy=-dy\wedge dx$, $d^2=0$, Leibniz, Hodge $\star\star=\pm1$, Stokes, Kähler-vuo $\pi$ yli $CP_1$:n ja $2\pi$ yli kartion |
 | Kaarevuus ($S^2$-vertailu) | $\mathrm{Ric}=g$, $R=2$, $\nabla g=0$ |
 | $CP_2$ | $\det g=1/(1+\rho^2)^6$, $J^2=-1$, $d\omega=0$, $\nabla J=0$, $\tfrac12\omega\wedge\omega=\mathrm{vol}$, Riemannin symmetriat, Bianchi I ja II, $\mathrm{Ric}=6g$, $R=24$, holomorfinen leikkauskaarevuus $4$, $S_K(CP_2)=\pi/(8\alpha_K)$ (TGD-normalisointi), kaikki karttasiirtymät |
 | Upotus | $H$:n signatuuri $(1,7)$; kanoninen $M^4$: $g=m$, $J=0$; kosminen säie: $J_{\alpha\beta}J^{\alpha\beta}=2$; ME: $J\ne0$, $J_{\alpha\beta}J^{\alpha\beta}=0$, $J\wedge J=0$ |
@@ -83,7 +83,7 @@ docs/                       kehityssuunnitelma ja konventiot
 |---|---|
 | [M1 Ympäristö](https://github.com/markomanninen/tgd-geometry-lab/milestone/1) | 4/4 ✅ |
 | [M2 CP2-metriikka](https://github.com/markomanninen/tgd-geometry-lab/milestone/2) | 6/6 ✅ |
-| [M3 Muodot](https://github.com/markomanninen/tgd-geometry-lab/milestone/3) | 2/3 |
+| [M3 Muodot](https://github.com/markomanninen/tgd-geometry-lab/milestone/3) | 3/3 ✅ |
 | [M4 Kaarevuus](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | 3/3 ✅ |
 | [M5 Clifford-geometria](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | 4/4 ✅ |
 | [M6 Upotus](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | 4/4 ✅ |

@@ -189,13 +189,29 @@ TGD:n tilavuustermin $L_V=k\\sqrt{-g}$ yksinkertaisin analogi."""),
 ("code", r'''lab.show("depends(fz,[xx,yy])$ gg:induced_metric(ident(3),[X1,X2,X3],[xx,yy,fz],[xx,yy])$ EL:euler_lagrange(sqrt(determinant(gg)),[fz],[xx,yy])$", [
   ("g_{\\alpha\\beta}", "gg"),
   ("\\mathrm{EL}\\cdot(1+f_x^2+f_y^2)^{3/2}", "factor(EL[1]*(1+diff(fz,xx)^2+diff(fz,yy)^2)^(3/2))")])'''),
+("md", """## Toinen perusmuoto ja minimipintaehto (Step 6.4)
+
+$B^k{}_{\\alpha\\beta}=D_\\alpha\\partial_\\beta h^k$ ja $H^k=g^{\\alpha\\beta}B^k{}_{\\alpha\\beta}$.
+Kompleksiset käyrät ovat minimipintoja myös silloin, kun ne eivät ole totaaligeodeettisia."""),
+("code", r'''lab.show("emQ:emb_setup(cp2_metric(),cp2_X,[aa,bb,aa^2-bb^2,2*aa*bb],[aa,bb])$ BQ:second_fundamental_form(emQ)$", [
+  ("B^{x_2}{}_{aa}\\ (\\text{kartio } z^2=(z^1)^2)", "factor(BQ[3][1][1])"),
+  ("H^k", "mean_curvature(emQ,BQ)")])'''),
+("md", """## Kenttäyhtälöt ja ekstremaalit (Step 7.2, #27, #28)
+
+Toiminnan $S=\\int(c_KJ_{\\alpha\\beta}J^{\\alpha\\beta}+c_V)\\sqrt{|g|}\\,d^4\\xi$ variaatio upotuskoordinaattien suhteen antaa
+$h_{kl}D_\\alpha(T^{\\alpha\\beta}\\partial_\\beta h^l)+2c_K\\,j^\\beta J_{kl}\\partial_\\beta h^l=0$.
+Kertoimet ovat symbolisia. Alla Kähler- ja tilavuustermi on eroteltu: ME $s^k(u)$ toteuttaa molemmat, mutta yleisellä
+$s^k(u,x)$:llä häviää vain Kähler-termi (ks. `docs/konventiot.md`)."""),
+("code", f'''lab.show("{H} xl:[uu,vv,xx,yy]$ meX(s):=append([(uu+vv)/2,xx,yy,(vv-uu)/2],s)$ meEq(s,a,b):=tgd_field_equations(emb_setup(GH,H_X,meX(s),xl),JH,a,b)$ depends([a1,a2,a3,a4],uu)$ depends([F1,F2],[uu,xx])$", [
+  ("E[s^k(u)],\\\\ c_K", "meEq([a1,a2,a3,a4],cK,0)"),
+  ("E[s^k(u)],\\\\ c_V", "meEq([a1,a2,a3,a4],0,cV)"),
+  ("E[s^k(u,x)],\\\\ c_K", "meEq([F1,F2,0,0],cK,0)"),
+  ("E[s^1(x)=x],\\\\ c_V", "map(factor,meEq([xx,0,0,0],0,cV))")])'''),
 ("md", """## Seuraavat askeleet
 
-* Toiminnan $S=\\int (c_K J_{\\alpha\\beta}J^{\\alpha\\beta}+c_V)\\sqrt{|g|}\\,d^4\\xi$ variointi suoraan
-  upotuskoordinaattien $h^k$ suhteen (Vaihe VII, M7).
-* Toinen perusmuoto ja Gauss–Codazzi-identiteetit (Step 6.4–6.5).
-* Vielbein, spin-yhteys ja Clifford-algebra kaarevalla $CP_2$:lla (Vaihe IV.3–IV.5, M5).
-* Kenttäyhtälöiden karakteristinen analyysi Lanyonin `calcev`-tyyliin (Step 7.5)."""),
+* Matin linjaukset: tilavuustermin kerroin (#27) ja ME:n määritelmä toiminnalle $S_K+S_V$ (#28).
+* Noether-virrat (#29) ja kenttäyhtälöiden karakteristinen analyysi Lanyonin `calcev`-tyyliin (#30).
+* Ratkaisuanalyysi (#31, #32)."""),
 ])
 
 for name, n in [("01_ymparisto_ja_testit.ipynb", nb01), ("02_cp2_fubini_study.ipynb", nb02),

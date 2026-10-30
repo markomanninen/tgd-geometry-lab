@@ -96,3 +96,27 @@ hodge(A, g) := block([n:length(g), gi, p, sg, out:[], comps, Js, Ks, Araised],
       Ks : sort(listify(setdifference(setify(makelist(i,i,1,n)), setify(J)))),
       out : endcons([sg*Araised*perm_sign(append(J, Ks)), Ks], out))),
   form_simplify(out))$
+
+/* ---------- pullback and integrals (Step 3.5) ----------
+   A surface is a list Xemb of expressions h^k(xi); its orientation is the
+   order of the parameter list xi. */
+
+/* pullback of a p-form: the coefficient on dxi^K is
+   sum_I A_I(h(xi)) det(d h^{i} / d xi^{k}), i in I, k in K */
+form_pullback(A, HX, Xemb, xi) := block([p:form_degree(A), n:length(xi), out:[], Ks, cf],
+  if A = [] then return([]),
+  Ks : map(lambda([S], sort(listify(S))), listify(powerset(setify(makelist(i,i,1,n)), p))),
+  for K in Ks do (
+    cf : 0,
+    for t in A do
+      cf : cf + psubst(map("=", HX, Xemb), t[1]) * (if p = 0 then 1 else determinant(
+             genmatrix(lambda([a,b], diff(Xemb[t[2][a]], xi[K[b]])), p, p))),
+    out : endcons([cf, K], out)),
+  form_simplify(out))$
+
+/* integral of a p-form over the p-dimensional surface Xemb; ranges is a list
+   [[xi1, lo, hi], ...] in the orientation order, innermost integral last */
+form_integral(A, HX, Xemb, ranges) := block([xi:map(first, ranges), r],
+  r : top_coef(form_pullback(A, HX, Xemb, xi)),
+  for q in reverse(ranges) do r : integrate(r, q[1], q[2], q[3]),
+  r)$

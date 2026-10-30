@@ -21,3 +21,39 @@ check("Euclidean R^4: ** = +1 on 2-forms",
 check("Minkowski: ** = -1 on 2-forms",
       is(hodge(hodge(wedge(dx(1),dx(2)), minkowski_metric()), minkowski_metric())
          = form_scale(-1, wedge(dx(1),dx(2)))))$
+/* pullback and integrals (#13) */
+XR2 : [xx, yy]$
+XR3 : [xx, yy, zz]$
+check("pullback commutes with d",
+      form_zerop(form_sub(form_pullback(dform([[yy^2*zz,[1]],[xx*zz,[2]]], XR3), XR3, [uu, vv, uu*vv], [uu, vv]),
+                          dform(form_pullback([[yy^2*zz,[1]],[xx*zz,[2]]], XR3, [uu, vv, uu*vv], [uu, vv]), [uu, vv]))))$
+check("pullback commutes with wedge",
+      form_zerop(form_sub(form_pullback(wedge([[zz,[1]]], [[xx,[2]]]), XR3, [uu, vv, uu*vv], [uu, vv]),
+                          wedge(form_pullback([[zz,[1]]], XR3, [uu, vv, uu*vv], [uu, vv]),
+                                form_pullback([[xx,[2]]], XR3, [uu, vv, uu*vv], [uu, vv])))))$
+/* Stokes on the unit square, boundary counter-clockwise */
+form1S : [[xx^2*yy, [1]], [xx*yy^3, [2]]]$
+edges : [[[ss, 0], [ss, 0, 1]], [[1, ss], [ss, 0, 1]], [[1-ss, 1], [ss, 0, 1]], [[0, 1-ss], [ss, 0, 1]]]$
+bS : apply("+", map(lambda([e], form_integral(form1S, XR2, e[1], [e[2]])), edges))$
+check("Stokes: unit square", is(bS = form_integral(dform(form1S, XR2), XR2, [xx, yy], [[xx,0,1],[yy,0,1]])))$
+/* Stokes on a curved surface: paraboloid z = 1 - r^2 over the unit disc */
+aP : [[-yy*zz, [1]], [xx, [2]], [yy^2, [3]]]$
+assume(rp > 0)$
+paraS : [rp*cos(ph), rp*sin(ph), 1-rp^2]$
+circle : [cos(ph), sin(ph), 0]$
+inP : trigsimp(top_coef(form_pullback(dform(aP, XR3), XR3, paraS, [rp, ph])))$
+check("Stokes: paraboloid over the unit disc",
+      is(ratsimp(integrate(integrate(inP, rp, 0, 1), ph, 0, 2*%pi)
+                 - form_integral(aP, XR3, circle, [[ph, 0, 2*%pi]])) = 0))$
+/* Kahler flux: homology of complex curves in CP_2 */
+omegaF : form_from_matrix(cp2_kahler_matrix())$
+Apot : makelist([cp2_kahler_1form()[m], [m]], m, 1, 4)$
+fluxP(emb) := block([c : trigsimp(top_coef(form_pullback(omegaF, cp2_X, emb, [rp, ph])))],
+  integrate(c, ph, 0, 2*%pi))$
+assume(rq > 0)$
+check("CP_1 disc: Stokes with the Kahler potential",
+      is(ratsimp(integrate(fluxP([rp*cos(ph), rp*sin(ph), 0, 0]), rp, 0, rq)
+                 - form_integral(Apot, cp2_X, [rq*cos(ph), rq*sin(ph), 0, 0], [[ph, 0, 2*%pi]])) = 0))$
+check("flux through CP_1 = pi", is(integrate(fluxP([rp*cos(ph), rp*sin(ph), 0, 0]), rp, 0, inf) = %pi))$
+check("flux through the conic z2 = z1^2 = 2 pi (degree 2)",
+      is(ratsimp(integrate(fluxP([rp*cos(ph), rp*sin(ph), rp^2*cos(2*ph), rp^2*sin(2*ph)]), rp, 0, inf)) = 2*%pi))$

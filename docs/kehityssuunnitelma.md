@@ -4,7 +4,7 @@
 **Tavoite:** rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen: ✅ toteutettu ja testattu · 🟡 osittain · ⬜ ei vielä.
-> Testit: `./scripts/run_tests.sh` – nykyisin **187/187 läpi**.
+> Testit: `./scripts/run_tests.sh` – nykyisin **194/194 läpi**.
 > **Seuranta GitHubissa:** jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Ks. [docs/seuranta.md](seuranta.md).
 
 ---
@@ -209,11 +209,11 @@ $$
 
 Hodge-operaattori on yleinen metriikkapohjainen operaatio, joka toimii sekä positiividefiniitissä ($\star\star=+1$ 2-muodoille $\mathbb R^4$:ssä) että Lorentz-signatuurissa ($\star\star=-1$).
 
-### Step 3.5 – Differentiaalimuotojen integraalit ⬜
+### Step 3.5 – Differentiaalimuotojen integraalit ✅
 
 Seuranta: [#13](https://github.com/markomanninen/tgd-geometry-lab/issues/13)
 
-Integraalilausekkeiden symbolinen muodostaminen (ei vielä yleistä numeerista integrointia monistoilla).
+`form_pullback` ja `form_integral` muodostavat ja laskevat integraalin parametrisoidulla pinnalla. Testit: Stokes neliöllä, paraboloidilla ja $CP_1$:n kiekolla sekä Kähler-vuo $\pi$ yli $CP_1$:n ja $2\pi$ yli kartion $z^2=(z^1)^2$ (aste 2).
 
 **Vaiheen III tulos:** yleinen differentiaalimuotojen laskentakirjasto `forms/forms.mac`.
 
@@ -422,7 +422,7 @@ tgd-geometry-lab/
 ├── embedding/second-form.mac toinen perusmuoto, Gauss, Codazzi, Ricci
 ├── tgd/action.mac            toimintatiheydet, Euler–Lagrange
 ├── tgd/field-equations.mac   kovariantit kenttäyhtälöt
-├── tests/                    187 automaattista testiä
+├── tests/                    194 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
