@@ -1,0 +1,64 @@
+/* ================================================================
+   TGD Geometry Lab -- tgd/solutions.mac
+   Solution generator (Steps 8.1, 8.2).
+
+   A surface is given as a list h^k(xi).  extremal_report splits the field
+   equations by coefficient and tells which parts vanish:
+       vacuum   induced Kahler form J_ab = 0
+       kahler   the c_K part of E_k vanishes
+       volume   the c_V part of E_k vanishes
+   The equations are linear in c_K and c_V, so the two parts decide the
+   surface for all coefficients.
+
+   The ansatz builders only produce surfaces.  None of them fixes the form of
+   the holography = holomorphy principle (#31): holo_surface takes the
+   parametrisation of M^4 and the CP_2 functions as input.
+   Requires tgd/field-equations.mac.
+   ================================================================ */
+
+/* the c_K and c_V parts of the field equations */
+extremal_parts(em, HJ) := [tgd_field_equations(em, HJ, 1, 0),
+                           tgd_field_equations(em, HJ, 0, 1)]$
+
+sol_null(v, simp) := every(lambda([e], is(simp(tgd_simp(e)) = 0)), v)$
+
+/* simp: extra simplifier for the results, e.g. trigsimp; identity is the default */
+extremal_report(em, HJ, [opt]) := block(
+  [simp : if opt = [] then identity else first(opt), parts, Jind],
+  Jind : induced_kahler_form(HJ, emb_get(em, 'X), emb_get(em, 'h), emb_get(em, 'xi)),
+  parts : extremal_parts(em, HJ),
+  ['vacuum = sol_null(flatten(args(Jind)), simp),
+   'kahler = sol_null(parts[1], simp),
+   'volume = sol_null(parts[2], simp)])$
+
+report_is(rep, vac, kah, vol) := is(rep = ['vacuum = vac, 'kahler = kah, 'volume = vol])$
+
+/* ---------- ansatz builders ---------- */
+
+/* real CP_2 coordinates from the complex ones */
+cp2_real(z1, z2) := block([a : rectform(z1), b : rectform(z2)],
+  [realpart(a), imagpart(a), realpart(b), imagpart(b)])$
+
+/* light-cone chart of M^4: u = t - z, v = t + z, w = x + i y */
+lc_chart : [uu, vv, xx, yy]$
+lc_m4 : [(uu+vv)/2, xx, yy, (vv-uu)/2]$
+lc_w : xx + %i*yy$
+
+/* M^4 chart + CP_2 functions z1, z2 of the chart coordinates */
+holo_surface(m4, z1, z2) := append(m4, cp2_real(z1, z2))$
+
+/* The real slice y1 = y2 = 0 of the chart is a Lagrangian surface of CP_2 with
+   the metric of the unit sphere.  With r = tan(chi) the chart is gnomonic.
+   lagrangian_stereo(f) is the point with stereographic coordinate f, so a
+   function f holomorphic in w is conformal into that sphere.  Its complex
+   structure is the sphere's own, not the one of CP_2. */
+lagrangian_stereo(f) := block([d : 1 - f*conjugate(f)],
+  [2*realpart(rectform(f))/d, 0, 2*imagpart(rectform(f))/d, 0])$
+
+/* H with spherical coordinates on M^4 */
+sph_X : [t, r, th, ph]$
+declare([r, th, ph], real)$
+sph_H_X : append(sph_X, cp2_X)$
+sph_H_metric() := metric_direct_sum(
+  matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -r^2, 0], [0, 0, 0, -r^2*sin(th)^2]),
+  cp2_sign*cp2_metric())$

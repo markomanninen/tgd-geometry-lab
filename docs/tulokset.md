@@ -1,16 +1,18 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 234 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 259 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
 ## Mitä tuli yllätyksenä
 
-Kaksi tulosta kannattaa lukea ensin, koska ne tarkentavat aiempaa käsitystä tai lukitsevat normalisoinnin.
+Kolme tulosta kannattaa lukea ensin, koska ne tarkentavat aiempaa käsitystä tai lukitsevat normalisoinnin.
 
 **Massaton ekstremaali ei ole yleisessä muodossaan minimipinta.** Pitkäsen ansatsi on $s^k=f^k(u,v)$, ja lähteen mukaan massattomat ekstremaalit ovat minimipintoja "in their simplest form at least". Laskenta tarkentaa tätä. Yleinen $f^k(u,v)$ on Kähler-toiminnan ekstremaali, mutta tilavuustermi ei häviä. Tulos ja avoin kysymys ovat kohdassa [Ekstremaalit](#ekstremaalit).
 
 **Kerroin $k=3$ tulee geometriasta.** Unitaarisessa kehyksessä $CP_2$:n spinoriyhteys on $S^+$-lohkossa täsmälleen $\mathrm{diag}(3iA,-3iA)$, kun $dA=J$. Leptonien kerroin $k=3$ kumoaa siis yhteyden kokonaan, ja yksi spinori on kovariantisti vakio. Tämä on TGD:n oikeakätinen neutriino.
+
+**Minimipinta voi pysyä Lagrangen pintana, vaikka sen $M^4$-projektio on neliulotteinen.** Pitkänen kysyy artikkelissa [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf), pakottaako minimipintaehto tällöin muodonmuutoksen, joka rikkoo Lagrangen ominaisuuden. Laskenta antaa perheen pintoja, joilla näin ei käy. Esimerkki on kohdassa [Ratkaisugeneraattori](#ratkaisugeneraattori).
 
 ## $CP_2$:n geometria
 
@@ -75,6 +77,41 @@ Kähler-termi ja tilavuustermi on testattu erikseen. Kanoninen $M^4$ ja kosminen
 Toisella rivillä $T^{\alpha\beta}\propto k^\alpha k^\beta$ ja Kähler-virta on valon kaltainen, kuten Pitkänen kuvaa. Tilavuustermi ei silti häviä. Yksinkertaisin vastaesimerkki on $s^k=F^k(x)$. Silloin pinta on $M^3\times$ käyrä avaruudessa $\mathbb R_x\times CP_2$, ja se on minimaalinen vain, jos käyrä on geodeesi.
 
 Kolmas rivi osoittaa, että $x$-riippuvuus on silti mahdollinen. Se on $CP_2$:n geodeesi, jonka suunta kääntyy $u$:n mukana, ja sillä $J_{ux}\ne0$ ja virta $j^v\ne0$.
+
+## Ratkaisugeneraattori
+
+Moduuli `tgd/solutions.mac` ottaa pinnan syötteenä ja kertoo, häviääkö indusoitu Kähler-muoto $J$, häviääkö kenttäyhtälöiden Kähler-osa ja häviääkö niiden tilavuusosa. Yhtälöt ovat lineaarisia kertoimissa $c_K$ ja $c_V$, joten nämä kaksi osaa ratkaisevat pinnan kaikilla kertoimilla. Holografia = holomorfia -periaatteen muotoa ei ole kiinnitetty, vaan $M^4$:n parametrointi ja $CP_2$:n funktiot ovat syötteitä.
+
+| Pinta | $J$ | Kähler-osa | Tilavuusosa |
+|---|---|---|---|
+| CP₂-tyyppinen, kaareva valon kaltainen käyrä | $\ne0$ | 0 | $\ne0$ |
+| CP₂-tyyppinen, valon kaltainen geodeesi ja harmoninen parametri | $\ne0$ | 0 | 0 |
+| $z^k$ holomorfisia $w$:ssä | $\ne0$ | $\ne0$ | 0 |
+| Lagrangen pinta, muu kuin konformi kuvaus pallolle | 0 | 0 | $\ne0$ |
+| Lagrangen pinta, konformi kuvaus pallolle | 0 | 0 | 0 |
+| Pallosymmetrinen katenoidi | 0 | 0 | 0 |
+
+**CP₂-tyyppiset ekstremaalit.** Pinta on $CP_2$, ja $M^4$-koordinaatit seuraavat valon kaltaista käyrää $m^k=f^k(s)$. Kähler-osa häviää kaikilla tällaisilla käyrillä. Tilavuusosa häviää vain, kun käyrä on geodeesi, mikä vastaa Pitkäsen toteamusta artikkelissa [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf) (luku 4.2.2). Laskenta lisää tähän ehdon, jota lähde ei mainitse. Parametrin $s$ on oltava harmoninen funktio $CP_2$:lla, kuten $\mathrm{Re}\,z^1$ tai $\mathrm{Re}\,(z^1)^2$.
+
+**Lagrangen pinta ja neliulotteinen $M^4$-projektio.** Olkoon $f(w)$ holomorfinen. Pinnan $CP_2$-koordinaatit ovat
+
+$$
+x^1=\frac{2\,\mathrm{Re}\,f}{1-\lvert f\rvert^2},\qquad x^2=\frac{2\,\mathrm{Im}\,f}{1-\lvert f\rvert^2},\qquad y^1=y^2=0,
+$$
+
+ja $M^4$-koordinaatit ovat pinnan parametrit. Reaalileikkaus $y^1=y^2=0$ on Lagrangen pinta, jonka metriikka on paikallisesti yksikköpallon metriikka, ja kaava kuvaa $f$:n stereografisena koordinaattina tälle pallolle. Siksi $J=0$, ja koska $f$ on konformi kuvaus, pinta on myös minimipinta. Ehto $\lvert f\rvert=1$ on vain kartan raja. Testit kattavat funktiot $f=w$, $f=w/2$ ja $f=w^2$. Keskikaarevuus $H^k=0$ on tarkistettu erikseen, ja konformisuuden rikkova vertailutapaus ei ole minimipinta.
+
+Pinta ei ole holomorfinen $CP_2$:n koordinaateissa, koska pallon kompleksirakenne ei ole $CP_2$:n oma. Se ei siis kuulu jäljempänä skannattuun holomorfiseen muotoon, vaikka sen molemmat osat häviävät.
+
+**Pallosymmetrinen katenoidi.** Kun $M^4$:ssä käytetään pallokoordinaatteja ja $CP_2$:ssa geodeesin kaaripituutta $\chi(r)$, Kähler-osa häviää kaikilla $\chi$, ja tilavuusosa supistuu yhtälöksi
+
+$$
+\frac{d}{dr}\left(\frac{r^2\chi'}{\sqrt{1+\chi'^2}}\right)=0,\qquad\text{eli}\qquad \chi'(r)=\frac{C}{\sqrt{r^4-C^2}}.
+$$
+
+Pinta on aika-akseli kertaa katenoidi avaruudessa $\mathbb R^3\times$ geodeesi, ja sen kaula on kohdassa $r^2=\lvert C\rvert$.
+
+**Holomorfinen skannaus.** Pitkäsen [blogin](https://matpitka.blogspot.com/2024/10/) mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja, ja toiminta näkyy vain singulaarisuuksissa. Skannauksen pinnat käyttävät litteää valokartiokarttaa ja $CP_2$:n funktioita $z^k(u,w)$. Tilavuusosa hävisi niillä kaikilla, mutta Kähler-osa ei hävinnyt yhdelläkään pinnalla, jolla on $w$-riippuvuus. Tämä ansatsi ei välttämättä ole Pitkäsen tarkoittama muoto, joten tulos on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/31), ei johtopäätös.
 
 ## Säilymislait
 

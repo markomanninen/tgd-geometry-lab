@@ -35,5 +35,6 @@ tgd_load("tgd/action.mac")$
 tgd_load("tgd/field-equations.mac")$
 tgd_load("tgd/noether.mac")$
 tgd_load("tgd/characteristics.mac")$
+tgd_load("tgd/solutions.mac")$
 
 print("TGD Geometry Lab loaded from", tgd_root)$

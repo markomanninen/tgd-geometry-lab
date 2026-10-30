@@ -1,0 +1,73 @@
+section("tgd/solutions: solution generator")$
+HGs : H_metric()$
+HJs : H_kahler()$
+/* the report reproduces the classification of known surfaces */
+repM : extremal_report(emb_setup(HGs, H_X, [tt, xx, yy, zz, 0, 0, 0, 0], [tt, xx, yy, zz]), HJs)$
+check("report: canonical M^4 is a vacuum extremal", report_is(repM, true, true, true))$
+xiCs : [tt, zz, aa, bb]$
+repC : extremal_report(emb_setup(HGs, H_X, [tt, 0, 0, zz, aa, bb, 0, 0], xiCs), HJs)$
+check("report: cosmic string has J # 0, both parts vanish", report_is(repC, false, true, true))$
+rep_holo(z1, z2) := extremal_report(emb_setup(HGs, H_X, holo_surface(lc_m4, z1, z2), lc_chart), HJs)$
+check("report: z1 = w/2 is minimal, Kahler part does not vanish",
+      report_is(rep_holo(lc_w/2, 0), false, false, true))$
+/* holomorphy scan: the CP_2 functions are inputs, the form of the principle stays open */
+depends([au, bu], uu)$
+check("scan: z1 = a(u) + i b(u) is a massless extremal with J = 0", report_is(rep_holo(au + %i*bu, 0), true, true, true))$
+check("scan: z1 = w^2/4 is minimal only", report_is(rep_holo(lc_w^2/4, 0), false, false, true))$
+check("scan: z1 = w, z2 = w^2 is minimal only", report_is(rep_holo(lc_w, lc_w^2), false, false, true))$
+check("scan: z1 = a(u) w is minimal only", report_is(rep_holo(au*lc_w, 0), false, false, true))$
+check("scan: z1 = a(u) + w/3 is minimal only", report_is(rep_holo(au + lc_w/3, 0), false, false, true))$
+check("control: a non-holomorphic z1 = conj(w)^2 + w is not minimal",
+      not rhs(third(rep_holo(conjugate(lc_w)^2 + lc_w, 0))))$
+/* CP_2-type extremals: the surface is CP_2 and M^4 follows a light-like curve */
+xiP : [pa, pb, pc, pd]$
+declare([pa, pb, pc, pd], real)$
+cp2Surf(m) := append(m, xiP)$
+rep_cp2type(m) := extremal_report(emb_setup(HGs, H_X, cp2Surf(m), xiP), HJs, trigsimp)$
+check("CP_2-type, light-like geodesic and harmonic s: both parts vanish",
+      report_is(rep_cp2type([pa, pa, 0, 0]), false, true, true))$
+check("CP_2-type, curved light-like curve: Kahler part vanishes, volume part does not",
+      report_is(rep_cp2type([pa, cos(pa), sin(pa), 0]), false, true, false))$
+check("CP_2-type, light-like geodesic along Re(z1^2): both parts vanish",
+      report_is(rep_cp2type([pa^2 - pb^2, pa^2 - pb^2, 0, 0]), false, true, true))$
+check("control: CP_2-type along the non-harmonic s = pa^2 is not minimal",
+      report_is(rep_cp2type([pa^2, pa^2, 0, 0]), false, true, false))$
+/* Lagrangian: J = 0 on the real slice of CP_2 */
+rep_lag(s) := extremal_report(emb_setup(HGs, H_X, append(lc_m4, s), lc_chart), HJs, trigsimp)$
+check("Lagrangian: geodesic x1 = tan(x) is a vacuum extremal and minimal",
+      report_is(rep_lag([tan(xx), 0, 0, 0]), true, true, true))$
+check("control: x1 = x is a vacuum extremal but not minimal",
+      report_is(rep_lag([xx, 0, 0, 0]), true, true, false))$
+/* new: two-dimensional Lagrangian CP_2 projection, conformal into the unit sphere */
+check("Lagrangian: stereographic f = w is a vacuum extremal and minimal",
+      report_is(rep_lag(lagrangian_stereo(lc_w)), true, true, true))$
+emLag : emb_setup(HGs, H_X, append(lc_m4, lagrangian_stereo(lc_w)), lc_chart)$
+check("Lagrangian: f = w has mean curvature H^k = 0",
+      every(lambda([e], is(e = 0)), mean_curvature(emLag, second_fundamental_form(emLag))))$
+check("Lagrangian: f = w has a non-flat induced metric",
+      is(tgd_simp(emb_get(emLag, 'g)[3,3] + 1) # 0))$
+check("Lagrangian: stereographic f = w/2 is a vacuum extremal and minimal",
+      report_is(rep_lag(lagrangian_stereo(lc_w/2)), true, true, true))$
+check("Lagrangian: stereographic f = w^2 is a vacuum extremal and minimal",
+      report_is(rep_lag(lagrangian_stereo(lc_w^2)), true, true, true))$
+check("control: anti-conformal mix f = w + conj(w)/2 is a vacuum extremal but not minimal",
+      report_is(rep_lag(lagrangian_stereo(lc_w + conjugate(lc_w)/2)), true, true, false))$
+/* spherically symmetric: M^1 x a catenoid in R^3 x a geodesic of CP_2 */
+depends(chi, r)$
+sxi : [t, r, th, ph]$
+emS : emb_setup(sph_H_metric(), sph_H_X, [t, r, th, ph, tan(chi), 0, 0, 0], sxi)$
+partsS : extremal_parts(emS, H_kahler())$
+check("spherical: the Kahler part vanishes for every chi(r)",
+      every(lambda([e], is(trigsimp(tgd_simp(e)) = 0)), partsS[1]))$
+/* the volume part reduces to the catenoid equation d(r^2 chi'/sqrt(1 + chi'^2))/dr = 0,
+   that is chi'' = -2 chi' (1 + chi'^2)/r */
+pchi : diff(chi, r)$
+sV(q2) := map(lambda([e], trigsimp(tgd_simp(subst(diff(chi, r, 2) = q2, e)))), partsS[2])$
+check("spherical: the volume part vanishes on the catenoid equation",
+      every(lambda([e], is(e = 0)), sV(-2*pchi*(1 + pchi^2)/r)))$
+check("control: a straight chi'' = 0 with chi' # 0 is not minimal",
+      not every(lambda([e], is(e = 0)), sV(0)))$
+ode : diff(r^2*diff(chi, r)/sqrt(1 + diff(chi, r)^2), r)$
+catC : subst([diff(chi, r, 2) = diff(cc/sqrt(r^4 - cc^2), r), diff(chi, r) = cc/sqrt(r^4 - cc^2)], ode)$
+check("spherical: chi' = C/sqrt(r^4 - C^2) solves the catenoid equation",
+      is(radcan(ev(catC, nouns)) = 0))$

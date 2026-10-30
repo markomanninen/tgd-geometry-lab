@@ -4,7 +4,7 @@ Versio 1.1, 30.10.2026.
 Tavoitteena on rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen. ✅ tarkoittaa toteutettua ja testattua, 🟡 osittain tehtyä ja ⬜ tekemätöntä.
-> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 234 testiä menevät läpi.
+> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 259 testiä menevät läpi.
 > GitHubissa jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Tilanne on koottu [seurantaan](seuranta.md).
 
 ---
@@ -379,8 +379,8 @@ Moduuli `tgd/characteristics.mac` laskee pääosan suoraan $L$:n toisista deriva
 ## 10. Vaihe VIII – Ratkaisujen analyysi ja numeerinen jatkokehitys 🟡
 
 Issuet [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31) ja [#32](https://github.com/markomanninen/tgd-geometry-lab/issues/32).
-- **8.1 Symmetriset erikoistapaukset** – yksinkertaiset upotukset, joilla on selkeät symmetriat (pohjana ovat kosminen säie ja ME).
-- **8.2 Analyyttiset ratkaisut** – tarkat symboliset ratkaisut erikoistapauksissa.
+- **8.1 Symmetriset erikoistapaukset** – moduuli `tgd/solutions.mac` luokittelee syötteenä annetun pinnan. CP₂-tyyppiset ekstremaalit, Lagrangen pinnat ja pallosymmetrinen ansatsi on tehty ([tulokset](tulokset.md#ratkaisugeneraattori)).
+- **8.2 Analyyttiset ratkaisut** – uudet tarkat ratkaisut ovat Lagrangen pinta, jolla on neliulotteinen $M^4$-projektio, ja pallosymmetrinen katenoidi. H-H-periaatteen generaattori tarkennetaan Matin vastauksen mukaan (#31).
 - **8.3 Karakteristinen analyysi** – tehty vaiheessa 7.5.
 - **8.4 Numeeriset menetelmät** – Maxima-lausekkeet muunnetaan NumPy-funktioiksi (`lab.numeric`). Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus ovat vielä tekemättä.
 - **8.5 Visualisointi** – kirja `04_numeriikka_ja_kuvat.ipynb` (Maxima vastaa symbolisesta laskennasta, Python numeriikasta ja kuvista). Kirja tarkistaa numeeriset arvot analyyttisiä arvoja vasten.
@@ -406,7 +406,8 @@ tgd-geometry-lab/
 ├── tgd/field-equations.mac   kovariantit kenttäyhtälöt
 ├── tgd/noether.mac           isometriat ja Noether-virrat
 ├── tgd/characteristics.mac   karakteristinen analyysi
-├── tests/                    234 automaattista testiä
+├── tgd/solutions.mac         ratkaisugeneraattori
+├── tests/                    259 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -465,7 +466,7 @@ Toteutusjärjestys on ensin M1–M4, sitten M5–M6 ja vasta sen jälkeen M7–M
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
 1. **Matin linjaukset** #27:ään (tilavuustermin kerroin) ja #28:aan (ME:n määritelmä toiminnalle $S_K+S_V$). Kysymykset lähetettiin Matille 31.10.2026.
-2. **Ratkaisugeneraattori** (#31), kun holografia = holomorfia -periaatteen muoto on selvä.
+2. **Ratkaisugeneraattorin tarkennus** (#31), kun holografia = holomorfia -periaatteen muoto on selvä. Koneisto on jo olemassa, ja periaatteen muoto on sille syöte.
 
 ---
 
@@ -487,6 +488,7 @@ Ympäristö tarjoaa systemaattisen tavan tutkia TGD:n matemaattista rakennetta j
 - M. Pitkänen, *Topological Geometrodynamics* ja tgdtheory.fi.
 - M. Pitkänen, *The Geometry of CP2 and its Relationship to Standard Model* (CP₂-normalisointi).
 - M. Pitkänen, *About the construction of p-adic QFT limit of TGD*, hep-ph/9510361 ($L_K$, $S_K(CP_2)=\pi/8\alpha_K$).
+- M. Pitkänen, [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf), luku 4.2.2 tyhjiöekstremaaleista.
 - M. Pitkänen, matpitka.blogspot.com, kirjoitukset massattomista ekstremaaleista (8/2016), minimipintaekstremaaleista (12/2016), Kähler-kytkennästä k=1/k=3 (1/2017) ja H-H-periaatteesta (8/2025).
 - Lanyon AI, <https://lanyon.ai/>, *Announcing Lanyon AI* (J. Gorard, 2026), [yhtiön esittely](https://lanyon.ai/company/) ja [esittelyvideo](https://youtu.be/gSH50n-9ZLk).
 - LanyonScripts, <https://github.com/lanyonai/LanyonScripts> (MIT) ja Lanyonin Colab-esimerkki *Run LanyonScripts in Colab*.
