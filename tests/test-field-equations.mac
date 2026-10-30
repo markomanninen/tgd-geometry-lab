@@ -1,0 +1,98 @@
+section("tgd/field-equations: covariant form and extremals")$
+GHm : H_metric()$
+JHm : H_kahler()$
+xi : [tt, xx, yy, zz]$
+null_vec(v) := every(lambda([e], is(tgd_simp(e) = 0)), v)$
+/* independent check of the covariant form: dL/dh^k - d_a dL/d(d_a h^k) from the
+   definition, L(h, dh) perturbed by a parameter, on an explicit surface that
+   depends on (t, x) only, so that a runs over two values */
+embT : [tt, xx, yy, zz + tt*xx/9, tt*xx/3 + xx/5, tt^2/7 - xx/4, xx/11, tt/13]$
+Lat(hv, Jc) := block([G : psubst(map("=", H_X, hv), GHm), W : psubst(map("=", H_X, hv), JHm), g, Ji, gi],
+  g : transpose(Jc) . G . Jc, Ji : transpose(Jc) . W . Jc, gi : invert(g),
+  (cK*sum(sum(sum(sum(gi[a,c]*gi[b,d]*Ji[a,b]*Ji[c,d], d,1,4), c,1,4), b,1,4), a,1,4) + cV)
+    * sqrt(-determinant(g)))$
+J0 : jacobian_matrix(embT, xi)$
+ELdef(k) := block([dL, Jp],
+  dL : subst(ee = 0, diff(Lat(embT + ee*makelist(if i = k then 1 else 0, i, 1, 8), J0), ee)),
+  for a in [1, 2] do (
+    Jp : copymatrix(J0), Jp[k,a] : Jp[k,a] + ee,
+    dL : dL - diff(subst(ee = 0, diff(Lat(embT, Jp), ee)), xi[a])),
+  dL)$
+emT : emb_setup(GHm, H_X, embT, xi)$
+EqT : tgd_field_equations(emT, JHm, cK, cV)$
+ptT : [tt = 1/2, xx = 1/3, yy = 0, zz = 0]$
+sqT : subst(ptT, sqrt(-determinant(emb_get(emT, 'g))))$
+coef_close(e) := every(lambda([c], is(abs(float(coeff(expand(float(e)), c))) < 1.0e-9)), [cK, cV])$
+for k in [4, 5, 8] do
+  check(sconcat("E_", k, " = -2 sqrt|g| (h D(T dh) + 2 c_K j J dh), explicit surface"),
+        coef_close(subst(ptT, ELdef(k)) + 2*sqT*subst(ptT, EqT[k])))$
+check("control: the comparison detects a wrong overall sign",
+      not coef_close(subst(ptT, ELdef(5)) - 2*sqT*subst(ptT, EqT[5])))$
+/* canonical M^4 */
+emM : emb_setup(GHm, H_X, [tt, xx, yy, zz, 0, 0, 0, 0], xi)$
+check("canonical M^4 is an extremal for all c_K, c_V",
+      null_vec(tgd_field_equations(emM, JHm, cK, cV)))$
+/* cosmic string X^2 x Y^2 */
+xiC : [tt, zz, aa, bb]$
+emCS : emb_setup(GHm, H_X, [tt, 0, 0, zz, aa, bb, 0, 0], xiC)$
+JCS : induced_kahler_form(JHm, H_X, [tt, 0, 0, zz, aa, bb, 0, 0], xiC)$
+check("cosmic string: j^a = 0", null_vec(kahler_current(emCS, JCS)))$
+check("cosmic string is an extremal for all c_K, c_V",
+      null_vec(tgd_field_equations(emCS, JHm, cK, cV)))$
+/* a non-extremal control: the field equations are not trivially zero */
+emX : emb_setup(GHm, H_X, [tt, 0, 0, zz, aa, bb, aa^2, 0], xiC)$
+check("control: a non-minimal CP_2 projection is not an extremal",
+      not null_vec(tgd_field_equations(emX, JHm, 0, cV)))$
+/* massless extremals in light-cone parameters.  The Kahler term (c_K) and the
+   volume term (c_V) are tested separately. */
+xl : [uu, vv, xx, yy]$
+meX(s) := append([(uu+vv)/2, xx, yy, (vv-uu)/2], s)$
+meEq(s, a, b) := tgd_field_equations(emb_setup(GHm, H_X, meX(s), xl), JHm, a, b)$
+depends([a1, a2, a3, a4], uu)$
+sU : [a1, a2, a3, a4]$
+check("ME s^k(u): extremal for all c_K, c_V", null_vec(meEq(sU, cK, cV)))$
+/* one real transverse coordinate, Pitkanen's s^k = f^k(u, v) */
+depends([F1, F2, F3, F4], [uu, xx])$
+sUX : [F1, F2, F3, F4]$
+emUX : emb_setup(GHm, H_X, meX(sUX), xl)$
+JUX : induced_kahler_form(JHm, H_X, meX(sUX), xl)$
+TUX : tgd_stress(emb_get(emUX, 'g), JUX, cK, 0)$
+check("ME s^k(u, x): Kahler T^ab = T^vv k k",
+      zero_matrix_p(TUX - TUX[2,2]*ematrix(4, 4, 1, 2, 2)))$
+jUX : kahler_current(emUX, JUX)$
+check("ME s^k(u, x): Kahler current along k", null_vec([jUX[1], jUX[3], jUX[4]]))$
+check("ME s^k(u, x): Kahler current does not vanish", is(tgd_simp(jUX[2]) # 0))$
+check("ME s^k(u, x): pure Kahler action, extremal", null_vec(meEq(sUX, cK, 0)))$
+check("ME s^k(u, x): volume term alone does not vanish", not null_vec(meEq(sUX, 0, cV)))$
+/* transverse holomorphy: the opposite split */
+sW : [xx/2, yy/2, 0, 0]$
+check("holomorphic in w: volume term vanishes", null_vec(meEq(sW, 0, cV)))$
+check("holomorphic in w: pure Kahler term does not vanish", not null_vec(meEq(sW, cK, 0)))$
+/* the same by the definition of E_k, on the transverse plane */
+embW : meX(sW)$
+J0W : jacobian_matrix(embW, xl)$
+ELdefW(k) := block([dL, Jp],
+  dL : subst(ee = 0, diff(Lat(embW + ee*makelist(if i = k then 1 else 0, i, 1, 8), J0W), ee)),
+  for a in [3, 4] do (
+    Jp : copymatrix(J0W), Jp[k,a] : Jp[k,a] + ee,
+    dL : dL - diff(subst(ee = 0, diff(Lat(embW, Jp), ee)), xl[a])),
+  dL)$
+ptW : [uu = 0, vv = 0, xx = 1/2, yy = 1/3]$
+emW : emb_setup(GHm, H_X, embW, xl)$
+EqW : tgd_field_equations(emW, JHm, cK, cV)$
+sqW : subst(ptW, sqrt(-determinant(emb_get(emW, 'g))))$
+check("holomorphic in w: covariant E_5 = definition, c_K part non-zero",
+      coef_close(subst(ptW, ELdefW(5)) + 2*sqW*subst(ptW, EqW[5]))
+      and is(abs(float(coeff(expand(float(subst(ptW, EqW[5]))), cK))) > 1.0e-6))$
+/* FS geodesic in x (affine parameter) whose direction turns with u: x-dependent,
+   J # 0, and an extremal of both terms */
+depends(a1b, uu)$
+sR : [tan(xx)*cos(a1b), tan(xx)*sin(a1b), 0, 0]$
+trig_zero(v) := is(map(trigsimp, v) = makelist(0, i, 1, length(v)))$
+emR : emb_setup(GHm, H_X, meX(sR), xl)$
+JR : induced_kahler_form(JHm, H_X, meX(sR), xl)$
+jR : map(trigsimp, kahler_current(emR, JR))$
+check("rotating geodesic: J_ux # 0", is(trigsimp(JR[1,3]) # 0))$
+check("rotating geodesic: only j^v is non-zero", is(jR[1] = 0 and jR[3] = 0 and jR[4] = 0 and jR[2] # 0))$
+check("rotating geodesic: volume term vanishes", trig_zero(meEq(sR, 0, cV)))$
+check("rotating geodesic: Kahler term vanishes", trig_zero(meEq(sR, cK, 0)))$

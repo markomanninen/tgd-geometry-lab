@@ -16,16 +16,20 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 02 · $CP_2$ ja Fubini–Study | Kähler-potentiaali → metriikka → $\omega$, $J$ → Christoffel → Riemann/Ricci → karttasiirtymät | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/02_cp2_fubini_study.ipynb) |
 | 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
 
-## Mitä on varmistettu (58 testiä)
+## Mitä on varmistettu (187 testiä)
 
 | Alue | Tarkistukset |
 |---|---|
 | Metriikka | käänteismatriisi, determinantti, signatuuri, tensorimuunnos |
 | Muodot | $dx\wedge dy=-dy\wedge dx$, $d^2=0$, Leibniz, Hodge $\star\star=\pm1$ |
 | Kaarevuus ($S^2$-vertailu) | $\mathrm{Ric}=g$, $R=2$, $\nabla g=0$ |
-| $CP_2$ | $\det g=1/(1+\rho^2)^6$, $J^2=-1$, $d\omega=0$, $\nabla J=0$, $\tfrac12\omega\wedge\omega=\mathrm{vol}$, Riemannin symmetriat, Bianchi I ja II, $\mathrm{Ric}=6g$, $R=24$, holomorfinen leikkauskaarevuus $4$, $S_K(CP_2)=\pi/(8\alpha_K)$ (TGD-normalisointi), karttasiirtymä $Z_0\leftrightarrow Z_1$ |
+| $CP_2$ | $\det g=1/(1+\rho^2)^6$, $J^2=-1$, $d\omega=0$, $\nabla J=0$, $\tfrac12\omega\wedge\omega=\mathrm{vol}$, Riemannin symmetriat, Bianchi I ja II, $\mathrm{Ric}=6g$, $R=24$, holomorfinen leikkauskaarevuus $4$, $S_K(CP_2)=\pi/(8\alpha_K)$ (TGD-normalisointi), kaikki karttasiirtymät |
 | Upotus | $H$:n signatuuri $(1,7)$; kanoninen $M^4$: $g=m$, $J=0$; kosminen säie: $J_{\alpha\beta}J^{\alpha\beta}=2$; ME: $J\ne0$, $J_{\alpha\beta}J^{\alpha\beta}=0$, $J\wedge J=0$ |
-| Toiminta | Euler–Lagrange → aaltoyhtälö; tilavuustoiminta → minimipintayhtälö |
+| Kehykset ja Cartan | $g=e^T\eta e$; $T^a=0$; $\Omega$ = Riemann; spin-yhteys kahta reittiä ($CP_2$, $H$, FRW) |
+| Spinorit | $D_\mu\gamma^\nu=0$; $\tfrac12\gamma\gamma F=-R/4$; $k=3$ antaa vakion $\nu_R$; vuo kokonaisluku parittomilla $k$ |
+| Ekstrinsinen geometria | $B^k{}_{\alpha\beta}$, $H^k$; Gauss, Codazzi ja Ricci kaarevassa ympäristössä |
+| Toiminta | Euler–Lagrange → aaltoyhtälö; tilavuustoiminta → minimipintayhtälö; kovariantti kenttäyhtälö = määritelmästä laskettu $E_k$ |
+| Ekstremaalit | kosminen säie ja ME $s^k(u)$ kaikilla $c_K$, $c_V$; yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä ([taulukko](docs/konventiot.md)) |
 | Clifford | $\{\gamma_a,\gamma_b\}=2\eta_{ab}$ signatuureille $(4,0)$ ja $(1,3)$ |
 
 ## Käyttö paikallisesti
@@ -53,10 +57,15 @@ tgd_msimp(Ric - 6*G);          /* => nollamatriisi */
 core/metric.mac             monistot, metriikat, muunnokset
 geometry/curvature.mac      Christoffel, ∇, Riemann, Ricci, Bianchi, leikkauskaarevuus
 forms/forms.mac             muodot, ∧, d, sisätulo, Hodge ⋆
+algebra/vielbein.mac        kehykset
+algebra/spinor.mac          spinoriyhteys, Kähler-kytkentä, gammat, Dirac
+geometry/cartan.mac         yhteysmuodot, torsio, kaarevuusmuodot, spin-yhteys
 spaces/cp2.mac              CP2: Fubini–Study, ω, J, kartat
 spaces/embedding-space.mac  M4 ja H = M4 × CP2
 embedding/induced.mac       indusoitu metriikka ja Kähler-muoto
+embedding/second-form.mac   toinen perusmuoto, Gauss, Codazzi, Ricci
 tgd/action.mac              L_K, L_V, J∧J, Euler–Lagrange
+tgd/field-equations.mac     kovariantit kenttäyhtälöt
 tests/                      automaattiset testit
 notebooks/                  Colab-kirjat + tgdlab.py (Maxima → LaTeX -silta)
 docs/                       kehityssuunnitelma ja konventiot
@@ -73,15 +82,15 @@ docs/                       kehityssuunnitelma ja konventiot
 | Välitavoite | Edistyminen |
 |---|---|
 | [M1 Ympäristö](https://github.com/markomanninen/tgd-geometry-lab/milestone/1) | 4/4 ✅ |
-| [M2 CP2-metriikka](https://github.com/markomanninen/tgd-geometry-lab/milestone/2) | 4/6 |
+| [M2 CP2-metriikka](https://github.com/markomanninen/tgd-geometry-lab/milestone/2) | 6/6 ✅ |
 | [M3 Muodot](https://github.com/markomanninen/tgd-geometry-lab/milestone/3) | 2/3 |
-| [M4 Kaarevuus](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | 2/3 |
-| [M5 Clifford-geometria](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | 1/4 |
-| [M6 Upotus](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | 2/4 |
+| [M4 Kaarevuus](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | 3/3 ✅ |
+| [M5 Clifford-geometria](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | 4/4 ✅ |
+| [M6 Upotus](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | 4/4 ✅ |
 | [M7 Toiminta](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 2/6 |
 | [M8 Ratkaisut](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | 0/2 |
 
-Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku on #18 vielbein → #16 Cartan / #19 spin-yhteys → #23 toinen perusmuoto → #27 $L_{TGD}$:n variaatio → #28 tarkistus, että kosminen säie ja ME ovat ekstremaaleja.
+Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on laskettu ja testattu. #27 ja #28 odottavat Matti Pitkäsen linjausta toiminnan $S_K+S_V$ kertoimista ja ME:n määritelmästä.
 
 Järjestelmä ei todista TGD:tä fysikaalisesti oikeaksi. Sen tarkoitus on tarkistaa johdoksia ja tutkia erikoistapauksia luotettavasti.
 

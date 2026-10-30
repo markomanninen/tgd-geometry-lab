@@ -4,7 +4,7 @@
 **Tavoite:** rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen: ✅ toteutettu ja testattu · 🟡 osittain · ⬜ ei vielä.
-> Testit: `./scripts/run_tests.sh` – nykyisin **58/58 läpi**.
+> Testit: `./scripts/run_tests.sh` – nykyisin **187/187 läpi**.
 > **Seuranta GitHubissa:** jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Ks. [docs/seuranta.md](seuranta.md).
 
 ---
@@ -154,12 +154,12 @@ $$
 
 Lasketaan metriikkamatriisi, käänteismetriikka, determinantti $\det g=1/(1+\rho^2)^6$, tilavuusmuoto ja positiividefiniittisyys. Kaikki tulokset tarkistetaan symbolisesti.
 
-### Step 2.4 – Koordinaattikarttojen väliset muunnokset 🟡
+### Step 2.4 – Koordinaattikarttojen väliset muunnokset ✅
 
 Seuranta: [#7](https://github.com/markomanninen/tgd-geometry-lab/issues/7), [#8](https://github.com/markomanninen/tgd-geometry-lab/issues/8)
 
 $CP_2$ ei ole yksi globaali kompleksinen koordinaattialue. Kartat ovat $Z_0\neq0$, $Z_1\neq0$ ja $Z_2\neq0$.
-Toteutettu ja testattu on siirtymä $Z_0\leftrightarrow Z_1$ ($z^1=1/w^1$, $z^2=w^2/w^1$) Jacobin matriiseineen: metriikka muuntuu oikein. Kartta $Z_2$ tehdään samalla mallilla.
+Kaikki siirtymät tulevat homogeenisista koordinaateista (`cp2_chart_map`). Testit: metriikka ja Kähler-muoto säilyvät kaikissa kuudessa suunnatussa karttaparissa, kokosykliehto pätee kolmen kartan leikkauksessa, ja $\mathrm{Ric}=6g$, $R=24$ saadaan myös muunnetusta metriikasta.
 
 ### Step 2.5 – Kähler-rakenne ✅
 
@@ -238,7 +238,7 @@ $$
 
 Toteutettu vektoreille, $(0,2)$- ja $(1,1)$-tensoreille.
 
-### Step 4.3 – Ortonormaalit kehykset ⬜
+### Step 4.3 – Ortonormaalit kehykset ✅
 
 Seuranta: [#18](https://github.com/markomanninen/tgd-geometry-lab/issues/18)
 
@@ -246,13 +246,13 @@ $$
 g_{\mu\nu}=e^a{}_\mu\,e^b{}_\nu\,\eta_{ab}.
 $$
 
-### Step 4.4 – Spin-yhteys ⬜
+### Step 4.4 – Spin-yhteys ✅
 
 Seuranta: [#19](https://github.com/markomanninen/tgd-geometry-lab/issues/19)
 
-Spin-yhteys johdetaan ortonormaalista kehyksestä (paikallisen Lorentz- tai ortogonaalikehyksen yhteysmuodot).
+Spin-yhteys lasketaan kahdella reitillä, jotka tarkistavat toisensa: kehyksestä ja Christoffeleista (`spin_connection`) sekä pelkästä anholonomiasta (`connection_forms`). $CP_2$:n unitaarisessa kehyksessä holonomia on $U(2)$:ssa. Kähler-kytkennällä $dA=J$ kerroin $k=3$ antaa kovariantisti vakion spinorin $\nu_R$, ja $S^+$:n vuo yli $CP_1$:n on kokonaisluku täsmälleen parittomilla $k$.
 
-### Step 4.5 – Clifford-algebran liittäminen 🟡
+### Step 4.5 – Clifford-algebran liittäminen ✅
 
 Seuranta: [#17](https://github.com/markomanninen/tgd-geometry-lab/issues/17), [#20](https://github.com/markomanninen/tgd-geometry-lab/issues/20)
 
@@ -260,7 +260,7 @@ $$
 \gamma^a\gamma^b+\gamma^b\gamma^a=2\eta^{ab},\qquad \gamma^\mu=e_a{}^\mu\,\gamma^a .
 $$
 
-Clifford-relaatiot on testattu Prodanovin paketilla signatuureille $(4,0)$ ja $(1,3)$. Vielbein-liitos odottaa vaiheita 4.3–4.4.
+Clifford-relaatiot on testattu Prodanovin paketilla signatuureille $(4,0)$ ja $(1,3)$ sekä kaarevalla $CP_2$:lla. Eksplisiittisillä matriiseilla on testattu lisäksi $D_\mu\gamma^\nu=0$, Lichnerowicz-termi $\tfrac12\gamma^\mu\gamma^\nu F_{\mu\nu}=-R/4$ ja Diracin operaattori ($S^2$:n ominaisarvo $i$).
 **Periaate:** kaarevalla monistolla Clifford-algebra määritellään paikallisissa ortonormaaleissa kehyksissä. Yhtä globaalia vakiomuotoista Clifford-kehystä ei oleteta.
 
 ---
@@ -282,7 +282,7 @@ $$
 R_{\mu\nu}=R^\rho{}_{\mu\rho\nu},\qquad R=g^{\mu\nu}R_{\mu\nu}.
 $$
 
-### Step 5.3 – Cartanin rakenneyhtälöt ⬜
+### Step 5.3 – Cartanin rakenneyhtälöt ✅
 
 Seuranta: [#16](https://github.com/markomanninen/tgd-geometry-lab/issues/16)
 
@@ -337,13 +337,13 @@ Testatut esimerkit:
 | Kosminen säie $X^2\times CP_1$ | $J_{\alpha\beta}J^{\alpha\beta}=2$ (vakio magneettinen kenttä) |
 | Massaton ekstremaali, $s^k(u,x)$, $u=t-z$ | $J\neq0$, $g^{uu}=0$, $J_{\alpha\beta}J^{\alpha\beta}=0$, $J\wedge J=0$ |
 
-### Step 6.4 – Normaalivektorit ja toinen perusmuoto ⬜
+### Step 6.4 – Normaalivektorit ja toinen perusmuoto ✅
 
 Seuranta: [#23](https://github.com/markomanninen/tgd-geometry-lab/issues/23)
 
-Tangentti- ja normaalikehykset sekä $B^i{}_{\alpha\beta}$ ja ekstrinsiset kaarevuussuureet (tangenttivektorit ovat jo saatavilla: `tangent_vectors`).
+`second_fundamental_form`, `mean_curvature`, `normal_projector` ja `normal_frame`. Testit: pallo ja sylinteri $R^3$:ssa, sylinteri käyräviivaisessa ympäristössä, hyperboloidi $R^{1,2}$:ssa, helikoidi, $CP_1$ ja kartio $z^2=(z^1)^2$ $CP_2$:ssa sekä upotukset $H$:ssa.
 
-### Step 6.5 – Gaussin, Codazzin ja Riccin yhtälöt ⬜
+### Step 6.5 – Gaussin, Codazzin ja Riccin yhtälöt ✅
 
 Seuranta: [#24](https://github.com/markomanninen/tgd-geometry-lab/issues/24)
 
@@ -372,11 +372,13 @@ Seuranta: [#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27), [#
 
 Dynaamisia muuttujia ovat **upotuskoordinaatit** $h^k$. Variaatio $\delta S=0$ johdetaan niiden suhteen; metriikkaa ja Kähler-muotoa ei oleteta toisistaan riippumattomiksi variaatiomuuttujiksi.
 
-### Step 7.3 – Euler–Lagrange-yhtälöt 🟡
+Yhtälöt on muodostettu symbolisilla kertoimilla $c_K$, $c_V$ ja tarkistettu kovarianttia muotoa vasten (ks. [konventiot](konventiot.md)). Kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja kaikilla kertoimilla. Yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä. #27 ja #28 odottavat Matin linjausta.
+
+### Step 7.3 – Euler–Lagrange-yhtälöt ✅
 
 Seuranta: [#26](https://github.com/markomanninen/tgd-geometry-lab/issues/26)
 
-Yleinen symbolinen variaatiomoottori `euler_lagrange(L, kentät, muuttujat)` on toteutettu ensimmäisen kertaluvun derivaattoja sisältäville tiheyksille. Testit: aaltoyhtälö sekä minimipintayhtälö tilavuustoiminnasta. Seuraavaksi sovelletaan sitä suoraan $L_{TGD}(h,\partial h)$:hen.
+Yleinen symbolinen variaatiomoottori `euler_lagrange(L, kentät, muuttujat)` on toteutettu ensimmäisen kertaluvun derivaattoja sisältäville tiheyksille. Testit: aaltoyhtälö sekä minimipintayhtälö tilavuustoiminnasta. Kovariantti muoto on `tgd_field_equations`, ja sitä verrataan suoraan määritelmästä laskettuun arvoon.
 
 ### Step 7.4 – Säilymislait ja Noether-rakenteet ⬜
 
@@ -409,13 +411,18 @@ Seuranta: [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31), [#
 tgd-geometry-lab/
 ├── tgd-lab.mac               lataaja
 ├── core/metric.mac           monistot, metriikat, muunnokset
+├── algebra/vielbein.mac      kehykset
+├── algebra/spinor.mac        spinoriyhteys, Kähler-kytkentä, gammat, Dirac
 ├── geometry/curvature.mac    Christoffel, kovariantti derivaatta, Riemann, Ricci, Bianchi
+├── geometry/cartan.mac       yhteys- ja kaarevuusmuodot, torsio, spin-yhteys
 ├── forms/forms.mac           muodot, wedge, d, sisätulo, Hodge
 ├── spaces/cp2.mac            CP2 Fubini–Study, Kähler-rakenne, kartat
 ├── spaces/embedding-space.mac  M4, H = M4 x CP2
 ├── embedding/induced.mac     indusoitu metriikka ja Kähler-muoto
+├── embedding/second-form.mac toinen perusmuoto, Gauss, Codazzi, Ricci
 ├── tgd/action.mac            toimintatiheydet, Euler–Lagrange
-├── tests/                    58 automaattista testiä
+├── tgd/field-equations.mac   kovariantit kenttäyhtälöt
+├── tests/                    187 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -433,10 +440,10 @@ Alkuperäisen suunnitelman hienojakoisempi jako (`wedge.mac`, `hodge.mac`, `riem
 | Kähler-geometria | $d\omega=0$, $\nabla J=0$ | ✅ |
 | Differentiaalimuodot | $d^2=0$ | ✅ |
 | Yhteys | metriikan yhteensopivuus | ✅ |
-| Torsio | Levi-Civita: $T=0$ | ⬜ (Cartan) |
+| Torsio | Levi-Civita: $T=0$ | ✅ |
 | Kaarevuus | Bianchin identiteetit | ✅ |
 | Clifford-algebra | Clifford-relaatiot | ✅ |
-| Upotusgeometria | Gauss–Codazzi | ⬜ |
+| Upotusgeometria | Gauss–Codazzi | ✅ |
 | TGD-toiminta | variaatioyhtälöiden tarkistus | 🟡 |
 
 Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $S^2$, $\mathbb R^4$, Minkowski), jotta mahdolliset virheet voidaan erottaa TGD:n omista matemaattisista oletuksista.
@@ -450,9 +457,9 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 | [M1](https://github.com/markomanninen/tgd-geometry-lab/milestone/1) | Maxima- ja Clifford-ympäristö | peruslaskenta toimii | ✅ |
 | [M2](https://github.com/markomanninen/tgd-geometry-lab/milestone/2) | $CP_2$-metriikka | Fubini–Study-tulokset täsmäävät | ✅ |
 | [M3](https://github.com/markomanninen/tgd-geometry-lab/milestone/3) | Differentiaalimuodot | muoto-operaatiot ja $d^2=0$ toimivat | ✅ |
-| [M4](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | Yhteydet ja kaarevuus | kaarevuus- ja Bianchi-testit läpäisty | ✅ (Cartan ⬜) |
-| [M5](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | Clifford-geometria | paikalliset kehykset ja spin-yhteys | 🟡 |
-| [M6](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | Upotusgeometria | indusoitu geometria ja Gauss–Codazzi | 🟡 |
+| [M4](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | Yhteydet ja kaarevuus | kaarevuus- ja Bianchi-testit läpäisty | ✅ |
+| [M5](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | Clifford-geometria | paikalliset kehykset ja spin-yhteys | ✅ |
+| [M6](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | Upotusgeometria | indusoitu geometria ja Gauss–Codazzi | ✅ |
 | [M7](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | TGD:n toimintaperiaate | variaatioyhtälöt muodostuvat | 🟡 |
 | [M8](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | Ratkaisuanalyysi | ensimmäiset testattavat ratkaisut | ⬜ |
 
@@ -473,9 +480,9 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
-1. **Cartan-moduuli** (vielbein → spin-yhteys → kaarevuus-2-muodot, $T^a=0$), joka avaa M5:n.
-2. **Toinen perusmuoto ja Gauss–Codazzi** M6:een.
-3. **$L_{TGD}$:n variointi upotuskoordinaattien suhteen** ja tulosten vertailu tunnettuihin ekstremaaleihin (kosminen säie, ME, $CP_2$-tyyppiset tyhjiöekstremaalit) M7:ään.
+1. **Matin linjaukset** #27:ään (tilavuustermin kerroin) ja #28:aan (ME:n määritelmä toiminnalle $S_K+S_V$).
+2. **Noether-virrat** (#29) ja **karakteristinen analyysi** (#30) M7:ään.
+3. **Ratkaisuanalyysi** (#31, #32) M8:aan.
 
 ---
 

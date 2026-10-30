@@ -13,15 +13,17 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | Välitavoite | Valmiina | Seuraavaksi |
 |---|---|---|
 | M1 Ympäristö | 4/4 ✅ | – |
-| M2 CP2-metriikka | 5/6 | #8 kartta Z2 |
+| M2 CP2-metriikka | 6/6 ✅ | – |
 | M3 Muodot | 2/3 | #13 integraalit |
-| M4 Kaarevuus | 2/3 | #16 Cartan ja torsio |
-| M5 Clifford-geometria | 1/4 | #18 vielbein → #19 spin-yhteys → #20 γ^μ |
-| M6 Upotus | 2/4 | #23 toinen perusmuoto → #24 Gauss–Codazzi |
-| M7 Toiminta | 2/6 | #27 L_TGD:n variaatio → #28 ekstremaalitarkistus |
+| M4 Kaarevuus | 3/3 ✅ | – |
+| M5 Clifford-geometria | 4/4 ✅ | – |
+| M6 Upotus | 4/4 ✅ | – |
+| M7 Toiminta | 2/6 | #27 ja #28 odottavat Matin linjausta, #29 Noether, #30 karakteristiikat |
 | M8 Ratkaisut | 0/2 | #31, #32 |
 
-**Kriittinen polku:** #18 → #16/#19 → #23 → #27 → #28. Kun kosminen säie ja massaton ekstremaali tarkistuvat kenttäyhtälöiden ratkaisuiksi (#28), koko ketju upotusavaruudesta kenttäyhtälöihin on testattu.
+Testit: **187/187 läpi**.
+
+**Kriittinen polku:** #18 → #16/#19 → #23 → #27 → #28. Ketju upotusavaruudesta kenttäyhtälöihin on nyt laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$: kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja. #27 ja #28 ovat auki, koska yleisen ME-ansatsin asema toiminnalle $S_K+S_V$ vaatii Matin linjauksen.
 
 ## Päätöspisteet (tunniste `päätös`)
 
@@ -35,7 +37,7 @@ Periaate: vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitkäsen artikkel
 | Kähler-toiminnan kerroin (#27) | $L_K=\frac{1}{4g_K^2}J^{\mu\nu}J_{\mu\nu}\sqrt g$, $\alpha_K=g_K^2/4\pi$ | hep-ph/9510361 | ✅ konventioissa |
 | M⁴:n Kähler-rakenne | Twistorinosto vaatii sen, mutta vaikutus ~10⁻¹⁷ → ohitetaan toistaiseksi | Pitkäsen blogi 2025 | ✅ päätetty |
 | Spinorikytkentä (#19) | Kähler-kytkentä $k=1$ kvarkeille, $k=3$ leptoneille | Pitkäsen blogi 2017 | ✅ toteutusohje |
-| ME-ansatsi (#28) | CP₂-koordinaatit funktioita $u=k\cdot m$, $w=\varepsilon\cdot m$ – vastaa omaamme; ME:t ovat minimipintoja ja minkä tahansa GCI-toiminnan ekstremaaleja | Pitkäsen blogi 2016 | ✅ testikohde |
+| ME-ansatsi (#28) | CP₂-koordinaatit funktioita $u=k\cdot m$, $v=\varepsilon\cdot m$ – vastaa omaamme. Lähde rajaa minimipintaväitteen: "in their simplest form at least". Laskettu tulos on `docs/konventiot.md`:ssä | Pitkänen: *Extremals of the Kähler Action* (2024), luvut 6.2–6.3 | 🟡 ks. avoimet |
 | Vertailuekstremaalit (#31) | ME, kosminen säie $X^2\times Y^2$, Lagrangen tyhjiöekstremaalit, CP₂-tyyppiset | Pitkäsen blogi 2016 | ✅ lista |
 
 ### Avoinna – kysytään Matilta
@@ -43,6 +45,7 @@ Periaate: vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitkäsen artikkel
 | Issue | Kysymys |
 |---|---|
 | #27 | Twistorinoston $S_K+S_V$: tilavuustermin kertoimen etumerkki ja normalisointi suhteessa Kähler-termiin Minkowski-alueilla (ja kompleksisen $\alpha_K$:n rooli) nykyisessä muotoilussa |
+| #28 | Mikä on ME:n täsmällinen määritelmä toiminnalle $S_K+S_V$? Yleinen $s^k(u,v)$ on Kähler-ekstremaali, mutta se ei ole minimipinta. Ks. kysymys issuessa #28 |
 | #31 | Holografia = holomorfia -periaatteen (H-H) nykyinen täsmällinen muoto, jonka voisi toteuttaa ratkaisugeneraattorina (koordinaatit $u$, $w$ ja ehdot $f_1=f_2=0$) |
 
 ### Markolle

@@ -1,0 +1,45 @@
+/* ================================================================
+   TGD Geometry Lab -- tgd/field-equations.mac
+   Field equations of L = (c_K J.J + c_V) sqrt|g| in covariant form (Step 7.2).
+
+   Dynamical variables are the embedding coordinates h^k.  With f = c_K J.J + c_V,
+       T^{ab} = 1/2 f g^{ab} - 2 c_K J^a_c J^{bc},     j^b = D_a J^{ab},
+   the variation dS = int E_k dh^k d^4xi gives
+       E_k = -2 sqrt|g| [ h_kl D_a(T^{ab} d_b h^l) + 2 c_K j^b J_kl d_b h^l ].
+   J_kl is the Kahler form of H and J_ab its pullback.  The derivation uses dJ = 0.
+   c_K and c_V stay symbolic.
+   Requires embedding/second-form.mac, tgd/action.mac.
+   ================================================================ */
+
+tgd_stress(g, Jind, cK, cV) := block([gi:mat_inverse(g), n:length(g), Ju, f],
+  Ju : gi . Jind . gi,                      /* J^{ab} */
+  f : cK*kahler_invariant(g, Jind) + cV,
+  /* J^a_c J^{bc} = J^{ad} g_{dc} J^{bc} */
+  tgd_msimp(f/2*gi - 2*cK*(Ju . g . transpose(Ju))))$
+
+/* Kahler current j^b = D_a J^{ab} = d_a J^{ab} + G^a_{ac} J^{cb} */
+kahler_current(em, Jind) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), G:emb_get(em,'G),
+                                   xi:emb_get(em,'xi), n, Ju],
+  n : length(xi),
+  Ju : tgd_msimp(gi . Jind . gi),
+  makelist(tgd_simp(sum(diff(Ju[a,b], xi[a]) + sum(G[a][a][c]*Ju[c,b], c, 1, n), a, 1, n)),
+           b, 1, n))$
+
+/* D_a(T^{ab} d_b h^k) with H-Christoffels on k and induced ones on a */
+tgd_T_divergence(em, T, xi) := block([g:emb_get(em,'g), t:emb_get(em,'t), GH:emb_get(em,'GH),
+                                      G:emb_get(em,'G), n:length(xi), N:length(emb_get(em,'X)), V],
+  V : makelist(makelist(sum(T[a,b]*t[b][k], b, 1, n), k, 1, N), a, 1, n),
+  makelist(tgd_simp(sum(diff(V[a][k], xi[a]) + sum(G[a][a][c]*V[c][k], c, 1, n)
+     + sum(sum(GH[k][l][m]*t[a][l]*V[a][m], m, 1, N), l, 1, N), a, 1, n)), k, 1, N))$
+
+/* Lower-index covariant field equations E_k / (-2 sqrt|g|) */
+tgd_field_equations(em, HJ, cK, cV) := block([g:emb_get(em,'g), xi:emb_get(em,'xi), hh:emb_get(em,'hh),
+    HX:emb_get(em,'X), h:emb_get(em,'h), t:emb_get(em,'t), n, N, Jind, Js, T, D, j],
+  n : length(xi), N : length(HX),
+  Jind : induced_kahler_form(HJ, HX, h, xi),
+  Js : emb_on_surface(HJ, HX, h),
+  T : tgd_stress(g, Jind, cK, cV),
+  D : tgd_T_divergence(em, T, xi),
+  j : kahler_current(em, Jind),
+  makelist(tgd_simp(sum(hh[k,l]*D[l], l, 1, N)
+     + 2*cK*sum(j[b]*sum(Js[k,l]*t[b][l], l, 1, N), b, 1, n)), k, 1, N))$
