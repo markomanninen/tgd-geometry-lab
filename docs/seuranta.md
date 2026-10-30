@@ -20,7 +20,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
 | M7 Toiminta | 4/6 | #27 ja #28 odottavat Matin linjausta |
-| M8 Ratkaisut | 0/2 | #31, #32 |
+| M8 Ratkaisut | 1/2 | #31 odottaa Matin linjausta |
 
 Testit: **234/234 läpi**.
 

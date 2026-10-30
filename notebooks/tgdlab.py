@@ -10,6 +10,7 @@ given code.  Results are returned as text or rendered as LaTeX.
 from __future__ import annotations
 
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -46,6 +47,12 @@ def _clean_tex(t: str) -> str:
     t = t.replace(r"\cr \end{pmatrix}", r"\end{pmatrix}").replace(r"\cr", r"\\")
     t = t.replace(r"\mathbf{true}", r"\text{true}").replace(r"\mathbf{false}", r"\text{false}")
     return t
+
+
+def to_python(expr: str) -> str:
+    """Translate Maxima's 1D output to a NumPy expression."""
+    e = expr.replace("^", "**").replace("%pi", "pi").replace("%e", "e").replace("%i", "1j")
+    return re.sub(r"\s+", "", e)
 
 
 class Lab:
@@ -95,6 +102,21 @@ class Lab:
                 res[int(idx)] = val.strip()
         vals = [res.get(i, "<no output>") for i in range(len(exprs))]
         return [_clean_tex(v) for v in vals] if tex else vals
+
+    def numeric(self, setup: str, expr: str, variables: list[str]):
+        """Return a NumPy function of `variables` from a Maxima expression."""
+        import numpy as np
+        code = compile(to_python(self.values(setup, [expr])[0]), "<maxima>", "eval")
+        names = {k: getattr(np, k) for k in ("sin", "cos", "tan", "atan", "exp", "log",
+                                             "sqrt", "pi", "e", "abs")}
+        names.update(sec=lambda v: 1/np.cos(v), csc=lambda v: 1/np.sin(v),
+                     cot=lambda v: 1/np.tan(v))
+
+        def f(*args):
+            scope = dict(names, **dict(zip(variables, args)))
+            return np.broadcast_to(eval(code, {"__builtins__": {}}, scope),
+                                   np.broadcast(*args).shape)
+        return f
 
     def show(self, setup: str, items: list[tuple[str, str]],
              load_clifford: bool = False) -> None:

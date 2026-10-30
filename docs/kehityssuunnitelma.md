@@ -395,15 +395,15 @@ Toteutus: `tgd/characteristics.mac` laskee pääosan suoraan $L$:n toisista deri
 
 ---
 
-## 10. Vaihe VIII – Ratkaisujen analyysi ja numeerinen jatkokehitys ⬜
+## 10. Vaihe VIII – Ratkaisujen analyysi ja numeerinen jatkokehitys 🟡
 
 Seuranta: [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31), [#32](https://github.com/markomanninen/tgd-geometry-lab/issues/32)
 
 - **8.1 Symmetriset erikoistapaukset** – yksinkertaiset upotukset, joilla on selkeät symmetriat (pohja on jo olemassa: kosminen säie ja ME).
 - **8.2 Analyyttiset ratkaisut** – tarkat symboliset ratkaisut erikoistapauksissa.
 - **8.3 Karakteristinen analyysi** – tehty vaiheessa 7.5.
-- **8.4 Numeeriset menetelmät** – ratkaisuverkot, parametriskannaus, alku- ja reunaehdot, stabiilisuus.
-- **8.5 Visualisointi** – Python (Maxima vastaa symbolisesta laskennasta, Python numeriikasta ja visualisoinnista).
+- **8.4 Numeeriset menetelmät** – Maxima-lausekkeet muunnetaan NumPy-funktioiksi (`lab.numeric`). Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus ovat vielä tekemättä.
+- **8.5 Visualisointi** – kirja `04_numeriikka_ja_kuvat.ipynb` (Maxima vastaa symbolisesta laskennasta, Python numeriikasta ja kuvista). Kirja tarkistaa numeeriset arvot analyyttisiä arvoja vasten.
 
 ---
 
@@ -465,7 +465,7 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 | [M5](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | Clifford-geometria | paikalliset kehykset ja spin-yhteys | ✅ |
 | [M6](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | Upotusgeometria | indusoitu geometria ja Gauss–Codazzi | ✅ |
 | [M7](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | TGD:n toimintaperiaate | variaatioyhtälöt muodostuvat | 🟡 |
-| [M8](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | Ratkaisuanalyysi | ensimmäiset testattavat ratkaisut | ⬜ |
+| [M8](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | Ratkaisuanalyysi | ensimmäiset testattavat ratkaisut | 🟡 |
 
 **Toteutusjärjestys:** ensin M1–M4, sitten M5–M6 ja vasta sen jälkeen M7–M8. Näin TGD-fysiikan oletukset eivät sekoitu laskentakirjaston virheisiin.
 
@@ -485,8 +485,7 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
 1. **Matin linjaukset** #27:ään (tilavuustermin kerroin) ja #28:aan (ME:n määritelmä toiminnalle $S_K+S_V$).
-2. **Numeriikka ja visualisointi** (#32) M8:aan.
-3. **Ratkaisugeneraattori** (#31), kun holografia = holomorfia -periaatteen muoto on selvä.
+2. **Ratkaisugeneraattori** (#31), kun holografia = holomorfia -periaatteen muoto on selvä.
 
 ---
 

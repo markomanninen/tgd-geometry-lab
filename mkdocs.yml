@@ -19,6 +19,7 @@ nav:
       - Ympäristö ja testit: notebooks/01_ymparisto_ja_testit.ipynb
       - CP2 ja Fubini–Study: notebooks/02_cp2_fubini_study.ipynb
       - Upotus ja toiminta: notebooks/03_upotus_ja_toiminta.ipynb
+      - Numeriikka ja kuvat: notebooks/04_numeriikka_ja_kuvat.ipynb
 
 theme:
   name: material

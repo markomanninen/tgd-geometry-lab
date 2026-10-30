@@ -106,6 +106,8 @@ Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut ja ME-taustalla h
 
 Tulokset koskevat yhtälön pääosaa yhdessä pisteessä. Ne eivät vielä kerro ratkaisujen stabiiliudesta.
 
+Kuvat: [Numeriikka ja kuvat](notebooks/04_numeriikka_ja_kuvat.ipynb).
+
 ## Avoimet kysymykset
 
 Nämä odottavat Matti Pitkäsen linjausta:
