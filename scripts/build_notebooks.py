@@ -43,11 +43,11 @@ nb01 = nb([
 
 {badge("01_ymparisto_ja_testit.ipynb")}
 
-Tämä kirja on rakennettu Lanyonin Colab-esimerkin (*Run LanyonScripts in Colab*) mallin mukaan:
+Tämä kirja on rakennettu Lanyonin Colab-esimerkin (*Run LanyonScripts in Colab*) mallin mukaan. Siinä ovat
 väliaikainen Ubuntu-ajoympäristö, GNU Maxima, Prodanovin `clifford`/`cliffordan` -paketit ja
 skriptien ajo omissa Maxima-prosesseissaan.
 
-Erona Lanyonin esimerkkiin: jokainen moduuli tarkistetaan **automaattisilla testeillä**
+Erona Lanyonin esimerkkiin on, että jokainen moduuli tarkistetaan **automaattisilla testeillä**
 (tunnetut identiteetit kuten $d^2=0$, $d\\omega=0$, $\\mathrm{{Ric}}=3g$, Bianchi), jotta
 laskentakirjaston virheet eivät sekoitu TGD:n fysikaalisiin oletuksiin (välitavoite M1)."""),
 ("code", SETUP),
@@ -60,9 +60,9 @@ $\\gamma_a\\gamma_b+\\gamma_b\\gamma_a = 2\\eta_{ab}$ signatuurilla $(1,3)$.""")
 ("code", r'''print(lab.values("clifford(g, 1, 3)$",
     ["g[1] . g[1]", "g[2] . g[2]", "g[1] . g[2] + g[2] . g[1]", "g[3] . g[4] + g[4] . g[3]"],
     load_clifford=True))'''),
-("md", """## Vertailu: LanyonScriptsin esimerkit
+("md", """## Vertailu LanyonScriptsin esimerkkeihin
 
-Valinnainen: ajetaan Lanyonin kuusi virtausfysiikan esimerkkiä (Burgers, matala vesi, Euler, Maxwell, MHD)
+Tämä vaihe on valinnainen. Siinä ajetaan Lanyonin kuusi virtausfysiikan esimerkkiä (Burgers, matala vesi, Euler, Maxwell, MHD)
 samalla tavalla kuin alkuperäisessä kirjassa. Ne käyttävät samaa Maxima–Clifford-pohjaa,
 jonka päälle TGD Geometry Lab rakentaa differentiaaligeometrian."""),
 ("code", r'''RUN_LANYON = os.environ.get("RUN_LANYON", "1") == "1"   # aseta 0 ohittaaksesi
@@ -88,9 +88,9 @@ nb02 = nb([
 
 {badge("02_cp2_fubini_study.ipynb")}
 
-Vaihe II ja välitavoite **M2** (sekä M3–M4 $CP_2$:n osalta): ensimmäinen vertailutesti `spaces/cp2.mac`.
+Kirja kuuluu vaiheeseen II ja välitavoitteeseen **M2** (sekä M3–M4 $CP_2$:n osalta), ja se on ensimmäinen vertailutesti `spaces/cp2.mac`.
 
-Kartta $Z_0\\neq 0$: $z^1=Z_1/Z_0,\\ z^2=Z_2/Z_0$, reaalikoordinaatit $(x_1,y_1,x_2,y_2)$, $z^k=x_k+i\\,y_k$.
+Kartassa $Z_0\\neq 0$ on $z^1=Z_1/Z_0,\\ z^2=Z_2/Z_0$, ja reaalikoordinaatit ovat $(x_1,y_1,x_2,y_2)$, $z^k=x_k+i\\,y_k$.
 
 $$K=\\log(1+|z^1|^2+|z^2|^2),\\qquad h_{{i\\bar j}}=\\partial_i\\partial_{{\\bar j}}K,\\qquad
 ds^2 = h_{{i\\bar j}}\\,dz^i d\\bar z^j,\\qquad J = \\tfrac{{i}}{{2}}\\,h_{{i\\bar j}}\\,dz^i\\wedge d\\bar z^j\\quad(\\text{{TGD-normalisointi, Pitkänen}}).$$"""),
@@ -120,7 +120,7 @@ $J^2=-1$, $J^TgJ=g$, $d\\omega=0$ sekä $\\omega\\wedge\\omega/2=\\mathrm{vol}$.
   ("\\\\sqrt{{\\\\det g}}", "factor(radcan(sqrt(factor(determinant(G)))))")])'''),
 ("md", """## Yhteys ja kaarevuus
 
-Levi-Civita-yhteys, Riemannin ja Riccin tensorit. Tulos: $CP_2$ on Kähler–Einstein,
+Levi-Civita-yhteys, Riemannin ja Riccin tensorit. Tuloksena $CP_2$ on Kähler–Einstein,
 $\\mathrm{Ric}=6g$, $R=24$; holomorfinen leikkauskaarevuus on vakio $4$ ja
 leikkauskaarevuus vaihtelee välillä $[1,\\,4]$ (TGD-normalisointi, $R^2=1$). Lopuksi CP₂-tyyppisen
 tyhjiöekstremaalin Kähler-toiminta $S_K=\\pi/(8\\alpha_K)$ – Pitkäsen tunnettu arvo."""),
@@ -131,14 +131,14 @@ tyhjiöekstremaalin Kähler-toiminta $S_K=\\pi/(8\\alpha_K)$ – Pitkäsen tunne
   ("K(e_{{x_1}},Je_{{x_1}})", "sectional_curvature(G, Rl, e1, Je1)"),
   ("K(e_{{x_1}},e_{{x_2}})|_0", "subst([x1=0,y1=0,x2=0,y2=0], sectional_curvature(G, Rl, [1,0,0,0], [0,0,1,0]))"),
   ("\\\\nabla J\\\\ \\\\text{{(kaikki nollia?)}}", "nested_zero_p(cov_deriv_11(Jc, Gam, cp2_X))")])'''),
-("md", "### Vertailuarvo TGD:stä: CP₂-tyyppisen ekstremaalin toiminta\n\n$S_K=\\frac{1}{4g_K^2}\\int J_{kl}J^{kl}\\sqrt g\\,d^4x$, $\\alpha_K=g_K^2/4\\pi$."),
+("md", "### CP₂-tyyppisen ekstremaalin toiminta TGD:n vertailuarvona\n\n$S_K=\\frac{1}{4g_K^2}\\int J_{kl}J^{kl}\\sqrt g\\,d^4x$, $\\alpha_K=g_K^2/4\\pi$."),
 ("code", f'''lab.show("{CP2}", [
   ("J_{{kl}}J^{{kl}}", "kahler_invariant(G, W)"),
   ("\\\\mathrm{{Vol}}(CP_2)", "2*%pi^2*integrate(r^3/(1+r^2)^3, r, 0, inf)"),
   ("S_K", "ratsimp(subst(gK2=4*%pi*alpha[K], 2*%pi^2*integrate(r^3*kahler_invariant(G, W)/(1+r^2)^3, r, 0, inf)/(4*gK2)))")])'''),
 ("md", """## Koordinaattikarttojen vaihto (Step 2.4)
 
-Kartta $Z_1\\neq0$: $w^1=Z_0/Z_1,\\ w^2=Z_2/Z_1$, jolloin $z^1=1/w^1$, $z^2=w^2/w^1$.
+Kartassa $Z_1\\neq0$ on $w^1=Z_0/Z_1,\\ w^2=Z_2/Z_1$, jolloin $z^1=1/w^1$, $z^2=w^2/w^1$.
 Siirtokuvauksella vedetty metriikka on sama Fubini–Study-kaava uudessa kartassa."""),
 ("code", f'''lab.show("{CP2} Gc1 : transform_02(G, cp2_X, cp2_W, cp2_chart1_to_chart0())$", [
   ("x(w)", "cp2_chart1_to_chart0()"),
@@ -158,18 +158,18 @@ upotuskoordinaatteina $h^k(\\xi)$, ja indusoidut suureet ovat
 $$g_{{\\alpha\\beta}} = h_{{kl}}\\,\\partial_\\alpha h^k\\,\\partial_\\beta h^l,\\qquad
 J_{{\\alpha\\beta}} = J_{{kl}}\\,\\partial_\\alpha h^k\\,\\partial_\\beta h^l .$$
 
-Konventio: $h_{{kl}} = m_{{kl}} - s_{{kl}}$, $m=\\mathrm{{diag}}(1,-1,-1,-1)$, $s$ = Fubini–Study ($R^2=1$),
+Konventiona on $h_{{kl}} = m_{{kl}} - s_{{kl}}$, $m=\\mathrm{{diag}}(1,-1,-1,-1)$, $s$ = Fubini–Study ($R^2=1$),
 joten $H$:n signatuuri on $(1,7)$. Dynaamiset muuttujat ovat upotuskoordinaatit $h^k$ –
 indusoitua metriikkaa ja Kähler-muotoa ei varioida erikseen."""),
 ("code", SETUP),
-("md", "## Kanoninen $M^4$-upotus\n\n$h=(\\xi^0,\\ldots,\\xi^3,\\ p)$, jossa $p$ on vakiopiste $CP_2$:ssa: indusoitu metriikka on Minkowski ja $J=0$ (tyhjiöekstremaali)."),
+("md", "## Kanoninen $M^4$-upotus\n\n$h=(\\xi^0,\\ldots,\\xi^3,\\ p)$, jossa $p$ on vakiopiste $CP_2$:ssa. Indusoitu metriikka on Minkowski ja $J=0$ (tyhjiöekstremaali)."),
 ("code", f'''lab.show("{H} xi:[t0,t1,t2,t3]$ e0:[t0,t1,t2,t3,0,0,0,0]$", [
   ("g_{{\\\\alpha\\\\beta}}", "induced_metric(GH, H_X, e0, xi)"),
   ("J_{{\\\\alpha\\\\beta}}", "induced_kahler_form(JH, H_X, e0, xi)")])'''),
 ("md", """## Kosminen säie $X^2\\times Y^2$
 
 $(t,z)$ vapaina, $Y^2=CP_1=\\{z^2=0\\}\\subset CP_2$ (homologisesti epätriviaali kompleksinen pallo).
-Tuloksena vakiosuuruinen magneettinen Kähler-kenttä: $J_{\\alpha\\beta}J^{\\alpha\\beta}=2$."""),
+Tuloksena on vakiosuuruinen magneettinen Kähler-kenttä, jolle $J_{\\alpha\\beta}J^{\\alpha\\beta}=2$."""),
 ("code", f'''lab.show("{H} xs:[tt0,zz0,aa,bb]$ eCS:[tt0,0,0,zz0,aa,bb,0,0]$ g:induced_metric(GH,H_X,eCS,xs)$ J:induced_kahler_form(JH,H_X,eCS,xs)$", [
   ("g_{{\\\\alpha\\\\beta}}", "factor(g)"),
   ("J_{{ab}}", "factor(J[3,4])"),
@@ -178,8 +178,8 @@ Tuloksena vakiosuuruinen magneettinen Kähler-kenttä: $J_{\\alpha\\beta}J^{\\al
 ("md", """## Massaton ekstremaali (ME-tyyppinen ansatsi)
 
 Valokartioparametrit $\\xi=(u,v,x,y)$, $t=(u+v)/2$, $z=(v-u)/2$. $CP_2$-koordinaatit riippuvat vain $u=t-z$:stä
-ja poikittaisesta $x$:stä. Indusoitu Kähler-kenttä on nollasta poikkeava mutta *nollakenttä*:
-$J_{\\alpha\\beta}J^{\\alpha\\beta}=0$ ja $J\\wedge J=0$ – Kähler-toiminnan tiheys häviää."""),
+ja poikittaisesta $x$:stä. Indusoitu Kähler-kenttä on nollasta poikkeava mutta *nollakenttä*, koska
+$J_{\\alpha\\beta}J^{\\alpha\\beta}=0$ ja $J\\wedge J=0$. Siksi Kähler-toiminnan tiheys häviää."""),
 ("code", f'''lab.show("{H} xl:[uu,vv,xx,yy]$ depends([F1,F2],[uu,xx])$ eME:[(uu+vv)/2,xx,yy,(vv-uu)/2,F1,F2,0,0]$ g:induced_metric(GH,H_X,eME,xl)$ J:induced_kahler_form(JH,H_X,eME,xl)$", [
   ("J_{{ux}}", "factor(J[1,3])"),
   ("g^{{uu}}", "mat_inverse(g)[1,1]"),
@@ -188,7 +188,7 @@ $J_{\\alpha\\beta}J^{\\alpha\\beta}=0$ ja $J\\wedge J=0$ – Kähler-toiminnan t
 ("md", """## Euler–Lagrange-moottori (Step 7.3)
 
 `euler_lagrange(L, kentät, muuttujat)` laskee $\\partial L/\\partial\\phi-\\partial_\\alpha\\,\\partial L/\\partial(\\partial_\\alpha\\phi)$.
-Tarkistus: tilavuustoiminta $\\sqrt{\\det g}$ graafipinnalle $z=f(x,y)$ antaa minimipintayhtälön –
+Tarkistuksena tilavuustoiminta $\\sqrt{\\det g}$ graafipinnalle $z=f(x,y)$ antaa minimipintayhtälön –
 TGD:n tilavuustermin $L_V=k\\sqrt{-g}$ yksinkertaisin analogi."""),
 ("code", r'''lab.show("depends(fz,[xx,yy])$ gg:induced_metric(ident(3),[X1,X2,X3],[xx,yy,fz],[xx,yy])$ EL:euler_lagrange(sqrt(determinant(gg)),[fz],[xx,yy])$", [
   ("g_{\\alpha\\beta}", "gg"),
@@ -204,7 +204,7 @@ Kompleksiset käyrät ovat minimipintoja myös silloin, kun ne eivät ole totaal
 
 Toiminnan $S=\\int(c_KJ_{\\alpha\\beta}J^{\\alpha\\beta}+c_V)\\sqrt{|g|}\\,d^4\\xi$ variaatio upotuskoordinaattien suhteen antaa
 $h_{kl}D_\\alpha(T^{\\alpha\\beta}\\partial_\\beta h^l)+2c_K\\,j^\\beta J_{kl}\\partial_\\beta h^l=0$.
-Kertoimet ovat symbolisia. Alla Kähler- ja tilavuustermi on eroteltu: ME $s^k(u)$ toteuttaa molemmat, mutta yleisellä
+Kertoimet ovat symbolisia. Alla Kähler- ja tilavuustermi on eroteltu. ME $s^k(u)$ toteuttaa molemmat, mutta yleisellä
 $s^k(u,x)$:llä häviää vain Kähler-termi (ks. `docs/konventiot.md`)."""),
 ("code", f'''lab.show("{H} xl:[uu,vv,xx,yy]$ meX(s):=append([(uu+vv)/2,xx,yy,(vv-uu)/2],s)$ meEq(s,a,b):=tgd_field_equations(emb_setup(GH,H_X,meX(s),xl),JH,a,b)$ depends([a1,a2,a3,a4],uu)$ depends([F1,F2],[uu,xx])$", [
   ("E[s^k(u)],\\\\ c_K", "meEq([a1,a2,a3,a4],cK,0)"),
@@ -213,15 +213,15 @@ $s^k(u,x)$:llä häviää vain Kähler-termi (ks. `docs/konventiot.md`)."""),
   ("E[s^1(x)=x],\\\\ c_V", "map(factor,meEq([xx,0,0,0],0,cV))")])'''),
 ("md", """## Karakteristinen analyysi (Step 7.5)
 
-Lanyonin `calcev`-tyyliin: $\\partial_tU+A\\,\\partial_xU=0$, ja ominaisarvot ovat rintaman nopeudet. Kosmisen säikeen poikki nopeus
-riippuu kertoimista: $s^2=(c_V-2c_K)/(c_V+2c_K)$."""),
+Lanyonin `calcev`-tyyliin yhtälö kirjoitetaan muotoon $\\partial_tU+A\\,\\partial_xU=0$, ja ominaisarvot ovat rintaman nopeudet. Kosmisen säikeen poikki nopeus
+riippuu kertoimista kaavan $s^2=(c_V-2c_K)/(c_V+2c_K)$ mukaan."""),
 ("code", f'''lab.show("{H} eC:[tt,0,0,zz,aa,bb,0,0]$ xC:[tt,zz,aa,bb]$ pC:[tt=0,zz=0,aa=0,bb=0]$ F:[2,3,7,8]$ Pz:principal_blocks(GH,JH,H_X,eC,xC,pC,F,[1,2],cK,cV,-1)$ Pa:principal_blocks(GH,JH,H_X,eC,xC,pC,F,[1,3],cK,cV,-1)$", [
   ("\\\\det(\\\\ldots)\\\\ \\\\text{{säikeen suuntaan}}", "speed_polynomial(Pz[1][1],Pz[1][2],Pz[2][2],s)"),
   ("\\\\det(\\\\ldots)\\\\ \\\\text{{säikeen poikki}}", "speed_polynomial(Pa[1][1],Pa[1][2],Pa[2][2],s)")])'''),
 ("md", """## Seuraavat askeleet
 
-* Matin linjaukset: tilavuustermin kerroin (#27) ja ME:n määritelmä toiminnalle $S_K+S_V$ (#28).
-* Numeriikka ja visualisointi (#32) sekä ratkaisugeneraattori (#31)."""),
+* Matilta odotetaan linjausta tilavuustermin kertoimesta (#27) ja ME:n määritelmästä toiminnalle $S_K+S_V$ (#28).
+* Ratkaisugeneraattori (#31) rakennetaan, kun holografia = holomorfia -periaatteen muoto on selvä."""),
 ])
 
 # ---------------------------------------------------------------- 04
@@ -274,7 +274,7 @@ ax.text(-4, -0.75, "hyperbolinen\n$s^2>0$", ha="center", va="center", color=MUTE
 fig.tight_layout(); plt.show()"""),
 ("md", """## Kähler-vuo kompleksisten käyrien läpi
 
-Vuo on homologinen: $CP_1$:n läpi $\\pi$ ja kartion $z^2=(z^1)^2$ läpi $2\\pi$, koska kartion aste on 2.
+Vuo on homologinen, eli se on $CP_1$:n läpi $\\pi$ ja kartion $z^2=(z^1)^2$ läpi $2\\pi$, koska kartion aste on 2.
 Lasketaan kummankin vuotiheys Maximalla ja integroidaan se numeerisesti."""),
 ("code", r"""om = "form_from_matrix(cp2_kahler_matrix())"
 d1 = lab.numeric("", f"top_coef(form_pullback({om},cp2_X,[aa,bb,0,0],[aa,bb]))", ["aa", "bb"])
@@ -324,7 +324,7 @@ fig.colorbar(im, ax=ax, label="$J_{ux}$", shrink=0.9, ticks=[-0.5, 0, 0.5]).outl
 fig.tight_layout(); plt.show()"""),
 ("md", """## $CP_2$-projektio
 
-Pinnan projektio $z^1$-tasoon: jokaisella $u$:n arvolla piste kulkee geodeesia pitkin origon kautta, ja suunta kääntyy $u$:n mukana."""),
+Kuvassa on pinnan projektio $z^1$-tasoon. Jokaisella $u$:n arvolla piste kulkee geodeesia pitkin origon kautta, ja suunta kääntyy $u$:n mukana."""),
 ("code", r"""xs = np.linspace(-1.1, 1.1, 201)
 fig, ax = plt.subplots(figsize=(4.6, 4.6))
 for ui, col, name in [(0.0, BLUE, "$u=0$"), (0.8, ORANGE, "$u=0{,}8$"), (np.pi/2, AQUA, r"$u=\pi/2$")]:

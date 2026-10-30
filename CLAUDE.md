@@ -24,7 +24,8 @@ Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issue
 ## Sivusto
 - Julkinen sivusto: <https://markomanninen.github.io/tgd-geometry-lab/> (MkDocs Material, MathJax). `docs/` on sen sisältö, ja `.github/workflows/pages.yml` julkaisee sen `main`-haarasta.
 - Paikallinen rakennus: `pip install -r docs/requirements.txt`, sitten `./scripts/build_site.sh --strict`. Rakennuksen on mentävä läpi virheittä.
-- Kirjoita dokumentit sivustolle: määritelmä omaan lauseeseensa ja tärkeä kaava omalle rivilleen (`$$`). Älä ahda kaavoja luettelokohtiin. Älä käytä taulukon kaavoissa `|`-merkkiä, vaan `\lvert`/`\rvert`.
+- Kirjoita dokumentit sivustolle. Jokainen määritelmä saa oman lauseensa, ja tärkeä kaava saa oman rivinsä (`$$`). Älä ahda kaavoja luettelokohtiin.
+- Kirjoita kokonaisia, sujuvia virkkeitä. Kaksoispiste kuuluu vain listalohkon edelle, ei proosaan, otsikkoon eikä lihavoidun aloituksen jälkeen. Suomen taivutuskaksoispiste (`CP2:n`) on eri asia. Sääntö koskee myös explainerien tekstejä, sähköposteja ja issueita. Älä käytä taulukon kaavoissa `|`-merkkiä, vaan `\lvert`/`\rvert`.
 - Merkittävät tulokset kootaan `docs/tulokset.md`:hen.
 - **Explainerit:** julkaistava sisältö tulee hakemistoon `docs/explainerit/` (`index.md` ensin). Sivusto lisää Explainerit-osion navigaatioon automaattisesti, joten `mkdocs.yml`:ää ei tarvitse muuttaa.
 - **Videot:** YouTube, kanava Marko T. Manninen (`@markotmanninen`), soittolista *TGD Geometry Lab – explainerit* (`PLXsgqiwlSYA8`). Uusi video ladataan yksityisenä, ja Marko päättää julkisuusasetuksen. Tekstitys ladataan YouTube Studiossa (*Kielet* → *Muokkaa tekstityksiä* → *Lähetä tiedosto*), koska latausskriptin tunnuksella ei ole tekstitysoikeutta. Isoja videotiedostoja ei tallenneta repoon. Sivustolle video upotetaan YouTube-linkillä, mikä vaatii vähintään asetuksen *unlisted*.

@@ -2,11 +2,11 @@
 
 [![tests](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml)
 
-Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä Topological Geometrodynamics (TGD) -teorian geometrian tutkimiseen: $CP_2$:n Fubini–Study-geometria, differentiaalimuodot, yhteydet ja kaarevuus, upotusavaruus $H=M^4\times CP_2$, indusoitu geometria ja TGD:n toimintaperiaate.
+Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä Topological Geometrodynamics (TGD) -teorian geometrian tutkimiseen. Mukana ovat $CP_2$:n Fubini–Study-geometria, differentiaalimuodot, yhteydet ja kaarevuus, upotusavaruus $H=M^4\times CP_2$, indusoitu geometria ja TGD:n toimintaperiaate.
 
-**Lue tulokset sivustolta: <https://markomanninen.github.io/tgd-geometry-lab/>**
+**Tulokset voi lukea [sivustolta](https://markomanninen.github.io/tgd-geometry-lab/).**
 
-*Symbolic differential-geometry toolkit for Maxima aimed at Topological Geometrodynamics: CP₂ Fubini–Study geometry, differential forms, curvature, embeddings into M⁴×CP₂ and the Kähler/volume action. Every module is checked by automatic identity tests.*
+*Symbolic differential-geometry toolkit for Maxima aimed at Topological Geometrodynamics, covering CP₂ Fubini–Study geometry, differential forms, curvature, embeddings into M⁴×CP₂ and the Kähler/volume action. Every module is checked by automatic identity tests.*
 
 TGD on Matti Pitkäsen kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt sitä 1980-luvun alusta lähtien.
 
@@ -29,7 +29,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | Muodot | $dx\wedge dy=-dy\wedge dx$, $d^2=0$, Leibniz, Hodge $\star\star=\pm1$, Stokes, Kähler-vuo $\pi$ yli $CP_1$:n ja $2\pi$ yli kartion |
 | Kaarevuus ($S^2$-vertailu) | $\mathrm{Ric}=g$, $R=2$, $\nabla g=0$ |
 | $CP_2$ | $\det g=1/(1+\rho^2)^6$, $J^2=-1$, $d\omega=0$, $\nabla J=0$, $\tfrac12\omega\wedge\omega=\mathrm{vol}$, Riemannin symmetriat, Bianchi I ja II, $\mathrm{Ric}=6g$, $R=24$, holomorfinen leikkauskaarevuus $4$, $S_K(CP_2)=\pi/(8\alpha_K)$ (TGD-normalisointi), kaikki karttasiirtymät |
-| Upotus | $H$:n signatuuri $(1,7)$; kanoninen $M^4$: $g=m$, $J=0$; kosminen säie: $J_{\alpha\beta}J^{\alpha\beta}=2$; ME: $J\ne0$, $J_{\alpha\beta}J^{\alpha\beta}=0$, $J\wedge J=0$ |
+| Upotus | $H$:n signatuuri on $(1,7)$. Kanonisella $M^4$:llä $g=m$ ja $J=0$. Kosmisella säikeellä $J_{\alpha\beta}J^{\alpha\beta}=2$. ME:llä $J\ne0$, $J_{\alpha\beta}J^{\alpha\beta}=0$ ja $J\wedge J=0$. |
 | Kehykset ja Cartan | $g=e^T\eta e$; $T^a=0$; $\Omega$ = Riemann; spin-yhteys kahta reittiä ($CP_2$, $H$, FRW) |
 | Spinorit | $D_\mu\gamma^\nu=0$; $\tfrac12\gamma\gamma F=-R/4$; $k=3$ antaa vakion $\nu_R$; vuo kokonaisluku parittomilla $k$ |
 | Ekstrinsinen geometria | $B^k{}_{\alpha\beta}$, $H^k$; Gauss, Codazzi ja Ricci kaarevassa ympäristössä |
@@ -84,10 +84,10 @@ docs/                       sivuston sisältö: tulokset, konventiot, suunnitelm
 
 Dokumentit on tarkoitettu luettaviksi [sivustolla](https://markomanninen.github.io/tgd-geometry-lab/), jossa kaavat piirtyvät oikein. GitHubin esikatselu näyttää osan kaavoista väärin.
 
-- [Tulokset](docs/tulokset.md): mitä on laskettu ja mitkä kysymykset ovat auki.
-- [Kehityssuunnitelma](docs/kehityssuunnitelma.md): vaiheet I–VIII ja välitavoitteet M1–M8; jokainen vaihe on linkitetty issueensa.
-- [Konventiot](docs/konventiot.md): etumerkit, normalisoinnit ja indeksijärjestykset.
-- [Seuranta](docs/seuranta.md): tilataulukko, kriittinen polku ja työnkulku.
+- [Tulokset](docs/tulokset.md) kertoo, mitä on laskettu ja mitkä kysymykset ovat auki.
+- [Kehityssuunnitelma](docs/kehityssuunnitelma.md) esittää vaiheet I–VIII ja välitavoitteet M1–M8, ja jokainen vaihe on linkitetty issueensa.
+- [Konventiot](docs/konventiot.md) kokoaa etumerkit, normalisoinnit ja indeksijärjestykset.
+- [Seuranta](docs/seuranta.md) sisältää tilataulukon, kriittisen polun ja työnkulun.
 
 ## Seuranta
 
@@ -108,4 +108,4 @@ Järjestelmä ei todista TGD:tä fysikaalisesti oikeaksi. Sen tarkoitus on tarki
 
 ## Lisenssi
 
-MIT. Riippuvuudet: Maxima (GPL) ja Prodanovin `clifford` (LGPL-2.1) ladataan erikseen, eikä niitä jaeta tämän repositorion mukana.
+Lisenssi on MIT. Maxima (GPL) ja Prodanovin `clifford` (LGPL-2.1) ladataan erikseen, eikä niitä jaeta tämän repositorion mukana.

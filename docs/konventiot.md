@@ -34,7 +34,7 @@ $$
 K(U,V)=\frac{R_{abcd}U^aV^bU^cV^d}{\lVert U\rVert^2\lVert V\rVert^2-\langle U,V\rangle^2}
 $$
 
-**Etumerkin vertailu:** yksikköpallolla $S^2$ on $\mathrm{Ric}=g$ ja $R=+2$.
+Etumerkin voi tarkistaa yksikköpallolla $S^2$, jolla $\mathrm{Ric}=g$ ja $R=+2$.
 
 ## Differentiaalimuodot
 
@@ -44,17 +44,19 @@ $$
 \sum c\,dx^{i_1}\wedge\cdots\wedge dx^{i_p}.
 $$
 
-2-muoto saadaan komponenttimatriisista funktiolla `form_from_matrix`:
+2-muoto saadaan komponenttimatriisista funktiolla `form_from_matrix`, ja se on
 
 $$
 F=\tfrac12F_{ab}\,dx^a\wedge dx^b.
 $$
 
-Hodgen tähti, kun $\varepsilon_{1\ldots n}=+1$:
+Hodgen tähti määritellään kaavalla
 
 $$
-(\star A)_K=\frac{\sqrt{|g|}}{p!}\,A^J\varepsilon_{JK}.
+(\star A)_K=\frac{\sqrt{|g|}}{p!}\,A^J\varepsilon_{JK},
 $$
+
+jossa $\varepsilon_{1\ldots n}=+1$.
 
 ## $CP_2$ (Fubini–Study)
 
@@ -64,13 +66,13 @@ Kartta on $Z_0\ne0$, ja reaalikoordinaatit ovat `cp2_X = [x1, y1, x2, y2]`, joll
 
 ### Metriikka
 
-Kähler-potentiaali ja hermiittinen metriikka (Wirtinger-derivaatat):
+Kähler-potentiaali ja hermiittinen metriikka saadaan Wirtinger-derivaatoilla kaavoista
 
 $$
 K=R^2\log\left(1+|z|^2\right),\qquad h_{i\bar j}=\partial_i\partial_{\bar j}K.
 $$
 
-**TGD-normalisointi (Pitkänen) on oletus:**
+Oletuksena on Pitkäsen TGD-normalisointi
 
 $$
 ds^2=R^2\,\partial_a\partial_{\bar b}K\,d\xi^a d\bar\xi^b,
@@ -86,7 +88,7 @@ Maximassa tämä on `cp2_metric_factor : 1/2`, eli reaalimetriikka $\tfrac12\cdo
 
 ### Kähler-muoto
 
-Kerroin on sama kuin metriikassa:
+Kähler-muodossa on sama kerroin kuin metriikassa, eli
 
 $$
 J=\tfrac{i}{2}\,h_{i\bar j}\,dz^i\wedge d\bar z^j.
@@ -107,7 +109,7 @@ Taulukon arvot pätevät, kun $R^2=1$. Yleisellä säteellä $\mathrm{Ric}=6g/R^
 | Tilavuus | $\mathrm{Vol}(CP_2)=\pi^2/2$ |
 | $CP_1\subset CP_2$ | pallo, jonka säde on $1/2$ |
 
-Normalisoinnin lukitsee testinä CP₂-tyyppisen tyhjiöekstremaalin Kähler-toiminta (Pitkänen, hep-ph/9510361):
+Normalisoinnin lukitsee testinä CP₂-tyyppisen tyhjiöekstremaalin Kähler-toiminta, jolle Pitkänen antaa arvon (hep-ph/9510361)
 
 $$
 S_K=\frac{\pi}{8\alpha_K},\qquad L_K=\frac{1}{4g_K^2}J_{\alpha\beta}J^{\alpha\beta}\sqrt g,\qquad \alpha_K=\frac{g_K^2}{4\pi}.
@@ -139,13 +141,13 @@ Kertoimet ovat symbolisia, ja variaatio tehdään upotuskoordinaattien $h^k$ suh
 
 ### Kertoimet
 
-Pitkäsen määritelmä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$:
+Pitkäsen määritelmä on
 
 $$
 L_K=\frac{1}{4g_K^2}J^{\mu\nu}J_{\mu\nu}\sqrt g,\qquad \alpha_K=\frac{g_K^2}{4\pi}.
 $$
 
-Manninen (2024, s. 34) kirjoittaa kertoimeksi $1/(2\alpha_K)$, mikä antaisi eri arvon. Kirjan kaava kannattaa tarkistaa.
+Tämä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$. Manninen (2024, s. 34) kirjoittaa kertoimeksi $1/(2\alpha_K)$, mikä antaisi eri arvon. Kirjan kaava kannattaa tarkistaa.
 
 Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. M⁴:n Kähler-osan vaikutus on häviävän pieni (~10⁻¹⁷ elektronille), joten se jätetään toistaiseksi pois.
 
@@ -185,7 +187,7 @@ $$
 D_\alpha j^\alpha=2K^k\,\mathrm{Eq}_k,\qquad \mathrm{Eq}_k=h_{kl}D_\alpha\left(T^{\alpha\beta}\partial_\beta h^l\right)+2c_K\,j^\beta J_{kl}\partial_\beta h^l,
 $$
 
-joten virta säilyy ratkaisuilla. Isometrioita on 18: neljä translaatiota, kuusi Lorentz-generaattoria ja kahdeksan $SU(3)$-generaattoria. Väri-isometria saadaan ryhmän toiminnasta $\delta Z=AZ$, jolloin $\delta z^i=(AZ)_i-z^i(AZ)_0$.
+joten virta säilyy ratkaisuilla. Isometrioita on 18, eli neljä translaatiota, kuusi Lorentz-generaattoria ja kahdeksan $SU(3)$-generaattoria. Väri-isometria saadaan ryhmän toiminnasta $\delta Z=AZ$, jolloin $\delta z^i=(AZ)_i-z^i(AZ)_0$.
 
 ### Karakteristinen analyysi
 
@@ -201,7 +203,7 @@ $$
 A=\begin{pmatrix}2(P^{tt})^{-1}P^{tx} & (P^{tt})^{-1}P^{xx}\\ -1 & 0\end{pmatrix}.
 $$
 
-Rintaman nopeus $s=dx/dt$ toteuttaa yhtälön $\det\left(s^2P^{tt}-2sP^{tx}+P^{xx}\right)=0$. Luokittelu:
+Rintaman nopeus $s=dx/dt$ toteuttaa yhtälön $\det\left(s^2P^{tt}-2sP^{tx}+P^{xx}\right)=0$. Taulukko kertoo, miten yhtälön tyyppi luokitellaan.
 
 | Tyyppi | Ehto |
 |---|---|
@@ -248,7 +250,7 @@ $$
 
 ### Yhteys kahta reittiä
 
-`connection_forms` laskee yhteyden pelkästä kehyksestä, ja `spin_connection` kehyksestä ja Christoffeleista:
+`connection_forms` laskee yhteyden pelkästä kehyksestä, ja `spin_connection` kehyksestä ja Christoffeleista kaavalla
 
 $$
 \omega_\mu{}^a{}_b=e^a{}_\rho\left(\partial_\mu e_b{}^\rho+\Gamma^\rho{}_{\mu\lambda}e_b{}^\lambda\right).
@@ -298,27 +300,29 @@ $$
 
 Keskikaarevuus on $H^k=g^{\alpha\beta}B^k{}_{\alpha\beta}$.
 
-**Etumerkin vertailu:** $R^3$:n $\rho$-säteisellä pallolla $B^k{}_{ab}=-g_{ab}n^k/\rho$.
+Etumerkin voi tarkistaa $R^3$:n $\rho$-säteisellä pallolla, jolla $B^k{}_{ab}=-g_{ab}n^k/\rho$.
 
-Gaussin yhtälö:
+Gaussin yhtälö on
 
 $$
 R_{abcd}=\bar R(t_a,t_b,t_c,t_d)+\langle B_{ac},B_{bd}\rangle-\langle B_{ad},B_{bc}\rangle
 $$
 
-Normaalikentät tehdään projektorilla, jolloin neliöjuuria ei tarvita:
+Normaalikentät tehdään projektorilla
 
 $$
-P^k{}_l=\delta^k_l-g^{ab}t_a^k\,t_{bl}.
+P^k{}_l=\delta^k_l-g^{ab}t_a^k\,t_{bl},
 $$
+
+jolloin neliöjuuria ei tarvita.
 
 ## Ekstremaalit
 
 ### Vertailukohteet
 
-**Kosmiset säikeet** $X^2\times Y^2$: $X^2\subset M^4$ on minimipinta, ja $Y^2$ on homologisesti epätriviaali kompleksinen pinta.
+Kosmisessa säikeessä $X^2\times Y^2$ osa $X^2\subset M^4$ on minimipinta, ja $Y^2$ on homologisesti epätriviaali kompleksinen pinta.
 
-**Tyhjiöekstremaalit** $M^4\times Y^2$: $Y^2$ on Lagrangen pinta ($J=0$). Lisäksi on CP₂-tyyppiset tyhjiöekstremaalit.
+Tyhjiöekstremaalissa $M^4\times Y^2$ osa $Y^2$ on Lagrangen pinta, jolla $J=0$. Lisäksi on CP₂-tyyppisiä tyhjiöekstremaaleja.
 
 Tunnetuille ratkaisuille Kähler-virta $j^\alpha=D_\beta J^{\alpha\beta}$ häviää tai on valon kaltainen.
 
@@ -332,7 +336,7 @@ $$
 
 jossa $k$ on valon kaltainen ja $\varepsilon\perp k$. Lähteen mukaan (*Extremals of the Kähler Action*, 2024) ME:t ovat "in their simplest form at least" minimipintoja.
 
-Laskettu tilanne on taulukossa (`tests/test-field-equations.mac`, valokartioparametrit $u,v,x,y$, $w=x+iy$):
+Taulukossa on laskettu tilanne. Se perustuu testeihin `tests/test-field-equations.mac`, ja parametrit ovat valokartiokoordinaatit $u,v,x,y$ sekä $w=x+iy$.
 
 | Ansatsi | Kähler-termi $c_K$ | Tilavuustermi $c_V$ |
 |---|---|---|

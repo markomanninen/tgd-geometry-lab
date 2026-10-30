@@ -26,7 +26,7 @@ Ketju on laskettu ja testattu kenttäyhtälöihin asti, ja ensimmäiset tunnetut
 
 ## Teoria ja yhteistyö
 
-TGD on [Matti Pitkäsen](https://tgdtheory.fi/) kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt teoriaa 1980-luvun alusta lähtien. Projektia tehdään yhdessä hänen kanssaan: vastaukset haetaan ensin hänen julkaisuistaan, ja avoimeksi jäävät fysikaaliset kysymykset ratkaisee hän.
+TGD on [Matti Pitkäsen](https://tgdtheory.fi/) kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt teoriaa 1980-luvun alusta lähtien. Projektia tehdään yhdessä hänen kanssaan. Vastaukset haetaan ensin hänen julkaisuistaan, ja avoimeksi jäävät fysikaaliset kysymykset ratkaisee hän.
 
 ## Lanyon AI:n vaikutus
 
@@ -34,11 +34,9 @@ Työtapa on saanut vaikutteita [Lanyon AI](https://lanyon.ai/):sta, joka on Prin
 
 Lanyonin [ilmoitettu tavoite](https://lanyon.ai/blog/welcome/) on muodollisesti verifioitu perusta, joka yhdistää tekoälyn fyysiseen maailmaan. Kielimalli ehdottaa muodollisen spesifikaation, ja puhtaasti symboliset algoritmit laajentavat siitä samalla koodin ja todistuksen. Jos spesifikaatiota ei voida todistaa oikeaksi, koodia ei synny. Yhtiön ensimmäiset kohdealueet ovat ilmailu- ja avaruustekniikka sekä ydinenergia.
 
-Tästä projektista on kolme asiaa, jotka kannattaa pitää erillään:
+Periaate on sama kuin tässä projektissa, sillä tulosta ei hyväksytä pelkän ehdotuksen perusteella, vaan deterministinen tarkistus ratkaisee. Keino on eri, koska tämä projekti käyttää automaattisia identiteettitestejä eikä muodollisia todistuksia.
 
-- **Periaate on sama:** tulosta ei hyväksytä pelkän ehdotuksen perusteella, vaan deterministinen tarkistus ratkaisee.
-- **Keino on eri:** tämä projekti käyttää automaattisia identiteettitestejä, ei muodollisia todistuksia.
-- **Rajaus on yhteinen:** Lanyonkin [toteaa](https://lanyon.ai/blog/welcome/), että todistus ei vielä kerro, vastaako spesifikaatio käyttäjän tarkoitusta. Samoin meidän testimme tarkistavat matematiikan, eivät TGD:n fysikaalista oikeellisuutta.
+Yhteistä on myös rajaus. Lanyonkin [toteaa](https://lanyon.ai/blog/welcome/), että todistus ei vielä kerro, vastaako spesifikaatio käyttäjän tarkoitusta. Samoin meidän testimme tarkistavat matematiikan, eivät TGD:n fysikaalista oikeellisuutta.
 
 TGD ei kuulu Lanyonin ilmoitettuihin kohdealueisiin. Projekti hyödyntää sen julkaisemaa lähestymistapaa ja avointa [LanyonScripts](https://github.com/lanyonai/LanyonScripts)-koodia, joka on yhtiön tutkimusmuistioiden tietokonealgebraa.
 
