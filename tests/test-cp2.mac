@@ -36,6 +36,29 @@ check("totally real plane (x1,x2) at origin has K = 1",
 Gc1 : transform_02(G, cp2_X, cp2_W, cp2_chart1_to_chart0())$
 check("chart transition Z0<->Z1 preserves the FS metric",
       zero_matrix_p(Gc1 - cp2_metric_in_chart(cp2_W)))$
+/* all three charts (#8): generic map from homogeneous coordinates */
+check("cp2_chart_map(1,0) = cp2_chart1_to_chart0()",
+      is(tgd_simp(cp2_chart_map(1,0) - cp2_chart1_to_chart0()) = [0,0,0,0]))$
+check("cp2_chart2_to_chart0() = cp2_chart_map(2,0)",
+      is(tgd_simp(cp2_chart2_to_chart0() - cp2_chart_map(2,0)) = [0,0,0,0]))$
+for pr in [[0,1],[1,0],[0,2],[2,0],[1,2],[2,1]] do block([a:pr[1], b:pr[2], Xa, Xb, Mab],
+  Xa : cp2_chart_coords(a), Xb : cp2_chart_coords(b), Mab : cp2_chart_map(a, b),
+  check(sconcat("chart ", a, " -> ", b, ": FS metric preserved"),
+        zero_matrix_p(transform_02(cp2_metric_in_chart(Xb), Xb, Xa, Mab) - cp2_metric_in_chart(Xa))),
+  check(sconcat("chart ", a, " -> ", b, ": Kahler form preserved"),
+        zero_matrix_p(transform_02(subst(map("=", cp2_X, Xb), W), Xb, Xa, Mab)
+                      - subst(map("=", cp2_X, Xa), W))))$
+/* cocycle condition on the triple overlap */
+check("cocycle: phi(0<-1) o phi(1<-2) = phi(0<-2)",
+      is(tgd_simp(subst(map("=", cp2_W, cp2_chart_map(2,1)), cp2_chart_map(1,0))
+                  - cp2_chart_map(2,0)) = [0,0,0,0]))$
+/* curvature invariants recomputed from the transformed metric of each chart */
+for a in [1,2] do block([Xa:cp2_chart_coords(a), Gt, Rt, Rct],
+  Gt : transform_02(G, cp2_X, Xa, cp2_chart_map(a,0)),
+  Rt : riemann(christoffel(Gt, Xa), Xa),
+  Rct : ricci(Rt),
+  check(sconcat("chart ", a, ": Ric = 6 g from the transformed metric"), zero_matrix_p(Rct - 6*Gt)),
+  check(sconcat("chart ", a, ": R = 24 from the transformed metric"), is(scalar_curvature(Gt, Rct) = 24)))$
 /* TGD reference values (Pitkanen): CP_2 type vacuum extremal */
 check("J_kl J^kl = 4 on CP_2", is(kahler_invariant(G, W) = 4))$
 check("sqrt(det g) = 1/(1+rho^2)^3", is(tgd_simp(determinant(G) - (1/(1+cp2_rho2)^3)^2) = 0))$

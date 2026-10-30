@@ -73,5 +73,24 @@ cp2_chart1_to_chart0() := block([w1 : u1 + %i*v1, w2 : u2 + %i*v2, z1, z2],
   z1 : rectform(1/w1), z2 : rectform(w2/w1),
   map(tgd_simp, [realpart(z1), imagpart(z1), realpart(z2), imagpart(z2)]))$
 
+/* Chart Z_2 # 0 : v1 = Z0/Z2, v2 = Z1/Z2, so z1 = v2/v1, z2 = 1/v1. */
+cp2_V : [p1, q1, p2, q2]$
+declare([p1, q1, p2, q2], real)$
+
+cp2_chart_coords(c) := [cp2_X, cp2_W, cp2_V][c+1]$
+
+/* homogeneous coordinates [Z0, Z1, Z2] of a point given in chart c */
+cp2_homogeneous(c) := block([X : cp2_chart_coords(c), w1, w2],
+  w1 : X[1] + %i*X[2], w2 : X[3] + %i*X[4],
+  [[1, w1, w2], [w1, 1, w2], [w1, w2, 1]][c+1])$
+
+/* real coordinates of chart c2 as expressions in those of chart c1 */
+cp2_chart_map(c1, c2) := block([Z : cp2_homogeneous(c1), a, b, s],
+  s : delete(c2+1, [1, 2, 3]),
+  a : rectform(Z[s[1]]/Z[c2+1]), b : rectform(Z[s[2]]/Z[c2+1]),
+  map(tgd_simp, [realpart(a), imagpart(a), realpart(b), imagpart(b)]))$
+
+cp2_chart2_to_chart0() := cp2_chart_map(2, 0)$
+
 /* Fubini-Study metric written directly in chart 1 (same formula) */
 cp2_metric_in_chart(Y) := subst(map("=", cp2_X, Y), cp2_metric())$
