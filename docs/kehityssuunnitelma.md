@@ -166,7 +166,7 @@ Toteutettu ja testattu on siirtymä $Z_0\leftrightarrow Z_1$ ($z^1=1/w^1$, $z^2=
 Seuranta: [#6](https://github.com/markomanninen/tgd-geometry-lab/issues/6)
 
 $$
-\omega=i\,g_{i\bar j}\,dz^i\wedge d\bar z^j,\qquad d\omega=0 .
+J=\tfrac{i}{2}\,g_{i\bar j}\,dz^i\wedge d\bar z^j,\qquad dJ=0,\qquad J_{kl}J^{kl}=4 .
 $$
 
 Lisäksi tarkistetaan $J^2=-1$, $J^TgJ=g$, $\nabla J=0$ ja $\tfrac12\,\omega\wedge\omega=\mathrm{vol}_g$.
@@ -359,7 +359,7 @@ $$
 S_{TGD}=S_K+S_V=\int\left(c_K\,J_{\alpha\beta}J^{\alpha\beta}+c_V\right)\sqrt{|g|}\;d^4\xi ,
 $$
 
-jossa $c_K\propto 1/\alpha_K$ ja $c_V$ on kosmologisen vakion analogi. Kertoimet pidetään symbolisina, koska kirjallisuudessa normalisointi ja etumerkki vaihtelevat. Lisäksi on topologinen instantonitermi $J\wedge J$, joka on kokonaisdivergenssi.
+jossa Pitkäsen määritelmän mukaan $c_K=1/(4g_K^2)$, $\alpha_K=g_K^2/4\pi$ (testattu arvolla $S_K(CP_2)=\pi/(8\alpha_K)$), ja $c_V$ on kosmologisen vakion analogi. $c_V$:n etumerkki ja normalisointi suhteessa Kähler-termiin on avoin kysymys Matille (#27). Lisäksi on topologinen instantonitermi $J\wedge J$, joka on kokonaisdivergenssi.
 
 ### Step 7.1 – Kähler-toiminnan muodostaminen ✅
 
@@ -495,6 +495,9 @@ Ympäristö tarjoaa systemaattisen tavan tutkia TGD:n matemaattista rakennetta j
 
 - M. T. Manninen, *Through the Wormhole on Spacetime Surface – Early History of Topological Geometrodynamics Theory* (2024). Erityisesti luvut TGD:n toiminnasta ($S_K+S_V$, indusoitu $g_{\alpha\beta}$ ja $J_{\alpha\beta}$, variaatio upotuskoordinaattien $h^k$ suhteen), kenttäyhtälöistä (minimipinnat) ja twistorinostosta.
 - M. Pitkänen, *Topological Geometrodynamics* ja tgdtheory.fi.
+- M. Pitkänen, *The Geometry of CP2 and its Relationship to Standard Model* (CP₂-normalisointi).
+- M. Pitkänen, *About the construction of p-adic QFT limit of TGD*, hep-ph/9510361 ($L_K$, $S_K(CP_2)=\pi/8\alpha_K$).
+- M. Pitkänen, matpitka.blogspot.com: massattomat ekstremaalit (8/2016), minimipintaekstremaalit (12/2016), Kähler-kytkentä k=1/k=3 (1/2017), H-H-periaate (8/2025).
 - LanyonScripts: <https://github.com/lanyonai/LanyonScripts> (MIT) ja Lanyonin Colab-esimerkki *Run LanyonScripts in Colab*.
 - D. Prodanov, Clifford-algebrapaketti Maximalle: <https://github.com/dprodanov/clifford> (LGPL-2.1).
 - Fubini–Study-metriikan eksplisiittiset paikalliset lausekkeet ja kaarevuus: tavanomaiset differentiaaligeometrian oppikirjat (esim. Kobayashi–Nomizu II, luku IX).
