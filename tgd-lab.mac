@@ -9,9 +9,15 @@ if not stringp(tgd_root) then tgd_root : "."$
 if not stringp(clifford_path) then clifford_path : false$
 
 /* load Prodanov's clifford + cliffordan packages (as in LanyonScripts) */
+/* Full paths + both search-pattern spellings: Maxima <= 5.46 uses $$$,
+   newer versions (5.50) use ### in file_search_maxima patterns. */
+tgd_add_clifford_path(path) := (
+  file_search_maxima : append(file_search_maxima,
+      [sconcat(path, "/###.{mac,wxm}"), sconcat(path, "/$$$.{mac,wxm}")]),
+  true)$
 tgd_load_clifford(path) := (
-  file_search_maxima : append(file_search_maxima, [sconcat(path, "/$$$.{mac,wxm}")]),
-  load("clifford"), load("cliffordan"), true)$
+  tgd_add_clifford_path(path),
+  load(sconcat(path, "/clifford.mac")), load(sconcat(path, "/cliffordan.mac")), true)$
 
 tgd_load(rel) := load(sconcat(tgd_root, "/", rel))$
 

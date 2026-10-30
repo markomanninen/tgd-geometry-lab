@@ -6,6 +6,11 @@ Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issue
 - Lue `docs/konventiot.md` (etumerkit, normalisoinnit, indeksijärjestys). Älä muuta konventioita ilman, että päivität testit ja dokumentin samassa muutoksessa.
 - Tehtävät ovat GitHub-issueita ja milestoneja M1–M8 (`docs/seuranta.md`). Työskentele issuen "Valmis kun" -ehtoa vastaan.
 
+## Paikallinen ympäristö (macOS)
+- `brew install maxima` (5.50), Prodanovin clifford kloonattuna repon viereen: `../clifford`.
+- Homebrew-polku: `export PATH=/opt/homebrew/bin:$PATH`.
+- Maxima 5.50 käyttää hakupolkumalleissa `###`, vanhemmat `$$$` – lataa paketit täydellä polulla (`tgd_load_clifford`).
+
 ## Testit
 - `./scripts/run_tests.sh ../clifford` (Prodanovin clifford-checkout valinnainen). Kaikkien testien on mentävä läpi ennen committia.
 - Uusi ominaisuus → ensin testi tunnetulla identiteetillä tai vertailuarvolla (`tests/test-*.mac`, `check(nimi, ehto)`), lisää tiedosto `tests/run-all.mac`:n listaan.

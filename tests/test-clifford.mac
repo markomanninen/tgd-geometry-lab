@@ -1,7 +1,7 @@
 section("Clifford algebra (Prodanov clifford package)")$
 if stringp(clifford_path) then (
-  file_search_maxima : append(file_search_maxima, [sconcat(clifford_path, "/$$$.{mac,wxm}")]),
-  load("clifford"),
+  tgd_add_clifford_path(clifford_path),
+  load(sconcat(clifford_path, "/clifford.mac")),
   clifford(cg, 4),
   check("Euclidean Cl(4,0): e_i e_j + e_j e_i = 2 delta_ij",
         every(lambda([p], is(cg[p[1]] . cg[p[2]] + cg[p[2]] . cg[p[1]]

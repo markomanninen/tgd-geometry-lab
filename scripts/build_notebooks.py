@@ -69,7 +69,7 @@ if RUN_LANYON:
     if not L.exists():
         !git clone -q --depth 1 https://github.com/lanyonai/LanyonScripts.git {L}
     for f in ["burgers.mac", "shallow-water.mac", "isoeuler.mac", "euler.mac", "maxwell.mac", "ideal-mhd.mac"]:
-        code = (f'file_search_maxima: append(file_search_maxima, ["{CLI}/$$$.{{mac,wxm}}"])$ '
+        code = (f'file_search_maxima: append(file_search_maxima, ["{CLI}/###.{{mac,wxm}}", "{CLI}/$$$.{{mac,wxm}}"])$ '
                 f'load("{L}/eqnsys/{f}")$ print("LANYON_SCRIPT_FINISHED")$')
         p = subprocess.run(["maxima", "--very-quiet", f"--batch-string={code}"],
                            capture_output=True, text=True, timeout=300)
