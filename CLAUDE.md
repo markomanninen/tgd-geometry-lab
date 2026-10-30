@@ -24,6 +24,10 @@ Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issue
 ## Seuranta
 - Commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
 
+## Yhteistyö
+- Projekti tehdään yhdessä Matti Pitkäsen (TGD:n kehittäjä) ja Tuomas Sorakiven kanssa. **TGD:n ydinkysymykset** (konventiot, toiminnan muoto, spinorirakenne, mitkä ekstremaalit ovat oikeita, fysikaalinen tulkinta) osoitetaan Matille – Claude ei ratkaise niitä itse.
+- Kun `päätös`-issue tarvitsee Matin linjausta, muotoile kysymys issueen niin, että Marko voi välittää sen sähköpostilla. Kun vastaus tulee, kirjaa se issueen ja `docs/konventiot.md`:hen ja lisää vastaava testi.
+
 ## Itsenäinen eteneminen ja päätöspisteet
 - Etene milestone-järjestyksessä kriittistä polkua pitkin (`docs/seuranta.md`). Puhtaasti matemaattiset issuet (tunnettu identiteetti testinä) saa tehdä itsenäisesti.
 - Issue, jolla on tunniste **`päätös`**, vaatii Markon valinnan tai materiaalin: tee esityö (vaihtoehdot, vertailulaskut), kirjaa ne issueen kommenttina ja **pysähdy** – älä valitse konventiota tai fysikaalista tulkintaa itse.

@@ -25,14 +25,18 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 
 ## Päätöspisteet (tunniste `päätös`)
 
-| Issue | Mitä tarvitaan |
-|---|---|
-| #10 CP2-säde ja normalisointi | Mikä TGD-lähde ja konventio (Pitkäsen s_kl, J_kl) on referenssi |
-| #19 Spin-yhteys | CP2 ei ole spin-monisto → spin^c / Kähler-kytkennän valinta TGD:n mukaan |
-| #27 L_TGD:n variaatio | Kertoimien c_K, c_V etumerkit ja normalisointi; dynaamiset muuttujat (M4-projektio vai CP2-koordinaatit) |
-| #31 Uudet ratkaisut | Mitkä ekstremaaliluokat ovat tutkimuksellisesti kiinnostavimpia |
-| #33 Lanyon-video | Transkriptio (en saanut sitä haettua) |
-| #34 Kirjan kaavat | Kirjoittajana vahvistat, mitkä väitteet kuuluvat testeiksi |
+TGD:n ydinkysymykset osoitetaan **Matti Pitkäselle** (cc Tuomas Sorakivi). Ensimmäinen kysymyskirje on lähetetty M1–M4:n jälkeen (luonnos 30.10.2026); kysymysten numerot viittaavat siihen.
+
+| Issue | Mitä tarvitaan | Kenelle | Kirjeen kysymys |
+|---|---|---|---|
+| #10 CP2-säde ja normalisointi | s_kl:n ja J_kl:n normalisointi, R:n kiinnitys | Matti | 1 |
+| – Upotusavaruuden etumerkki | h = m − R²s; M4:n Kähler-rakenne mukaan nyt vai myöhemmin | Matti | 2 |
+| #27 L_TGD:n variaatio | c_K:n ja c_V:n etumerkki ja normalisointi; yleinen h^k vai QFT-raja | Matti | 3 |
+| #19 Spin-yhteys | CP2 ei ole spin → Kähler-kytkentä kvarkeille ja leptoneille | Matti | 4 |
+| #31 Uudet ratkaisut | Mitkä ekstremaalit tarkistetaan ensin | Matti | 5 |
+| #22 / #28 ME-ansatsi | Vastaako ansatsi MEn määritelmää | Matti | 6 |
+| #33 Lanyon-video | Transkriptio | Marko | – |
+| #34 Kirjan kaavat | Mitkä väitteet kuuluvat testeiksi | Marko | – |
 
 Muut avoimet issuet ovat puhtaasti matemaattisia, ja ne voi tehdä itsenäisesti.
 
