@@ -1,0 +1,26 @@
+/* ================================================================
+   TGD Geometry Lab -- loader
+   Usage:
+     tgd_root : "/path/to/tgd-geometry-lab"$
+     load(sconcat(tgd_root, "/tgd-lab.mac"))$
+   ================================================================ */
+
+if not stringp(tgd_root) then tgd_root : "."$
+if not stringp(clifford_path) then clifford_path : false$
+
+/* load Prodanov's clifford + cliffordan packages (as in LanyonScripts) */
+tgd_load_clifford(path) := (
+  file_search_maxima : append(file_search_maxima, [sconcat(path, "/$$$.{mac,wxm}")]),
+  load("clifford"), load("cliffordan"), true)$
+
+tgd_load(rel) := load(sconcat(tgd_root, "/", rel))$
+
+tgd_load("core/metric.mac")$
+tgd_load("geometry/curvature.mac")$
+tgd_load("forms/forms.mac")$
+tgd_load("spaces/cp2.mac")$
+tgd_load("spaces/embedding-space.mac")$
+tgd_load("embedding/induced.mac")$
+tgd_load("tgd/action.mac")$
+
+print("TGD Geometry Lab loaded from", tgd_root)$

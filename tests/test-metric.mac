@@ -1,0 +1,11 @@
+section("core/metric")$
+define_manifold(S2, 2, [th, ph])$
+define_metric(S2, matrix([1,0],[0,sin(th)^2]))$
+check("inverse metric of S^2", zero_matrix_p(metric_inverse(S2) . manifold_metric(S2) - ident(2)))$
+check("determinant of S^2 metric", is(trigsimp(metric_determinant(S2) - sin(th)^2) = 0))$
+check("Minkowski signature (1,3)", is(metric_signature_at(minkowski_metric(), []) = [1,3,0]))$
+check("direct sum dimension", is(length(metric_direct_sum(ident(2), ident(3))) = 5))$
+/* polar coordinates: flat metric transforms to dr^2 + r^2 dphi^2 */
+check("tensor transformation to polar coordinates",
+      zero_matrix_p(trigsimp(transform_02(ident(2), [xx,yy], [r,phi], [r*cos(phi), r*sin(phi)]))
+                    - matrix([1,0],[0,r^2])))$

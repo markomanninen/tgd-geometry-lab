@@ -1,0 +1,73 @@
+/* ================================================================
+   TGD Geometry Lab -- core/metric.mac
+   Manifolds, coordinates and metrics (Step 1.2).
+
+   A manifold is stored in the hash table tgd_manifolds[name] as
+     [dimension, coordinates, metric]
+   but every operation is also available in a "functional" form that
+   takes the metric matrix and coordinate list directly, so the
+   modules can be used without the registry.
+   ================================================================ */
+
+tgd_simp(e) := ratsimp(e)$
+tgd_msimp(M) := matrixmap(tgd_simp, M)$
+
+/* ---------- registry ---------- */
+
+define_manifold(name, dimension, coordinates) := block(
+  if length(coordinates) # dimension then
+    error("define_manifold: dimension and number of coordinates differ"),
+  tgd_manifolds[name] : [dimension, coordinates, false],
+  name)$
+
+define_metric(name, metric_matrix) := block([m],
+  m : tgd_manifolds[name],
+  if not matrixp(metric_matrix) then error("define_metric: not a matrix"),
+  if length(metric_matrix) # m[1] then
+    error("define_metric: metric size does not match dimension"),
+  if not is(equal(tgd_msimp(metric_matrix - transpose(metric_matrix)),
+                  zeromatrix(m[1], m[1]))) then
+    error("define_metric: metric is not symmetric"),
+  tgd_manifolds[name] : [m[1], m[2], metric_matrix],
+  metric_matrix)$
+
+manifold_dim(name)    := tgd_manifolds[name][1]$
+manifold_coords(name) := tgd_manifolds[name][2]$
+manifold_metric(name) := tgd_manifolds[name][3]$
+
+metric_inverse(name)     := mat_inverse(manifold_metric(name))$
+metric_determinant(name) := tgd_simp(determinant(manifold_metric(name)))$
+
+/* ---------- matrix helpers ---------- */
+
+mat_inverse(g) := tgd_msimp(invert(g))$
+
+/* signature as [n_plus, n_minus, n_zero] at a numeric point
+   (point = list of equations, e.g. [x=0, y=1]) */
+metric_signature_at(g, point) := block([ev, np:0, nm:0, nz:0, vals],
+  vals : eigenvalues(subst(point, g)),
+  for i from 1 thru length(vals[1]) do (
+    ev : float(realpart(rectform(vals[1][i]))),
+    if ev > 1.0e-12 then np : np + vals[2][i]
+    else if ev < -1.0e-12 then nm : nm + vals[2][i]
+    else nz : nz + vals[2][i]),
+  [np, nm, nz])$
+
+/* block-diagonal direct sum G1 (+) G2 */
+metric_direct_sum(G1, G2) := block([n1:length(G1), n2:length(G2), G],
+  G : zeromatrix(n1+n2, n1+n2),
+  for i thru n1 do for j thru n1 do G[i,j] : G1[i,j],
+  for i thru n2 do for j thru n2 do G[n1+i, n1+j] : G2[i,j],
+  G)$
+
+/* tensor transformation of a (0,2) tensor under x = x(y):
+   G'_{ab}(y) = dx^i/dy^a dx^j/dy^b G_{ij}(x(y))
+   xs  : old coordinates, ys : new coordinates,
+   xofy: list of expressions x^i(y) */
+jacobian_matrix(funcs, vars) :=
+  genmatrix(lambda([i,j], diff(funcs[i], vars[j])), length(funcs), length(vars))$
+
+transform_02(G, xs, ys, xofy) := block([Jm, Gs],
+  Jm : jacobian_matrix(xofy, ys),
+  Gs : subst(map("=", xs, xofy), G),
+  tgd_msimp(transpose(Jm) . Gs . Jm))$

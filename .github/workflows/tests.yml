@@ -1,0 +1,15 @@
+name: tests
+on:
+  push:
+  pull_request:
+jobs:
+  maxima:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Maxima
+        run: sudo apt-get -qq update && sudo apt-get -qq install -y maxima
+      - name: Fetch Prodanov clifford package
+        run: git clone -q --depth 1 https://github.com/dprodanov/clifford.git ../clifford
+      - name: Run test suite
+        run: ./scripts/run_tests.sh ../clifford

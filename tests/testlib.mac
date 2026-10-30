@@ -1,0 +1,14 @@
+/* Minimal test harness. check(name, expr) where expr evaluates to true/false. */
+tgd_npass : 0$
+tgd_nfail : 0$
+tgd_failed : []$
+check(name, val) := (
+  if is(val) = true then (tgd_npass : tgd_npass + 1, print("  PASS ", name))
+  else (tgd_nfail : tgd_nfail + 1, tgd_failed : endcons(name, tgd_failed),
+        print("  FAIL ", name)),
+  is(val))$
+zero_matrix_p(M) := is(tgd_msimp(M) = zeromatrix(length(M), length(M[1])))$
+section(s) := print(sconcat("--- ", s, " ---"))$
+test_summary() := (
+  print(sconcat("TGD_TESTS passed=", tgd_npass, " failed=", tgd_nfail)),
+  if tgd_nfail > 0 then print("Failed:", tgd_failed))$

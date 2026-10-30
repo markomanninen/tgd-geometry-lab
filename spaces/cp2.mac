@@ -1,0 +1,70 @@
+/* ================================================================
+   TGD Geometry Lab -- spaces/cp2.mac
+   CP_2 with the Fubini-Study metric (Phase II, Steps 2.1 - 2.5).
+
+   Chart Z_0 # 0 :  z1 = Z1/Z0,  z2 = Z2/Z0,
+   real coordinates  cp2_X = [x1, y1, x2, y2],  z_k = x_k + %i y_k.
+
+   Kahler potential   K = R2 * log(1 + |z1|^2 + |z2|^2)
+   Hermitian metric   h_{i jbar} = d_i dbar_j K
+   Real metric        ds^2 = 2 h_{i jbar} dz^i dzbar^j    (symmetric product)
+   Kahler form        omega = %i h_{i jbar} dz^i ^ dzbar^j
+   Complex structure  J^a_b = g^{a c} omega_{c b}
+
+   R2 (= cp2_R2) is an overall scale (TGD: R^2, the CP_2 radius squared).
+   With R2 = 1:  Ric = 3 g,  R = 12, holomorphic sectional curvature 2,
+   and the sectional curvature lies in [1/2, 2]  (CP_1 subspace = sphere of
+   radius 1/sqrt(2), Gauss curvature 2).
+   Requires core/metric.mac.
+   ================================================================ */
+
+cp2_X : [x1, y1, x2, y2]$
+declare([x1, y1, x2, y2], real)$
+cp2_R2 : 1$
+
+/* Wirtinger derivatives in the chart */
+wz(f, k)  := (diff(f, cp2_X[2*k-1]) - %i*diff(f, cp2_X[2*k]))/2$
+wzb(f, k) := (diff(f, cp2_X[2*k-1]) + %i*diff(f, cp2_X[2*k]))/2$
+
+cp2_rho2 : x1^2 + y1^2 + x2^2 + y2^2$
+cp2_kahler_potential() := cp2_R2 * log(1 + cp2_rho2)$
+
+/* 2x2 Hermitian matrix h_{i jbar} */
+cp2_hermitian_metric() := block([K : cp2_kahler_potential()],
+  genmatrix(lambda([i,j], tgd_simp(wzb(wz(K, i), j))), 2, 2))$
+
+/* basis 1-forms dz^k, dzbar^k as component vectors in (x1,y1,x2,y2) */
+cp2_dz(k)  := block([v:[0,0,0,0]], v[2*k-1]:1, v[2*k]: %i, v)$
+cp2_dzb(k) := block([v:[0,0,0,0]], v[2*k-1]:1, v[2*k]:-%i, v)$
+
+/* real symmetric metric: G_ab = 2 Re-symmetrised h_{ij} dz^i_(a dzbar^j_b) */
+cp2_metric() := block([h : cp2_hermitian_metric()],
+  genmatrix(lambda([a,b],
+     tgd_simp(realpart(rectform(sum(sum(
+        h[i,j]*(cp2_dz(i)[a]*cp2_dzb(j)[b] + cp2_dz(i)[b]*cp2_dzb(j)[a]),
+        j, 1, 2), i, 1, 2))))), 4, 4))$
+
+/* Kahler form components omega_ab (antisymmetric matrix) */
+cp2_kahler_matrix() := block([h : cp2_hermitian_metric()],
+  genmatrix(lambda([a,b],
+     tgd_simp(rectform(%i*sum(sum(
+        h[i,j]*(cp2_dz(i)[a]*cp2_dzb(j)[b] - cp2_dz(i)[b]*cp2_dzb(j)[a]),
+        j, 1, 2), i, 1, 2)))), 4, 4))$
+
+/* complex structure J^a_b = g^{ac} omega_{cb} */
+cp2_complex_structure(G, W) := tgd_msimp(mat_inverse(G) . W)$
+
+/* ---------- other charts and transition maps (Step 2.4) ----------
+   Chart Z_1 # 0 : w1 = Z0/Z1, w2 = Z2/Z1.  On the overlap
+       z1 = 1/w1,  z2 = w2/w1.
+   With w_k = u_k + %i v_k the map z(w) in real form is returned
+   as a list [x1, y1, x2, y2] of expressions in [u1, v1, u2, v2].   */
+cp2_W : [u1, v1, u2, v2]$
+declare([u1, v1, u2, v2], real)$
+
+cp2_chart1_to_chart0() := block([w1 : u1 + %i*v1, w2 : u2 + %i*v2, z1, z2],
+  z1 : rectform(1/w1), z2 : rectform(w2/w1),
+  map(tgd_simp, [realpart(z1), imagpart(z1), realpart(z2), imagpart(z2)]))$
+
+/* Fubini-Study metric written directly in chart 1 (same formula) */
+cp2_metric_in_chart(Y) := subst(map("=", cp2_X, Y), cp2_metric())$

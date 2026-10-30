@@ -1,0 +1,13 @@
+section("tgd/action: Euler-Lagrange engine")$
+depends(phi, [tt, xx])$
+EL1 : euler_lagrange(diff(phi,tt)^2/2 - diff(phi,xx)^2/2, [phi], [tt, xx])$
+check("wave equation from L = (phi_t^2 - phi_x^2)/2",
+      is(tgd_simp(EL1[1] + diff(phi,tt,2) - diff(phi,xx,2)) = 0))$
+/* volume (Nambu-Goto) action for a graph z = f(x,y) in R^3 -> minimal surface equation */
+depends(fz, [xx, yy])$
+gGraph : induced_metric(ident(3), [X1,X2,X3], [xx, yy, fz], [xx, yy])$
+EL2 : euler_lagrange(sqrt(determinant(gGraph)), [fz], [xx, yy])$
+MSE : (1+diff(fz,yy)^2)*diff(fz,xx,2) - 2*diff(fz,xx)*diff(fz,yy)*diff(fz,xx,1,yy,1)
+      + (1+diff(fz,xx)^2)*diff(fz,yy,2)$
+check("minimal surface equation from the volume action",
+      is(tgd_simp(EL2[1]*(1+diff(fz,xx)^2+diff(fz,yy)^2)^(3/2) + MSE) = 0))$

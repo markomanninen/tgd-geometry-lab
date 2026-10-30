@@ -1,0 +1,10 @@
+section("geometry/curvature (unit S^2 reference)")$
+gS : matrix([1,0],[0,sin(th)^2])$
+XS : [th, ph]$
+GamS : christoffel(gS, XS)$
+RS : riemann(GamS, XS)$
+RicS : ricci(RS)$
+check("S^2 Christoffel Gamma^th_{ph ph} = -sin cos", is(trigsimp(GamS[1][2][2] + sin(th)*cos(th)) = 0))$
+check("S^2 Ricci = g", zero_matrix_p(trigsimp(RicS - gS)))$
+check("S^2 scalar curvature = 2", is(trigsimp(scalar_curvature(gS, RicS)) = 2))$
+check("S^2 metric compatibility nabla g = 0", nested_zero_p(trigsimp(cov_deriv_02(gS, GamS, XS))))$

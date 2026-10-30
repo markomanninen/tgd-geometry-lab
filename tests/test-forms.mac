@@ -1,0 +1,23 @@
+section("forms")$
+Xq : [q1,q2,q3,q4]$
+depends(F0, Xq)$
+depends([A1,A2,A3,A4], Xq)$
+check("dx1^dx2 = -dx2^dx1", form_zerop(form_add(wedge(dx(1),dx(2)), wedge(dx(2),dx(1)))))$
+check("dx1^dx1 = 0", form_zerop(wedge(dx(1),dx(1))))$
+check("d^2 = 0 on a generic 0-form", form_zerop(dform(dform(form0(F0), Xq), Xq)))$
+Aform : [[A1,[1]],[A2,[2]],[A3,[3]],[A4,[4]]]$
+check("d^2 = 0 on a generic 1-form", form_zerop(dform(dform(Aform, Xq), Xq)))$
+/* d(A f) = dA f - A ^ df  for a 1-form A and 0-form f */
+check("graded Leibniz rule",
+      form_zerop(form_sub(dform(wedge(Aform, form0(F0)), Xq),
+                          form_sub(wedge(dform(Aform, Xq), form0(F0)),
+                                   wedge(Aform, dform(form0(F0), Xq))))))$
+check("matrix <-> 2-form round trip",
+      zero_matrix_p(form_to_matrix(form_from_matrix(matrix([0,a,b],[-a,0,c],[-b,-c,0])), 3)
+                    - matrix([0,a,b],[-a,0,c],[-b,-c,0])))$
+check("Euclidean R^4: *dx1 = dx2^dx3^dx4", is(hodge(dx(1), ident(4)) = [[1,[2,3,4]]]))$
+check("Euclidean R^4: ** = +1 on 2-forms",
+      is(hodge(hodge(wedge(dx(1),dx(2)), ident(4)), ident(4)) = wedge(dx(1),dx(2))))$
+check("Minkowski: ** = -1 on 2-forms",
+      is(hodge(hodge(wedge(dx(1),dx(2)), minkowski_metric()), minkowski_metric())
+         = form_scale(-1, wedge(dx(1),dx(2)))))$

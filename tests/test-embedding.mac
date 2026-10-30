@@ -1,0 +1,42 @@
+section("embedding in H = M^4 x CP_2")$
+GH : H_metric()$
+JH : H_kahler()$
+xi : [t0, t1, t2, t3]$
+check("H signature (1,7) at a point",
+      is(metric_signature_at(GH, [x1=0,y1=0,x2=0,y2=0]) = [1,7,0]))$
+/* canonical M^4 embedding with a fixed CP_2 point */
+emb0 : [t0, t1, t2, t3, 0, 0, 0, 0]$
+check("canonical M^4: induced metric = Minkowski",
+      zero_matrix_p(induced_metric(GH, H_X, emb0, xi) - minkowski_metric()))$
+check("canonical M^4: induced Kahler form = 0",
+      zero_matrix_p(induced_kahler_form(JH, H_X, emb0, xi)))$
+/* Massless-extremal type ansatz in light-cone parameters xi = (u, v, x, y),
+   t = (u+v)/2, z = (v-u)/2  (so u = t - z).  CP_2 coordinates depend on u and on
+   the transverse coordinate x only. */
+xl : [uu, vv, xx, yy]$
+depends([F1, F2], [uu, xx])$
+emb1 : [(uu+vv)/2, xx, yy, (vv-uu)/2, F1, F2, 0, 0]$
+gME : induced_metric(GH, H_X, emb1, xl)$
+JME : induced_kahler_form(JH, H_X, emb1, xl)$
+giME : mat_inverse(gME)$
+check("ME: induced J is non-zero", not zero_matrix_p(JME))$
+check("ME: J has only the (u,x) component", is(JME[1,3] # 0 and tgd_simp(JME[1,2]) = 0 and tgd_simp(JME[2,3]) = 0))$
+check("ME: du stays light-like, g^{uu} = 0", is(giME[1,1] = 0))$
+check("ME: J_ab J^ab = 0 (null Kahler field)", is(kahler_invariant(gME, JME) = 0))$
+check("ME: instanton density J^J = 0", is(tgd_simp(instanton_density(JME)) = 0))$
+/* pure u-dependence: induced metric has the flat determinant -1/4 */
+depends([F3], [uu])$
+g3 : induced_metric(GH, H_X, [(uu+vv)/2, xx, yy, (vv-uu)/2, F3, 0, 0, 0], xl)$
+check("ME with u-dependence only: det g = -1/4 (as for M^4)", is(tgd_simp(determinant(g3)) = -1/4))$
+/* Cosmic string X^2 x Y^2 : (t,z) free, Y^2 = CP_1 = {z2 = 0} a complex
+   (homologically non-trivial) sphere in CP_2.  Parameters (t, z, a, b), z1 = a + i b. */
+xs : [tt0, zz0, aa, bb]$
+embCS : [tt0, 0, 0, zz0, aa, bb, 0, 0]$
+gCS : induced_metric(GH, H_X, embCS, xs)$
+JCS : induced_kahler_form(JH, H_X, embCS, xs)$
+check("cosmic string: induced metric = M^2 (+) (-) S^2(r=1/sqrt2)",
+      zero_matrix_p(gCS - diag_matrix(1, -1, -2/(1+aa^2+bb^2)^2, -2/(1+aa^2+bb^2)^2)))$
+check("cosmic string: J_ab J^ab = 2 (constant magnetic Kahler field)",
+      is(kahler_invariant(gCS, JCS) = 2))$
+check("cosmic string: Kahler magnetic flux density J_ab = 2/(1+r^2)^2 da^db",
+      is(tgd_simp(JCS[3,4] - 2/(1+aa^2+bb^2)^2) = 0))$

@@ -1,0 +1,55 @@
+/* ================================================================
+   TGD Geometry Lab -- tgd/action.mac
+   TGD action densities and a symbolic Euler-Lagrange engine
+   (Steps 7.1 - 7.3).
+
+   TGD action (twistor-lift form):  S = S_K + S_V
+     L_K = c_K * J_{ab} J^{ab} sqrt|g|     (Kahler action; c_K ~ 1/(4 g_K^2),
+                                            sign/normalisation is a convention)
+     L_V = c_V * sqrt|g|                    (volume term, cosmological-constant analogue)
+     L_I = J ^ J                            (instanton term, total divergence)
+   The coefficients are kept symbolic so that different conventions in the
+   literature can be compared explicitly.
+   The dynamical variables are the embedding coordinates h^k(xi): the induced
+   metric and Kahler form are NOT varied independently.
+   Requires core/metric.mac, forms/forms.mac.
+   ================================================================ */
+
+/* J_{ab} J^{ab} */
+kahler_invariant(g, Jind) := block([gi : mat_inverse(g), n : length(g)],
+  tgd_simp(sum(sum(sum(sum(gi[a,c]*gi[b,d]*Jind[a,b]*Jind[c,d],
+          d,1,n),c,1,n),b,1,n),a,1,n)))$
+
+sqrt_abs_det(g) := block([d : factor(tgd_simp(determinant(g)))],
+  radcan(sqrt(if is(d < 0) then -d else if is(d > 0) then d else abs(d))))$
+
+kahler_density(g, Jind, cK) := cK * kahler_invariant(g, Jind) * sqrt_abs_det(g)$
+volume_density(g, cV)       := cV * sqrt_abs_det(g)$
+tgd_density(g, Jind, cK, cV) := kahler_density(g, Jind, cK) + volume_density(g, cV)$
+
+/* instanton density: coefficient of J ^ J on a 4-surface */
+instanton_density(Jind) := top_coef(wedge(form_from_matrix(Jind), form_from_matrix(Jind)))$
+
+/* ---------- Euler-Lagrange engine ----------
+   L      : Lagrangian density, an expression in the fields and their first
+            derivatives, e.g. L = diff(f,t)^2/2 - diff(f,x)^2/2
+   fields : list of field symbols, each declared with depends(f, xi)
+   xi     : list of independent variables
+   Returns the list of Euler-Lagrange expressions E_k with E_k = 0:
+     E_k = dL/df_k - sum_a D_a ( dL/d(d_a f_k) )                          */
+euler_lagrange(L, fields, xi) := block([nf:length(fields), nx:length(xi),
+                                        P, subs, back, Ls, out:[], Ek],
+  P : makelist(makelist(concat('tgd_p_, k, '_, a), a, 1, nx), k, 1, nf),
+  subs : flatten(makelist(makelist(diff(fields[k], xi[a]) = P[k][a], a, 1, nx), k, 1, nf)),
+  back  : map(lambda([r], rhs(r) = lhs(r)), subs),
+  Ls : ratsubst_list(subs, L),
+  for k thru nf do (
+    Ek : diff(Ls, fields[k]),
+    Ek : subst(back, Ek),
+    Ek : Ek - sum(diff(subst(back, diff(Ls, P[k][a])), xi[a]), a, 1, nx),
+    out : endcons(tgd_simp(Ek), out)),
+  out)$
+
+ratsubst_list(subsl, e) := block([r : e],
+  for q in subsl do r : ratsubst(rhs(q), lhs(q), r),
+  r)$

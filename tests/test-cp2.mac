@@ -1,0 +1,38 @@
+section("spaces/cp2 (Fubini-Study)")$
+G : cp2_metric()$
+W : cp2_kahler_matrix()$
+Jc : cp2_complex_structure(G, W)$
+check("metric symmetric", zero_matrix_p(G - transpose(G)))$
+check("det g = 16/(1+rho^2)^6", is(tgd_simp(determinant(G) - 16/(1+cp2_rho2)^6) = 0))$
+check("metric positive definite at a sample point",
+      is(metric_signature_at(G, [x1=1/3, y1=-2, x2=1/2, y2=1]) = [4,0,0]))$
+check("inverse metric", zero_matrix_p(mat_inverse(G) . G - ident(4)))$
+check("J^2 = -1", zero_matrix_p(Jc . Jc + ident(4)))$
+check("J is g-orthogonal: J^T g J = g", zero_matrix_p(transpose(Jc) . G . Jc - G))$
+omega : form_from_matrix(W)$
+check("d omega = 0 (Kahler)", form_zerop(dform(omega, cp2_X)))$
+check("omega^omega/2 = volume form",
+      is(tgd_simp(top_coef(wedge(omega, omega))/2 - 4/(1+cp2_rho2)^3) = 0))$
+Gam : christoffel(G, cp2_X)$
+check("Christoffel symbols symmetric", christoffel_symmetric_p(Gam))$
+check("nabla g = 0", nested_zero_p(cov_deriv_02(G, Gam, cp2_X)))$
+check("nabla J = 0 (Kahler)", nested_zero_p(cov_deriv_11(Jc, Gam, cp2_X)))$
+Riem : riemann(Gam, cp2_X)$
+Rl : riemann_lower(G, Riem)$
+Ric : ricci(Riem)$
+check("Riemann algebraic symmetries", riemann_symmetries_p(Rl))$
+check("first Bianchi identity", bianchi1_p(Riem))$
+check("Kahler-Einstein: Ric = 3 g", zero_matrix_p(Ric - 3*G))$
+check("scalar curvature R = 12", is(scalar_curvature(G, Ric) = 12))$
+check("contracted Bianchi: div(Einstein tensor) = 0",
+      nested_zero_p(einstein_divergence(G, Ric, Gam, cp2_X)))$
+e1 : [1,0,0,0]$
+Je1 : list_matrix_entries(Jc . transpose(matrix(e1)))$
+check("holomorphic sectional curvature = 2 (general point)",
+      is(sectional_curvature(G, Rl, e1, Je1) = 2))$
+check("totally real plane (x1,x2) at origin has K = 1/2",
+      is(subst([x1=0,y1=0,x2=0,y2=0], sectional_curvature(G, Rl, [1,0,0,0], [0,0,1,0])) = 1/2))$
+/* chart transition Z0 -> Z1 */
+Gc1 : transform_02(G, cp2_X, cp2_W, cp2_chart1_to_chart0())$
+check("chart transition Z0<->Z1 preserves the FS metric",
+      zero_matrix_p(Gc1 - cp2_metric_in_chart(cp2_W)))$

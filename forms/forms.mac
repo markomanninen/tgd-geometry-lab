@@ -1,0 +1,98 @@
+/* ================================================================
+   TGD Geometry Lab -- forms/forms.mac
+   Differential forms (Steps 3.1 - 3.4).
+
+   A p-form is a sparse list of terms  [coef, [i1, i2, ..., ip]]
+   with strictly increasing indices i1 < i2 < ... < ip, meaning
+        sum  coef * dx^{i1} ^ dx^{i2} ^ ... ^ dx^{ip}.
+   A 0-form f is [[f, []]].  The empty list [] is the zero form.
+   Requires core/metric.mac (tgd_simp, mat_inverse).
+   ================================================================ */
+
+form0(f) := [[f, []]]$
+dx(i)    := [[1, [i]]]$
+
+/* sign of the permutation that sorts a list of distinct integers,
+   0 if an index repeats */
+perm_sign(L) := block([a:copylist(L), n:length(L), s:1, t],
+  if length(unique(L)) < n then return(0),
+  for i thru n do for j from 1 thru n-i do
+    if a[j] > a[j+1] then (t:a[j], a[j]:a[j+1], a[j+1]:t, s:-s),
+  s)$
+
+/* collect equal index sets, simplify coefficients, drop zeros */
+form_simplify(F) := block([keys:[], out:[], c],
+  for t in F do if not member(t[2], keys) then keys : endcons(t[2], keys),
+  for k in keys do (
+    c : tgd_simp(apply("+", map(first, sublist(F, lambda([t], t[2] = k))))),
+    if c # 0 then out : endcons([c, k], out)),
+  out)$
+
+form_add(A, B)      := form_simplify(append(A, B))$
+form_scale(c, A)    := form_simplify(map(lambda([t], [c*t[1], t[2]]), A))$
+form_sub(A, B)      := form_add(A, form_scale(-1, B))$
+form_zerop(A)       := is(form_simplify(A) = [])$
+form_degree(A)      := if A = [] then 0 else length(A[1][2])$
+
+wedge(A, B) := block([out:[], s],
+  for a in A do for b in B do (
+    s : perm_sign(append(a[2], b[2])),
+    if s # 0 then out : endcons([s*a[1]*b[1], sort(append(a[2], b[2]))], out)),
+  form_simplify(out))$
+
+wedge_list(L) := if length(L) = 1 then L[1] else wedge(first(L), wedge_list(rest(L)))$
+
+/* exterior derivative w.r.t. coordinate list X */
+dform(A, X) := block([out:[], s],
+  for t in A do for k thru length(X) do
+    if not member(k, t[2]) then (
+      s : perm_sign(cons(k, t[2])),
+      out : endcons([s*diff(t[1], X[k]), sort(cons(k, t[2]))], out)),
+  form_simplify(out))$
+
+/* 2-form from antisymmetric component matrix: F = 1/2 F_ab dx^a ^ dx^b */
+form_from_matrix(M) := block([n:length(M), out:[]],
+  for a thru n do for b from a+1 thru n do out : endcons([M[a,b], [a,b]], out),
+  form_simplify(out))$
+
+/* antisymmetric component matrix of a 2-form in dimension n */
+form_to_matrix(F, n) := block([M:zeromatrix(n,n)],
+  for t in F do (M[t[2][1], t[2][2]] : t[1], M[t[2][2], t[2][1]] : -t[1]),
+  M)$
+
+/* top form vol = sqrt|det g| dx^1 ^ ... ^ dx^n (coordinate orientation) */
+volume_form(g) := [[sqrt(abs(tgd_simp(determinant(g)))), makelist(i, i, 1, length(g))]]$
+
+/* coefficient of the top form */
+top_coef(F) := if F = [] then 0 else F[1][1]$
+
+/* interior product i_V A  (V = list of vector components) */
+interior(V, A) := block([out:[], I],
+  for t in A do for k thru length(t[2]) do (
+    I : t[2],
+    out : endcons([(-1)^(k-1)*V[I[k]]*t[1], append(firstn(I, k-1), rest(I, k))], out)),
+  form_simplify(out))$
+
+/* ---------- Hodge star ----------
+   For a p-form A = sum_{I} A_I dx^I, with raised components
+   A^{J} = g^{j1 i1}...g^{jp ip} A_I, and
+   (*A)_K = sqrt|g| / p!  A^{J} eps_{J K}   (sum over all ordered J).
+   Works for any signature; for Lorentzian metrics this gives
+   ** = -(-1)^{p(n-p)} on p-forms (i.e. (-1)^{p(n-p)} * sign(det g)).  */
+hodge(A, g) := block([n:length(g), gi, p, sg, out:[], comps, Js, Ks, Araised],
+  if A = [] then return([]),
+  gi : mat_inverse(g), p : form_degree(A),
+  sg : sqrt(abs(tgd_simp(determinant(g)))),
+  /* increasing p-subsets */
+  Js : map(lambda([S], sort(listify(S))), listify(powerset(setify(makelist(i,i,1,n)), p))),
+  for J in Js do (
+    /* raised component A^J for increasing J */
+    Araised : 0,
+    for t in A do
+      Araised : Araised + t[1] * determinant(
+          genmatrix(lambda([a,b], gi[J[a], t[2][b]]), p, p)),
+    Araised : tgd_simp(Araised),
+    if Araised # 0 then (
+      Ks : sort(listify(setdifference(setify(makelist(i,i,1,n)), setify(J)))),
+      out : endcons([sg*Araised*perm_sign(append(J, Ks)), Ks], out))),
+  form_simplify(out))$

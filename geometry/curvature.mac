@@ -1,0 +1,106 @@
+/* ================================================================
+   TGD Geometry Lab -- geometry/curvature.mac
+   Levi-Civita connection and curvature (Steps 4.1, 4.2, 5.1, 5.2).
+
+   Conventions (index positions written explicitly):
+     Gam[r][m][n]   = Gamma^r_{m n}
+                    = 1/2 g^{r s} (d_m g_{s n} + d_n g_{s m} - d_s g_{m n})
+     Riem[r][s][m][n] = R^r_{s m n}
+                    = d_m Gam^r_{n s} - d_n Gam^r_{m s}
+                      + Gam^r_{m l} Gam^l_{n s} - Gam^r_{n l} Gam^l_{m s}
+     Ric[s,n]       = R^r_{s r n}
+     scalar R       = g^{s n} Ric_{s n}
+   With these conventions the unit sphere S^2 has R = +2.
+   Requires core/metric.mac.
+   ================================================================ */
+
+christoffel(g, X) := block([n:length(X), gi],
+  gi : mat_inverse(g),
+  makelist(makelist(makelist(
+     tgd_simp( 1/2 * sum( gi[r,s] * ( diff(g[s,nn], X[m])
+                                    + diff(g[s,m],  X[nn])
+                                    - diff(g[m,nn], X[s]) ), s, 1, n) ),
+     nn, 1, n), m, 1, n), r, 1, n))$
+
+/* symmetry Gamma^r_{mn} = Gamma^r_{nm}: returns true/false */
+christoffel_symmetric_p(Gam) := block([n:length(Gam), ok:true],
+  for r thru n do for m thru n do for nn thru n do
+    if tgd_simp(Gam[r][m][nn] - Gam[r][nn][m]) # 0 then ok : false,
+  ok)$
+
+riemann(Gam, X) := block([n:length(X)],
+  makelist(makelist(makelist(makelist(
+     tgd_simp( diff(Gam[r][nn][s], X[m]) - diff(Gam[r][m][s], X[nn])
+             + sum( Gam[r][m][l]*Gam[l][nn][s] - Gam[r][nn][l]*Gam[l][m][s],
+                    l, 1, n) ),
+     nn, 1, n), m, 1, n), s, 1, n), r, 1, n))$
+
+/* fully covariant R_{a s m n} = g_{a r} R^r_{s m n} */
+riemann_lower(g, Riem) := block([n:length(g)],
+  makelist(makelist(makelist(makelist(
+     tgd_simp( sum(g[a,r]*Riem[r][s][m][nn], r, 1, n) ),
+     nn, 1, n), m, 1, n), s, 1, n), a, 1, n))$
+
+ricci(Riem) := block([n:length(Riem)],
+  genmatrix(lambda([s,nn], tgd_simp(sum(Riem[r][s][r][nn], r, 1, n))), n, n))$
+
+scalar_curvature(g, Ric) := block([gi:mat_inverse(g), n:length(g)],
+  tgd_simp(sum(sum(gi[s,nn]*Ric[s,nn], nn, 1, n), s, 1, n)))$
+
+/* ---------- covariant derivatives ---------- */
+
+/* nabla_m V^r  -> matrix [r, m] */
+cov_deriv_vector(V, Gam, X) := block([n:length(X)],
+  genmatrix(lambda([r,m], tgd_simp(diff(V[r], X[m])
+                          + sum(Gam[r][m][l]*V[l], l, 1, n))), n, n))$
+
+/* nabla_r g_{mn} -- metric compatibility; returns nested list */
+cov_deriv_02(T, Gam, X) := block([n:length(X)],
+  makelist(makelist(makelist(
+     tgd_simp( diff(T[m,nn], X[r])
+             - sum(Gam[l][r][m]*T[l,nn], l, 1, n)
+             - sum(Gam[l][r][nn]*T[m,l], l, 1, n) ),
+     nn, 1, n), m, 1, n), r, 1, n))$
+
+/* (1,1) tensor A^a_b given as matrix [a,b]: nabla_r A^a_b  */
+cov_deriv_11(A, Gam, X) := block([n:length(X)],
+  makelist(makelist(makelist(
+     tgd_simp( diff(A[a,b], X[r])
+             + sum(Gam[a][r][l]*A[l,b], l, 1, n)
+             - sum(Gam[l][r][b]*A[a,l], l, 1, n) ),
+     b, 1, n), a, 1, n), r, 1, n))$
+
+/* ---------- identities used by the tests ---------- */
+
+nested_zero_p(L) := every(lambda([e], if listp(e) then nested_zero_p(e)
+                                      else is(tgd_simp(e) = 0)), L)$
+
+/* first Bianchi: R^r_{s m n} + R^r_{m n s} + R^r_{n s m} = 0 */
+bianchi1_p(Riem) := block([n:length(Riem), ok:true],
+  for r thru n do for s thru n do for m thru n do for nn thru n do
+    if tgd_simp(Riem[r][s][m][nn] + Riem[r][m][nn][s] + Riem[r][nn][s][m]) # 0
+    then ok : false,
+  ok)$
+
+/* algebraic symmetries of R_{a b c d} */
+riemann_symmetries_p(Rl) := block([n:length(Rl), ok:true],
+  for a thru n do for b thru n do for c thru n do for d thru n do (
+    if tgd_simp(Rl[a][b][c][d] + Rl[b][a][c][d]) # 0 then ok : false,
+    if tgd_simp(Rl[a][b][c][d] + Rl[a][b][d][c]) # 0 then ok : false,
+    if tgd_simp(Rl[a][b][c][d] - Rl[c][d][a][b]) # 0 then ok : false),
+  ok)$
+
+/* contracted (second) Bianchi: nabla^m (Ric_{mn} - 1/2 g_{mn} R) = 0 */
+einstein_divergence(g, Ric, Gam, X) := block([n:length(X), gi, Rs, Gt, D],
+  gi : mat_inverse(g),
+  Rs : scalar_curvature(g, Ric),
+  Gt : tgd_msimp(Ric - Rs/2*g),
+  D  : cov_deriv_02(Gt, Gam, X),
+  makelist(tgd_simp(sum(sum(gi[r,m]*D[r][m][nn], m, 1, n), r, 1, n)), nn, 1, n))$
+
+/* sectional curvature of the plane spanned by vectors U, V */
+sectional_curvature(g, Rl, U, V) := block([n:length(g), num, den],
+  num : sum(sum(sum(sum(Rl[a][b][c][d]*U[a]*V[b]*U[c]*V[d],
+            d,1,n),c,1,n),b,1,n),a,1,n),
+  den : (U.g.U)*(V.g.V) - (U.g.V)^2,
+  tgd_simp(num/den))$

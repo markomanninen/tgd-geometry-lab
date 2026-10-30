@@ -1,0 +1,22 @@
+/* ================================================================
+   TGD Geometry Lab -- spaces/minkowski + embedding-space
+   H = M^4 x CP_2 (Steps 1.3, 6.1, 6.2).
+
+   Coordinates  H_X = [t, x, y, z, x1, y1, x2, y2].
+   Minkowski metric m = diag(1, -1, -1, -1)   (TGD convention).
+   The CP_2 part enters with sign cp2_sign (default -1, so that H has
+   signature (1, 7) as in TGD: h_kl = m_kl - s_kl with s the
+   positive-definite CP_2 metric).
+   Kahler form of H: J_H = 0 (+) omega_CP2.
+   Requires core/metric.mac and spaces/cp2.mac.
+   ================================================================ */
+
+M4_X : [t, x, y, z]$
+declare([t, x, y, z], real)$
+minkowski_metric() := diagmatrix(4, -1) + 2*ematrix(4, 4, 1, 1, 1)$
+
+H_X : append(M4_X, cp2_X)$
+cp2_sign : -1$
+
+H_metric() := metric_direct_sum(minkowski_metric(), cp2_sign*cp2_metric())$
+H_kahler() := metric_direct_sum(zeromatrix(4,4), cp2_kahler_matrix())$

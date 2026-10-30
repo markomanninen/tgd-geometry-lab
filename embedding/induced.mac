@@ -1,0 +1,25 @@
+/* ================================================================
+   TGD Geometry Lab -- embedding/induced.mac
+   Induced geometry of an embedded surface (Steps 1.4, 6.3).
+
+   An embedding is given as a list Xemb of expressions h^k(xi),
+   one per coordinate of the ambient space (ambient coordinate list HX),
+   and a parameter list xi.
+     g_{ab} = h_kl(h(xi)) d_a h^k d_b h^l          (induced metric)
+     J_{ab} = J_kl(h(xi)) d_a h^k d_b h^l          (induced Kahler form)
+   Requires core/metric.mac.
+   ================================================================ */
+
+embedding_jacobian(Xemb, xi) := jacobian_matrix(Xemb, xi)$
+
+pullback_02(T, HX, Xemb, xi) := block([Jm, Ts],
+  Jm : embedding_jacobian(Xemb, xi),
+  Ts : subst(map("=", HX, Xemb), T),
+  tgd_msimp(transpose(Jm) . Ts . Jm))$
+
+induced_metric(G, HX, Xemb, xi)      := pullback_02(G, HX, Xemb, xi)$
+induced_kahler_form(J, HX, Xemb, xi) := pullback_02(J, HX, Xemb, xi)$
+
+/* tangent vectors t_a^k = d_a h^k as columns of the Jacobian */
+tangent_vectors(Xemb, xi) := makelist(makelist(diff(Xemb[k], xi[a]), k, 1, length(Xemb)),
+                                      a, 1, length(xi))$

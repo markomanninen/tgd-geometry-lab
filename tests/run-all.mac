@@ -1,0 +1,14 @@
+/* Run all tests.  Easiest:   ./scripts/run_tests.sh [path/to/clifford]
+   Directly (from the repository root):
+     maxima --very-quiet --batch=tests/run-all.mac
+   Optional globals that may be set before loading this file:
+     tgd_root       repository root (default ".")
+     clifford_path  checkout of github.com/dprodanov/clifford (default: skip)  */
+if not stringp(tgd_root) then tgd_root : "."$
+if not stringp(clifford_path) then clifford_path : false$
+load(sconcat(tgd_root, "/tgd-lab.mac"))$
+load(sconcat(tgd_root, "/tests/testlib.mac"))$
+for f in ["test-metric", "test-curvature", "test-forms", "test-cp2",
+          "test-embedding", "test-action", "test-clifford"] do
+  batchload(sconcat(tgd_root, "/tests/", f, ".mac"))$
+test_summary()$
