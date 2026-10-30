@@ -13,7 +13,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | Välitavoite | Valmiina | Seuraavaksi |
 |---|---|---|
 | M1 Ympäristö | 4/4 ✅ | – |
-| M2 CP2-metriikka | 4/6 | #8 kartta Z2, #10 R²-normalisointi |
+| M2 CP2-metriikka | 5/6 | #8 kartta Z2 |
 | M3 Muodot | 2/3 | #13 integraalit |
 | M4 Kaarevuus | 2/3 | #16 Cartan ja torsio |
 | M5 Clifford-geometria | 1/4 | #18 vielbein → #19 spin-yhteys → #20 γ^μ |
@@ -25,20 +25,32 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 
 ## Päätöspisteet (tunniste `päätös`)
 
-TGD:n ydinkysymykset osoitetaan **Matti Pitkäselle** (cc Tuomas Sorakivi). Ensimmäinen kysymyskirje on lähetetty M1–M4:n jälkeen (luonnos 30.10.2026); kysymysten numerot viittaavat siihen.
+Periaate: vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitkäsen artikkelit, kirjat, blogi). **Matti Pitkäselle** (cc Tuomas Sorakivi) kysytään vain se, mikä jää tutkimuksen jälkeen avoimeksi.
 
-| Issue | Mitä tarvitaan | Kenelle | Kirjeen kysymys |
+### Selvitetty kirjallisuudesta 30.10.2026
+
+| Kysymys | Vastaus | Lähde | Tila |
 |---|---|---|---|
-| #10 CP2-säde ja normalisointi | s_kl:n ja J_kl:n normalisointi, R:n kiinnitys | Matti | 1 |
-| – Upotusavaruuden etumerkki | h = m − R²s; M4:n Kähler-rakenne mukaan nyt vai myöhemmin | Matti | 2 |
-| #27 L_TGD:n variaatio | c_K:n ja c_V:n etumerkki ja normalisointi; yleinen h^k vai QFT-raja | Matti | 3 |
-| #19 Spin-yhteys | CP2 ei ole spin → Kähler-kytkentä kvarkeille ja leptoneille | Matti | 4 |
-| #31 Uudet ratkaisut | Mitkä ekstremaalit tarkistetaan ensin | Matti | 5 |
-| #22 / #28 ME-ansatsi | Vastaako ansatsi MEn määritelmää | Matti | 6 |
-| #33 Lanyon-video | Transkriptio | Marko | – |
-| #34 Kirjan kaavat | Mitkä väitteet kuuluvat testeiksi | Marko | – |
+| CP₂:n normalisointi (#10) | $ds^2=R^2\partial\bar\partial K$, $K=\log(1+r^2)$; $\mathrm{Ric}=6g/R^2$; $S_K(CP_2)=\pi/(8\alpha_K)$ | Pitkänen: *The Geometry of CP2…*; hep-ph/9510361 | ✅ toteutettu ja testattu |
+| Kähler-toiminnan kerroin (#27) | $L_K=\frac{1}{4g_K^2}J^{\mu\nu}J_{\mu\nu}\sqrt g$, $\alpha_K=g_K^2/4\pi$ | hep-ph/9510361 | ✅ konventioissa |
+| M⁴:n Kähler-rakenne | Twistorinosto vaatii sen, mutta vaikutus ~10⁻¹⁷ → ohitetaan toistaiseksi | Pitkäsen blogi 2025 | ✅ päätetty |
+| Spinorikytkentä (#19) | Kähler-kytkentä $k=1$ kvarkeille, $k=3$ leptoneille | Pitkäsen blogi 2017 | ✅ toteutusohje |
+| ME-ansatsi (#28) | CP₂-koordinaatit funktioita $u=k\cdot m$, $w=\varepsilon\cdot m$ – vastaa omaamme; ME:t ovat minimipintoja ja minkä tahansa GCI-toiminnan ekstremaaleja | Pitkäsen blogi 2016 | ✅ testikohde |
+| Vertailuekstremaalit (#31) | ME, kosminen säie $X^2\times Y^2$, Lagrangen tyhjiöekstremaalit, CP₂-tyyppiset | Pitkäsen blogi 2016 | ✅ lista |
 
-Muut avoimet issuet ovat puhtaasti matemaattisia, ja ne voi tehdä itsenäisesti.
+### Avoinna – kysytään Matilta
+
+| Issue | Kysymys |
+|---|---|
+| #27 | Twistorinoston $S_K+S_V$: tilavuustermin kertoimen etumerkki ja normalisointi suhteessa Kähler-termiin Minkowski-alueilla (ja kompleksisen $\alpha_K$:n rooli) nykyisessä muotoilussa |
+| #31 | Holografia = holomorfia -periaatteen (H-H) nykyinen täsmällinen muoto, jonka voisi toteuttaa ratkaisugeneraattorina (koordinaatit $u$, $w$ ja ehdot $f_1=f_2=0$) |
+
+### Markolle
+
+| Issue | Asia |
+|---|---|
+| #33 | Lanyon-videon transkriptio |
+| #34 | Oman kirjan (2024, s. 34) kerroin $L_K=\frac{1}{2\alpha_K}\ldots$ poikkeaa Pitkäsen määritelmästä $\frac{1}{4g_K^2}=\frac{1}{16\pi\alpha_K}$ – tarkista |
 
 ## Tunnisteet
 

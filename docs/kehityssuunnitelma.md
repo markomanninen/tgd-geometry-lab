@@ -4,7 +4,7 @@
 **Tavoite:** rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen: ✅ toteutettu ja testattu · 🟡 osittain · ⬜ ei vielä.
-> Testit: `./scripts/run_tests.sh` – nykyisin **53/53 läpi**.
+> Testit: `./scripts/run_tests.sh` – nykyisin **58/58 läpi**.
 > **Seuranta GitHubissa:** jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Ks. [docs/seuranta.md](seuranta.md).
 
 ---
@@ -149,10 +149,10 @@ $$
 Seuranta: [#5](https://github.com/markomanninen/tgd-geometry-lab/issues/5), [#10](https://github.com/markomanninen/tgd-geometry-lab/issues/10)
 
 $$
-g_{i\bar j}=\frac{\partial^2 K}{\partial z^i\,\partial\bar z^j},\qquad ds^2=2\,g_{i\bar j}\,dz^i\,d\bar z^j .
+g_{i\bar j}=\frac{\partial^2 K}{\partial z^i\,\partial\bar z^j},\qquad ds^2=g_{i\bar j}\,dz^i\,d\bar z^j\quad\text{(TGD-normalisointi)} .
 $$
 
-Lasketaan metriikkamatriisi, käänteismetriikka, determinantti $\det g=16/(1+\rho^2)^6$, tilavuusmuoto ja positiividefiniittisyys. Kaikki tulokset tarkistetaan symbolisesti.
+Lasketaan metriikkamatriisi, käänteismetriikka, determinantti $\det g=1/(1+\rho^2)^6$, tilavuusmuoto ja positiividefiniittisyys. Kaikki tulokset tarkistetaan symbolisesti.
 
 ### Step 2.4 – Koordinaattikarttojen väliset muunnokset 🟡
 
@@ -301,10 +301,12 @@ Seuranta: [#9](https://github.com/markomanninen/tgd-geometry-lab/issues/9)
 
 | Ominaisuus | Tulos ($R^2=1$) |
 |---|---|
-| Kähler–Einstein | $\mathrm{Ric}=3g$ |
-| Skalaarikaarevuus | $R=12$ |
-| Holomorfinen leikkauskaarevuus | vakio $2$ (yleisessä pisteessä) |
-| Totaalisesti reaalinen taso | $K=1/2$ (minimi) |
+| Kähler–Einstein | $\mathrm{Ric}=6g$ ($=6g/R^2$ yleisesti) |
+| Skalaarikaarevuus | $R=24$ |
+| Holomorfinen leikkauskaarevuus | vakio $4$ (yleisessä pisteessä) |
+| Totaalisesti reaalinen taso | $K=1$ (minimi) |
+| Tilavuus | $\pi^2/2$ |
+| CP₂-tyyppisen ekstremaalin toiminta | $S_K=\pi/(8\alpha_K)$ (Pitkäsen arvo) |
 | Karttasiirtymä | metriikka säilyy |
 
 **Vaiheen V tulos:** $CP_2$:n metriikka, yhteydet ja kaarevuus johdetaan kokonaan symbolisesti.
@@ -413,7 +415,7 @@ tgd-geometry-lab/
 ├── spaces/embedding-space.mac  M4, H = M4 x CP2
 ├── embedding/induced.mac     indusoitu metriikka ja Kähler-muoto
 ├── tgd/action.mac            toimintatiheydet, Euler–Lagrange
-├── tests/                    53 automaattista testiä
+├── tests/                    58 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -467,7 +469,7 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 5. ✅ $d\omega=0$
 6. ✅ Christoffelin symbolit
 7. ✅ Riemannin ja Riccin tensorit
-8. ✅ Kähler–Einstein-ominaisuus ($\mathrm{Ric}=3g$, kun $R^2=1$)
+8. ✅ Kähler–Einstein-ominaisuus ($\mathrm{Ric}=6g$, kun $R^2=1$, TGD-normalisointi)
 
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 

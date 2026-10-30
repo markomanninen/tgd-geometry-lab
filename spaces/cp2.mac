@@ -7,20 +7,27 @@
 
    Kahler potential   K = R2 * log(1 + |z1|^2 + |z2|^2)
    Hermitian metric   h_{i jbar} = d_i dbar_j K
-   Real metric        ds^2 = 2 h_{i jbar} dz^i dzbar^j    (symmetric product)
-   Kahler form        omega = %i h_{i jbar} dz^i ^ dzbar^j
-   Complex structure  J^a_b = g^{a c} omega_{c b}
+   Real metric        ds^2 = c * 2 h_{i jbar} dz^i dzbar^j    (symmetric product)
+   Kahler form        J    = c * %i h_{i jbar} dz^i ^ dzbar^j
+   Complex structure  J^a_b = g^{a c} J_{c b}
+   with c = cp2_metric_factor.
 
-   R2 (= cp2_R2) is an overall scale (TGD: R^2, the CP_2 radius squared).
-   With R2 = 1:  Ric = 3 g,  R = 12, holomorphic sectional curvature 2,
-   and the sectional curvature lies in [1/2, 2]  (CP_1 subspace = sphere of
-   radius 1/sqrt(2), Gauss curvature 2).
+   DEFAULT c = 1/2 = TGD (Pitkanen) normalisation:
+       ds^2 = R^2 d_a dbar_b K dxi^a dxibar^b,  K = log(1 + r^2)
+       ds^2/R^2 = (dr^2 + r^2 s3^2)/F^2 + r^2 (s1^2 + s2^2)/F,  F = 1 + r^2
+   With R2 = 1:  Ric = 6 g,  R = 24, holomorphic sectional curvature 4,
+   sectional curvature in [1, 4], Vol(CP_2) = pi^2/2, CP_1 = sphere of
+   radius 1/2.  Kahler action of CP_2 (L_K = J.J sqrt(g)/(4 g_K^2),
+   alpha_K = g_K^2/(4 pi)):  S_K = pi/(8 alpha_K)  (Pitkanen).
+   c = 1 gives the "ds^2 = 2h" convention (Ric = 3g, R = 12).
+   R2 (= cp2_R2) is the CP_2 radius squared.
    Requires core/metric.mac.
    ================================================================ */
 
 cp2_X : [x1, y1, x2, y2]$
 declare([x1, y1, x2, y2], real)$
 cp2_R2 : 1$
+cp2_metric_factor : 1/2$
 
 /* Wirtinger derivatives in the chart */
 wz(f, k)  := (diff(f, cp2_X[2*k-1]) - %i*diff(f, cp2_X[2*k]))/2$
@@ -40,14 +47,14 @@ cp2_dzb(k) := block([v:[0,0,0,0]], v[2*k-1]:1, v[2*k]:-%i, v)$
 /* real symmetric metric: G_ab = 2 Re-symmetrised h_{ij} dz^i_(a dzbar^j_b) */
 cp2_metric() := block([h : cp2_hermitian_metric()],
   genmatrix(lambda([a,b],
-     tgd_simp(realpart(rectform(sum(sum(
+     tgd_simp(cp2_metric_factor*realpart(rectform(sum(sum(
         h[i,j]*(cp2_dz(i)[a]*cp2_dzb(j)[b] + cp2_dz(i)[b]*cp2_dzb(j)[a]),
         j, 1, 2), i, 1, 2))))), 4, 4))$
 
 /* Kahler form components omega_ab (antisymmetric matrix) */
 cp2_kahler_matrix() := block([h : cp2_hermitian_metric()],
   genmatrix(lambda([a,b],
-     tgd_simp(rectform(%i*sum(sum(
+     tgd_simp(cp2_metric_factor*rectform(%i*sum(sum(
         h[i,j]*(cp2_dz(i)[a]*cp2_dzb(j)[b] - cp2_dz(i)[b]*cp2_dzb(j)[a]),
         j, 1, 2), i, 1, 2)))), 4, 4))$
 

@@ -89,7 +89,7 @@ Vaihe II ja välitavoite **M2** (sekä M3–M4 $CP_2$:n osalta): ensimmäinen ve
 Kartta $Z_0\\neq 0$: $z^1=Z_1/Z_0,\\ z^2=Z_2/Z_0$, reaalikoordinaatit $(x_1,y_1,x_2,y_2)$, $z^k=x_k+i\\,y_k$.
 
 $$K=\\log(1+|z^1|^2+|z^2|^2),\\qquad h_{{i\\bar j}}=\\partial_i\\partial_{{\\bar j}}K,\\qquad
-ds^2 = 2\\,h_{{i\\bar j}}\\,dz^i d\\bar z^j,\\qquad \\omega = i\\,h_{{i\\bar j}}\\,dz^i\\wedge d\\bar z^j.$$"""),
+ds^2 = h_{{i\\bar j}}\\,dz^i d\\bar z^j,\\qquad J = \\tfrac{{i}}{{2}}\\,h_{{i\\bar j}}\\,dz^i\\wedge d\\bar z^j\\quad(\\text{{TGD-normalisointi, Pitkänen}}).$$"""),
 ("code", SETUP),
 ("md", "## Kähler-potentiaali ja hermiittinen metriikka $h_{i\\bar j}$"),
 ("code", r'''lab.show("H : cp2_hermitian_metric()$", [
@@ -113,19 +113,25 @@ $J^2=-1$, $J^TgJ=g$, $d\\omega=0$ sekä $\\omega\\wedge\\omega/2=\\mathrm{vol}$.
   ("J^2+1", "tgd_msimp(Jc . Jc + ident(4))"),
   ("d\\\\omega\\\\ (\\\\text{{termit}})", "dform(om, cp2_X)"),
   ("\\\\tfrac12\\\\,\\\\omega\\\\wedge\\\\omega", "factor(top_coef(wedge(om, om))/2)"),
-  ("\\\\sqrt{{\\\\det g}}", "radcan(sqrt(factor(determinant(G))))")])'''),
+  ("\\\\sqrt{{\\\\det g}}", "factor(radcan(sqrt(factor(determinant(G)))))")])'''),
 ("md", """## Yhteys ja kaarevuus
 
 Levi-Civita-yhteys, Riemannin ja Riccin tensorit. Tulos: $CP_2$ on Kähler–Einstein,
-$\\mathrm{Ric}=3g$, $R=12$; holomorfinen leikkauskaarevuus on vakio $2$ ja
-leikkauskaarevuus vaihtelee välillä $[1/2,\\,2]$ (normalisointi $ds^2=2h\\,dz\\,d\\bar z$, $R^2=1$)."""),
+$\\mathrm{Ric}=6g$, $R=24$; holomorfinen leikkauskaarevuus on vakio $4$ ja
+leikkauskaarevuus vaihtelee välillä $[1,\\,4]$ (TGD-normalisointi, $R^2=1$). Lopuksi CP₂-tyyppisen
+tyhjiöekstremaalin Kähler-toiminta $S_K=\\pi/(8\\alpha_K)$ – Pitkäsen tunnettu arvo."""),
 ("code", f'''lab.show("{CURV} e1:[1,0,0,0]$ Je1 : list_matrix_entries(Jc . transpose(matrix(e1)))$", [
   ("\\\\Gamma^{{x_1}}{{}}_{{x_1x_1}}", "factor(Gam[1][1][1])"),
-  ("\\\\mathrm{{Ric}}-3g", "tgd_msimp(Ric - 3*G)"),
+  ("\\\\mathrm{{Ric}}-6g", "tgd_msimp(Ric - 6*G)"),
   ("R", "scalar_curvature(G, Ric)"),
   ("K(e_{{x_1}},Je_{{x_1}})", "sectional_curvature(G, Rl, e1, Je1)"),
   ("K(e_{{x_1}},e_{{x_2}})|_0", "subst([x1=0,y1=0,x2=0,y2=0], sectional_curvature(G, Rl, [1,0,0,0], [0,0,1,0]))"),
   ("\\\\nabla J\\\\ \\\\text{{(kaikki nollia?)}}", "nested_zero_p(cov_deriv_11(Jc, Gam, cp2_X))")])'''),
+("md", "### Vertailuarvo TGD:stä: CP₂-tyyppisen ekstremaalin toiminta\n\n$S_K=\\frac{1}{4g_K^2}\\int J_{kl}J^{kl}\\sqrt g\\,d^4x$, $\\alpha_K=g_K^2/4\\pi$."),
+("code", f'''lab.show("{CP2}", [
+  ("J_{{kl}}J^{{kl}}", "kahler_invariant(G, W)"),
+  ("\\\\mathrm{{Vol}}(CP_2)", "2*%pi^2*integrate(r^3/(1+r^2)^3, r, 0, inf)"),
+  ("S_K", "ratsimp(subst(gK2=4*%pi*alpha[K], 2*%pi^2*integrate(r^3*kahler_invariant(G, W)/(1+r^2)^3, r, 0, inf)/(4*gK2)))")])'''),
 ("md", """## Koordinaattikarttojen vaihto (Step 2.4)
 
 Kartta $Z_1\\neq0$: $w^1=Z_0/Z_1,\\ w^2=Z_2/Z_1$, jolloin $z^1=1/w^1$, $z^2=w^2/w^1$.

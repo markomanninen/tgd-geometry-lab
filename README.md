@@ -16,14 +16,14 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 02 · $CP_2$ ja Fubini–Study | Kähler-potentiaali → metriikka → $\omega$, $J$ → Christoffel → Riemann/Ricci → karttasiirtymät | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/02_cp2_fubini_study.ipynb) |
 | 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
 
-## Mitä on varmistettu (53 testiä)
+## Mitä on varmistettu (58 testiä)
 
 | Alue | Tarkistukset |
 |---|---|
 | Metriikka | käänteismatriisi, determinantti, signatuuri, tensorimuunnos |
 | Muodot | $dx\wedge dy=-dy\wedge dx$, $d^2=0$, Leibniz, Hodge $\star\star=\pm1$ |
 | Kaarevuus ($S^2$-vertailu) | $\mathrm{Ric}=g$, $R=2$, $\nabla g=0$ |
-| $CP_2$ | $\det g=16/(1+\rho^2)^6$, $J^2=-1$, $d\omega=0$, $\nabla J=0$, $\tfrac12\omega\wedge\omega=\mathrm{vol}$, Riemannin symmetriat, Bianchi I ja II, $\mathrm{Ric}=3g$, $R=12$, holomorfinen leikkauskaarevuus $2$, karttasiirtymä $Z_0\leftrightarrow Z_1$ |
+| $CP_2$ | $\det g=1/(1+\rho^2)^6$, $J^2=-1$, $d\omega=0$, $\nabla J=0$, $\tfrac12\omega\wedge\omega=\mathrm{vol}$, Riemannin symmetriat, Bianchi I ja II, $\mathrm{Ric}=6g$, $R=24$, holomorfinen leikkauskaarevuus $4$, $S_K(CP_2)=\pi/(8\alpha_K)$ (TGD-normalisointi), karttasiirtymä $Z_0\leftrightarrow Z_1$ |
 | Upotus | $H$:n signatuuri $(1,7)$; kanoninen $M^4$: $g=m$, $J=0$; kosminen säie: $J_{\alpha\beta}J^{\alpha\beta}=2$; ME: $J\ne0$, $J_{\alpha\beta}J^{\alpha\beta}=0$, $J\wedge J=0$ |
 | Toiminta | Euler–Lagrange → aaltoyhtälö; tilavuustoiminta → minimipintayhtälö |
 | Clifford | $\{\gamma_a,\gamma_b\}=2\eta_{ab}$ signatuureille $(4,0)$ ja $(1,3)$ |
@@ -44,7 +44,7 @@ load(sconcat(tgd_root, "/tgd-lab.mac"))$
 G   : cp2_metric()$
 Gam : christoffel(G, cp2_X)$
 Ric : ricci(riemann(Gam, cp2_X))$
-tgd_msimp(Ric - 3*G);          /* => nollamatriisi */
+tgd_msimp(Ric - 6*G);          /* => nollamatriisi */
 ```
 
 ## Rakenne

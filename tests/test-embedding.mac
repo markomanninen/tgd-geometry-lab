@@ -34,9 +34,9 @@ xs : [tt0, zz0, aa, bb]$
 embCS : [tt0, 0, 0, zz0, aa, bb, 0, 0]$
 gCS : induced_metric(GH, H_X, embCS, xs)$
 JCS : induced_kahler_form(JH, H_X, embCS, xs)$
-check("cosmic string: induced metric = M^2 (+) (-) S^2(r=1/sqrt2)",
-      zero_matrix_p(gCS - diag_matrix(1, -1, -2/(1+aa^2+bb^2)^2, -2/(1+aa^2+bb^2)^2)))$
+check("cosmic string: induced metric = M^2 (+) (-) S^2(r=1/2)",
+      zero_matrix_p(gCS - diag_matrix(1, -1, -1/(1+aa^2+bb^2)^2, -1/(1+aa^2+bb^2)^2)))$
 check("cosmic string: J_ab J^ab = 2 (constant magnetic Kahler field)",
       is(kahler_invariant(gCS, JCS) = 2))$
-check("cosmic string: Kahler magnetic flux density J_ab = 2/(1+r^2)^2 da^db",
-      is(tgd_simp(JCS[3,4] - 2/(1+aa^2+bb^2)^2) = 0))$
+check("cosmic string: Kahler magnetic flux density J_ab = 1/(1+r^2)^2 da^db",
+      is(tgd_simp(JCS[3,4] - 1/(1+aa^2+bb^2)^2) = 0))$
