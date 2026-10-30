@@ -1,0 +1,76 @@
+section("tgd/characteristics: Lanyon-style analysis")$
+GHm : H_metric()$
+JHm : H_kahler()$
+xi : [tt, xx, yy, zz]$
+F4 : [5, 6, 7, 8]$
+p0 : [tt = 0, xx = 0, yy = 0, zz = 0]$
+blocks(e, X, pt, fields, dirs, a, b) := principal_blocks(GHm, JHm, H_X, e, X, pt, fields, dirs, a, b, -1)$
+speeds(P, v) := speed_polynomial(P[1][1], P[1][2], P[2][2], v)$
+ctype(P) := characteristic_type(P[1][1], P[1][2], P[2][2])$
+same_poly(a, b) := is(tgd_simp(a - b) = 0)$
+/* known case: Nambu-Goto graph z = a t + b x in R^(1,2).
+   Fronts move along the null directions of the induced metric. */
+L3 : diag_matrix(1, -1, -1)$
+Xg : [tt, xx, zz]$
+Pg : principal_blocks(L3, zeromatrix(3,3), Xg, [tt, xx, a0*tt + b0*xx], [tt, xx], [tt = 0, xx = 0],
+                      [3], [1, 2], 0, 1, -1)$
+sg0 : subst([tt=0,xx=0], induced_metric(L3, Xg, [tt, xx, a0*tt + b0*xx], [tt, xx]))$
+nullp : sg0[2,2]*sv^2 + 2*sg0[1,2]*sv + sg0[1,1]$
+check("Nambu-Goto graph: speeds are the null directions of g",
+      freeof(sv, tgd_simp(speeds(Pg, sv)/nullp)))$
+/* A and the speed polynomial agree */
+PMb : blocks([tt, xx, yy, zz, 0, 0, 0, 0], xi, p0, F4, [1, 2], 1, 1)$
+check("charpoly of A = speed polynomial (M^4)",
+      same_poly(charpoly(quasilinear_matrix(PMb[1][1], PMb[1][2], PMb[2][2]), sv), speeds(PMb, sv)))$
+/* canonical M^4 */
+e0 : [tt, xx, yy, zz, 0, 0, 0, 0]$
+PM : blocks(e0, xi, p0, F4, [1, 2], cK, cV)$
+check("M^4: speeds +-1 for any c_K, c_V", same_poly(speeds(PM, sv), cV^4*(sv-1)^4*(sv+1)^4))$
+check("M^4 with volume term: hyperbolic", is(ctype(blocks(e0, xi, p0, F4, [1, 2], 1, 1)) = 'hyperbolic))$
+check("M^4 with Kahler action only: symbol vanishes, degenerate",
+      is(ctype(blocks(e0, xi, p0, F4, [1, 2], cK, 0)) = 'degenerate))$
+/* cosmic string, by hand: L = -(c_K + c_V/2) x_t^2 + (c_V/2 - c_K) x_a^2 + ... */
+xiC : [tt, zz, aa, bb]$
+eC : [tt, 0, 0, zz, aa, bb, 0, 0]$
+pC : [tt = 0, zz = 0, aa = 0, bb = 0]$
+FC : [2, 3, 7, 8]$
+Pz : blocks(eC, xiC, pC, FC, [1, 2], cK, cV)$
+Pa : blocks(eC, xiC, pC, FC, [1, 3], cK, cV)$
+check("cosmic string: P^tt and P^aa agree with the quadratic action",
+      zero_matrix_p(Pa[1][1] + (cV + 2*cK)*ident(4)) and zero_matrix_p(Pa[2][2] - (cV - 2*cK)*ident(4)))$
+check("cosmic string along z: speeds +-1", same_poly(speeds(Pz, sv), (cV + 2*cK)^4*(sv-1)^4*(sv+1)^4))$
+check("cosmic string across: s^2 = (c_V - 2 c_K)/(c_V + 2 c_K)",
+      same_poly(speeds(Pa, sv), ((cV + 2*cK)*sv^2 - cV + 2*cK)^4))$
+check("cosmic string across, c_V = 4, c_K = 1: hyperbolic",
+      is(ctype(blocks(eC, xiC, pC, FC, [1, 3], 1, 4)) = 'hyperbolic))$
+check("cosmic string across, Kahler action only: complex speeds",
+      is(ctype(blocks(eC, xiC, pC, FC, [1, 3], 1, 0)) = 'complex))$
+check("cosmic string across, c_V = 1, c_K = 1: complex speeds",
+      is(ctype(blocks(eC, xiC, pC, FC, [1, 3], 1, 1)) = 'complex))$
+check("cosmic string across at c_V = 2 c_K: P^aa = 0, speed 0",
+      zero_matrix_p(blocks(eC, xiC, pC, FC, [1, 3], 1, 2)[2][2]))$
+/* massless extremal at the origin: s^1 = q u, s^2 = p x, J_ux = p q */
+declare([pe, qe], real)$
+assume(pe > 0, qe > 0)$
+eM : [tt, xx, yy, zz, qe*(tt-zz), pe*xx, 0, 0]$
+Pk : blocks(eM, xi, p0, F4, [1, 4], 0, cV)$
+check("ME, volume term along k: s = 1 and s = (q^2-1)/(q^2+1)",
+      same_poly(speeds(Pk, sv), cV^4*(pe^2+1)*(sv-1)^4*((qe^2+1)*sv - qe^2 + 1)^4))$
+Px : blocks(eM, xi, p0, F4, [1, 3], 0, cV)$
+check("ME, volume term across y: the light cone of the induced metric, (1+q^2) s^2 = 1",
+      same_poly(speeds(Px, sv), cV^4*(pe^2+1)*((qe^2+1)*sv^2 - 1)^4))$
+Pkk : blocks(eM, xi, p0, F4, [1, 4], cK, 0)$
+check("ME, Kahler action along k: s = 1 seven times",
+      same_poly(speeds(Pkk, sv), 256*cK^4*pe^6*qe^6*(sv-1)^7*((2*qe^2+1)*sv - 2*qe^2 + 1)/(pe^2+1)^2))$
+Pxk : blocks(eM, xi, p0, F4, [1, 2], cK, 0)$
+check("ME, Kahler action across x: s = 0 six times",
+      freeof(sv, tgd_simp(speeds(Pxk, sv)/sv^6/((2*qe^2+1)*(pe^2+1)^2*sv^2 - 1))))$
+eM1 : [tt, xx, yy, zz, tt - zz, xx, 0, 0]$
+rep1 : characteristic_report(block([P : blocks(eM1, xi, p0, F4, [1, 4], 1, 0)],
+          quasilinear_matrix(P[1][1], P[1][2], P[2][2])))$
+check("ME, Kahler action along k, p = q = 1: s = 1 has 7 modes but 4 eigenvectors",
+      is(rep1 = [[1, 7, 4], [1/3, 1, 1]]))$
+check("ME, Kahler action along k: weakly hyperbolic",
+      is(ctype(blocks(eM1, xi, p0, F4, [1, 4], 1, 0)) = 'weakly_hyperbolic))$
+check("ME with the volume term alone across y: hyperbolic",
+      is(ctype(blocks(eM1, xi, p0, F4, [1, 3], 0, 1)) = 'hyperbolic))$

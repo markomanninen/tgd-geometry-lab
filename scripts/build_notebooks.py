@@ -211,11 +211,17 @@ $s^k(u,x)$:llä häviää vain Kähler-termi (ks. `docs/konventiot.md`)."""),
   ("E[s^k(u)],\\\\ c_V", "meEq([a1,a2,a3,a4],0,cV)"),
   ("E[s^k(u,x)],\\\\ c_K", "meEq([F1,F2,0,0],cK,0)"),
   ("E[s^1(x)=x],\\\\ c_V", "map(factor,meEq([xx,0,0,0],0,cV))")])'''),
+("md", """## Karakteristinen analyysi (Step 7.5)
+
+Lanyonin `calcev`-tyyliin: $\\partial_tU+A\\,\\partial_xU=0$, ja ominaisarvot ovat rintaman nopeudet. Kosmisen säikeen poikki nopeus
+riippuu kertoimista: $s^2=(c_V-2c_K)/(c_V+2c_K)$."""),
+("code", f'''lab.show("{H} eC:[tt,0,0,zz,aa,bb,0,0]$ xC:[tt,zz,aa,bb]$ pC:[tt=0,zz=0,aa=0,bb=0]$ F:[2,3,7,8]$ Pz:principal_blocks(GH,JH,H_X,eC,xC,pC,F,[1,2],cK,cV,-1)$ Pa:principal_blocks(GH,JH,H_X,eC,xC,pC,F,[1,3],cK,cV,-1)$", [
+  ("\\\\det(\\\\ldots)\\\\ \\\\text{säikeen suuntaan}", "speed_polynomial(Pz[1][1],Pz[1][2],Pz[2][2],s)"),
+  ("\\\\det(\\\\ldots)\\\\ \\\\text{säikeen poikki}", "speed_polynomial(Pa[1][1],Pa[1][2],Pa[2][2],s)")])'''),
 ("md", """## Seuraavat askeleet
 
 * Matin linjaukset: tilavuustermin kerroin (#27) ja ME:n määritelmä toiminnalle $S_K+S_V$ (#28).
-* Noether-virrat (#29) ja kenttäyhtälöiden karakteristinen analyysi Lanyonin `calcev`-tyyliin (#30).
-* Ratkaisuanalyysi (#31, #32)."""),
+* Numeriikka ja visualisointi (#32) sekä ratkaisugeneraattori (#31)."""),
 ])
 
 for name, n in [("01_ymparisto_ja_testit.ipynb", nb01), ("02_cp2_fubini_study.ipynb", nb02),

@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 215 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 234 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -83,6 +83,28 @@ $H$:n 18 isometriaa on tarkistettu: neljä translaatiota, kuusi Lorentz-generaat
 Jokaiselle pinnalle pätee identiteetti $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$, joka on testattu myös pinnalla, joka ei ole ratkaisu. Virran säilyminen ei siis johdu siitä, että kaikki häviää.
 
 Ratkaisuilla kaikki 18 virtaa säilyvät: kanoninen $M^4$, kosminen säie ja ME $s^k(u)$. Yleisellä $s^k(u,x)$:llä Kähler-virrat säilyvät mutta tilavuusvirrat eivät, mikä vastaa ekstremaalitaulukon toista riviä. Massattoman ekstremaalin liikemäärävirta kulkee valon kaltaisen suunnan $k$ mukaan.
+
+## Karakteristinen analyysi
+
+Linearisoidut kenttäyhtälöt on kirjoitettu LanyonScriptsin `calcev`-tyyliin muotoon $\partial_tU+A\,\partial_xU=0$, ja $A$:n ominaisarvot ovat häiriön rintaman nopeudet. Vertailutapauksena Nambu–Goto-pinnan nopeudet ovat indusoidun metriikan valokartio.
+
+| Tausta ja toiminta | Suunta | Nopeudet | Tyyppi |
+|---|---|---|---|
+| $M^4$, tilavuustermi mukana | mikä tahansa | $\pm1$ | hyperbolinen |
+| $M^4$, pelkkä Kähler-toiminta | mikä tahansa | pääosa on nolla | degeneroitunut |
+| kosminen säie | säikeen suuntaan | $\pm1$ | hyperbolinen, kun $c_V+2c_K\ne0$ |
+| kosminen säie | säikeen poikki | $s^2=\dfrac{c_V-2c_K}{c_V+2c_K}$ | riippuu kertoimista |
+| ME, pelkkä tilavuustermi | $k$:ta vastaan kohtisuoraan | indusoidun metriikan valokartio | hyperbolinen |
+| ME, pelkkä Kähler-toiminta | $k$:n suuntaan | $s=1$ seitsenkertaisena | heikosti hyperbolinen |
+| ME, pelkkä Kähler-toiminta | poikittain ($x$) | $s=0$ kuusinkertaisena | |
+
+Kaksi riviä on merkityksellisiä avoimien kysymysten kannalta.
+
+Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin, ja se tekee [#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27):n kysymyksestä laskennallisesti merkityksellisen.
+
+Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut ja ME-taustalla heikosti hyperbolinen. Tämä on sopusoinnussa tunnetun Kähler-toiminnan tyhjiödegeneraation kanssa, mutta tulkinta on Pitkäsen.
+
+Tulokset koskevat yhtälön pääosaa yhdessä pisteessä. Ne eivät vielä kerro ratkaisujen stabiiliudesta.
 
 ## Avoimet kysymykset
 

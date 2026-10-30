@@ -4,7 +4,7 @@
 **Tavoite:** rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen: ✅ toteutettu ja testattu · 🟡 osittain · ⬜ ei vielä.
-> Testit: `./scripts/run_tests.sh` – nykyisin **215/215 läpi**.
+> Testit: `./scripts/run_tests.sh` – nykyisin **234/234 läpi**.
 > **Seuranta GitHubissa:** jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Ks. [docs/seuranta.md](seuranta.md).
 
 ---
@@ -385,11 +385,13 @@ Yleinen symbolinen variaatiomoottori `euler_lagrange(L, kentät, muuttujat)` on 
 Seuranta: [#29](https://github.com/markomanninen/tgd-geometry-lab/issues/29)
 `noether_current` muodostaa virran $H$:n 18 isometriasta (Poincaré ja väri-$SU(3)$). Identiteetti $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$ on testattu myös pinnalla, joka ei ole ratkaisu, ja kaikki virrat säilyvät vertailuratkaisuilla.
 
-### Step 7.5 – PDE-järjestelmien muodostaminen ⬜
+### Step 7.5 – PDE-järjestelmien muodostaminen ✅
 
 Seuranta: [#30](https://github.com/markomanninen/tgd-geometry-lab/issues/30)
 
 Tässä hyödynnetään Lanyonin lähestymistapaa: yhtälöjärjestelmä, karakteristinen matriisi, ominaisarvot, ominaisvektorit ja karakteristiset rakenteet (vrt. LanyonScriptsin `calcev`). TGD:n kenttäyhtälöt ovat geometrisesti monimutkaisempia kuin Lanyonin virtausfysiikan esimerkit, esimerkiksi minimipintaehto $g^{\alpha\beta}D_\beta\partial_\alpha h^k=0$ yhdessä Kähler-termin kanssa.
+
+Toteutus: `tgd/characteristics.mac` laskee pääosan suoraan $L$:n toisista derivaatoista ja muodostaa matriisin $A$ yhtälölle $\partial_tU+A\,\partial_xU=0$. Analysoidut taustat ovat $M^4$, kosminen säie ja massaton ekstremaali. Yhtälön tyyppi riippuu taustasta ja kertoimista (ks. [tulokset](tulokset.md)). Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut, joten hyperbolinen analyysi ei sovellu siihen.
 
 ---
 
@@ -399,7 +401,7 @@ Seuranta: [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31), [#
 
 - **8.1 Symmetriset erikoistapaukset** – yksinkertaiset upotukset, joilla on selkeät symmetriat (pohja on jo olemassa: kosminen säie ja ME).
 - **8.2 Analyyttiset ratkaisut** – tarkat symboliset ratkaisut erikoistapauksissa.
-- **8.3 Karakteristinen analyysi** – ominaisarvot ja ominaisvektorit; milloin hyperbolinen PDE-analyysi on sovellettavissa.
+- **8.3 Karakteristinen analyysi** – tehty vaiheessa 7.5.
 - **8.4 Numeeriset menetelmät** – ratkaisuverkot, parametriskannaus, alku- ja reunaehdot, stabiilisuus.
 - **8.5 Visualisointi** – Python (Maxima vastaa symbolisesta laskennasta, Python numeriikasta ja visualisoinnista).
 
@@ -423,7 +425,8 @@ tgd-geometry-lab/
 ├── tgd/action.mac            toimintatiheydet, Euler–Lagrange
 ├── tgd/field-equations.mac   kovariantit kenttäyhtälöt
 ├── tgd/noether.mac           isometriat ja Noether-virrat
-├── tests/                    215 automaattista testiä
+├── tgd/characteristics.mac   karakteristinen analyysi
+├── tests/                    234 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -482,8 +485,8 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
 1. **Matin linjaukset** #27:ään (tilavuustermin kerroin) ja #28:aan (ME:n määritelmä toiminnalle $S_K+S_V$).
-2. **Karakteristinen analyysi** (#30) M7:ään.
-3. **Ratkaisuanalyysi** (#31, #32) M8:aan.
+2. **Numeriikka ja visualisointi** (#32) M8:aan.
+3. **Ratkaisugeneraattori** (#31), kun holografia = holomorfia -periaatteen muoto on selvä.
 
 ---
 

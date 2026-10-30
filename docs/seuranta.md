@@ -19,10 +19,10 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M4 Kaarevuus | 3/3 ✅ | – |
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
-| M7 Toiminta | 3/6 | #27 ja #28 odottavat Matin linjausta, #30 karakteristiikat |
+| M7 Toiminta | 4/6 | #27 ja #28 odottavat Matin linjausta |
 | M8 Ratkaisut | 0/2 | #31, #32 |
 
-Testit: **215/215 läpi**.
+Testit: **234/234 läpi**.
 
 **Kriittinen polku:** #18 → #16/#19 → #23 → #27 → #28. Ketju upotusavaruudesta kenttäyhtälöihin on nyt laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$: kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja. #27 ja #28 ovat auki, koska yleisen ME-ansatsin asema toiminnalle $S_K+S_V$ vaatii Matin linjauksen.
 

@@ -187,6 +187,31 @@ $$
 
 joten virta säilyy ratkaisuilla. Isometrioita on 18: neljä translaatiota, kuusi Lorentz-generaattoria ja kahdeksan $SU(3)$-generaattoria. Väri-isometria saadaan ryhmän toiminnasta $\delta Z=AZ$, jolloin $\delta z^i=(AZ)_i-z^i(AZ)_0$.
 
+### Karakteristinen analyysi
+
+Kenttäyhtälöiden pääosa pisteessä on $P^{ab}_{ij}\,\partial_a\partial_b u^j$, jossa
+
+$$
+P^{ab}_{ij}=\frac{\partial^2 L}{\partial(\partial_a h^i)\,\partial(\partial_b h^j)}.
+$$
+
+Kentät $u$ ovat ne upotuskoordinaatit, joita ei ole käytetty pinnan parametreina. Muuttujilla $U=(\partial_tu,\partial_xu)$ yhtälö saa LanyonScriptsin `calcev`-funktiosta tutun muodon $\partial_tU+A\,\partial_xU=0$, jossa
+
+$$
+A=\begin{pmatrix}2(P^{tt})^{-1}P^{tx} & (P^{tt})^{-1}P^{xx}\\ -1 & 0\end{pmatrix}.
+$$
+
+Rintaman nopeus $s=dx/dt$ toteuttaa yhtälön $\det\left(s^2P^{tt}-2sP^{tx}+P^{xx}\right)=0$. Luokittelu:
+
+| Tyyppi | Ehto |
+|---|---|
+| `degenerate` | $P^{tt}$ ei ole kääntyvä |
+| `hyperbolic` | nopeudet ovat reaaliset, ja ominaisvektoreita on täysi määrä |
+| `weakly_hyperbolic` | nopeudet ovat reaaliset, mutta ominaisvektoreita puuttuu |
+| `complex` | jokin nopeus on kompleksinen |
+
+Tulos koskee pääosaa yhdessä pisteessä. Alemman kertaluvun termit eivät ole mukana.
+
 ## Kehykset ja Cartan-muodot
 
 ### Kehys
