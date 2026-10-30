@@ -15,6 +15,7 @@ Laskenta ei todista TGD:tä fysikaalisesti oikeaksi. Se tarkistaa johdoksia ja t
 | [Kehityssuunnitelma](kehityssuunnitelma.md) | Vaiheet I–VIII ja välitavoitteet M1–M8 |
 | [Seuranta](seuranta.md) | Nykyinen tila, päätöspisteet ja työnkulku |
 | [Laskentakirjat](notebooks/01_ymparisto_ja_testit.ipynb) | Valmiiksi ajetut Colab-kirjat tulosteineen |
+| [Explainerit](explainerit/index.md) | Videosarja, joka selittää projektin kysymysten kautta |
 
 ## Laskentaketju
 
