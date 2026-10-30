@@ -27,7 +27,7 @@ Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issue
 - Kirjoita dokumentit sivustolle: määritelmä omaan lauseeseensa ja tärkeä kaava omalle rivilleen (`$$`). Älä ahda kaavoja luettelokohtiin. Älä käytä taulukon kaavoissa `|`-merkkiä, vaan `\lvert`/`\rvert`.
 - Merkittävät tulokset kootaan `docs/tulokset.md`:hen.
 - **Explainerit:** julkaistava sisältö tulee hakemistoon `docs/explainerit/` (`index.md` ensin). Sivusto lisää Explainerit-osion navigaatioon automaattisesti, joten `mkdocs.yml`:ää ei tarvitse muuttaa.
-- **Videot:** YouTube, kanava Marko T. Manninen (`@markotmanninen`), soittolista *TGD Geometry Lab – explainerit* (`PLXsgqiwlSYA8`). Videot pidetään yksityisinä, kunnes Marko hyväksyy ne. Isoja videotiedostoja ei tallenneta repoon. Sivustolle video upotetaan YouTube-linkillä, mikä vaatii vähintään asetuksen *unlisted*.
+- **Videot:** YouTube, kanava Marko T. Manninen (`@markotmanninen`), soittolista *TGD Geometry Lab – explainerit* (`PLXsgqiwlSYA8`). Uusi video ladataan yksityisenä, ja Marko päättää julkisuusasetuksen. Tekstitys ladataan YouTube Studiossa (*Kielet* → *Muokkaa tekstityksiä* → *Lähetä tiedosto*), koska latausskriptin tunnuksella ei ole tekstitysoikeutta. Isoja videotiedostoja ei tallenneta repoon. Sivustolle video upotetaan YouTube-linkillä, mikä vaatii vähintään asetuksen *unlisted*.
 
 ## Seuranta
 - Commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
