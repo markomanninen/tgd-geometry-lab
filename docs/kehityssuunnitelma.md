@@ -5,6 +5,7 @@
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen: ✅ toteutettu ja testattu · 🟡 osittain · ⬜ ei vielä.
 > Testit: `./scripts/run_tests.sh` – nykyisin **53/53 läpi**.
+> **Seuranta GitHubissa:** jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Ks. [docs/seuranta.md](seuranta.md).
 
 ---
 
@@ -78,11 +79,15 @@ Moduulit ovat erillisiä Maxima-tiedostoja, ja niiden tulee olla uudelleenkäyte
 ## 3. Vaihe I – Perusinfrastruktuuri ja upotusgeometria
 
 ### Step 1.1 – Maxima-ympäristön vakiointi ✅
+
+Seuranta: [#1](https://github.com/markomanninen/tgd-geometry-lab/issues/1), [#2](https://github.com/markomanninen/tgd-geometry-lab/issues/2), [#3](https://github.com/markomanninen/tgd-geometry-lab/issues/3)
 - Maxima ja Clifford-paketit asennetaan ja ladataan (`tgd-lab.mac`, `tgd_load_clifford`).
 - Yhteiset konventiot kirjataan: [`docs/konventiot.md`](konventiot.md).
 - Testiympäristö Google Colabissa: `notebooks/01_ymparisto_ja_testit.ipynb`, ja GitHub Actions ajaa testit jokaisesta muutoksesta.
 
 ### Step 1.2 – Koordinaattien ja metriikan perusrakenne ✅
+
+Seuranta: [#4](https://github.com/markomanninen/tgd-geometry-lab/issues/4)
 
 ```maxima
 define_manifold(name, dimension, coordinates)$
@@ -95,6 +100,8 @@ Lisäksi: `metric_signature_at`, `metric_direct_sum`, `jacobian_matrix` ja `tran
 
 ### Step 1.3 – Upotusavaruuden määrittely ✅
 
+Seuranta: [#21](https://github.com/markomanninen/tgd-geometry-lab/issues/21)
+
 $$
 H=M^4\times CP_2,\qquad h_{kl}=m_{kl}\oplus\left(-s_{kl}\right),
 $$
@@ -102,6 +109,8 @@ $$
 jossa $m=\mathrm{diag}(1,-1,-1,-1)$ ja $s_{kl}$ on positiividefiniitti Fubini–Study-metriikka. $H$:n signatuuri on siis $(1,7)$. Etumerkki on parametri `cp2_sign`.
 
 ### Step 1.4 – Indusoitu metriikka ✅
+
+Seuranta: [#21](https://github.com/markomanninen/tgd-geometry-lab/issues/21)
 
 Aika-avaruuspinnan upotus $h^k=h^k(\xi^0,\xi^1,\xi^2,\xi^3)$ ja indusoitu metriikka
 
@@ -121,6 +130,8 @@ $CP_2$ on kompleksisesti kaksiulotteinen eli reaalisesti neliulotteinen kompakti
 
 ### Step 2.1 – Kompleksiset koordinaattikartat ✅
 
+Seuranta: [#5](https://github.com/markomanninen/tgd-geometry-lab/issues/5)
+
 Homogeeniset koordinaatit $[Z_0:Z_1:Z_2]$ ja paikallinen kartta $Z_0\neq0$:
 
 $$
@@ -135,6 +146,8 @@ $$
 
 ### Step 2.3 – Fubini–Study-metriikka ✅
 
+Seuranta: [#5](https://github.com/markomanninen/tgd-geometry-lab/issues/5), [#10](https://github.com/markomanninen/tgd-geometry-lab/issues/10)
+
 $$
 g_{i\bar j}=\frac{\partial^2 K}{\partial z^i\,\partial\bar z^j},\qquad ds^2=2\,g_{i\bar j}\,dz^i\,d\bar z^j .
 $$
@@ -143,10 +156,14 @@ Lasketaan metriikkamatriisi, käänteismetriikka, determinantti $\det g=16/(1+\r
 
 ### Step 2.4 – Koordinaattikarttojen väliset muunnokset 🟡
 
+Seuranta: [#7](https://github.com/markomanninen/tgd-geometry-lab/issues/7), [#8](https://github.com/markomanninen/tgd-geometry-lab/issues/8)
+
 $CP_2$ ei ole yksi globaali kompleksinen koordinaattialue. Kartat ovat $Z_0\neq0$, $Z_1\neq0$ ja $Z_2\neq0$.
 Toteutettu ja testattu on siirtymä $Z_0\leftrightarrow Z_1$ ($z^1=1/w^1$, $z^2=w^2/w^1$) Jacobin matriiseineen: metriikka muuntuu oikein. Kartta $Z_2$ tehdään samalla mallilla.
 
 ### Step 2.5 – Kähler-rakenne ✅
+
+Seuranta: [#6](https://github.com/markomanninen/tgd-geometry-lab/issues/6)
 
 $$
 \omega=i\,g_{i\bar j}\,dz^i\wedge d\bar z^j,\qquad d\omega=0 .
@@ -161,6 +178,8 @@ Lisäksi tarkistetaan $J^2=-1$, $J^TgJ=g$, $\nabla J=0$ ja $\tfrac12\,\omega\wed
 ## 5. Vaihe III – Differentiaalimuodot
 
 ### Step 3.1 – Muotojen tietorakenne ✅
+
+Seuranta: [#11](https://github.com/markomanninen/tgd-geometry-lab/issues/11)
 
 $$
 \alpha=\frac{1}{p!}\,\alpha_{\mu_1\ldots\mu_p}\,dx^{\mu_1}\wedge\cdots\wedge dx^{\mu_p}
@@ -182,6 +201,8 @@ Lisäksi testataan asteittainen Leibnizin sääntö.
 
 ### Step 3.4 – Sisätulo ja Hodge-tähti ✅
 
+Seuranta: [#12](https://github.com/markomanninen/tgd-geometry-lab/issues/12)
+
 $$
 \star:\Omega^p(M)\to\Omega^{n-p}(M).
 $$
@@ -189,6 +210,8 @@ $$
 Hodge-operaattori on yleinen metriikkapohjainen operaatio, joka toimii sekä positiividefiniitissä ($\star\star=+1$ 2-muodoille $\mathbb R^4$:ssä) että Lorentz-signatuurissa ($\star\star=-1$).
 
 ### Step 3.5 – Differentiaalimuotojen integraalit ⬜
+
+Seuranta: [#13](https://github.com/markomanninen/tgd-geometry-lab/issues/13)
 
 Integraalilausekkeiden symbolinen muodostaminen (ei vielä yleistä numeerista integrointia monistoilla).
 
@@ -199,6 +222,8 @@ Integraalilausekkeiden symbolinen muodostaminen (ei vielä yleistä numeerista i
 ## 6. Vaihe IV – Yhteydet ja kovariantti derivaatta
 
 ### Step 4.1 – Christoffelin symbolit ✅
+
+Seuranta: [#14](https://github.com/markomanninen/tgd-geometry-lab/issues/14)
 
 $$
 \Gamma^\rho{}_{\mu\nu}=\tfrac12\,g^{\rho\sigma}\left(\partial_\mu g_{\sigma\nu}+\partial_\nu g_{\sigma\mu}-\partial_\sigma g_{\mu\nu}\right),
@@ -215,15 +240,21 @@ Toteutettu vektoreille, $(0,2)$- ja $(1,1)$-tensoreille.
 
 ### Step 4.3 – Ortonormaalit kehykset ⬜
 
+Seuranta: [#18](https://github.com/markomanninen/tgd-geometry-lab/issues/18)
+
 $$
 g_{\mu\nu}=e^a{}_\mu\,e^b{}_\nu\,\eta_{ab}.
 $$
 
 ### Step 4.4 – Spin-yhteys ⬜
 
+Seuranta: [#19](https://github.com/markomanninen/tgd-geometry-lab/issues/19)
+
 Spin-yhteys johdetaan ortonormaalista kehyksestä (paikallisen Lorentz- tai ortogonaalikehyksen yhteysmuodot).
 
 ### Step 4.5 – Clifford-algebran liittäminen 🟡
+
+Seuranta: [#17](https://github.com/markomanninen/tgd-geometry-lab/issues/17), [#20](https://github.com/markomanninen/tgd-geometry-lab/issues/20)
 
 $$
 \gamma^a\gamma^b+\gamma^b\gamma^a=2\eta^{ab},\qquad \gamma^\mu=e_a{}^\mu\,\gamma^a .
@@ -238,6 +269,8 @@ Clifford-relaatiot on testattu Prodanovin paketilla signatuureille $(4,0)$ ja $(
 
 ### Step 5.1 – Riemannin kaarevuustensori ✅
 
+Seuranta: [#15](https://github.com/markomanninen/tgd-geometry-lab/issues/15)
+
 $$
 R^\rho{}_{\sigma\mu\nu}=\partial_\mu\Gamma^\rho{}_{\nu\sigma}-\partial_\nu\Gamma^\rho{}_{\mu\sigma}
 +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}-\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}.
@@ -251,6 +284,8 @@ $$
 
 ### Step 5.3 – Cartanin rakenneyhtälöt ⬜
 
+Seuranta: [#16](https://github.com/markomanninen/tgd-geometry-lab/issues/16)
+
 $$
 \Omega^a{}_b=d\omega^a{}_b+\omega^a{}_c\wedge\omega^c{}_b,\qquad
 T^a=de^a+\omega^a{}_b\wedge e^b,\qquad T^a=0\ \text{(Levi-Civita)}.
@@ -261,6 +296,8 @@ $$
 Testataan Riemannin tensorin algebralliset symmetriat, ensimmäinen Bianchin identiteetti ja kontrahoitu toinen Bianchin identiteetti $\nabla^\mu\!\left(R_{\mu\nu}-\tfrac12 g_{\mu\nu}R\right)=0$.
 
 ### Step 5.5 – $CP_2$:n geometriset testit ✅
+
+Seuranta: [#9](https://github.com/markomanninen/tgd-geometry-lab/issues/9)
 
 | Ominaisuus | Tulos ($R^2=1$) |
 |---|---|
@@ -283,6 +320,8 @@ $h^k=(m^0,\ldots,m^3,s^1,\ldots,s^4)$ ja $h^k=h^k(\xi^0,\ldots,\xi^3)$.
 
 ### Step 6.3 – Indusoitu metriikka ja Kähler-muoto ✅
 
+Seuranta: [#21](https://github.com/markomanninen/tgd-geometry-lab/issues/21), [#22](https://github.com/markomanninen/tgd-geometry-lab/issues/22)
+
 $$
 g_{\alpha\beta}=h_{kl}\,\partial_\alpha h^k\,\partial_\beta h^l,\qquad
 J_{\alpha\beta}=J_{kl}\,\partial_\alpha h^k\,\partial_\beta h^l .
@@ -298,9 +337,13 @@ Testatut esimerkit:
 
 ### Step 6.4 – Normaalivektorit ja toinen perusmuoto ⬜
 
+Seuranta: [#23](https://github.com/markomanninen/tgd-geometry-lab/issues/23)
+
 Tangentti- ja normaalikehykset sekä $B^i{}_{\alpha\beta}$ ja ekstrinsiset kaarevuussuureet (tangenttivektorit ovat jo saatavilla: `tangent_vectors`).
 
 ### Step 6.5 – Gaussin, Codazzin ja Riccin yhtälöt ⬜
+
+Seuranta: [#24](https://github.com/markomanninen/tgd-geometry-lab/issues/24)
 
 Nämä ovat tärkeä tarkistus: aika-avaruuspinnan sisäinen geometria ei ole sama asia kuin ympäröivän $H$:n geometria.
 
@@ -317,26 +360,38 @@ $$
 jossa $c_K\propto 1/\alpha_K$ ja $c_V$ on kosmologisen vakion analogi. Kertoimet pidetään symbolisina, koska kirjallisuudessa normalisointi ja etumerkki vaihtelevat. Lisäksi on topologinen instantonitermi $J\wedge J$, joka on kokonaisdivergenssi.
 
 ### Step 7.1 – Kähler-toiminnan muodostaminen ✅
+
+Seuranta: [#25](https://github.com/markomanninen/tgd-geometry-lab/issues/25)
 `kahler_invariant`, `kahler_density`, `volume_density`, `tgd_density`, `instanton_density`.
 
 ### Step 7.2 – Variaatiolaskenta 🟡
+
+Seuranta: [#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27), [#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28)
 
 Dynaamisia muuttujia ovat **upotuskoordinaatit** $h^k$. Variaatio $\delta S=0$ johdetaan niiden suhteen; metriikkaa ja Kähler-muotoa ei oleteta toisistaan riippumattomiksi variaatiomuuttujiksi.
 
 ### Step 7.3 – Euler–Lagrange-yhtälöt 🟡
 
+Seuranta: [#26](https://github.com/markomanninen/tgd-geometry-lab/issues/26)
+
 Yleinen symbolinen variaatiomoottori `euler_lagrange(L, kentät, muuttujat)` on toteutettu ensimmäisen kertaluvun derivaattoja sisältäville tiheyksille. Testit: aaltoyhtälö sekä minimipintayhtälö tilavuustoiminnasta. Seuraavaksi sovelletaan sitä suoraan $L_{TGD}(h,\partial h)$:hen.
 
 ### Step 7.4 – Säilymislait ja Noether-rakenteet ⬜
+
+Seuranta: [#29](https://github.com/markomanninen/tgd-geometry-lab/issues/29)
 Virran muodostaminen, divergenssi, säilymislain tarkistus ja symmetrioiden vaikutus toimintaan.
 
 ### Step 7.5 – PDE-järjestelmien muodostaminen ⬜
+
+Seuranta: [#30](https://github.com/markomanninen/tgd-geometry-lab/issues/30)
 
 Tässä hyödynnetään Lanyonin lähestymistapaa: yhtälöjärjestelmä, karakteristinen matriisi, ominaisarvot, ominaisvektorit ja karakteristiset rakenteet (vrt. LanyonScriptsin `calcev`). TGD:n kenttäyhtälöt ovat geometrisesti monimutkaisempia kuin Lanyonin virtausfysiikan esimerkit, esimerkiksi minimipintaehto $g^{\alpha\beta}D_\beta\partial_\alpha h^k=0$ yhdessä Kähler-termin kanssa.
 
 ---
 
 ## 10. Vaihe VIII – Ratkaisujen analyysi ja numeerinen jatkokehitys ⬜
+
+Seuranta: [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31), [#32](https://github.com/markomanninen/tgd-geometry-lab/issues/32)
 
 - **8.1 Symmetriset erikoistapaukset** – yksinkertaiset upotukset, joilla on selkeät symmetriat (pohja on jo olemassa: kosminen säie ja ME).
 - **8.2 Analyyttiset ratkaisut** – tarkat symboliset ratkaisut erikoistapauksissa.
@@ -390,14 +445,14 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 
 | | Sisältö | Valmis kun | Tila |
 |---|---|---|---|
-| M1 | Maxima- ja Clifford-ympäristö | peruslaskenta toimii | ✅ |
-| M2 | $CP_2$-metriikka | Fubini–Study-tulokset täsmäävät | ✅ |
-| M3 | Differentiaalimuodot | muoto-operaatiot ja $d^2=0$ toimivat | ✅ |
-| M4 | Yhteydet ja kaarevuus | kaarevuus- ja Bianchi-testit läpäisty | ✅ (Cartan ⬜) |
-| M5 | Clifford-geometria | paikalliset kehykset ja spin-yhteys | 🟡 |
-| M6 | Upotusgeometria | indusoitu geometria ja Gauss–Codazzi | 🟡 |
-| M7 | TGD:n toimintaperiaate | variaatioyhtälöt muodostuvat | 🟡 |
-| M8 | Ratkaisuanalyysi | ensimmäiset testattavat ratkaisut | ⬜ |
+| [M1](https://github.com/markomanninen/tgd-geometry-lab/milestone/1) | Maxima- ja Clifford-ympäristö | peruslaskenta toimii | ✅ |
+| [M2](https://github.com/markomanninen/tgd-geometry-lab/milestone/2) | $CP_2$-metriikka | Fubini–Study-tulokset täsmäävät | ✅ |
+| [M3](https://github.com/markomanninen/tgd-geometry-lab/milestone/3) | Differentiaalimuodot | muoto-operaatiot ja $d^2=0$ toimivat | ✅ |
+| [M4](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | Yhteydet ja kaarevuus | kaarevuus- ja Bianchi-testit läpäisty | ✅ (Cartan ⬜) |
+| [M5](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | Clifford-geometria | paikalliset kehykset ja spin-yhteys | 🟡 |
+| [M6](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | Upotusgeometria | indusoitu geometria ja Gauss–Codazzi | 🟡 |
+| [M7](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | TGD:n toimintaperiaate | variaatioyhtälöt muodostuvat | 🟡 |
+| [M8](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | Ratkaisuanalyysi | ensimmäiset testattavat ratkaisut | ⬜ |
 
 **Toteutusjärjestys:** ensin M1–M4, sitten M5–M6 ja vasta sen jälkeen M7–M8. Näin TGD-fysiikan oletukset eivät sekoitu laskentakirjaston virheisiin.
 

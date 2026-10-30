@@ -64,12 +64,24 @@ docs/                       kehityssuunnitelma ja konventiot
 
 ## Dokumentaatio
 
-- [Kehityssuunnitelma](docs/kehityssuunnitelma.md): vaiheet I–VIII ja välitavoitteet M1–M8, toteutuksen tila merkittynä.
+- [Kehityssuunnitelma](docs/kehityssuunnitelma.md): vaiheet I–VIII ja välitavoitteet M1–M8; jokainen vaihe on linkitetty issueensa.
 - [Konventiot](docs/konventiot.md): etumerkit, normalisoinnit ja indeksijärjestykset.
+- [Seuranta](docs/seuranta.md): tilataulukko, kriittinen polku ja työnkulku.
 
-## Tila
+## Seuranta
 
-M1–M3 sekä `cp2.mac`-vertailutesti (M2) ovat valmiit. M4 on valmis Cartan-formalismia lukuun ottamatta. M5–M7 ovat aloitettu: Clifford-relaatiot, indusoitu geometria, toimintatiheydet ja EL-moottori toimivat. Seuraavaksi: vielbein ja spin-yhteys, toinen perusmuoto ja Gauss–Codazzi sekä $L_{TGD}$:n variointi upotuskoordinaattien suhteen.
+| Välitavoite | Edistyminen |
+|---|---|
+| [M1 Ympäristö](https://github.com/markomanninen/tgd-geometry-lab/milestone/1) | 4/4 ✅ |
+| [M2 CP2-metriikka](https://github.com/markomanninen/tgd-geometry-lab/milestone/2) | 4/6 |
+| [M3 Muodot](https://github.com/markomanninen/tgd-geometry-lab/milestone/3) | 2/3 |
+| [M4 Kaarevuus](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | 2/3 |
+| [M5 Clifford-geometria](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | 1/4 |
+| [M6 Upotus](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | 2/4 |
+| [M7 Toiminta](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 2/6 |
+| [M8 Ratkaisut](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | 0/2 |
+
+Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku on #18 vielbein → #16 Cartan / #19 spin-yhteys → #23 toinen perusmuoto → #27 $L_{TGD}$:n variaatio → #28 tarkistus, että kosminen säie ja ME ovat ekstremaaleja.
 
 Järjestelmä ei todista TGD:tä fysikaalisesti oikeaksi. Sen tarkoitus on tarkistaa johdoksia ja tutkia erikoistapauksia luotettavasti.
 

@@ -1,0 +1,20 @@
+# TGD Geometry Lab – ohjeet agentille
+
+Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issuet suomeksi, koodikommentit englanniksi.
+
+## Ennen muutoksia
+- Lue `docs/konventiot.md` (etumerkit, normalisoinnit, indeksijärjestys). Älä muuta konventioita ilman, että päivität testit ja dokumentin samassa muutoksessa.
+- Tehtävät ovat GitHub-issueita ja milestoneja M1–M8 (`docs/seuranta.md`). Työskentele issuen "Valmis kun" -ehtoa vastaan.
+
+## Testit
+- `./scripts/run_tests.sh ../clifford` (Prodanovin clifford-checkout valinnainen). Kaikkien testien on mentävä läpi ennen committia.
+- Uusi ominaisuus → ensin testi tunnetulla identiteetillä tai vertailuarvolla (`tests/test-*.mac`, `check(nimi, ehto)`), lisää tiedosto `tests/run-all.mac`:n listaan.
+- Maxima 5.46: `getenv` puuttuu – polut annetaan muuttujina (`tgd_root`, `clifford_path`). `rules` on varattu nimi.
+- Funktioiden yhdistelmäargumentit (`f(t-z)`) eivät derivoidu ketjusäännöllä luotettavasti → käytä `depends` + sopivia parametreja (vrt. valokartiokoordinaatit testissä).
+
+## Rakenne
+- Moduulit ladataan `tgd-lab.mac`:ssa; uusi moduuli lisätään sinne.
+- Colab-kirjat generoidaan: `python3 scripts/build_notebooks.py`, sitten aja ne (`jupyter nbconvert --execute --inplace`, `TGD_ROOT`, `CLIFFORD_PATH`, `RUN_LANYON=0`) ja tarkista, ettei tulosteisiin jää paikallisia polkuja.
+
+## Seuranta
+- Commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
