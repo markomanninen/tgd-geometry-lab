@@ -23,6 +23,10 @@ Suunnitteluperiaate on, että emme yritä toteuttaa koko TGD:tä kerralla. Jokai
 
 Periaate on samassa hengessä kuin [Lanyon AI](https://lanyon.ai/):n lähestymistapa. Lanyon on Jonathan Gorardin, Ammar Hakimin ja Jimmy Junon perustama tutkimusyhtiö, ja Gorard on sen toimitusjohtaja. Sen tavoitteena on muodollisesti verifioitu tieteellinen laskenta. Kielimalli ehdottaa spesifikaation omalla formaalilla kielellä, ja symboliset algoritmit laajentavat siitä samalla koodin ja todistuksen. Jos spesifikaatiota ei voida todistaa oikeaksi, koodia ei synny ([Announcing Lanyon AI](https://lanyon.ai/blog/welcome/), 2026). Meillä vastaavaa roolia hoitavat automaattiset identiteettitestit, jotka eivät ole muodollisia todistuksia. Symbolinen tulos hyväksytään vasta, kun se läpäisee riippumattomat tarkistukset.
 
+Lanyonin [esittelyvideo](https://youtu.be/gSH50n-9ZLk) jakaa fysiikan verifioinnin kolmeen kysymykseen. Matemaattinen kysymys on, onko malli sisäisesti ristiriidaton. Teoreettinen kysymys on, sopiiko malli yhteen muun tiedetyn kanssa, sillä malli voi esimerkiksi säilyttää energian vain joillakin alueilla. Kokeellinen kysymys on, vastaako malli havaintoja.
+
+Sama jako näyttää tämän projektin rajat. Testit tarkistavat ensimmäistä kysymystä johdosten tasolla ja osaa toisesta, kun tuloksia verrataan Pitkäsen julkaisemiin arvoihin ja Noether-virtojen säilymiseen. Kolmatta kysymystä projekti ei käsittele, koska se ei vertaa laskuja mittaustuloksiin.
+
 ### Tekninen toteutustapa
 
 $CP_2$ toteutetaan ensin itsenäisenä neljän reaalisen ulottuvuuden Kähler-monistona. Sen jälkeen se liitetään $M^4$:ään tuloksi $H=M^4\times CP_2$. Näin geometriaa voidaan testata ilman, että TGD:n koko dynamiikka on mukana.
@@ -484,7 +488,7 @@ Ympäristö tarjoaa systemaattisen tavan tutkia TGD:n matemaattista rakennetta j
 - M. Pitkänen, *The Geometry of CP2 and its Relationship to Standard Model* (CP₂-normalisointi).
 - M. Pitkänen, *About the construction of p-adic QFT limit of TGD*, hep-ph/9510361 ($L_K$, $S_K(CP_2)=\pi/8\alpha_K$).
 - M. Pitkänen, matpitka.blogspot.com, kirjoitukset massattomista ekstremaaleista (8/2016), minimipintaekstremaaleista (12/2016), Kähler-kytkennästä k=1/k=3 (1/2017) ja H-H-periaatteesta (8/2025).
-- Lanyon AI, <https://lanyon.ai/>, *Announcing Lanyon AI* (J. Gorard, 2026) ja [yhtiön esittely](https://lanyon.ai/company/).
+- Lanyon AI, <https://lanyon.ai/>, *Announcing Lanyon AI* (J. Gorard, 2026), [yhtiön esittely](https://lanyon.ai/company/) ja [esittelyvideo](https://youtu.be/gSH50n-9ZLk).
 - LanyonScripts, <https://github.com/lanyonai/LanyonScripts> (MIT) ja Lanyonin Colab-esimerkki *Run LanyonScripts in Colab*.
 - D. Prodanov, Clifford-algebrapaketti Maximalle, <https://github.com/dprodanov/clifford> (LGPL-2.1).
 - Fubini–Study-metriikan eksplisiittiset paikalliset lausekkeet ja kaarevuus löytyvät tavanomaisista differentiaaligeometrian oppikirjoista, esimerkiksi teoksesta Kobayashi–Nomizu II, luku IX.

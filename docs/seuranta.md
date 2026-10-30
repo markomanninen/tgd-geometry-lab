@@ -53,7 +53,6 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 | Issue | Asia |
 |---|---|
-| #33 | Lanyon-videon transkriptio |
 | #34 | Oman kirjan (2024, s. 34) kerroin $L_K=\frac{1}{2\alpha_K}\ldots$ poikkeaa Pitkäsen määritelmästä $\frac{1}{4g_K^2}=\frac{1}{16\pi\alpha_K}$ – tarkista |
 
 ## Tunnisteet
