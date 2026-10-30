@@ -23,3 +23,8 @@ Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issue
 
 ## Seuranta
 - Commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
+
+## Itsenäinen eteneminen ja päätöspisteet
+- Etene milestone-järjestyksessä kriittistä polkua pitkin (`docs/seuranta.md`). Puhtaasti matemaattiset issuet (tunnettu identiteetti testinä) saa tehdä itsenäisesti.
+- Issue, jolla on tunniste **`päätös`**, vaatii Markon valinnan tai materiaalin: tee esityö (vaihtoehdot, vertailulaskut), kirjaa ne issueen kommenttina ja **pysähdy** – älä valitse konventiota tai fysikaalista tulkintaa itse.
+- Jos symbolinen lasku ei valmistu kohtuuajassa (> 10 min) tai vaatii arkkitehtuurimuutoksen, kirjaa havainto issueen ja kysy ennen suurta refaktorointia.

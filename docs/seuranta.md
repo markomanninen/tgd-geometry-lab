@@ -23,9 +23,22 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 
 **Kriittinen polku:** #18 → #16/#19 → #23 → #27 → #28. Kun kosminen säie ja massaton ekstremaali tarkistuvat kenttäyhtälöiden ratkaisuiksi (#28), koko ketju upotusavaruudesta kenttäyhtälöihin on testattu.
 
+## Päätöspisteet (tunniste `päätös`)
+
+| Issue | Mitä tarvitaan |
+|---|---|
+| #10 CP2-säde ja normalisointi | Mikä TGD-lähde ja konventio (Pitkäsen s_kl, J_kl) on referenssi |
+| #19 Spin-yhteys | CP2 ei ole spin-monisto → spin^c / Kähler-kytkennän valinta TGD:n mukaan |
+| #27 L_TGD:n variaatio | Kertoimien c_K, c_V etumerkit ja normalisointi; dynaamiset muuttujat (M4-projektio vai CP2-koordinaatit) |
+| #31 Uudet ratkaisut | Mitkä ekstremaaliluokat ovat tutkimuksellisesti kiinnostavimpia |
+| #33 Lanyon-video | Transkriptio (en saanut sitä haettua) |
+| #34 Kirjan kaavat | Kirjoittajana vahvistat, mitkä väitteet kuuluvat testeiksi |
+
+Muut avoimet issuet ovat puhtaasti matemaattisia, ja ne voi tehdä itsenäisesti.
+
 ## Tunnisteet
 
-`infra` · `cp2` · `muodot` · `geometria` · `clifford` · `upotus` · `tgd-dynamiikka` · `analyysi` · `testit` · `colab` · `dokumentaatio` · `fysiikka`
+`päätös` · `infra` · `cp2` · `muodot` · `geometria` · `clifford` · `upotus` · `tgd-dynamiikka` · `analyysi` · `testit` · `colab` · `dokumentaatio` · `fysiikka`
 
 ## Työnkulku
 
