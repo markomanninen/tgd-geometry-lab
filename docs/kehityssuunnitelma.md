@@ -181,7 +181,7 @@ Muoto esitetään harvana listana `[[kerroin, [i1<i2<...<ip]], ...]`. Asteet 0�
 
 ### Step 3.2 – Ulkotulo ✅
 
-$\alpha\wedge\beta$ lasketaan automaattisin merkkisäännöin; testinä $dx^\mu\wedge dx^\nu=-dx^\nu\wedge dx^\mu$ ja $dx^\mu\wedge dx^\mu=0$.
+$\alpha\wedge\beta$ lasketaan automaattisin merkkisäännöin, ja testeinä ovat $dx^\mu\wedge dx^\nu=-dx^\nu\wedge dx^\mu$ ja $dx^\mu\wedge dx^\mu=0$.
 
 ### Step 3.3 – Ulkoderivaatta ✅
 
@@ -349,7 +349,7 @@ Issue [#25](https://github.com/markomanninen/tgd-geometry-lab/issues/25).
 ### Step 7.2 – Variaatiolaskenta 🟡
 
 Issuet [#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27) ja [#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28).
-Dynaamisia muuttujia ovat **upotuskoordinaatit** $h^k$. Variaatio $\delta S=0$ johdetaan niiden suhteen; metriikkaa ja Kähler-muotoa ei oleteta toisistaan riippumattomiksi variaatiomuuttujiksi.
+Dynaamisia muuttujia ovat **upotuskoordinaatit** $h^k$. Variaatio $\delta S=0$ johdetaan niiden suhteen. Metriikkaa ja Kähler-muotoa ei oleteta toisistaan riippumattomiksi variaatiomuuttujiksi.
 
 Yhtälöt on muodostettu symbolisilla kertoimilla $c_K$, $c_V$ ja tarkistettu kovarianttia muotoa vasten (ks. [konventiot](konventiot.md)). Kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja kaikilla kertoimilla. Yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä. #27 ja #28 odottavat Matin linjausta.
 

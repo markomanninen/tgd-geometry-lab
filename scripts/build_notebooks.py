@@ -10,7 +10,7 @@ def badge(name):
     return f"[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({url})"
 
 SETUP = r'''# Asennus: Maxima, tämä repositorio ja Dimiter Prodanovin clifford-paketti.
-# Colabissa ajo kestää noin minuutin; paikallisesti asetetaan TGD_ROOT / CLIFFORD_PATH.
+# Colabissa ajo kestää noin minuutin. Paikallisesti asetetaan TGD_ROOT / CLIFFORD_PATH.
 import os, sys, shutil
 ROOT = os.environ.get("TGD_ROOT", "/content/tgd-geometry-lab")
 CLI  = os.environ.get("CLIFFORD_PATH", "/content/clifford")
@@ -121,7 +121,7 @@ $J^2=-1$, $J^TgJ=g$, $d\\omega=0$ sekä $\\omega\\wedge\\omega/2=\\mathrm{vol}$.
 ("md", """## Yhteys ja kaarevuus
 
 Levi-Civita-yhteys, Riemannin ja Riccin tensorit. Tuloksena $CP_2$ on Kähler–Einstein,
-$\\mathrm{Ric}=6g$, $R=24$; holomorfinen leikkauskaarevuus on vakio $4$ ja
+$\\mathrm{Ric}=6g$, $R=24$, ja holomorfinen leikkauskaarevuus on vakio $4$ ja
 leikkauskaarevuus vaihtelee välillä $[1,\\,4]$ (TGD-normalisointi, $R^2=1$). Lopuksi CP₂-tyyppisen
 tyhjiöekstremaalin Kähler-toiminta $S_K=\\pi/(8\\alpha_K)$ – Pitkäsen tunnettu arvo."""),
 ("code", f'''lab.show("{CURV} e1:[1,0,0,0]$ Je1 : list_matrix_entries(Jc . transpose(matrix(e1)))$", [

@@ -34,7 +34,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 | Kysymys | Vastaus | Lähde | Tila |
 |---|---|---|---|
-| CP₂:n normalisointi (#10) | $ds^2=R^2\partial\bar\partial K$, $K=\log(1+r^2)$; $\mathrm{Ric}=6g/R^2$; $S_K(CP_2)=\pi/(8\alpha_K)$ | Pitkänen, *The Geometry of CP2…*; hep-ph/9510361 | ✅ toteutettu ja testattu |
+| CP₂:n normalisointi (#10) | $ds^2=R^2\partial\bar\partial K$, jossa $K=\log(1+r^2)$, sekä $\mathrm{Ric}=6g/R^2$ ja $S_K(CP_2)=\pi/(8\alpha_K)$ | Pitkänen, *The Geometry of CP2…* ja hep-ph/9510361 | ✅ toteutettu ja testattu |
 | Kähler-toiminnan kerroin (#27) | $L_K=\frac{1}{4g_K^2}J^{\mu\nu}J_{\mu\nu}\sqrt g$, $\alpha_K=g_K^2/4\pi$ | hep-ph/9510361 | ✅ konventioissa |
 | M⁴:n Kähler-rakenne | Twistorinosto vaatii sen, mutta vaikutus ~10⁻¹⁷ → ohitetaan toistaiseksi | Pitkäsen blogi 2025 | ✅ päätetty |
 | Spinorikytkentä (#19) | Kähler-kytkentä $k=1$ kvarkeille, $k=3$ leptoneille | Pitkäsen blogi 2017 | ✅ toteutusohje |
@@ -71,7 +71,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 ## Projektitaulu (GitHub Projects)
 
-Taulun voi luoda kerran käsin; issuet ja milestonet ovat jo valmiina:
+Taulun voi luoda kerran käsin, koska issuet ja milestonet ovat jo valmiina:
 
 1. <https://github.com/markomanninen/tgd-geometry-lab> → **Projects** → **Link a project** → **New project** → pohja **Board** (tai **Roadmap**), nimeksi *TGD Geometry Lab*.
 2. Lisää issuet valinnoilla **Add item** → `#` → valitse kaikki, tai lisää suodatin `repo:markomanninen/tgd-geometry-lab`.

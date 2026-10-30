@@ -19,7 +19,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 01 · Ympäristö ja testit | asennus, koko testisarja, Clifford-relaatiot, LanyonScriptsin esimerkit vertailuna | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/01_ymparisto_ja_testit.ipynb) |
 | 02 · $CP_2$ ja Fubini–Study | Kähler-potentiaali → metriikka → $\omega$, $J$ → Christoffel → Riemann/Ricci → karttasiirtymät | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/02_cp2_fubini_study.ipynb) |
 | 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
-| 04 · Numeriikka ja kuvat | yhtälön tyyppi kertoimien funktiona, Kähler-vuo, kentät ratkaisulla; numeriikka tarkistetaan analyyttisiä arvoja vasten | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/04_numeriikka_ja_kuvat.ipynb) |
+| 04 · Numeriikka ja kuvat | yhtälön tyyppi kertoimien funktiona, Kähler-vuo ja kentät ratkaisulla, ja numeriikka tarkistetaan analyyttisiä arvoja vasten | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/04_numeriikka_ja_kuvat.ipynb) |
 
 ## Mitä on varmistettu (234 testiä)
 
@@ -30,13 +30,13 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | Kaarevuus ($S^2$-vertailu) | $\mathrm{Ric}=g$, $R=2$, $\nabla g=0$ |
 | $CP_2$ | $\det g=1/(1+\rho^2)^6$, $J^2=-1$, $d\omega=0$, $\nabla J=0$, $\tfrac12\omega\wedge\omega=\mathrm{vol}$, Riemannin symmetriat, Bianchi I ja II, $\mathrm{Ric}=6g$, $R=24$, holomorfinen leikkauskaarevuus $4$, $S_K(CP_2)=\pi/(8\alpha_K)$ (TGD-normalisointi), kaikki karttasiirtymät |
 | Upotus | $H$:n signatuuri on $(1,7)$. Kanonisella $M^4$:llä $g=m$ ja $J=0$. Kosmisella säikeellä $J_{\alpha\beta}J^{\alpha\beta}=2$. ME:llä $J\ne0$, $J_{\alpha\beta}J^{\alpha\beta}=0$ ja $J\wedge J=0$. |
-| Kehykset ja Cartan | $g=e^T\eta e$; $T^a=0$; $\Omega$ = Riemann; spin-yhteys kahta reittiä ($CP_2$, $H$, FRW) |
-| Spinorit | $D_\mu\gamma^\nu=0$; $\tfrac12\gamma\gamma F=-R/4$; $k=3$ antaa vakion $\nu_R$; vuo kokonaisluku parittomilla $k$ |
-| Ekstrinsinen geometria | $B^k{}_{\alpha\beta}$, $H^k$; Gauss, Codazzi ja Ricci kaarevassa ympäristössä |
-| Toiminta | Euler–Lagrange → aaltoyhtälö; tilavuustoiminta → minimipintayhtälö; kovariantti kenttäyhtälö = määritelmästä laskettu $E_k$ |
-| Säilymislait | $H$:n 18 isometriaa, $su(3)$; $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$ myös ei-ratkaisuilla; virrat säilyvät vertailuratkaisuilla |
-| Karakteristiikat | $\partial_tU+A\,\partial_xU=0$; nopeudet $M^4$:n, kosmisen säikeen ja ME:n ympärillä; yhtälön tyyppi riippuu kertoimista |
-| Ekstremaalit | kosminen säie ja ME $s^k(u)$ kaikilla $c_K$, $c_V$; yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä ([taulukko](docs/konventiot.md)) |
+| Kehykset ja Cartan | $g=e^T\eta e$, $T^a=0$ ja $\Omega$ = Riemann sekä spin-yhteys kahta reittiä ($CP_2$, $H$, FRW) |
+| Spinorit | $D_\mu\gamma^\nu=0$ ja $\tfrac12\gamma\gamma F=-R/4$. Kerroin $k=3$ antaa vakion $\nu_R$, ja vuo on kokonaisluku parittomilla $k$. |
+| Ekstrinsinen geometria | $B^k{}_{\alpha\beta}$ ja $H^k$ sekä Gauss, Codazzi ja Ricci kaarevassa ympäristössä |
+| Toiminta | Euler–Lagrange → aaltoyhtälö, tilavuustoiminta → minimipintayhtälö ja kovariantti kenttäyhtälö = määritelmästä laskettu $E_k$ |
+| Säilymislait | $H$:n 18 isometriaa, $su(3)$ ja $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$ myös ei-ratkaisuilla. Virrat säilyvät vertailuratkaisuilla. |
+| Karakteristiikat | $\partial_tU+A\,\partial_xU=0$ sekä nopeudet $M^4$:n, kosmisen säikeen ja ME:n ympärillä. Yhtälön tyyppi riippuu kertoimista. |
+| Ekstremaalit | kosminen säie ja ME $s^k(u)$ kaikilla $c_K$, $c_V$. Yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä ([taulukko](docs/konventiot.md)) |
 | Clifford | $\{\gamma_a,\gamma_b\}=2\eta_{ab}$ signatuureille $(4,0)$ ja $(1,3)$ |
 
 ## Käyttö paikallisesti
