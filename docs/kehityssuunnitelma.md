@@ -4,7 +4,7 @@ Versio 1.1, 30.10.2026.
 Tavoitteena on rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen. ✅ tarkoittaa toteutettua ja testattua, 🟡 osittain tehtyä ja ⬜ tekemätöntä.
-> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 259 testiä menevät läpi.
+> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 263 testiä menevät läpi.
 > GitHubissa jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Tilanne on koottu [seurantaan](seuranta.md).
 
 ---
@@ -380,7 +380,7 @@ Moduuli `tgd/characteristics.mac` laskee pääosan suoraan $L$:n toisista deriva
 
 Issuet [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31) ja [#32](https://github.com/markomanninen/tgd-geometry-lab/issues/32).
 - **8.1 Symmetriset erikoistapaukset** – moduuli `tgd/solutions.mac` luokittelee syötteenä annetun pinnan. CP₂-tyyppiset ekstremaalit, Lagrangen pinnat ja pallosymmetrinen ansatsi on tehty ([tulokset](tulokset.md#ratkaisugeneraattori)).
-- **8.2 Analyyttiset ratkaisut** – uudet tarkat ratkaisut ovat Lagrangen pinta, jolla on neliulotteinen $M^4$-projektio, ja pallosymmetrinen katenoidi. H-H-periaatteen generaattori tarkennetaan Matin vastauksen mukaan (#31).
+- **8.2 Analyyttiset ratkaisut** – tarkat ratkaisut ovat Pitkäsen Lagrangen vuoputkiansatsin eksplisiittinen muoto ja pallosymmetrinen katenoidi. H-H-periaatteen generaattori tarkennetaan Matin vastauksen mukaan (#31).
 - **8.3 Karakteristinen analyysi** – tehty vaiheessa 7.5.
 - **8.4 Numeeriset menetelmät** – Maxima-lausekkeet muunnetaan NumPy-funktioiksi (`lab.numeric`). Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus ovat vielä tekemättä.
 - **8.5 Visualisointi** – kirja `04_numeriikka_ja_kuvat.ipynb` (Maxima vastaa symbolisesta laskennasta, Python numeriikasta ja kuvista). Kirja tarkistaa numeeriset arvot analyyttisiä arvoja vasten.
@@ -407,7 +407,7 @@ tgd-geometry-lab/
 ├── tgd/noether.mac           isometriat ja Noether-virrat
 ├── tgd/characteristics.mac   karakteristinen analyysi
 ├── tgd/solutions.mac         ratkaisugeneraattori
-├── tests/                    259 automaattista testiä
+├── tests/                    263 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -488,7 +488,7 @@ Ympäristö tarjoaa systemaattisen tavan tutkia TGD:n matemaattista rakennetta j
 - M. Pitkänen, *Topological Geometrodynamics* ja tgdtheory.fi.
 - M. Pitkänen, *The Geometry of CP2 and its Relationship to Standard Model* (CP₂-normalisointi).
 - M. Pitkänen, *About the construction of p-adic QFT limit of TGD*, hep-ph/9510361 ($L_K$, $S_K(CP_2)=\pi/8\alpha_K$).
-- M. Pitkänen, [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf), luku 4.2.2 tyhjiöekstremaaleista.
+- M. Pitkänen, [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf), luvut 4.2.2 ja 4.3 tyhjiöekstremaaleista ja holomorfisuudesta.
 - M. Pitkänen, matpitka.blogspot.com, kirjoitukset massattomista ekstremaaleista (8/2016), minimipintaekstremaaleista (12/2016), Kähler-kytkennästä k=1/k=3 (1/2017) ja H-H-periaatteesta (8/2025).
 - Lanyon AI, <https://lanyon.ai/>, *Announcing Lanyon AI* (J. Gorard, 2026), [yhtiön esittely](https://lanyon.ai/company/) ja [esittelyvideo](https://youtu.be/gSH50n-9ZLk).
 - LanyonScripts, <https://github.com/lanyonai/LanyonScripts> (MIT) ja Lanyonin Colab-esimerkki *Run LanyonScripts in Colab*.

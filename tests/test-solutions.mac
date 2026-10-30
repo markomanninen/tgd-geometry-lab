@@ -10,6 +10,19 @@ check("report: cosmic string has J # 0, both parts vanish", report_is(repC, fals
 rep_holo(z1, z2) := extremal_report(emb_setup(HGs, H_X, holo_surface(lc_m4, z1, z2), lc_chart), HJs)$
 check("report: z1 = w/2 is minimal, Kahler part does not vanish",
       report_is(rep_holo(lc_w/2, 0), false, false, true))$
+/* Pitkanen's criterion (About Twistor Lift of TGD, 4.3): A = J^a_c J^{cb} H^k_ab = 0 and
+   j = 0 or light-like.  On z1 = w/2 the first holds and the second does not. */
+emH : emb_setup(HGs, H_X, holo_surface(lc_m4, lc_w/2, 0), lc_chart)$
+JH : induced_kahler_form(HJs, H_X, emb_get(emH, 'h), lc_chart)$
+giH : emb_get(emH, 'gi)$
+BH : second_fundamental_form(emH)$
+MH : tgd_msimp(giH . JH . giH . JH . giH)$
+AH : makelist(tgd_simp(sum(sum(MH[a,b]*BH[k][a][b], b, 1, 4), a, 1, 4)), k, 1, 8)$
+check("z1 = w/2: A = 0, the Kahler stress has type (1,1)", every(lambda([e], is(e = 0)), AH))$
+jH : kahler_current(emH, JH)$
+j2H : tgd_simp(sum(sum(emb_get(emH, 'g)[a,b]*jH[a]*jH[b], b, 1, 4), a, 1, 4))$
+check("z1 = w/2: j is neither zero nor light-like", is(j2H # 0))$
+check("z1 = w/2: J.J is not constant", is(diff(kahler_invariant(emb_get(emH, 'g), JH), xx) # 0))$
 /* holomorphy scan: the CP_2 functions are inputs, the form of the principle stays open */
 depends([au, bu], uu)$
 check("scan: z1 = a(u) + i b(u) is a massless extremal with J = 0", report_is(rep_holo(au + %i*bu, 0), true, true, true))$
@@ -38,7 +51,8 @@ check("Lagrangian: geodesic x1 = tan(x) is a vacuum extremal and minimal",
       report_is(rep_lag([tan(xx), 0, 0, 0]), true, true, true))$
 check("control: x1 = x is a vacuum extremal but not minimal",
       report_is(rep_lag([xx, 0, 0, 0]), true, true, false))$
-/* new: two-dimensional Lagrangian CP_2 projection, conformal into the unit sphere */
+/* Pitkanen's ansatz (4.3, item 5) in explicit form: two-dimensional Lagrangian CP_2
+   projection, conformal into the unit sphere, with a 4-D M^4 projection */
 check("Lagrangian: stereographic f = w is a vacuum extremal and minimal",
       report_is(rep_lag(lagrangian_stereo(lc_w)), true, true, true))$
 emLag : emb_setup(HGs, H_X, append(lc_m4, lagrangian_stereo(lc_w)), lc_chart)$
@@ -46,6 +60,9 @@ check("Lagrangian: f = w has mean curvature H^k = 0",
       every(lambda([e], is(e = 0)), mean_curvature(emLag, second_fundamental_form(emLag))))$
 check("Lagrangian: f = w has a non-flat induced metric",
       is(tgd_simp(emb_get(emLag, 'g)[3,3] + 1) # 0))$
+check("Lagrangian: f = w has sqrt|g| = (1 + 4/(1+|w|^2)^2)/2, area excess 4 pi",
+      is(tgd_simp(-determinant(emb_get(emLag, 'g)) - ((1 + 4/(1+xx^2+yy^2)^2)/2)^2) = 0)
+      and is(integrate(4/(1+rho^2)^2*2*%pi*rho, rho, 0, inf) = 4*%pi))$
 check("Lagrangian: stereographic f = w/2 is a vacuum extremal and minimal",
       report_is(rep_lag(lagrangian_stereo(lc_w/2)), true, true, true))$
 check("Lagrangian: stereographic f = w^2 is a vacuum extremal and minimal",

@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 259 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 263 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -12,7 +12,7 @@ Kolme tulosta kannattaa lukea ensin, koska ne tarkentavat aiempaa käsitystä ta
 
 **Kerroin $k=3$ tulee geometriasta.** Unitaarisessa kehyksessä $CP_2$:n spinoriyhteys on $S^+$-lohkossa täsmälleen $\mathrm{diag}(3iA,-3iA)$, kun $dA=J$. Leptonien kerroin $k=3$ kumoaa siis yhteyden kokonaan, ja yksi spinori on kovariantisti vakio. Tämä on TGD:n oikeakätinen neutriino.
 
-**Minimipinta voi pysyä Lagrangen pintana, vaikka sen $M^4$-projektio on neliulotteinen.** Pitkänen kysyy artikkelissa [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf), pakottaako minimipintaehto tällöin muodonmuutoksen, joka rikkoo Lagrangen ominaisuuden. Laskenta antaa perheen pintoja, joilla näin ei käy. Esimerkki on kohdassa [Ratkaisugeneraattori](#ratkaisugeneraattori).
+**Pitkäsen kaksi vuoputkiansatsia käyttäytyvät eri tavoin.** Kun Lagrangen pinta paksunnetaan artikkelin [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf) tavalla, pinta on molempien termien ekstremaali. Kun saman tekee kompleksiselle pinnalle, tilavuusosa häviää mutta Kähler-osa ei. Erot ovat kohdassa [Ratkaisugeneraattori](#ratkaisugeneraattori).
 
 ## $CP_2$:n geometria
 
@@ -101,7 +101,9 @@ $$
 
 ja $M^4$-koordinaatit ovat pinnan parametrit. Reaalileikkaus $y^1=y^2=0$ on Lagrangen pinta, jonka metriikka on paikallisesti yksikköpallon metriikka, ja kaava kuvaa $f$:n stereografisena koordinaattina tälle pallolle. Siksi $J=0$, ja koska $f$ on konformi kuvaus, pinta on myös minimipinta. Ehto $\lvert f\rvert=1$ on vain kartan raja. Testit kattavat funktiot $f=w$, $f=w/2$ ja $f=w^2$. Keskikaarevuus $H^k=0$ on tarkistettu erikseen, ja konformisuuden rikkova vertailutapaus ei ole minimipinta.
 
-Pinta ei ole holomorfinen $CP_2$:n koordinaateissa, koska pallon kompleksirakenne ei ole $CP_2$:n oma. Se ei siis kuulu jäljempänä skannattuun holomorfiseen muotoon, vaikka sen molemmat osat häviävät.
+Tämä on eksplisiittinen toteutus Pitkäsen ansatsista, jossa $(w,\bar w)$ riippuu Lagrangen pinnan $Y^2$ kompleksikoordinaateista ja kompleksirakenne tulee indusoidusta metriikasta (luku 4.3, kohta 5). Matemaattisesti tulos on odotettu, sillä holomorfisen kuvauksen kuvaaja on kompleksikäyrä Kähler-tulossa $\mathbb C\times S^2$, ja [tällaiset kuvaajat ovat minimaalisia](https://arxiv.org/abs/1904.00487). Poikkileikkauksen pinta-ala kasvaa määrällä $4\pi R^2$, kun $f=w$.
+
+Pinta ei kuitenkaan voi olla muotoa $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä $CP_2$:n kompleksikoordinaateissa. Silloin $z^k(w)$ olisi holomorfinen, ja reaalileikkauksessa reaaliarvoinen holomorfinen funktio on vakio. Lagrangen vuoputki jää siis H-H-muodon ulkopuolelle, vaikka sen molemmat osat häviävät.
 
 **Pallosymmetrinen katenoidi.** Kun $M^4$:ssä käytetään pallokoordinaatteja ja $CP_2$:ssa geodeesin kaaripituutta $\chi(r)$, Kähler-osa häviää kaikilla $\chi$, ja tilavuusosa supistuu yhtälöksi
 
@@ -111,7 +113,7 @@ $$
 
 Pinta on aika-akseli kertaa katenoidi avaruudessa $\mathbb R^3\times$ geodeesi, ja sen kaula on kohdassa $r^2=\lvert C\rvert$.
 
-**Holomorfinen skannaus.** Pitkäsen [blogin](https://matpitka.blogspot.com/2024/10/) mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja, ja toiminta näkyy vain singulaarisuuksissa. Skannauksen pinnat käyttävät litteää valokartiokarttaa ja $CP_2$:n funktioita $z^k(u,w)$. Tilavuusosa hävisi niillä kaikilla, mutta Kähler-osa ei hävinnyt yhdelläkään pinnalla, jolla on $w$-riippuvuus. Tämä ansatsi ei välttämättä ole Pitkäsen tarkoittama muoto, joten tulos on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/31), ei johtopäätös.
+**Holomorfinen skannaus.** Pitkäsen [blogin](https://matpitka.blogspot.com/2024/10/) mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja, ja toiminta näkyy vain singulaarisuuksissa. Skannauksen pinnat käyttävät litteää valokartiokarttaa ja $CP_2$:n funktioita $z^k(u,w)$. Tilavuusosa hävisi niillä kaikilla, mutta Kähler-osa ei hävinnyt yhdelläkään pinnalla, jolla on $w$-riippuvuus. Sama muoto on Pitkäsen ehdotus kosmisen säikeen paksuuntumiselle (luku 4.3, kohta 4). Saman luvun mukaan Kähler-osa häviää, kun $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}=0$ ja kun $j$ häviää tai on valon kaltainen. Pinnalla $z^1=w/2$ ensimmäinen ehto pätee, mutta $j$ ei ole nolla eikä valon kaltainen, ja $J_{\alpha\beta}J^{\alpha\beta}$ vaihtelee. Laskenta jättää $M^4$:n Kähler-muodon pois, joten tulos on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/31), ei johtopäätös.
 
 ## Säilymislait
 
