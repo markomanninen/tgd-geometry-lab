@@ -460,7 +460,7 @@ Toteutusjärjestys on ensin M1–M4, sitten M5–M6 ja vasta sen jälkeen M7–M
 
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
-1. **Matin linjaukset** #27:ään (tilavuustermin kerroin) ja #28:aan (ME:n määritelmä toiminnalle $S_K+S_V$).
+1. **Matin linjaukset** #27:ään (tilavuustermin kerroin) ja #28:aan (ME:n määritelmä toiminnalle $S_K+S_V$). Kysymykset lähetettiin Matille 31.10.2026.
 2. **Ratkaisugeneraattori** (#31), kun holografia = holomorfia -periaatteen muoto on selvä.
 
 ---

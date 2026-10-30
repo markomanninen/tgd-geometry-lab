@@ -24,7 +24,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 
 Kaikki 234 testiä menevät läpi.
 
-Kriittinen polku on #18 → #16/#19 → #23 → #27 → #28. Ketju upotusavaruudesta kenttäyhtälöihin on nyt laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$, ja kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja. #27 ja #28 ovat auki, koska yleisen ME-ansatsin asema toiminnalle $S_K+S_V$ vaatii Matin linjauksen.
+Kriittinen polku on #18 → #16/#19 → #23 → #27 → #28. Ketju upotusavaruudesta kenttäyhtälöihin on nyt laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$, ja kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja. #27 ja #28 ovat auki, koska yleisen ME-ansatsin asema toiminnalle $S_K+S_V$ vaatii Matin linjauksen. Issueiden #27, #28 ja #31 kysymykset lähetettiin Matille sähköpostilla 31.10.2026, ja vastausta odotetaan.
 
 ## Päätöspisteet (tunniste `päätös`)
 
