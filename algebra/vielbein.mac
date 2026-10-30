@@ -1,0 +1,47 @@
+/* ================================================================
+   TGD Geometry Lab -- algebra/vielbein.mac
+   Orthonormal frames (Step 4.3).
+
+   A frame is the matrix E[a, m] = e^a_m (row = flat index a, column =
+   coordinate index m), with the metric
+       g_{mn} = e^a_m e^b_n eta_{ab},   i.e.  g = transpose(E) . eta . E.
+   The inverse frame is the matrix Ei[m, a] = e_a^m = E^(-1).
+   eta is a constant diagonal matrix of +1/-1.
+   Requires core/metric.mac, spaces/cp2.mac, spaces/embedding-space.mac.
+   ================================================================ */
+
+frame_metric(E, eta) := tgd_msimp(transpose(E) . eta . E)$
+frame_inverse(E)     := mat_inverse(E)$
+
+/* upper-triangular frame from g (LDL^T); needs non-vanishing leading minors.
+   Square roots are taken literally: for g = diag(1, sin(t)^2) it returns
+   abs(sin(t)), so use an explicit frame when a sign is known. */
+vielbein_cholesky(g, eta) := block([n:length(g), E, d],
+  E : zeromatrix(n, n),
+  for i thru n do (
+    d : tgd_simp(eta[i,i]*(g[i,i] - sum(eta[k,k]*E[k,i]^2, k, 1, i-1))),
+    E[i,i] : sqrt(d),
+    for j from i+1 thru n do
+      E[i,j] : tgd_simp((g[i,j] - sum(eta[k,k]*E[k,i]*E[k,j], k, 1, i-1))
+                        / (eta[i,i]*E[i,i]))),
+  E)$
+
+/* Unitary frame of CP_2 in chart Z_0 # 0, smooth on the whole chart:
+     theta1 = sqrt(D)/F (dz1 - z1 conj(z2)/D dz2),   theta2 = dz2 / sqrt(F D),
+     D = 1 + |z2|^2, F = 1 + |z1|^2 + |z2|^2,
+   with ds^2 = 2 c R2 (|theta1|^2 + |theta2|^2),  J = 2 c R2 (Re t1 ^ Im t1 + Re t2 ^ Im t2).
+   The real frame is e^(1,2) = Re, Im theta1 and e^(3,4) = Re, Im theta2. */
+cp2_vielbein() := block([F:1+cp2_rho2, D:1+x2^2+y2^2, a, b, s],
+  /* a + %i b = z1 conj(z2) */
+  a : x1*x2 + y1*y2, b : y1*x2 - x1*y2,
+  s : sqrt(2*cp2_metric_factor*cp2_R2),
+  s * matrix(
+    [sqrt(D)/F, 0,         -a/(sqrt(D)*F),  b/(sqrt(D)*F)],
+    [0,         sqrt(D)/F, -b/(sqrt(D)*F), -a/(sqrt(D)*F)],
+    [0,         0,          1/sqrt(F*D),    0],
+    [0,         0,          0,              1/sqrt(F*D)]))$
+
+/* flat metric of H = M^4 x CP_2 */
+H_eta() := metric_direct_sum(diag_matrix(1,-1,-1,-1), cp2_sign*ident(4))$
+
+H_vielbein() := metric_direct_sum(ident(4), cp2_vielbein())$

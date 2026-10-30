@@ -1,0 +1,34 @@
+section("algebra/vielbein: orthonormal frames")$
+eta4 : ident(4)$
+EC : cp2_vielbein()$
+check("CP_2: g = e^T e", zero_matrix_p(frame_metric(EC, eta4) - cp2_metric()))$
+check("CP_2: det e = sqrt(det g) = 1/(1+rho^2)^3",
+      is(tgd_simp(determinant(EC) - 1/(1+cp2_rho2)^3) = 0))$
+ECi : frame_inverse(EC)$
+check("CP_2: e_a^m e^a_n = delta", zero_matrix_p(ECi . EC - ident(4)))$
+check("CP_2: g^{mn} = e_a^m e_a^n",
+      zero_matrix_p(ECi . transpose(ECi) - mat_inverse(cp2_metric())))$
+/* the frame is unitary: J in the frame is the constant standard form */
+check("CP_2: unitary frame, J = e^1 ^ e^2 + e^3 ^ e^4",
+      zero_matrix_p(transpose(ECi) . cp2_kahler_matrix() . ECi
+        - matrix([0,1,0,0],[-1,0,0,0],[0,0,0,1],[0,0,-1,0])))$
+/* general normalisation and radius */
+block([cp2_R2 : Rsq, cp2_metric_factor : cc],
+  assume(Rsq > 0, cc > 0),
+  check("CP_2: frame scales with cp2_R2 and cp2_metric_factor",
+        zero_matrix_p(frame_metric(cp2_vielbein(), eta4) - cp2_metric())),
+  forget(Rsq > 0, cc > 0))$
+/* Cholesky frame of the same metric differs by a local rotation */
+EL : vielbein_cholesky(cp2_metric(), eta4)$
+check("Cholesky frame of CP_2: g = e^T e", zero_matrix_p(frame_metric(EL, eta4) - cp2_metric()))$
+check("Cholesky and unitary frames are related by O(4)",
+      zero_matrix_p(transpose(EL . ECi) . (EL . ECi) - ident(4)))$
+/* indefinite signature */
+gL : matrix([1-q, q],[q, -1-q])$
+etaL : matrix([1,0],[0,-1])$
+check("Cholesky frame in signature (1,1): g = e^T eta e",
+      zero_matrix_p(frame_metric(vielbein_cholesky(gL, etaL), etaL) - gL))$
+/* H = M^4 x CP_2 */
+EH : H_vielbein()$
+check("H: g = e^T eta e, signature (1,7)", zero_matrix_p(frame_metric(EH, H_eta()) - H_metric()))$
+check("H: eta has signature (1,7)", is(metric_signature_at(H_eta(), []) = [1,7,0]))$

@@ -1,0 +1,86 @@
+section("algebra/spinor: spinor connection and Kahler coupling")$
+gam : euclid_gammas()$
+eta4 : ident(4)$
+EC : cp2_vielbein()$
+GC : cp2_metric()$
+GiC : mat_inverse(GC)$
+GamC : christoffel(GC, cp2_X)$
+WmC : spin_connection(EC, GamC, cp2_X)$
+SC : spinor_connection(WmC, eta4, gam)$
+A : cp2_kahler_1form()$
+J : cp2_kahler_matrix()$
+n4 : makelist(i, i, 1, 4)$
+all_pairs(f) := every(lambda([p], f(p[1], p[2])), create_list([i,j], i, n4, j, n4))$
+zero4(M) := zero_matrix_p(M)$
+check("{gamma_a, gamma_b} = 2 delta_ab",
+      all_pairs(lambda([a,b], zero4(gam[a].gam[b] + gam[b].gam[a]
+                                    - 2*(if a = b then 1 else 0)*ident(4)))))$
+gc : gamma_curved(EC, gam, eta4)$
+check("CP_2: {gamma^m, gamma^n} = 2 g^{mn} on the curved metric",
+      all_pairs(lambda([m,nn], zero4(gc[m].gc[nn] + gc[nn].gc[m] - 2*GiC[m,nn]*ident(4)))))$
+/* the defining property of S_m: D_m gamma^n = 0 */
+check("D_m gamma^n = d_m gamma^n + Gam^n_{ml} gamma^l + [S_m, gamma^n] = 0",
+      all_pairs(lambda([m,nn], zero4(diff(gc[nn], cp2_X[m])
+          + sum(GamC[nn][m][l]*gc[l], l, 1, 4) + SC[m].gc[nn] - gc[nn].SC[m]))))$
+/* spinor curvature = 1/4 R_{m n a b} gamma^a gamma^b */
+RiemC : riemann(GamC, cp2_X)$
+Oms : curvature_from_riemann(EC, RiemC)$
+comp2(F, m, nn) := block([c:0], for t in F do if t[2] = [m,nn] then c : t[1], c)$
+FS : spinor_curvature(SC, cp2_X)$
+check("spinor curvature = 1/4 Omega_{ab} gamma^a gamma^b",
+      every(lambda([p], block([m:p[1], nn:p[2]],
+        is(m >= nn) or zero4(FS[m][nn] - 1/4*sum(sum(comp2(Oms[a][b], m, nn)*gam[a].gam[b],
+                                                     b, 1, 4), a, 1, 4)))),
+            create_list([i,j], i, n4, j, n4)))$
+/* U(2) holonomy of the unitary frame */
+Jflat : matrix([0,1,0,0],[-1,0,0,0],[0,0,0,1],[0,0,-1,0])$
+check("CP_2: holonomy in U(2): [omega_m, J] = 0 in the unitary frame",
+      every(lambda([w], zero4(w.Jflat - Jflat.w)), WmC))$
+/* spin^c structure: A is the Kahler potential, S+ carries charges -/+ 3 */
+check("d A = J", form_zerop(form_sub(dform(makelist([A[m],[m]],m,1,4), cp2_X), form_from_matrix(J))))$
+block([cp2_R2 : Rsq, cp2_metric_factor : cc],
+  check("d A = J for general radius and normalisation",
+        form_zerop(form_sub(dform(makelist([cp2_kahler_1form()[m],[m]],m,1,4), cp2_X),
+                            form_from_matrix(cp2_kahler_matrix())))))$
+check("chirality gamma_5^2 = 1", zero4(gamma_chirality(gam).gamma_chirality(gam) - ident(4)))$
+g5 : gamma_chirality(gam)$
+check("S+ = upper block of the chirality", is(g5[1,1] = g5[2,2] and g5[3,3] = g5[4,4] and g5[1,1] = -g5[3,3]))$
+check("S+: S_m = diag(3 i A_m, -3 i A_m)",
+      every(lambda([m], is(tgd_simp(SC[m][1,1] - 3*%i*A[m]) = 0 and tgd_simp(SC[m][2,2] + 3*%i*A[m]) = 0
+                           and SC[m][1,2] = 0 and SC[m][2,1] = 0)), n4))$
+/* leptons k = 3: a covariantly constant right-handed neutrino */
+nuR : matrix([0],[1],[0],[0])$
+DnuR(k) := spinor_covariant(nuR, SC, A, k, cp2_X)$
+check("k = 3: covariantly constant nu_R, D_m nu_R = 0",
+      every(lambda([d], zero_matrix_p(d)), DnuR(3)))$
+check("k = 1: the same spinor is not covariantly constant",
+      not every(lambda([d], zero_matrix_p(d)), DnuR(1)))$
+check("k = 3: Dirac zero mode",
+      zero_matrix_p(dirac_operator(nuR, EC, gam, eta4, SC, A, 3, cp2_X)))$
+/* Lichnerowicz: Dslash^2 = nabla^2 + 1/2 gamma^m gamma^n [D_m, D_n], and the
+   curvature term is the algebraic identity 1/2 gamma^m gamma^n F_mn = -R/4,
+   so Dslash^2 = nabla^2 - R/4 + (i k/2) J_mn gamma^m gamma^n. */
+check("Lichnerowicz: 1/2 gamma^m gamma^n F_mn = -R/4, R = 24",
+      zero4(sum(sum(gc[m].gc[nn].FS[m][nn], nn, 1, 4), m, 1, 4)/2 + 24/4*ident(4)))$
+Jhat : sum(sum(Jflat[a,b]*gam[a].gam[b], b, 1, 4), a, 1, 4)/2$
+check("k = 3: R/4 = 6 is cancelled by the Kahler term on nu_R",
+      zero_matrix_p((-24/4*ident(4) + %i*3*Jhat) . nuR))$
+/* flux of the S+ line bundles over CP_1 = {z2 = 0}: integer iff k is odd */
+fluxJ : 2*%pi*integrate(rr/(1+rr^2)^2, rr, 0, inf)$
+check("Kahler flux through CP_1 is pi", is(fluxJ = %pi))$
+chern(k, q) := (k + q)*fluxJ/(2*%pi)$
+check("k = 1, 3: S+ flux (k +- 3)/2 integer (spin^c structure exists)",
+      every(lambda([k], integerp(chern(k, 3)) and integerp(chern(k, -3))), [1, 3]))$
+check("k = 0, 2: S+ flux half-integer (CP_2 is not spin)",
+      every(lambda([k], not integerp(chern(k, 3))), [0, 2]))$
+/* Dirac operator on the unit S^2: first eigenvalue |lambda| = 1 */
+Xs : [th, ph]$
+assume(sin(th) > 0, cos(th/2) > 0, sin(th/2) > 0)$
+Es : matrix([1, 0], [0, sin(th)])$
+sig : [matrix([0,1],[1,0]), matrix([0,-%i],[%i,0])]$
+Ss : spinor_connection(spin_connection(Es, christoffel(frame_metric(Es, ident(2)), Xs), Xs), ident(2), sig)$
+psi : exp(%i*ph/2)*matrix([cos(th/2)], [%i*sin(th/2)])$
+Dpsi : sum(gamma_curved(Es, sig, ident(2))[m] . spinor_covariant(psi, Ss, [0,0], 0, Xs)[m], m, 1, 2)$
+check("S^2: Dirac eigenvalue i",
+      is(trigsimp(trigrat(exponentialize(Dpsi[1,1] - %i*psi[1,1]))) = 0
+         and trigsimp(trigrat(exponentialize(Dpsi[2,1] - %i*psi[2,1]))) = 0))$

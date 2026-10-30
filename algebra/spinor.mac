@@ -1,0 +1,58 @@
+/* ================================================================
+   TGD Geometry Lab -- algebra/spinor.mac
+   Spinor connection, Kahler coupling and local gamma matrices
+   (Steps 4.4, 4.5).
+
+   gam is a list of flat gamma matrices gamma_a, {gamma_a, gamma_b} = 2 eta_ab.
+   With omega_{m a b} = eta_{a c} omega_m^c_b,
+       S_m  = 1/4 omega_{m a b} gamma^a gamma^b
+       D_m  = d_m + S_m + %i k A_m            (Kahler coupling, charge k)
+   CP_2 is not a spin manifold: the spinor bundle exists only together
+   with the coupling to the Kahler potential A (dA = J) with odd k;
+   k = 1 for quarks and k = 3 for leptons in TGD (Pitkanen).
+   Requires core/metric.mac, algebra/vielbein.mac, geometry/cartan.mac.
+   ================================================================ */
+
+/* chiral Euclidean gamma matrices, {gamma_a, gamma_b} = 2 delta_ab;
+   chirality gamma_1 gamma_2 gamma_3 gamma_4 is block diagonal, S+ = upper block */
+euclid_gammas() := block([s, off],
+  s : [matrix([0,1],[1,0]), matrix([0,-%i],[%i,0]), matrix([1,0],[0,-1])],
+  off(A, B) := block([M : zeromatrix(4,4)],
+    for i thru 2 do for j thru 2 do (M[i,j+2] : A[i,j], M[i+2,j] : B[i,j]),
+    M),
+  append(makelist(off(%i*s[j], -%i*s[j]), j, 1, 3), [off(ident(2), ident(2))]))$
+
+gamma_chirality(gam) := gam[1] . gam[2] . gam[3] . gam[4]$
+
+/* raised flat gammas gamma^a = eta^{ab} gamma_b (eta diagonal) */
+gamma_raise(gam, eta) := makelist(eta[a,a]*gam[a], a, 1, length(gam))$
+
+/* Wm from spin_connection (geometry/cartan.mac) -> list of matrices S_m */
+spinor_connection(Wm, eta, gam) := block([n:length(eta), gu : gamma_raise(gam, eta)],
+  makelist(matrixmap(tgd_simp, 1/4*sum(sum(
+      eta[a,a]*w[a,b]*(gu[a] . gu[b]), b, 1, n), a, 1, n)), w, Wm))$
+
+/* F_mn = d_m S_n - d_n S_m + [S_m, S_n] as a nested list [m][n] */
+spinor_curvature(S, X) := block([n:length(X)],
+  makelist(makelist(matrixmap(tgd_simp,
+      diff(S[nn], X[m]) - diff(S[m], X[nn]) + S[m] . S[nn] - S[nn] . S[m]),
+    nn, 1, n), m, 1, n))$
+
+/* local gammas gamma^m = e_a^m gamma^a, {gamma^m, gamma^n} = 2 g^{mn} */
+gamma_curved(E, gam, eta) := block([n:length(E), Ei : frame_inverse(E), gu : gamma_raise(gam, eta)],
+  makelist(sum(Ei[m,a]*gu[a], a, 1, n), m, 1, n))$
+
+/* Kahler potential of CP_2 as component list, dA = J:
+   A = c R2 sum_k (x_k dy_k - y_k dx_k) / F in the chart Z_0 # 0 */
+cp2_kahler_1form() := block([F : 1+cp2_rho2, c : cp2_metric_factor*cp2_R2],
+  [-c*y1/F, c*x1/F, -c*y2/F, c*x2/F])$
+
+/* D_m psi for a column spinor psi and a coupling A (component list) */
+spinor_covariant(psi, S, A, k, X) := block([n:length(X)],
+  makelist(diff(psi, X[m]) + S[m] . psi + %i*k*A[m]*psi, m, 1, n))$
+
+/* Dirac operator gamma^m D_m psi */
+dirac_operator(psi, E, gam, eta, S, A, k, X) := block([n:length(X), gc, Dp],
+  gc : gamma_curved(E, gam, eta),
+  Dp : spinor_covariant(psi, S, A, k, X),
+  matrixmap(tgd_simp, sum(gc[m] . Dp[m], m, 1, n)))$

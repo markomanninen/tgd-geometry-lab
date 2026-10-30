@@ -9,6 +9,6 @@ if not stringp(clifford_path) then clifford_path : false$
 load(sconcat(tgd_root, "/tgd-lab.mac"))$
 load(sconcat(tgd_root, "/tests/testlib.mac"))$
 for f in ["test-metric", "test-curvature", "test-forms", "test-cp2",
-          "test-embedding", "test-action", "test-clifford"] do
+          "test-vielbein", "test-cartan", "test-spinor", "test-embedding", "test-action", "test-clifford"] do
   batchload(sconcat(tgd_root, "/tests/", f, ".mac"))$
 test_summary()$

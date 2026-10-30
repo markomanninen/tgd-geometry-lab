@@ -1,0 +1,84 @@
+section("geometry/cartan: structure equations and spin connection")$
+/* flat R^2 in polar coordinates: omega^1_2 = -dphi */
+assume(rp > 0)$
+Xp : [rp, ph]$
+Ep : matrix([1, 0], [0, rp])$
+Wp : connection_forms(Ep, ident(2), Xp)$
+check("polar R^2: omega^1_2 = -d phi", is(form_zerop(form_add(Wp[1][2], dx(2)))))$
+check("polar R^2: Omega = 0", every(lambda([r], every(form_zerop, r)), curvature_forms(Wp, Xp)))$
+/* unit S^2 */
+Xs : [th, ph]$
+assume(sin(th) > 0)$
+Es : matrix([1, 0], [0, sin(th)])$
+Ws : connection_forms(Es, ident(2), Xs)$
+Gs : frame_metric(Es, ident(2))$
+Rs : riemann(christoffel(Gs, Xs), Xs)$
+check("S^2: omega^1_2 = -cos(th) d phi",
+      form_zerop(form_add(Ws[1][2], [[cos(th), [2]]])))$
+check("S^2: T^a = 0", every(form_zerop, torsion_forms(Es, Ws, Xs)))$
+check("S^2: Omega^1_2 = e^1 ^ e^2 (K = 1)",
+      form_zerop(form_sub(curvature_forms(Ws, Xs)[1][2], wedge(coframe_forms(Es)[1], coframe_forms(Es)[2]))))$
+check("S^2: Omega equals the coordinate Riemann tensor",
+      forms_equal_p(curvature_forms(Ws, Xs), curvature_from_riemann(Es, Rs)))$
+/* indefinite signature: de Sitter slicing, dS_2 of unit radius, R = 2 */
+Xd : [ts, xs]$
+Ed : matrix([1, 0], [0, exp(ts)])$
+etaD : matrix([1, 0], [0, -1])$
+Wd : connection_forms(Ed, etaD, Xd)$
+Gd : frame_metric(Ed, etaD)$
+Rd : riemann(christoffel(Gd, Xd), Xd)$
+check("dS_2: T^a = 0 in signature (1,1)", every(form_zerop, torsion_forms(Ed, Wd, Xd)))$
+check("dS_2: omega_{ab} antisymmetric",
+      form_zerop(form_add(Wd[1][2], form_scale(-1, Wd[2][1]))))$
+check("dS_2: Omega equals the coordinate Riemann tensor",
+      forms_equal_p(curvature_forms(Wd, Xd), curvature_from_riemann(Ed, Rd)))$
+/* signature (1,3): flat FRW, three-index combinations of the formula */
+Xf : [ts, xs, ys, zs]$
+depends(aS, ts)$
+Ef : diag_matrix(1, aS, aS, aS)$
+etaF : diag_matrix(1, -1, -1, -1)$
+Wf : connection_forms(Ef, etaF, Xf)$
+Gf : frame_metric(Ef, etaF)$
+Rf : riemann(christoffel(Gf, Xf), Xf)$
+check("FRW: T^a = 0", every(form_zerop, torsion_forms(Ef, Wf, Xf)))$
+check("FRW: Omega equals the coordinate Riemann tensor",
+      forms_equal_p(curvature_forms(Wf, Xf), curvature_from_riemann(Ef, Rf)))$
+/* non-diagonal frame in signature (1,1): rotated by a local boost */
+Eb : matrix([cosh(xs), sinh(xs)], [sinh(xs), cosh(xs)]) . Ed$
+Wb : connection_forms(Eb, etaD, Xd)$
+check("boosted dS_2 frame: T^a = 0", every(form_zerop, torsion_forms(Eb, Wb, Xd)))$
+/* CP_2 */
+EC : cp2_vielbein()$
+GC : cp2_metric()$
+GamC : christoffel(GC, cp2_X)$
+RiemC : riemann(GamC, cp2_X)$
+WC : connection_forms(EC, ident(4), cp2_X)$
+check("CP_2: omega^a_b = -omega^b_a",
+      every(lambda([a], every(lambda([b], form_zerop(form_add(WC[a][b], WC[b][a]))),
+                              makelist(i,i,1,4))), makelist(i,i,1,4)))$
+check("CP_2: T^a = 0", every(form_zerop, torsion_forms(EC, WC, cp2_X)))$
+OmC : curvature_forms(WC, cp2_X)$
+check("CP_2: Cartan curvature equals the coordinate Riemann tensor",
+      forms_equal_p(OmC, curvature_from_riemann(EC, RiemC)))$
+/* spin connection (#19) */
+SC : spin_connection(EC, GamC, cp2_X)$
+check("CP_2: spin connection antisymmetric", spin_antisymmetric_p(SC, ident(4)))$
+check("CP_2: spin connection = Cartan connection",
+      forms_equal_p(spin_connection_forms(SC), WC))$
+SS : spin_connection(Es, christoffel(Gs, Xs), Xs)$
+check("S^2: spin connection = Cartan connection",
+      forms_equal_p(spin_connection_forms(SS), Ws))$
+SD : spin_connection(Ed, christoffel(Gd, Xd), Xd)$
+check("dS_2: spin connection antisymmetric with eta", spin_antisymmetric_p(SD, etaD))$
+check("dS_2: spin connection = Cartan connection",
+      forms_equal_p(spin_connection_forms(SD), Wd))$
+/* full embedding space H = M^4 x CP_2, signature (1,7) */
+EH : H_vielbein()$
+GH : H_metric()$
+GamH : christoffel(GH, H_X)$
+WH : connection_forms(EH, H_eta(), H_X)$
+check("H: T^a = 0", every(form_zerop, torsion_forms(EH, WH, H_X)))$
+check("H: Omega equals the coordinate Riemann tensor",
+      forms_equal_p(curvature_forms(WH, H_X), curvature_from_riemann(EH, riemann(GamH, H_X))))$
+check("H: spin connection = Cartan connection",
+      forms_equal_p(spin_connection_forms(spin_connection(EH, GamH, H_X)), WH))$

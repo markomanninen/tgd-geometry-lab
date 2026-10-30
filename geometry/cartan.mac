@@ -1,0 +1,79 @@
+/* ================================================================
+   TGD Geometry Lab -- geometry/cartan.mac
+   Cartan structure equations (Steps 5.3, 4.4).
+
+   Frame conventions as in algebra/vielbein.mac: E[a,m] = e^a_m, eta diagonal.
+   A connection is a nested list W with W[a][b] = omega^a_b (a 1-form);
+   a curvature is a nested list with Om[a][b] = Omega^a_b (a 2-form).
+       T^a       = d e^a + omega^a_b ^ e^b
+       Omega^a_b = d omega^a_b + omega^a_c ^ omega^c_b
+   With the coordinate conventions of geometry/curvature.mac,
+       Omega^a_b = 1/2 e^a_r e_b^s R^r_{s m n} dx^m ^ dx^n.
+   Requires core/metric.mac, forms/forms.mac, geometry/curvature.mac.
+   ================================================================ */
+
+/* coframe as a list of 1-forms e^a */
+coframe_forms(E) := block([n:length(E)],
+  makelist(form_simplify(makelist([E[a,m], [m]], m, 1, n)), a, 1, n))$
+
+/* coefficients of the anholonomy, A[a][b][c] = (d e^a)(e_b, e_c)
+   = -C^a_{bc} for [e_b, e_c] = C^a_{bc} e_a */
+frame_anholonomy(E, X) := block([n:length(X), Ei, dE],
+  Ei : frame_inverse(E),
+  makelist(block(
+    dE : form_to_matrix(dform(coframe_forms(E)[a], X), n),
+    dE : tgd_msimp(transpose(Ei) . dE . Ei),
+    makelist(makelist(dE[b,c], c, 1, n), b, 1, n)), a, 1, n))$
+
+/* Torsion-free metric connection from the frame alone (no Christoffels).
+   With C_{abc} = eta_{ad} C^d_{bc} and omega_{abc} = omega_{ab}(e_c):
+       omega_{abc} = -1/2 (C_{abc} + C_{bca} - C_{cab})                     */
+connection_forms(E, eta, X) := block([n:length(X), A, Cl, Wc],
+  A : frame_anholonomy(E, X),
+  Cl(a,b,c) := -eta[a,a]*A[a][b][c],
+  makelist(makelist(block(
+    Wc : makelist(tgd_simp(-eta[a,a]/2*(Cl(a,b,c) + Cl(b,c,a) - Cl(c,a,b))), c, 1, n),
+    form_simplify(makelist(
+      [tgd_simp(sum(Wc[c]*E[c,m], c, 1, n)), [m]], m, 1, n))),
+    b, 1, n), a, 1, n))$
+
+torsion_forms(E, W, X) := block([n:length(X), e:coframe_forms(E)],
+  makelist(block([T : dform(e[a], X)],
+    for b thru n do T : form_add(T, wedge(W[a][b], e[b])),
+    T), a, 1, n))$
+
+curvature_forms(W, X) := block([n:length(X)],
+  makelist(makelist(block([Om : dform(W[a][b], X)],
+    for c thru n do Om : form_add(Om, wedge(W[a][c], W[c][b])),
+    Om), b, 1, n), a, 1, n))$
+
+/* the same 2-forms from the coordinate Riemann tensor */
+curvature_from_riemann(E, Riem) := block([n:length(E), Ei : frame_inverse(E)],
+  makelist(makelist(
+    form_simplify(apply(append, makelist(makelist(
+      [sum(sum(E[a,r]*Riem[r][s][m][nn]*Ei[s,b], s, 1, n), r, 1, n), [m, nn]],
+      nn, m+1, n), m, 1, n))),
+    b, 1, n), a, 1, n))$
+
+/* equality of two n x n tables of forms */
+forms_equal_p(A, B) := block([n:length(A), ok:true],
+  for a thru n do for b thru n do
+    if not form_zerop(form_sub(A[a][b], B[a][b])) then ok : false,
+  ok)$
+
+/* ---------- spin connection from frame + Christoffels (Step 4.4) ----------
+   spin_connection returns W_mu[m] = matrix(omega_m^a_b),
+       omega_m^a_b = e^a_r (d_m e_b^r + Gam^r_{m l} e_b^l).
+   This is independent of connection_forms, which never uses Gam.          */
+spin_connection(E, Gam, X) := block([n:length(X), Ei : frame_inverse(E)],
+  makelist(genmatrix(lambda([a,b], tgd_simp(sum(E[a,r]*(diff(Ei[r,b], X[m])
+       + sum(Gam[r][m][l]*Ei[l,b], l, 1, n)), r, 1, n))), n, n), m, 1, n))$
+
+/* matrices per coordinate -> nested list of 1-forms */
+spin_connection_forms(Wm) := block([n:length(Wm)],
+  makelist(makelist(form_simplify(makelist([Wm[m][a,b], [m]], m, 1, n)),
+                    b, 1, n), a, 1, n))$
+
+/* omega_{ab} = eta_{ac} omega^c_b is antisymmetric */
+spin_antisymmetric_p(Wm, eta) := every(lambda([w],
+  is(tgd_msimp(eta . w + transpose(eta . w)) = zeromatrix(length(w), length(w)))), Wm)$
