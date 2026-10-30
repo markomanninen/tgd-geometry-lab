@@ -6,7 +6,7 @@ jobs:
   maxima:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install Maxima
         run: sudo apt-get -qq update && sudo apt-get -qq install -y maxima
       - name: Fetch Prodanov clifford package
