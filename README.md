@@ -20,7 +20,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 02 · $CP_2$ ja Fubini–Study | Kähler-potentiaali → metriikka → $\omega$, $J$ → Christoffel → Riemann/Ricci → karttasiirtymät | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/02_cp2_fubini_study.ipynb) |
 | 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
 
-## Mitä on varmistettu (194 testiä)
+## Mitä on varmistettu (215 testiä)
 
 | Alue | Tarkistukset |
 |---|---|
@@ -33,6 +33,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | Spinorit | $D_\mu\gamma^\nu=0$; $\tfrac12\gamma\gamma F=-R/4$; $k=3$ antaa vakion $\nu_R$; vuo kokonaisluku parittomilla $k$ |
 | Ekstrinsinen geometria | $B^k{}_{\alpha\beta}$, $H^k$; Gauss, Codazzi ja Ricci kaarevassa ympäristössä |
 | Toiminta | Euler–Lagrange → aaltoyhtälö; tilavuustoiminta → minimipintayhtälö; kovariantti kenttäyhtälö = määritelmästä laskettu $E_k$ |
+| Säilymislait | $H$:n 18 isometriaa, $su(3)$; $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$ myös ei-ratkaisuilla; virrat säilyvät vertailuratkaisuilla |
 | Ekstremaalit | kosminen säie ja ME $s^k(u)$ kaikilla $c_K$, $c_V$; yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä ([taulukko](docs/konventiot.md)) |
 | Clifford | $\{\gamma_a,\gamma_b\}=2\eta_{ab}$ signatuureille $(4,0)$ ja $(1,3)$ |
 
@@ -70,6 +71,7 @@ embedding/induced.mac       indusoitu metriikka ja Kähler-muoto
 embedding/second-form.mac   toinen perusmuoto, Gauss, Codazzi, Ricci
 tgd/action.mac              L_K, L_V, J∧J, Euler–Lagrange
 tgd/field-equations.mac     kovariantit kenttäyhtälöt
+tgd/noether.mac             isometriat ja Noether-virrat
 tests/                      automaattiset testit
 notebooks/                  Colab-kirjat + tgdlab.py (Maxima → LaTeX -silta)
 docs/                       sivuston sisältö: tulokset, konventiot, suunnitelma, seuranta
@@ -94,7 +96,7 @@ Dokumentit on tarkoitettu luettaviksi [sivustolla](https://markomanninen.github.
 | [M4 Kaarevuus](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | 3/3 ✅ |
 | [M5 Clifford-geometria](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | 4/4 ✅ |
 | [M6 Upotus](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | 4/4 ✅ |
-| [M7 Toiminta](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 2/6 |
+| [M7 Toiminta](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 3/6 |
 | [M8 Ratkaisut](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | 0/2 |
 
 Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on laskettu ja testattu. #27 ja #28 odottavat Matti Pitkäsen linjausta toiminnan $S_K+S_V$ kertoimista ja ME:n määritelmästä.

@@ -33,5 +33,6 @@ tgd_load("embedding/induced.mac")$
 tgd_load("embedding/second-form.mac")$
 tgd_load("tgd/action.mac")$
 tgd_load("tgd/field-equations.mac")$
+tgd_load("tgd/noether.mac")$
 
 print("TGD Geometry Lab loaded from", tgd_root)$

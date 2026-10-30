@@ -1,0 +1,79 @@
+/* ================================================================
+   TGD Geometry Lab -- tgd/noether.mac
+   Isometries of H = M^4 x CP_2 and their Noether currents (Step 7.4).
+
+   A vector field K^k(h) that preserves both h_kl and J_kl gives the current
+       j^a = K^k dL/d(d_a h^k) / sqrt|g|
+           = 2 T^{ab} h_kl K^k d_b h^l + 4 c_K J^{ab} J_kl K^k d_b h^l,
+   which obeys, for any surface,
+       D_a j^a = 2 K^k Eq_k,
+   Eq_k being the expression of tgd_field_equations.  It is conserved on
+   solutions.  Isometries: translations and Lorentz generators of M^4, and
+   the 8 generators of SU(3) acting on [Z0 : Z1 : Z2].
+   Requires tgd/field-equations.mac, spaces/cp2.mac.
+   ================================================================ */
+
+/* Lie derivative of a (0,2) tensor */
+lie_derivative_02(T, K, X) := block([n:length(X)],
+  genmatrix(lambda([a,b], tgd_simp(sum(K[c]*diff(T[a,b], X[c])
+      + T[c,b]*diff(K[c], X[a]) + T[a,c]*diff(K[c], X[b]), c, 1, n))), n, n))$
+
+/* Lie bracket of vector fields */
+vector_bracket(K1, K2, X) := block([n:length(X)],
+  makelist(tgd_simp(sum(K1[b]*diff(K2[a], X[b]) - K2[b]*diff(K1[a], X[b]), b, 1, n)),
+           a, 1, n))$
+
+/* Gell-Mann matrices; su(3) generators are %i*lambda */
+gell_mann() := [matrix([0,1,0],[1,0,0],[0,0,0]), matrix([0,-%i,0],[%i,0,0],[0,0,0]),
+                matrix([1,0,0],[0,-1,0],[0,0,0]), matrix([0,0,1],[0,0,0],[1,0,0]),
+                matrix([0,0,-%i],[0,0,0],[%i,0,0]), matrix([0,0,0],[0,0,1],[0,1,0]),
+                matrix([0,0,0],[0,0,-%i],[0,%i,0]), matrix([1,0,0],[0,1,0],[0,0,-2])/sqrt(3)]$
+
+cp2_Z() := matrix([1], [x1 + %i*y1], [x2 + %i*y2])$
+
+/* Killing field of d Z = A Z in the chart Z_0 # 0:
+   d z^i = (A Z)_i - z^i (A Z)_0 */
+cp2_killing(A) := block([Z:cp2_Z(), W, a, b],
+  W : A . Z,
+  a : rectform(W[2,1] - Z[2,1]*W[1,1]),
+  b : rectform(W[3,1] - Z[3,1]*W[1,1]),
+  map(tgd_simp, [realpart(a), imagpart(a), realpart(b), imagpart(b)]))$
+
+/* moment map: i_K J = d phi for K = cp2_killing(A) */
+cp2_moment(A) := block([Z:cp2_Z(), Zc],
+  Zc : conjugate(transpose(Z)),
+  tgd_simp(cp2_metric_factor*cp2_R2*realpart(rectform(
+    %i*(Zc . A . Z)/(Zc . Z)))))$
+
+/* isometries of H as lists over H_X */
+H_translation(mu) := makelist(if k = mu then 1 else 0, k, 1, 8)$
+H_lorentz(mu, nu) := block([m:minkowski_metric()],
+  makelist(if k > 4 then 0 else
+    (if k = mu then m[nu,nu]*H_X[nu] else 0) - (if k = nu then m[mu,mu]*H_X[mu] else 0),
+    k, 1, 8))$
+H_color(A) := append([0,0,0,0], cp2_killing(A))$
+
+/* Noether current j^a of the isometry K on the surface em */
+noether_current(em, HJ, K, cK, cV) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), hh:emb_get(em,'hh),
+    HX:emb_get(em,'X), h:emb_get(em,'h), t:emb_get(em,'t), xi:emb_get(em,'xi), n, N, Jind, Js, T, Ju, Ks, P, Q],
+  n : length(xi), N : length(HX),
+  Jind : induced_kahler_form(HJ, HX, h, xi),
+  Js : emb_on_surface(HJ, HX, h),
+  Ks : emb_on_surface(K, HX, h),
+  T : tgd_stress(g, Jind, cK, cV),
+  Ju : tgd_msimp(gi . Jind . gi),
+  P : makelist(sum(sum(Ks[k]*hh[k,l]*t[b][l], l, 1, N), k, 1, N), b, 1, n),
+  Q : makelist(sum(sum(Ks[k]*Js[k,l]*t[b][l], l, 1, N), k, 1, N), b, 1, n),
+  makelist(tgd_simp(sum(2*T[a,b]*P[b] + 4*cK*Ju[a,b]*Q[b], b, 1, n)), a, 1, n))$
+
+/* D_a j^a */
+noether_divergence(em, j) := block([xi:emb_get(em,'xi), G:emb_get(em,'G), n],
+  n : length(xi),
+  tgd_simp(sum(diff(j[a], xi[a]) + sum(G[a][a][c]*j[c], c, 1, n), a, 1, n)))$
+
+/* D_a j^a - 2 K^k Eq_k, zero for every surface */
+noether_defect(em, HJ, K, cK, cV) := block([Ks, E],
+  Ks : emb_on_surface(K, emb_get(em,'X), emb_get(em,'h)),
+  E : tgd_field_equations(em, HJ, cK, cV),
+  tgd_simp(noether_divergence(em, noether_current(em, HJ, K, cK, cV))
+           - 2*sum(Ks[k]*E[k], k, 1, length(Ks))))$

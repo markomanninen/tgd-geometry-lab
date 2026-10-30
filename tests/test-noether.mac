@@ -1,0 +1,82 @@
+section("tgd/noether: isometries of H and conserved currents")$
+GC : cp2_metric()$
+WC : cp2_kahler_matrix()$
+gm : gell_mann()$
+gens : map(lambda([l], %i*l), gm)$
+KC : map(cp2_killing, gens)$
+zero2(M) := zero_matrix_p(M)$
+check("su(3): generators anti-Hermitian and traceless",
+      every(lambda([A], zero2(A + conjugate(transpose(A))) and is(tgd_simp(mat_trace(A)) = 0)), gens))$
+check("CP_2: all 8 generators are Killing", every(lambda([K], zero2(lie_derivative_02(GC, K, cp2_X))), KC))$
+check("CP_2: all 8 generators preserve J", every(lambda([K], zero2(lie_derivative_02(WC, K, cp2_X))), KC))$
+/* a non-isometry must fail */
+check("control: a coordinate dilation is not Killing",
+      not zero2(lie_derivative_02(GC, [x1, y1, x2, y2], cp2_X)))$
+/* fundamental vector fields of a left action: [K_A, K_B] = -K_[A,B] */
+check("su(3) closes: [K_A, K_B] = -K_[A,B]",
+      every(lambda([p], block([C : gens[p[1]].gens[p[2]] - gens[p[2]].gens[p[1]]],
+                 is(tgd_simp(vector_bracket(KC[p[1]], KC[p[2]], cp2_X) + cp2_killing(C)) = [0,0,0,0]))),
+            sublist(create_list([i,j], i, 1, 8, j, 1, 8), lambda([p], p[1] < p[2]))))$
+/* moment maps: i_K J = d phi */
+ik(K) := list_matrix_entries(matrix(K) . WC)$
+check("moment map: i_K J = d phi for all 8 generators",
+      every(lambda([A], block([K : cp2_killing(A), ph : cp2_moment(A)],
+         is(tgd_simp(ik(K) - makelist(diff(ph, cp2_X[a]), a, 1, 4)) = [0,0,0,0]))), gens))$
+/* M^4 */
+GHm : H_metric()$
+JHm : H_kahler()$
+trans : makelist(H_translation(m), m, 1, 4)$
+lor : [H_lorentz(1,2), H_lorentz(1,3), H_lorentz(1,4), H_lorentz(2,3), H_lorentz(2,4), H_lorentz(3,4)]$
+color : map(H_color, gens)$
+isos : append(trans, lor, color)$
+check("H has 18 isometries here", is(length(isos) = 18))$
+check("H: all 18 preserve h_kl", every(lambda([K], zero2(lie_derivative_02(GHm, K, H_X))), isos))$
+check("H: all 18 preserve J_kl", every(lambda([K], zero2(lie_derivative_02(JHm, K, H_X))), isos))$
+/* the identity on a surface that is not a solution: both sides are non-zero */
+xi : [tt, xx, yy, zz]$
+embT : [tt, xx, yy, zz, tt/3 + xx/5, tt/7 - xx/4, xx/11, tt/13]$
+emT : emb_setup(GHm, H_X, embT, xi)$
+EqT : tgd_field_equations(emT, JHm, cK, cV)$
+ptT : [tt = 1/2, xx = 1/3, yy = 0, zz = 0]$
+cf(e) := [coeff(expand(float(e)), cK), coeff(expand(float(e)), cV)]$
+idchk(K) := block([Ks : emb_on_surface(K, H_X, embT), j, dv, rhs_],
+  j : noether_current(emT, JHm, K, cK, cV),
+  dv : noether_divergence(emT, j),
+  rhs_ : 2*sum(Ks[k]*EqT[k], k, 1, 8),
+  [cf(subst(ptT, dv)), cf(subst(ptT, rhs_))])$
+close2(r) := every(lambda([a,b], is(abs(a - b) < 1.0e-9)), r[1], r[2])$
+nonzero2(r) := is(abs(r[2][1]) + abs(r[2][2]) > 1.0e-6)$
+for pr in [["translation t", trans[1]], ["boost t-x", lor[1]], ["color lambda_1", color[1]], ["color lambda_4", color[4]],
+           ["color lambda_8", color[8]]] do
+  block([r : idchk(pr[2])],
+    check(sconcat("D_a j^a = 2 K.Eq off shell, both sides non-zero: ", pr[1]), close2(r) and nonzero2(r)))$
+check("control: the identity is sensitive to the sign",
+      block([r : idchk(trans[1])], not close2([r[1], -r[2]])))$
+null_vec(v) := every(lambda([e], is(tgd_simp(e) = 0)), v)$
+/* solutions: conservation of all 18 currents */
+xiC : [tt, zz, aa, bb]$
+emCS : emb_setup(GHm, H_X, [tt, 0, 0, zz, aa, bb, 0, 0], xiC)$
+check("cosmic string: all 18 currents conserved for all c_K, c_V",
+      null_vec(map(lambda([K], noether_divergence(emCS, noether_current(emCS, JHm, K, cK, cV))), isos)))$
+emM : emb_setup(GHm, H_X, [tt, xx, yy, zz, 0, 0, 0, 0], xi)$
+check("canonical M^4: all 18 currents conserved",
+      null_vec(map(lambda([K], noether_divergence(emM, noether_current(emM, JHm, K, cK, cV))), isos)))$
+xl : [uu, vv, xx, yy]$
+meX(s) := append([(uu+vv)/2, xx, yy, (vv-uu)/2], s)$
+depends([a1, a2, a3, a4], uu)$
+emU : emb_setup(GHm, H_X, meX([a1, a2, a3, a4]), xl)$
+check("ME s^k(u): all 18 currents conserved for all c_K, c_V",
+      null_vec(map(lambda([K], noether_divergence(emU, noether_current(emU, JHm, K, cK, cV))), isos)))$
+/* one real transverse coordinate: the Kahler current is conserved, the volume one is not */
+depends([F1, F2], [uu, xx])$
+emX : emb_setup(GHm, H_X, meX([F1, F2, 0, 0]), xl)$
+check("ME s^k(u, x): Kahler currents conserved",
+      null_vec(map(lambda([K], noether_divergence(emX, noether_current(emX, JHm, K, cK, 0))),
+                   [trans[1], trans[3], lor[1], color[3]])))$
+check("ME s^k(u, x): volume current of a translation is not conserved",
+      not null_vec(map(lambda([K], noether_divergence(emX, noether_current(emX, JHm, K, 0, cV))),
+                       [trans[2], trans[3]])))$
+/* momentum of a massless extremal flows along k */
+jU : noether_current(emX, JHm, trans[1], cK, 0)$
+check("ME s^k(u, x): Kahler momentum current runs along k",
+      is(tgd_simp(jU[1]) = 0 and tgd_simp(jU[3]) = 0 and tgd_simp(jU[4]) = 0 and tgd_simp(jU[2]) # 0))$

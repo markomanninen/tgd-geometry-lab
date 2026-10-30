@@ -171,6 +171,22 @@ $$
 
 Kertoimet pysyvät symbolisina, joten mitään etumerkkiä ei ole kiinnitetty.
 
+### Noether-virrat
+
+Isometria $K^k$, joka säilyttää sekä metriikan $h_{kl}$ että Kähler-muodon $J_{kl}$, antaa virran
+
+$$
+j^\alpha=2T^{\alpha\beta}h_{kl}K^k\partial_\beta h^l+4c_KJ^{\alpha\beta}J_{kl}K^k\partial_\beta h^l.
+$$
+
+Jokaiselle pinnalle pätee identiteetti
+
+$$
+D_\alpha j^\alpha=2K^k\,\mathrm{Eq}_k,\qquad \mathrm{Eq}_k=h_{kl}D_\alpha\left(T^{\alpha\beta}\partial_\beta h^l\right)+2c_K\,j^\beta J_{kl}\partial_\beta h^l,
+$$
+
+joten virta säilyy ratkaisuilla. Isometrioita on 18: neljä translaatiota, kuusi Lorentz-generaattoria ja kahdeksan $SU(3)$-generaattoria. Väri-isometria saadaan ryhmän toiminnasta $\delta Z=AZ$, jolloin $\delta z^i=(AZ)_i-z^i(AZ)_0$.
+
 ## Kehykset ja Cartan-muodot
 
 ### Kehys

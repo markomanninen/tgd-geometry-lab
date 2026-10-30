@@ -4,7 +4,7 @@
 **Tavoite:** rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen: ✅ toteutettu ja testattu · 🟡 osittain · ⬜ ei vielä.
-> Testit: `./scripts/run_tests.sh` – nykyisin **194/194 läpi**.
+> Testit: `./scripts/run_tests.sh` – nykyisin **215/215 läpi**.
 > **Seuranta GitHubissa:** jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Ks. [docs/seuranta.md](seuranta.md).
 
 ---
@@ -380,10 +380,10 @@ Seuranta: [#26](https://github.com/markomanninen/tgd-geometry-lab/issues/26)
 
 Yleinen symbolinen variaatiomoottori `euler_lagrange(L, kentät, muuttujat)` on toteutettu ensimmäisen kertaluvun derivaattoja sisältäville tiheyksille. Testit: aaltoyhtälö sekä minimipintayhtälö tilavuustoiminnasta. Kovariantti muoto on `tgd_field_equations`, ja sitä verrataan suoraan määritelmästä laskettuun arvoon.
 
-### Step 7.4 – Säilymislait ja Noether-rakenteet ⬜
+### Step 7.4 – Säilymislait ja Noether-rakenteet ✅
 
 Seuranta: [#29](https://github.com/markomanninen/tgd-geometry-lab/issues/29)
-Virran muodostaminen, divergenssi, säilymislain tarkistus ja symmetrioiden vaikutus toimintaan.
+`noether_current` muodostaa virran $H$:n 18 isometriasta (Poincaré ja väri-$SU(3)$). Identiteetti $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$ on testattu myös pinnalla, joka ei ole ratkaisu, ja kaikki virrat säilyvät vertailuratkaisuilla.
 
 ### Step 7.5 – PDE-järjestelmien muodostaminen ⬜
 
@@ -422,7 +422,8 @@ tgd-geometry-lab/
 ├── embedding/second-form.mac toinen perusmuoto, Gauss, Codazzi, Ricci
 ├── tgd/action.mac            toimintatiheydet, Euler–Lagrange
 ├── tgd/field-equations.mac   kovariantit kenttäyhtälöt
-├── tests/                    194 automaattista testiä
+├── tgd/noether.mac           isometriat ja Noether-virrat
+├── tests/                    215 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -481,7 +482,7 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
 1. **Matin linjaukset** #27:ään (tilavuustermin kerroin) ja #28:aan (ME:n määritelmä toiminnalle $S_K+S_V$).
-2. **Noether-virrat** (#29) ja **karakteristinen analyysi** (#30) M7:ään.
+2. **Karakteristinen analyysi** (#30) M7:ään.
 3. **Ratkaisuanalyysi** (#31, #32) M8:aan.
 
 ---
