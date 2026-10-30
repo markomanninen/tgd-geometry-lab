@@ -1,0 +1,137 @@
+/* ================================================================
+   TGD Geometry Lab -- embedding/second-form.mac
+   Extrinsic geometry of an embedded surface (Steps 6.4, 6.5).
+
+   emb_setup(HG, HX, Xemb, xi) collects the data of an embedding h^k(xi)
+   into the ambient metric HG with coordinates HX:
+       t[a][k]       = d_a h^k                    tangent vectors
+       g, gi         induced metric and its inverse
+       G[c][a][b]    Christoffels of g
+       GH[k][l][m]   ambient Christoffels on the surface
+       hh            ambient metric on the surface
+   Second fundamental form (total covariant derivative of the tangent):
+       B^k_{ab} = D_a t_b^k = d_a d_b h^k - G^c_{ab} d_c h^k
+                              + GH^k_{lm} d_a h^l d_b h^m
+   It is normal to the surface and H^k = g^{ab} B^k_{ab} vanishes exactly
+   for minimal surfaces.  B[k][a][b] is a nested list.
+   Requires core/metric.mac, geometry/curvature.mac, embedding/induced.mac.
+   ================================================================ */
+
+emb_on_surface(e, HX, Xemb) := psubst(map("=", HX, Xemb), e)$
+
+emb_setup(HG, HX, Xemb, xi) := block([g, gi, N:length(HX)],
+  g : induced_metric(HG, HX, Xemb, xi),
+  gi : mat_inverse(g),
+  [ 'X = HX, 'h = Xemb, 'xi = xi,
+    't = tangent_vectors(Xemb, xi),
+    'g = g, 'gi = gi,
+    'G = christoffel(g, xi),
+    'hh = emb_on_surface(HG, HX, Xemb),
+    'GH = emb_on_surface(christoffel(HG, HX), HX, Xemb) ])$
+
+emb_get(em, key) := rhs(assoc_eq(key, em))$
+assoc_eq(key, em) := first(sublist(em, lambda([q], lhs(q) = key)))$
+
+/* D_a V^k = d_a V^k + GH^k_{lm} t_a^l V^m for an ambient vector on the surface */
+emb_cov_vector(em, V, a) := block([xi:emb_get(em,'xi), t:emb_get(em,'t), GH:emb_get(em,'GH), N],
+  N : length(V),
+  makelist(diff(V[k], xi[a])
+           + sum(sum(GH[k][l][m]*t[a][l]*V[m], m, 1, N), l, 1, N), k, 1, N))$
+
+second_fundamental_form(em) := block([xi:emb_get(em,'xi), t:emb_get(em,'t), G:emb_get(em,'G),
+                                      N:length(emb_get(em,'X)), p:length(emb_get(em,'xi))],
+  makelist(makelist(makelist(
+    tgd_simp(emb_cov_vector(em, t[b], a)[k] - sum(G[c][a][b]*t[c][k], c, 1, p)),
+    b, 1, p), a, 1, p), k, 1, N))$
+
+mean_curvature(em, B) := block([gi:emb_get(em,'gi), N:length(B), p:length(emb_get(em,'xi))],
+  makelist(tgd_simp(sum(sum(gi[a,b]*B[k][a][b], b, 1, p), a, 1, p)), k, 1, N))$
+
+emb_inner(em, U, V) := block([hh:emb_get(em,'hh)],
+  apply("+", makelist(apply("+", makelist(hh[k,l]*U[k]*V[l], l, 1, length(V))), k, 1, length(U))))$
+
+/* orthogonal projector onto the normal space,
+   P^k_l = delta^k_l - g^{ab} t_a^k t_b^m h_ml, as a matrix */
+normal_projector(em) := block([t:emb_get(em,'t), gi:emb_get(em,'gi), hh:emb_get(em,'hh),
+                               N:length(emb_get(em,'X)), p:length(emb_get(em,'xi))],
+  genmatrix(lambda([k,l], tgd_simp((if k = l then 1 else 0)
+     - sum(sum(gi[a,b]*t[a][k]*sum(t[b][m]*hh[m,l], m, 1, N), b, 1, p), a, 1, p))), N, N))$
+
+/* Gram-Schmidt normal frame from the projected coordinate basis.
+   Returns [[n_1, eps_1], ...] with h(n_i, n_j) = eps_i delta_ij (eps = +-1);
+   vectors of vanishing norm (null directions) are skipped. */
+normal_frame(em) := block([P:normal_projector(em), N:length(emb_get(em,'X)),
+                           p:length(emb_get(em,'xi)), out:[], v, nn, c, eps],
+  for l thru N while length(out) < N-p do (
+    v : makelist(P[k,l], k, 1, N),
+    for q in out do (
+      c : tgd_simp(emb_inner(em, v, q[1])*q[2]),
+      v : map(tgd_simp, v - c*q[1])),
+    nn : tgd_simp(emb_inner(em, v, v)),
+    if nn # 0 then (
+      eps : if is(nn > 0) = true then 1 else if is(nn < 0) = true then -1 else 1,
+      out : endcons([map(lambda([e], e/sqrt(eps*nn)), v), eps], out))),
+  out)$
+
+/* ---------- Gauss, Codazzi and Ricci (Step 6.5) ---------- */
+
+/* total derivative D_a B^k_{bc}, with G on b, c and GH on k */
+emb_cov_B(em, B, a, b, c) := block([xi:emb_get(em,'xi), t:emb_get(em,'t), G:emb_get(em,'G),
+                                    GH:emb_get(em,'GH), N:length(B), p:length(emb_get(em,'xi))],
+  makelist(diff(B[k][b][c], xi[a])
+     + sum(sum(GH[k][l][m]*t[a][l]*B[m][b][c], m, 1, N), l, 1, N)
+     - sum(G[d][a][b]*B[k][d][c] + G[d][a][c]*B[k][b][d], d, 1, p), k, 1, N))$
+
+/* ambient Riemann R^k_{l m n} on the surface */
+emb_ambient_riemann(HG, HX, Xemb) := emb_on_surface(riemann(christoffel(HG, HX), HX), HX, Xemb)$
+
+/* R^k_{l m n} U^l t_a^m t_b^n */
+emb_R_uab(em, RH, U, a, b) := block([t:emb_get(em,'t), N:length(U)],
+  makelist(sum(sum(sum(RH[k][l][m][nn]*U[l]*t[a][m]*t[b][nn],
+                       nn, 1, N), m, 1, N), l, 1, N), k, 1, N))$
+
+emb_B_vec(B, a, b) := makelist(B[k][a][b], k, 1, length(B))$
+
+/* Gauss: R_{abcd} = Rbar(t_a, t_b, t_c, t_d) + h(B_ac, B_bd) - h(B_ad, B_bc).
+   Returns the list of defects over all index values. */
+gauss_defects(em, RH, B) := block([p:length(emb_get(em,'xi)), Rl, t:emb_get(em,'t), out:[]],
+  Rl : riemann_lower(emb_get(em,'g), riemann(emb_get(em,'G), emb_get(em,'xi))),
+  for a thru p do for b from a+1 thru p do for cc thru p do for dd from cc+1 thru p do
+    out : endcons(tgd_simp(Rl[a][b][cc][dd]
+       - emb_inner(em, t[a], emb_R_uab(em, RH, t[b], cc, dd))
+       - emb_inner(em, emb_B_vec(B,a,cc), emb_B_vec(B,b,dd))
+       + emb_inner(em, emb_B_vec(B,a,dd), emb_B_vec(B,b,cc))), out),
+  out)$
+
+/* Full commutator identity on the tangent vectors:
+     D_a B^k_{bc} - D_b B^k_{ac} = Rbar^k_{l m n} t_c^l t_a^m t_b^n - R^d_{c a b} t_d^k
+   Its normal projection is the Codazzi equation; its tangential projection
+   is the Gauss equation.  Returns the defect vectors over all index values. */
+codazzi_defects(em, RH, B) := block([t:emb_get(em,'t), p:length(emb_get(em,'xi)), Ri, out:[], rhs_],
+  Ri : riemann(emb_get(em,'G), emb_get(em,'xi)),
+  for a thru p do for b from a+1 thru p do for c thru p do (
+    rhs_ : emb_R_uab(em, RH, t[c], a, b) - sum(Ri[d][c][a][b]*t[d], d, 1, p),
+    out : endcons(map(tgd_simp, emb_cov_B(em, B, a, b, c) - emb_cov_B(em, B, b, a, c) - rhs_), out)),
+  out)$
+
+/* Codazzi proper: P (D_a B_bc - D_b B_ac) = P Rbar(t_c, t_a, t_b) */
+codazzi_normal_defects(em, RH, B, P) := block([t:emb_get(em,'t), p:length(emb_get(em,'xi)), out:[], v],
+  for a thru p do for b from a+1 thru p do for c thru p do (
+    v : emb_cov_B(em, B, a, b, c) - emb_cov_B(em, B, b, a, c) - emb_R_uab(em, RH, t[c], a, b),
+    out : endcons(map(tgd_simp, list_matrix_entries(P . transpose(matrix(v)))), out)),
+  out)$
+
+/* normal derivative of a normal field: P (D_a N) */
+emb_cov_normal(em, P, Nv, a) :=
+  map(tgd_simp, list_matrix_entries(P . transpose(matrix(emb_cov_vector(em, Nv, a)))))$
+
+/* Ricci equation for a normal field Nv:
+     [D^perp_a, D^perp_b] N^k = P^k_l Rbar^l_{p m n} N^p t_a^m t_b^n
+         + g^{cd} (h(N, B_bc) B^k_ad - h(N, B_ac) B^k_bd)                   */
+ricci_defect(em, RH, B, P, Nv, a, b) := block([gi:emb_get(em,'gi), p:length(emb_get(em,'xi)), comm, curv, ext],
+  comm : emb_cov_normal(em, P, emb_cov_normal(em, P, Nv, b), a)
+       - emb_cov_normal(em, P, emb_cov_normal(em, P, Nv, a), b),
+  curv : list_matrix_entries(P . transpose(matrix(emb_R_uab(em, RH, Nv, a, b)))),
+  ext : sum(sum(gi[c,d]*(emb_inner(em, Nv, emb_B_vec(B,b,c))*emb_B_vec(B,a,d)
+                       - emb_inner(em, Nv, emb_B_vec(B,a,c))*emb_B_vec(B,b,d)), d, 1, p), c, 1, p),
+  map(tgd_simp, comm - curv - ext))$

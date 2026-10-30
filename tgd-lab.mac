@@ -30,6 +30,7 @@ tgd_load("algebra/vielbein.mac")$
 tgd_load("geometry/cartan.mac")$
 tgd_load("algebra/spinor.mac")$
 tgd_load("embedding/induced.mac")$
+tgd_load("embedding/second-form.mac")$
 tgd_load("tgd/action.mac")$
 
 print("TGD Geometry Lab loaded from", tgd_root)$

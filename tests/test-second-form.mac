@@ -1,0 +1,126 @@
+section("embedding/second-form: B, H^k, Gauss, Codazzi, Ricci")$
+BEuc : ident(3)$
+RX : [X1, X2, X3]$
+null_vec(v) := every(lambda([e], is(tgd_simp(e) = 0)), v)$
+B_all_zero(B) := nested_zero_p(B)$
+/* sphere of radius rho in R^3, stereographic chart (no trigonometry) */
+assume(rho > 0)$
+Sden : 1+uu^2+vv^2$
+Ssph : rho*[2*uu/Sden, 2*vv/Sden, (uu^2+vv^2-1)/Sden]$
+emS : emb_setup(BEuc, RX, Ssph, [uu, vv])$
+BS : second_fundamental_form(emS)$
+HS : mean_curvature(emS, BS)$
+nS : Ssph/rho$
+gS : emb_get(emS, 'g)$
+check("sphere: g = 4 rho^2 delta / (1+u^2+v^2)^2", zero_matrix_p(gS - 4*rho^2/Sden^2*ident(2)))$
+check("sphere: B^k_ab = -g_ab n^k / rho",
+      every(lambda([p], every(lambda([k], is(tgd_simp(BS[k][p[1]][p[2]] + gS[p[1],p[2]]*nS[k]/rho) = 0)),
+                              [1,2,3])), create_list([i,j], i, [1,2], j, [1,2])))$
+check("sphere: H^k = -2 n^k / rho", null_vec(HS + 2*nS/rho))$
+check("sphere: B is normal to the surface",
+      every(lambda([a], every(lambda([b], every(lambda([c],
+        is(tgd_simp(emb_inner(emS, emb_get(emS,'t)[c], makelist(BS[k][a][b],k,1,3))) = 0)), [1,2])), [1,2])), [1,2]))$
+/* cylinder of radius rho, rational parametrisation of the circle */
+Cden : 1+uu^2$
+Scyl : [rho*(1-uu^2)/Cden, rho*2*uu/Cden, vv]$
+emC : emb_setup(BEuc, RX, Scyl, [uu, vv])$
+BC : second_fundamental_form(emC)$
+check("cylinder: H^k = -n^k / rho (one principal curvature)",
+      null_vec(mean_curvature(emC, BC) + [(1-uu^2)/Cden, 2*uu/Cden, 0]/rho))$
+/* same cylinder in curvilinear ambient coordinates: tests the ambient Gamma term */
+Pol : diag_matrix(1, rr^2, 1)$
+PX : [rr, pp, zz]$
+emP : emb_setup(Pol, PX, [rho, uu, vv], [uu, vv])$
+check("cylinder in polar ambient coordinates: H^r = -1/rho",
+      null_vec(mean_curvature(emP, second_fundamental_form(emP)) + [1/rho, 0, 0]))$
+/* indefinite signature: de Sitter hyperboloid in R^(1,2), n.n = -1 */
+Lor3 : diag_matrix(1, -1, -1)$
+Dden : 1+uu^2-vv^2$
+SdS : rho*[2*vv/Dden, 2*uu/Dden, (1-uu^2+vv^2)/Dden]$
+emD : emb_setup(Lor3, RX, SdS, [uu, vv])$
+BD : second_fundamental_form(emD)$
+check("hyperboloid in R^(1,2): H^k = -2 h^k / rho^2 * (n.n)",
+      null_vec(mean_curvature(emD, BD) - 2*SdS/rho^2))$
+/* minimal surfaces */
+Ehel : [vv*(1-uu^2)/Cden, vv*2*uu/Cden, 2*atan(uu)]$
+emH : emb_setup(BEuc, RX, Ehel, [uu, vv])$
+check("helicoid (ruled minimal surface): H^k = 0",
+      null_vec(mean_curvature(emH, second_fundamental_form(emH))))$
+/* CP_2: complex curves are minimal (Wirtinger), also non-geodesic ones */
+GC : cp2_metric()$
+emL : emb_setup(GC, cp2_X, [aa, bb, 0, 0], [aa, bb])$
+check("CP_1 = {z2 = 0} is totally geodesic: B = 0", B_all_zero(second_fundamental_form(emL)))$
+emQ : emb_setup(GC, cp2_X, [aa, bb, aa^2-bb^2, 2*aa*bb], [aa, bb])$
+BQ : second_fundamental_form(emQ)$
+check("conic z2 = z1^2 is not totally geodesic: B # 0", not B_all_zero(BQ))$
+check("conic z2 = z1^2 (complex curve) is minimal: H^k = 0",
+      null_vec(mean_curvature(emQ, BQ)))$
+/* minimal surface condition is a real test: a non-holomorphic graph fails */
+emR : emb_setup(GC, cp2_X, [aa, bb, aa^2, 0], [aa, bb])$
+check("non-holomorphic graph z2 = a^2 is not minimal",
+      not null_vec(mean_curvature(emR, second_fundamental_form(emR))))$
+/* normal frames */
+NF : normal_frame(emS)$
+check("Gram-Schmidt on the sphere: one unit normal, +-n",
+      is(length(NF) = 1) and null_vec(map(lambda([e], e^2), NF[1][1]) - map(lambda([e], e^2), nS)))$
+NFQ : normal_frame(emL)$
+check("Gram-Schmidt on CP_1: two orthonormal normals",
+      is(length(NFQ) = 2) and is(tgd_simp(emb_inner(emL, NFQ[1][1], NFQ[2][1])) = 0)
+      and is(tgd_simp(emb_inner(emL, NFQ[1][1], NFQ[1][1])) = NFQ[1][2]))$
+/* H = M^4 x CP_2 */
+GHm : H_metric()$
+xiC : [tt0, zz0, aa, bb]$
+emCS : emb_setup(GHm, H_X, [tt0, 0, 0, zz0, aa, bb, 0, 0], xiC)$
+check("cosmic string: B = 0 (totally geodesic)", B_all_zero(second_fundamental_form(emCS)))$
+/* massless extremal family: H^k depends on how the CP_2 part uses the
+   transverse plane, see docs/konventiot.md */
+xl : [uu, vv, xx, yy]$
+meX(s) := append([(uu+vv)/2, xx, yy, (vv-uu)/2], s)$
+meH(s) := block([em : emb_setup(GHm, H_X, meX(s), xl)], mean_curvature(em, second_fundamental_form(em)))$
+depends([a1, a2, a3, a4, a5, a6], uu)$
+check("ME s^k(u), four arbitrary functions: H^k = 0", null_vec(meH([a1, a2, a3, a4])))$
+check("ME holomorphic in w = x + i y with u-dependent coefficients: H^k = 0",
+      null_vec(meH([a1*xx-a2*yy+a3, a1*yy+a2*xx+a4, a5*(xx^2-yy^2), a5*2*xx*yy])))$
+check("ME anti-holomorphic in w: H^k = 0", null_vec(meH([xx, -yy, 0, 0])))$
+depends(Fx, xx)$
+check("s^1 = F(x) with one real transverse coordinate: H^k # 0 for generic F",
+      not null_vec(meH([Fx, 0, 0, 0])))$
+check("s^1 = x: H^k # 0, x is not an affine parameter",
+      not null_vec(meH([xx, 0, 0, 0])))$
+check("s^1 = tan(x), FS geodesic in affine parameter: H^k = 0",
+      is(map(trigsimp, meH([tan(xx), 0, 0, 0])) = makelist(0, i, 1, 8)))$
+/* Gauss, Codazzi and Ricci (#24) */
+check("Gauss: sphere in R^3",
+      null_vec(gauss_defects(emS, emb_ambient_riemann(BEuc, RX, Ssph), BS)))$
+check("Gauss: hyperboloid in R^(1,2)",
+      null_vec(gauss_defects(emD, emb_ambient_riemann(Lor3, RX, SdS), BD)))$
+RHQ : emb_ambient_riemann(GC, cp2_X, [aa, bb, aa^2-bb^2, 2*aa*bb])$
+check("Gauss: conic in CP_2 (curved ambient, B # 0)", null_vec(gauss_defects(emQ, RHQ, BQ)))$
+check("Gauss: the B term is needed on the conic",
+      not null_vec(gauss_defects(emQ, RHQ, BQ*0)))$
+RHL : emb_ambient_riemann(GC, cp2_X, [aa, bb, 0, 0])$
+check("Gauss: CP_1 in CP_2, K = 4", null_vec(gauss_defects(emL, RHL, second_fundamental_form(emL))))$
+BCS : second_fundamental_form(emCS)$
+RHC : emb_ambient_riemann(GHm, H_X, [tt0, 0, 0, zz0, aa, bb, 0, 0])$
+check("Gauss: cosmic string", null_vec(gauss_defects(emCS, RHC, BCS)))$
+check("full commutator identity: sphere",
+      every(null_vec, codazzi_defects(emS, emb_ambient_riemann(BEuc, RX, Ssph), BS)))$
+check("full commutator identity: conic in CP_2", every(null_vec, codazzi_defects(emQ, RHQ, BQ)))$
+check("full commutator identity: cosmic string", every(null_vec, codazzi_defects(emCS, RHC, BCS)))$
+PQ : normal_projector(emQ)$
+check("Codazzi: conic in CP_2", every(null_vec, codazzi_normal_defects(emQ, RHQ, BQ, PQ)))$
+check("Codazzi: cosmic string", every(null_vec, codazzi_normal_defects(emCS, RHC, BCS, normal_projector(emCS))))$
+/* Ricci: normal field from the projector, no square roots needed */
+R4 : ident(4)$
+XR4 : [X1, X2, X3, X4]$
+Sw : [aa, bb, aa^2-bb^2, 2*aa*bb]$
+emW : emb_setup(R4, XR4, Sw, [aa, bb])$
+PW : normal_projector(emW)$
+BW : second_fundamental_form(emW)$
+NW : makelist(PW[k,3], k, 1, 4)$
+check("normal field: h(N, t_a) = 0",
+      every(lambda([a], is(tgd_simp(emb_inner(emW, NW, emb_get(emW,'t)[a])) = 0)), [1,2]))$
+check("Ricci: w = z^2 in R^4", null_vec(ricci_defect(emW, emb_ambient_riemann(R4, XR4, Sw), BW, PW, NW, 1, 2)))$
+NL : makelist(normal_projector(emL)[k,3], k, 1, 4)$
+check("Ricci: CP_1 in CP_2, curvature of the normal bundle",
+      null_vec(ricci_defect(emL, RHL, second_fundamental_form(emL), normal_projector(emL), NL, 1, 2)))$

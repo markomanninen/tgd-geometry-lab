@@ -14,7 +14,7 @@ embedding_jacobian(Xemb, xi) := jacobian_matrix(Xemb, xi)$
 
 pullback_02(T, HX, Xemb, xi) := block([Jm, Ts],
   Jm : embedding_jacobian(Xemb, xi),
-  Ts : subst(map("=", HX, Xemb), T),
+  Ts : psubst(map("=", HX, Xemb), T),
   tgd_msimp(transpose(Jm) . Ts . Jm))$
 
 induced_metric(G, HX, Xemb, xi)      := pullback_02(G, HX, Xemb, xi)$
