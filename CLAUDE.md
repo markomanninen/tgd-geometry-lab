@@ -21,6 +21,13 @@ Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issue
 - Moduulit ladataan `tgd-lab.mac`:ssa; uusi moduuli lisätään sinne.
 - Colab-kirjat generoidaan: `python3 scripts/build_notebooks.py`, sitten aja ne (`jupyter nbconvert --execute --inplace`, `TGD_ROOT`, `CLIFFORD_PATH`, `RUN_LANYON=0`) ja tarkista, ettei tulosteisiin jää paikallisia polkuja.
 
+## Sivusto
+- Julkinen sivusto: <https://markomanninen.github.io/tgd-geometry-lab/> (MkDocs Material, MathJax). `docs/` on sen sisältö, ja `.github/workflows/pages.yml` julkaisee sen `main`-haarasta.
+- Paikallinen rakennus: `pip install -r docs/requirements.txt`, sitten `./scripts/build_site.sh --strict`. Rakennuksen on mentävä läpi virheittä.
+- Kirjoita dokumentit sivustolle: määritelmä omaan lauseeseensa ja tärkeä kaava omalle rivilleen (`$$`). Älä ahda kaavoja luettelokohtiin. Älä käytä taulukon kaavoissa `|`-merkkiä, vaan `\lvert`/`\rvert`.
+- Merkittävät tulokset kootaan `docs/tulokset.md`:hen.
+- **Explainerit:** julkaistava sisältö tulee hakemistoon `docs/explainerit/` (`index.md` ensin). Sivusto lisää Explainerit-osion navigaatioon automaattisesti, joten `mkdocs.yml`:ää ei tarvitse muuttaa.
+
 ## Seuranta
 - Commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
 

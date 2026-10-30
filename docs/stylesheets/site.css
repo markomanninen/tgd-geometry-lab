@@ -1,0 +1,57 @@
+/* Reading-first layout for long mathematical text */
+:root {
+  --md-primary-fg-color: #24405f;
+  --md-primary-fg-color--light: #3a5f87;
+  --md-primary-fg-color--dark: #182c42;
+  --md-accent-fg-color: #b4532a;
+  --md-text-font-family: "Source Serif 4", Georgia, serif;
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1c2a3a;
+  --md-primary-fg-color--light: #2c4058;
+  --md-primary-fg-color--dark: #131d29;
+  --md-accent-fg-color: #e39a6f;
+  --md-default-bg-color: #14181f;
+  --md-default-fg-color: hsla(215, 25%, 92%, 0.92);
+  --md-default-fg-color--light: hsla(215, 20%, 88%, 0.72);
+  --md-typeset-color: hsla(215, 25%, 92%, 0.88);
+  --md-typeset-a-color: #8fb8e0;
+}
+.md-typeset { font-size: 0.88rem; line-height: 1.8; }
+.md-typeset p { margin: 1.15em 0; }
+.md-typeset ul li, .md-typeset ol li { margin-bottom: 0.7em; }
+.md-content__inner { max-width: 38rem; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; box-sizing: content-box; }
+.md-typeset h1 { color: var(--md-default-fg-color); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.9em; }
+.md-typeset h2 { font-weight: 600; margin-top: 3em; margin-bottom: 1em; padding-bottom: 0.35em;
+                 border-bottom: 1px solid var(--md-default-fg-color--lightest); }
+.md-typeset h3 { font-weight: 600; margin-top: 2.4em; margin-bottom: 0.6em; }
+.md-nav, .md-tabs, .md-header, .md-search, .md-footer { font-family: "Inter", -apple-system, "Segoe UI", sans-serif; }
+
+/* tables fit the column and scroll on their own when they must */
+.md-typeset table:not([class]) { font-size: 0.82rem; line-height: 1.6; margin: 1.6em 0; }
+.md-typeset table:not([class]) th, .md-typeset table:not([class]) td { padding: 0.75em 1em; }
+.md-typeset table:not([class]) th { font-weight: 600; white-space: nowrap; }
+.md-typeset table:not([class]) td { vertical-align: top; }
+
+/* wide equations scroll instead of breaking the page */
+.md-typeset .arithmatex { overflow-x: auto; overflow-y: hidden; }
+mjx-container[display="true"] { margin: 1.7em 0 !important; padding: 0.15em 0; }
+.md-nav mjx-container, .md-typeset h1 mjx-container, .md-typeset h2 mjx-container { font-size: 96%; }
+
+.md-typeset blockquote { border-left-color: var(--md-accent-fg-color); color: inherit; }
+/* The default script sizes (71 %, 50 %) are hard to read at screen resolution */
+mjx-container { -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
+mjx-container [size="s"] { font-size: 82% !important; }
+mjx-container [size="ss"] { font-size: 68% !important; }
+mjx-container[display="true"] { font-size: 112% !important; }
+[data-md-color-scheme="slate"] mjx-container { color: hsla(215, 30%, 96%, 0.98); -webkit-text-stroke: 0.06px currentColor; }
+.md-nav mjx-container { font-size: 100% !important; -webkit-text-stroke: 0 !important; }
+
+.md-typeset .lead { font-size: 1.08em; line-height: 1.6; color: var(--md-default-fg-color--light); }
+
+/* notebook pages */
+.jupyter-wrapper .jp-OutputArea-output { overflow-x: auto; }
+[data-md-color-scheme="slate"] .jupyter-wrapper { --jp-layout-color0: transparent; --jp-cell-editor-background: #1b212b; }
+
+/* inline code next to math stays calm */
+.md-typeset code { font-size: 0.84em; padding: 0.1em 0.35em; }

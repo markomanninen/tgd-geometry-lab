@@ -4,6 +4,8 @@
 
 Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä Topological Geometrodynamics (TGD) -teorian geometrian tutkimiseen: $CP_2$:n Fubini–Study-geometria, differentiaalimuodot, yhteydet ja kaarevuus, upotusavaruus $H=M^4\times CP_2$, indusoitu geometria ja TGD:n toimintaperiaate.
 
+**Lue tulokset sivustolta: <https://markomanninen.github.io/tgd-geometry-lab/>**
+
 *Symbolic differential-geometry toolkit for Maxima aimed at Topological Geometrodynamics: CP₂ Fubini–Study geometry, differential forms, curvature, embeddings into M⁴×CP₂ and the Kähler/volume action. Every module is checked by automatic identity tests.*
 
 Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/LanyonScripts) Colab-esimerkkiä, ja Clifford-algebra tulee Dimiter Prodanovin [`clifford`](https://github.com/dprodanov/clifford)-paketista.
@@ -68,11 +70,14 @@ tgd/action.mac              L_K, L_V, J∧J, Euler–Lagrange
 tgd/field-equations.mac     kovariantit kenttäyhtälöt
 tests/                      automaattiset testit
 notebooks/                  Colab-kirjat + tgdlab.py (Maxima → LaTeX -silta)
-docs/                       kehityssuunnitelma ja konventiot
+docs/                       sivuston sisältö: tulokset, konventiot, suunnitelma, seuranta
 ```
 
 ## Dokumentaatio
 
+Dokumentit on tarkoitettu luettaviksi [sivustolla](https://markomanninen.github.io/tgd-geometry-lab/), jossa kaavat piirtyvät oikein. GitHubin esikatselu näyttää osan kaavoista väärin.
+
+- [Tulokset](docs/tulokset.md): mitä on laskettu ja mitkä kysymykset ovat auki.
 - [Kehityssuunnitelma](docs/kehityssuunnitelma.md): vaiheet I–VIII ja välitavoitteet M1–M8; jokainen vaihe on linkitetty issueensa.
 - [Konventiot](docs/konventiot.md): etumerkit, normalisoinnit ja indeksijärjestykset.
 - [Seuranta](docs/seuranta.md): tilataulukko, kriittinen polku ja työnkulku.

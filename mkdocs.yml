@@ -1,0 +1,89 @@
+site_name: TGD Geometry Lab
+site_description: Symbolinen differentiaaligeometria Topological Geometrodynamics -teorian tutkimiseen
+site_url: https://markomanninen.github.io/tgd-geometry-lab/
+repo_url: https://github.com/markomanninen/tgd-geometry-lab
+repo_name: tgd-geometry-lab
+edit_uri: edit/main/docs/
+copyright: MIT-lisenssi · Laskut tarkistetaan automaattisilla identiteettitesteillä
+
+exclude_docs: |
+  requirements.txt
+
+nav:
+  - Etusivu: index.md
+  - Tulokset: tulokset.md
+  - Konventiot: konventiot.md
+  - Kehityssuunnitelma: kehityssuunnitelma.md
+  - Seuranta: seuranta.md
+  - Laskentakirjat:
+      - Ympäristö ja testit: notebooks/01_ymparisto_ja_testit.ipynb
+      - CP2 ja Fubini–Study: notebooks/02_cp2_fubini_study.ipynb
+      - Upotus ja toiminta: notebooks/03_upotus_ja_toiminta.ipynb
+
+theme:
+  name: material
+  language: fi
+  font:
+    text: Source Serif 4
+    code: JetBrains Mono
+  icon:
+    logo: material/sphere
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Tumma teema
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Vaalea teema
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - content.code.copy
+
+hooks:
+  - scripts/site_hooks.py
+
+extra_css:
+  - stylesheets/site.css
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+  - pymdownx.highlight
+
+plugins:
+  - search:
+      lang: fi
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+      ignore_h1_titles: true
+      remove_tag_config:
+        remove_cell_tags:
+          - site-hidden
+
+validation:
+  links:
+    anchors: warn

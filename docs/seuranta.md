@@ -7,6 +7,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | Välitavoitteet ja edistyminen | <https://github.com/markomanninen/tgd-geometry-lab/milestones> |
 | Avoimet tehtävät | <https://github.com/markomanninen/tgd-geometry-lab/issues> |
 | Testiajot | <https://github.com/markomanninen/tgd-geometry-lab/actions> |
+| Julkinen sivusto | <https://markomanninen.github.io/tgd-geometry-lab/> |
 
 ## Tila 30.10.2026
 
@@ -66,6 +67,7 @@ Periaate: vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitkäsen artikkel
 3. Toteuta moduuli ja aja `./scripts/run_tests.sh ../clifford`.
 4. Commit-viestiin `Closes #N`, jolloin issue sulkeutuu ja milestone päivittyy.
 5. Päivitä tilamerkintä (✅/🟡/⬜) kehityssuunnitelmaan ja tarvittaessa Colab-kirja (`python3 scripts/build_notebooks.py`).
+6. Lisää merkittävät tulokset sivulle `docs/tulokset.md`. Sivusto päivittyy automaattisesti, kun muutos on `main`-haarassa.
 
 ## Projektitaulu (GitHub Projects)
 

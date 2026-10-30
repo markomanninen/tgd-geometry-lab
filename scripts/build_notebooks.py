@@ -31,6 +31,10 @@ def nb(cells):
                   "language_info": {"name": "python"}, "colab": {"provenance": []}}
     n.cells = [nbf.v4.new_markdown_cell(c[1]) if c[0] == "md" else nbf.v4.new_code_cell(c[1])
                for c in cells]
+    # the install cell is for Colab; the public site leaves it out
+    for cell in n.cells:
+        if cell.source == SETUP:
+            cell.metadata["tags"] = ["site-hidden"]
     return n
 
 # ---------------------------------------------------------------- 01
@@ -158,7 +162,7 @@ Konventio: $h_{{kl}} = m_{{kl}} - s_{{kl}}$, $m=\\mathrm{{diag}}(1,-1,-1,-1)$, $
 joten $H$:n signatuuri on $(1,7)$. Dynaamiset muuttujat ovat upotuskoordinaatit $h^k$ –
 indusoitua metriikkaa ja Kähler-muotoa ei varioida erikseen."""),
 ("code", SETUP),
-("md", "## Kanoninen $M^4$-upotus\n\n$h=(\\xi^0,\\ldots,\\xi^3,\\ \\text{vakiopiste } CP_2:ssa)$: indusoitu metriikka on Minkowski ja $J=0$ (tyhjiöekstremaali)."),
+("md", "## Kanoninen $M^4$-upotus\n\n$h=(\\xi^0,\\ldots,\\xi^3,\\ p)$, jossa $p$ on vakiopiste $CP_2$:ssa: indusoitu metriikka on Minkowski ja $J=0$ (tyhjiöekstremaali)."),
 ("code", f'''lab.show("{H} xi:[t0,t1,t2,t3]$ e0:[t0,t1,t2,t3,0,0,0,0]$", [
   ("g_{{\\\\alpha\\\\beta}}", "induced_metric(GH, H_X, e0, xi)"),
   ("J_{{\\\\alpha\\\\beta}}", "induced_kahler_form(JH, H_X, e0, xi)")])'''),
