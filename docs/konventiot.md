@@ -497,7 +497,7 @@ $$
 
 Ehdoista seuraa $u_{\alpha\beta}u^{\alpha\beta}=0$, jolloin poikittainen Hessen matriisi häviää ja tasopinnat $u=$ vakio ovat valon kaltaisia hypertasoja $k(u)\cdot m=g(u)$. Tason poikittainen koordinaatti on $\zeta=e(u)\cdot m$, ja $\Box\zeta=2e'\cdot\nabla u$. Tämä häviää vain, jos $k'\propto k$, eli hypertasot ovat yhdensuuntaiset. Rakenne on silloin litteä rakenne Poincarén muunnosta ja uudelleenparametrisointia $(u,w)\to(g(u),F(u,w))$ vaille.
 
-Todistus on tehty käsin oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Oletus on se, joka tarvitaan holomorfisen funktion supistuksen $g^{\alpha\beta}\partial_\alpha\xi^k\partial_\beta\xi^l=0$ häviämiseen. Pitkäsen yleinen muoto (kaava 4.19) sallii myös ristitermit, joita tämä tulos ei kata.
+Todistus on Clauden päättely oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Oletus on se, joka tarvitaan holomorfisen funktion supistuksen $g^{\alpha\beta}\partial_\alpha\xi^k\partial_\beta\xi^l=0$ häviämiseen. Pitkäsen yleinen muoto (kaava 4.19) sallii myös ristitermit, joita tämä tulos ei kata.
 
 Jos rajoitutaan funktioihin $F(w)$, luokka on paljon laajempi. Oletuksesta seuraa, että tasopinnat $u=$ vakio ovat täysin napaisia valon kaltaisia hyperpintoja. Minkowskin avaruudessa niitä ovat vain hypertasot ja valokartiot. Rakenne saadaan siis valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta, eli
 
