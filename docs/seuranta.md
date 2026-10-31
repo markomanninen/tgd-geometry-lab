@@ -20,9 +20,9 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
 | M7 Toiminta | 6/6 ✅ | – |
-| M8 Ratkaisut | 2/3 | #35:n jatkokysymykset Lorentz 4-voimasta ja H-J-rakenteista |
+| M8 Ratkaisut | 2/3 | #35:n kaksi jatkokysymystä Kähler-osasta ja $u$:n roolista |
 
-Kaikki 316 testiä menevät läpi.
+Kaikki 329 testiä menevät läpi.
 
 Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Seuraavat kysymykset ovat valmiina, ja niitä ei ole vielä lähetetty.
 
@@ -54,7 +54,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 | Issue | Kysymys |
 |---|---|
-| #35 | Millä pinnoilla Lorentz 4-voima häviää, kun litteässä rakenteessa se vaatii poikittaisen virran häviämisen? Kuuluuko $u$-riippuvuus H-H-pintoihin muissa kuin litteässä rakenteessa? Mitä kertoimien alue $c_V<2c_K$ tarkoittaa kosmisen säikeen poikki? |
+| #35 | Mitä seuraa siitä, että Kähler-osa häviää vain osalla H-H-pinnoista? Mikä on $u$:n rooli kausaalitimantissa, kun $u$-riippuvat polynomit ovat minimipintoja vain litteässä rakenteessa? |
 
 ### Markolle
 

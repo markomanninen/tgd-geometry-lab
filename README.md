@@ -21,7 +21,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
 | 04 · Numeriikka ja kuvat | yhtälön tyyppi kertoimien funktiona, Kähler-vuo ja kentät ratkaisulla, ja numeriikka tarkistetaan analyyttisiä arvoja vasten | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/04_numeriikka_ja_kuvat.ipynb) |
 
-## Mitä on varmistettu (316 testiä)
+## Mitä on varmistettu (329 testiä)
 
 | Alue | Tarkistukset |
 |---|---|
@@ -103,7 +103,7 @@ Dokumentit on tarkoitettu luettaviksi [sivustolla](https://markomanninen.github.
 | [M7 Toiminta](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 6/6 |
 | [M8 Ratkaisut](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | 2/3 |
 
-Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis, ja Matti Pitkäsen linjaukset on kirjattu konventioihin. Avoimet jatkokysymykset Lorentz 4-voimasta ja Hamilton–Jacobi-rakenteista ovat issuessa #35.
+Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis, ja Matti Pitkäsen linjaukset on kirjattu konventioihin. Avoimet jatkokysymykset Kähler-osasta ja $u$:n roolista ovat issuessa #35.
 
 Järjestelmä ei todista TGD:tä fysikaalisesti oikeaksi. Sen tarkoitus on tarkistaa johdoksia ja tutkia erikoistapauksia luotettavasti.
 

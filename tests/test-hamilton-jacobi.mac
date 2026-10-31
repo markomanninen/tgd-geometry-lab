@@ -125,3 +125,58 @@ check("flat H-J: {u, w wbar} = 0",
       is(Gamuww(emb_setup(HGh, H_X, holo_surface(lc_m4, 0, 0), lc_chart)) = 0))$
 check("spherical H-J: {u, w wbar} # 0, the transverse metric depends on v",
       is(Gamuww(emb_setup(sj_H_metric(), sj_H_X, sj_lc_surface(0, 0), sj_chart)) # 0))$
+/* ---------- where the two Kahler parts vanish separately ---------- */
+hj_null(v) := every(lambda([e], is(tgd_simp(e) = 0)), v)$
+/* J(M^4) is transverse in Pitkanen's form, on the spherical structure the area form of S^2 */
+HJs2 : block([m : zeromatrix(8, 8)], m[3,4] : sj_rho, m[4,3] : -sj_rho, m)$
+SHh : sj_H_metric()$
+sj2_em(z1, z2) := emb_setup(SHh, sj_H_X, sj_surface(z1, z2), sj_X)$
+sj2_E(z1, z2, HJ) := tgd_field_equations(sj2_em(z1, z2), HJ, 1, 0)$
+check("spherical H-J, line: the M^4 and CP_2 Kahler parts vanish separately",
+      hj_null(sj2_E(sj_w, 0, HJs2)) and hj_null(sj2_E(sj_w, 0, HJh)))$
+check("spherical H-J, conic: the M^4 and CP_2 Kahler parts vanish separately",
+      hj_null(sj2_E(sqrt(2)*sj_w, sj_w^2, HJs2)) and hj_null(sj2_E(sqrt(2)*sj_w, sj_w^2, HJh)))$
+check("spherical H-J, xi1 = w^2 and 2 w: neither vanishes with the area form",
+      not hj_null(sj2_E(sj_w^2, 0, HJs2)) and not hj_null(sj2_E(2*sj_w, 0, HJs2)))$
+depends([au2, bu2], uu)$
+hj_flatE(z1, HJ) := tgd_field_equations(hj_em(z1, 0), HJ, 1, 0)$
+check("flat H-J, z1 = a(u) + i b(u): both Kahler parts vanish separately",
+      hj_null(hj_flatE(au2 + %i*bu2, HJh)) and hj_null(hj_flatE(au2 + %i*bu2, H_kahler_m4t())))$
+/* the line and the conic carry the flux of CP_1 through every sphere */
+emL2 : sj2_em(sj_w, 0)$
+JL2 : induced_kahler_form(HJh, sj_H_X, emb_get(emL2, 'h), sj_X)$
+JC2 : induced_kahler_form(HJh, sj_H_X, emb_get(sj2_em(sqrt(2)*sj_w, sj_w^2), 'h), sj_X)$
+check("spherical H-J: J = rho/4 on the line, rho/2 on the conic, flux pi and 2 pi",
+      is(tgd_simp(JL2[3,4] - sj_rho/4) = 0) and is(tgd_simp(JC2[3,4] - sj_rho/2) = 0)
+      and is(integrate(4/(1 + rho^2)^2*2*%pi*rho, rho, 0, inf)/4 = %pi))$
+check("spherical H-J, line: J_ab/g_ab = 1/(4 r^2 + 1), a field that falls like 1/r^2",
+      is(tgd_simp(JL2[3,4]/emb_get(emL2, 'g)[3,3] + 1/(4*hr^2 + 1)) = 0))$
+check("spherical H-J, line: dt^2 - dr^2 - (r^2 + 1/4) dOmega^2, smooth at r = 0",
+      is(tgd_simp(emb_get(emL2, 'g)
+         - diag_matrix(1, -1, -(hr^2 + 1/4)*sj_rho, -(hr^2 + 1/4)*sj_rho)) = zeromatrix(4, 4)))$
+/* ---------- the H-J structures of the functions F(w): a vertex on any curve ---------- */
+/* Level sets of u are the light cones of the points z(tau), hr is the distance along the
+   ray and w the direction of the ray.  A totally umbilic null hypersurface of M^4 is a cone
+   or a hyperplane, so these and the flat structure are all with mutually null gradients. */
+declare(tau0, real)$
+depends([hc0, hc1, hc2, hc3], tau0)$
+sq0 : 1 + sa^2 + sb^2$
+nv0 : [2*sa/sq0, 2*sb/sq0, (sa^2 + sb^2 - 1)/sq0]$
+cone_em(z, f1, f2) := emb_setup(HGh, H_X,
+  append([z[1] + hr, z[2] + hr*nv0[1], z[3] + hr*nv0[2], z[4] + hr*nv0[3]], cp2_real(f1, f2)),
+  [tau0, hr, sa, sb])$
+cone_V(z, f1, f2) := tgd_field_equations(cone_em(z, f1, f2), HJh, 0, 1)$
+cone_K(z, f1, f2) := tgd_field_equations(cone_em(z, f1, f2), HJh, 1, 0)$
+hcurve : [hc0, hc1, hc2, hc3]$
+accel : [tau0, 0, 0, tau0^2/4]$
+check("cone with a vertex on any curve z(tau): xi1 = w is minimal", hj_null(cone_V(hcurve, sj_w, 0)))$
+check("cone with a vertex on any curve z(tau): xi1 = w^2 is minimal", hj_null(cone_V(hcurve, sj_w^2, 0)))$
+check("control: xi1 = tau + w is not minimal on an accelerated cone",
+      not hj_null(cone_V(accel, tau0 + sj_w, 0)))$
+check("control: a non-holomorphic xi1 is not minimal on an accelerated cone",
+      not hj_null(cone_V(accel, conjugate(sj_w)^2 + sj_w, 0)))$
+/* the boost of the static line: the direction changes by the Moebius map w -> w/sqrt(3) */
+check("cone with velocity 1/2: the boosted line xi1 = w/sqrt(3) has a vanishing Kahler part",
+      hj_null(cone_K([tau0, 0, 0, tau0/2], sj_w/sqrt(3), 0)))$
+check("cone with acceleration: the Kahler part of the line does not vanish",
+      not hj_null(cone_K(accel, sj_w, 0)))$

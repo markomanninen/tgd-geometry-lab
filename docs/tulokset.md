@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 316 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 329 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -134,7 +134,7 @@ $$
 (1-\varepsilon)^2.
 $$
 
-Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Pitkäsen linjaus on kuitenkin, että $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Koska kummankin muodon Kähler-osa on testatuilla pinnoilla sama, kokonaisosa on kertoimien summa kerrottuna tällä osalla. Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä. Tämä on [jatkokysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Pitkäsen linjaus on kuitenkin, että $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Koska kummankin muodon Kähler-osa on testatuilla pinnoilla sama, kokonaisosa on kertoimien summa kerrottuna tällä osalla. Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä näillä pinnoilla. Tämä kuuluu [jatkokysymykseen Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
 **Pallomainen rakenne.** Koordinaateissa $t\pm r$ ja $w$ pallolla $S^2$ tilanne on toinen, koska poikittainen metriikka on nyt kaareva. Pelkällä $CP_2$:n Kähler-muodolla Kähler-osa häviää, kun vetäisy on verrannollinen pallon metriikkaan. Yksinkertaisin esimerkki on suora
 
@@ -148,7 +148,7 @@ $$
 \xi^1=\sqrt2\,w,\qquad\xi^2=w^2,
 $$
 
-jolla sama kerroin on $r^2+\tfrac12$. Calabin luokittelun mukaan muita ei ole, ja vertailupinnat $\xi^1=w^2$ ja $\xi^1=2w$ ovat vain minimipintoja. Näiden kahden pinnan $M^4$-projektio on neliulotteinen ja ne ovat molempien termien ekstremaaleja kaikilla kertoimilla.
+jolla sama kerroin on $r^2+\tfrac12$. Calabin luokittelun mukaan muita ei ole, ja vertailupinnat $\xi^1=w^2$ ja $\xi^1=2w$ ovat vain minimipintoja. Näiden kahden pinnan $M^4$-projektio on neliulotteinen ja ne ovat molempien termien ekstremaaleja kaikilla kertoimilla. Ne kantavat Kähler-vuon $\pi$ ja $2\pi$ jokaisen pallon läpi, ja niillä $M^4$:n ja $CP_2$:n Kähler-osat häviävät erikseen, kun $J(M^4)$ on pallon pintamuoto. Suoran metriikka on sileä kohdassa $r=0$, jossa pallon säde on $1/2$.
 
 **Valon suuntainen riippuvuus pallomaisessa rakenteessa.** Litteässä rakenteessa $u$-riippuvuus säilyttää minimipintaominaisuuden, mutta pallomaisessa rakenteessa ei. Pinnat $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora $\xi^1=e^{ia(u)}w$ eivät ole siellä minimipintoja. Syy on tuttu aaltoyhtälöstä. Pallomainen aalto ei ole $f(t-r)$ vaan $f(t-r)/r$, koska valonsäteiden kimppu laajenee ja
 
@@ -158,7 +158,9 @@ $$
 
 Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on $\{k\,w\bar w\}=0$, ja pallomaisessa rakenteessa juuri tämä ei päde, koska poikittainen metriikka riippuu $v$:stä.
 
-Tulos on yleinen. Jos $u$:n ja $w$:n gradientit ovat keskenään valon kaltaisia, kaikki funktiot $F(u,w)$ ovat harmonisia täsmälleen, kun $\Box u=\Box w=0$. Bochnerin kaavan mukaan tasopinnat $u=$ vakio ovat silloin valon kaltaisia hypertasoja, ja ehto $\Box w=0$ pakottaa ne yhdensuuntaisiksi. Tällaisista rakenteista ainoa on siis litteä rakenne muunnoksia vaille. Funktioille $F(w)$ rakenteita on paljon enemmän, ja ne liittyvät leikkauksettomiin valonsädekongruensseihin. Yksityiskohdat ovat [konventioissa](konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
+Tulos on yleinen. Jos $u$:n ja $w$:n gradientit ovat keskenään valon kaltaisia, kaikki funktiot $F(u,w)$ ovat harmonisia täsmälleen, kun $\Box u=\Box w=0$. Bochnerin kaavan mukaan tasopinnat $u=$ vakio ovat silloin valon kaltaisia hypertasoja, ja ehto $\Box w=0$ pakottaa ne yhdensuuntaisiksi. Tällaisista rakenteista ainoa on siis litteä rakenne muunnoksia vaille.
+
+**Kuinka paljon H-J-rakenteita on.** Funktioille $F(w)$ rakenteita on paljon enemmän. Keskenään valon kaltaisilla gradienteilla ne saadaan valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta. Tilavuusosa häviää symbolisesti mielivaltaisella radalla. Kähler-osa on tiukempi, sillä se häviää suoralle ja kartioleikkaukselle levossa olevalla kärjellä ja niiden Lorentz-muunnoksille mutta ei testatulla kiihtyvällä kärjellä. Yksityiskohdat ovat [konventioissa](konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
 
 ## Säilymislait
 
@@ -184,7 +186,7 @@ Linearisoidut kenttäyhtälöt on kirjoitettu LanyonScriptsin `calcev`-tyyliin m
 
 Kaksi riviä kannattaa nostaa esiin.
 
-Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin tällä taustalla. Pitkäsen etumerkkisäännöistä seuraa $c_K>0$ ja $c_V>0$ ([konventiot](konventiot.md#kertoimien-etumerkki)), joten nopeus jää valon nopeuden alle ja $0<s^2<1$, kun $c_V>2c_K$. Jos magneettinen osa on suurempi, eli $c_V<2c_K$, kaava antaa $s^2<0$. Pitkäsen mukaan magneettinen osa on kosmisilla säikeillä suuri, joten tämän alueen merkitys on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin tällä taustalla. Pitkäsen etumerkkisäännöistä seuraa $c_K>0$ ja $c_V>0$ ([konventiot](konventiot.md#kertoimien-etumerkki)), joten nopeus jää valon nopeuden alle ja $0<s^2<1$, kun $c_V>2c_K$. Jos magneettinen osa on suurempi, eli $c_V<2c_K$, kaava antaa $s^2<0$, jolloin häiriö kasvaa säikeen poikki. Pitkäsen mukaan magneettinen osa on kosmisilla säikeillä suuri ja säikeet ovat epästabiileja $M^4$-projektion paksuuntumiselle. Tulos näyttää sopivan tähän, mutta se koskee vain yhtälön pääosaa.
 
 Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut ja ME-taustalla heikosti hyperbolinen. Tämä on sopusoinnussa tunnetun Kähler-toiminnan tyhjiödegeneraation kanssa, mutta tulkinta on Pitkäsen.
 
@@ -194,8 +196,7 @@ Kuvat ovat kirjassa [Numeriikka ja kuvat](notebooks/04_numeriikka_ja_kuvat.ipynb
 
 ## Avoimet kysymykset
 
-Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon, tilavuustermin merkityksen kenttäyhtälöille, $J(M^4)$:n paikan erillisenä terminä ja kertoimien etumerkit. Laskennan perusteella jäljellä on kolme kysymystä ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
+Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon, tilavuustermin merkityksen kenttäyhtälöille, $J(M^4)$:n paikan erillisenä terminä ja kertoimien etumerkit. Laskennan perusteella jäljellä on kaksi kysymystä ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
 
-- Millä pinnoilla Lorentz 4-voima häviää, kun litteässä rakenteessa se vaatii poikittaisen virran häviämisen?
-- Kuuluuko $u$-riippuvuus H-H-pintoihin muissa kuin litteässä rakenteessa, kun $u=t-r$ ei toteuta ehtoa $\{k\,w\bar w\}=0$?
-- Kilpailevatko magneettinen osa ja tilavuusosa putken paksuuden kautta, ja mitä alue $c_V<2c_K$ tarkoittaa kosmisen säikeen poikki?
+- Mitä seuraa siitä, että Kähler-osa häviää vain osalla H-H-pinnoista? Rajautuvatko ratkaisut näihin pintoihin, vai tuoko jokin muu mekanismi loput pinnat mukaan?
+- Mikä on $u$:n rooli kausaalitimantissa, kun $u$-riippuvat polynomit ovat minimipintoja vain litteässä rakenteessa?

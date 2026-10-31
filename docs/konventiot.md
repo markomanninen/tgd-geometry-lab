@@ -186,7 +186,7 @@ $$
 T(A)=c_VA+\frac{2c_K\Phi^2}{A}.
 $$
 
-Tällä on minimi kohdassa $A^2=2c_K\Phi^2/c_V$ täsmälleen silloin, kun termit ovat samanmerkkisiä. Tämä on yksinkertaistettu malli, ja vastaavan tulkinnan vahvistaminen on kysymys issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Tällä on minimi kohdassa $A^2=2c_K\Phi^2/c_V$ täsmälleen silloin, kun termit ovat samanmerkkisiä. Tämä on yksinkertaistettu malli, mutta sama ajatus on Pitkäsen teksteissä, joiden mukaan tilavuusenergian kasvu johtaa energiaminimiin jollakin vuoputken paksuudella.
 
 ### Kenttäyhtälöt
 
@@ -433,6 +433,8 @@ $$
 
 Kahdella viimeisellä kaavalla ei ole oletuksia funktioista $f^k$, joten ne koskevat koko pintaluokkaa.
 
+Pitkäsen artikkelissa perustelu on, että Kähler-muodon variaatio antaa valon kaltaisen virran ja valon kaltaisen vektorin supistuksen, joka häviää ([Martin1](https://tgdtheory.fi/public_html/articles/Martin1.pdf)). Lasku tukee tätä askelta. Jos virta on muotoa $j\propto\partial_v$, supistukset häviävät, koska $J_{v\alpha}=0$ ja $\partial_vh^l=0$ kaikilla $CP_2$-koordinaateilla. Pinnoilla, joilla on $w$-riippuvuus, virralla on kuitenkin myös poikittainen osa, joten oletus ei toteudu niillä.
+
 Vakio $\omega$ tarkoittaisi litteää holomorfista kuvausta kompleksiviivalta $CP_2$:een. Silloin
 
 $$
@@ -455,9 +457,19 @@ $$
 \left(c_{CP_2}+c_{M^4}\right)E_k(J_{CP_2}).
 $$
 
-Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä. Pitkäsen käsitys on, että $M^4$:n ja $CP_2$:n osat häviävät erikseen. Testatuilla pinnoilla kumpikaan ei häviä, ja tämä on kysymys issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä näillä pinnoilla.
+
+Pitkäsen käsitys on, että $M^4$:n ja $CP_2$:n osat häviävät erikseen. Laskennassa näin käy kahdessa tapauksessa, jotka ovat litteän rakenteen pinnat $f(u)$ ja pallomaisen rakenteen suora ja kartioleikkaus. Pallomaisessa rakenteessa poikittaiseksi muodoksi on otettu pallon pintamuoto $\rho\,da\wedge db$, joka on suljettu ja kantaa $M^4$:n monopolivarauksen. Muodon valinta on oletus, sillä lähteet sanovat vain, että $J(M^4)$ on poikittainen.
 
 Pallomaisessa rakenteessa ehto on toinen. Vetäisyn on oltava verrannollinen pallon metriikkaan, ja Calabin luokittelun mukaan vain suora ja kartioleikkaus toteuttavat tämän. Niillä $j=0$ ja kumpikin osa häviää.
+
+Suoralla indusoitu metriikka on
+
+$$
+ds^2=dt^2-dr^2-\left(r^2+\tfrac14\right)d\Omega^2.
+$$
+
+Metriikka on sileä kohdassa $r=0$, jossa pallon säde on $1/2$. Kähler-vuo on suoralla $\pi$ ja kartioleikkauksella $2\pi$ jokaisen pallon läpi, ja suoralla $J_{ab}/\lvert g_{ab}\rvert=1/(4r^2+1)$. Vuo on homologisesti epätriviaali, joten kyse on monopolivuosta. Ovatko nämä pinnat Pitkäsen tarkoittamia monopoliratkaisuja, on hänen arvioitavansa.
 
 Pallomaisessa rakenteessa $u=t-r$ ei toimi samalla tavalla kuin litteässä. Valonsäteiden kimppu laajenee, joten
 
@@ -485,4 +497,14 @@ $$
 
 Ehdoista seuraa $u_{\alpha\beta}u^{\alpha\beta}=0$, jolloin poikittainen Hessen matriisi häviää ja tasopinnat $u=$ vakio ovat valon kaltaisia hypertasoja $k(u)\cdot m=g(u)$. Tason poikittainen koordinaatti on $\zeta=e(u)\cdot m$, ja $\Box\zeta=2e'\cdot\nabla u$. Tämä häviää vain, jos $k'\propto k$, eli hypertasot ovat yhdensuuntaiset. Rakenne on silloin litteä rakenne Poincarén muunnosta ja uudelleenparametrisointia $(u,w)\to(g(u),F(u,w))$ vaille.
 
-Todistus on tehty käsin oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Jos rajoitutaan funktioihin $F(w)$, luokka on paljon laajempi. Bairdin ja Woodin tulosten mukaan kompleksiset ratkaisut ehdoille $\Box y=0$ ja $(\nabla y)^2=0$ vastaavat leikkauksettomia valonsädekongruensseja ([arXiv:dg-ga/9603005](https://arxiv.org/abs/dg-ga/9603005)), ja Kerrin lause kuvaa nämä kongruenssit kompleksianalyyttisina pintoina twistoriavaruudessa. Pallomaisen rakenteen $w$ on tällainen funktio. Tämä on vihje Pitkäsen kysymykseen H-J-rakenteiden määrästä, eikä sitä ole vielä testattu tässä projektissa.
+Todistus on tehty käsin oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Oletus on se, joka tarvitaan holomorfisen funktion supistuksen $g^{\alpha\beta}\partial_\alpha\xi^k\partial_\beta\xi^l=0$ häviämiseen. Pitkäsen yleinen muoto (kaava 4.19) sallii myös ristitermit, joita tämä tulos ei kata.
+
+Jos rajoitutaan funktioihin $F(w)$, luokka on paljon laajempi. Oletuksesta seuraa, että tasopinnat $u=$ vakio ovat täysin napaisia valon kaltaisia hyperpintoja. Minkowskin avaruudessa niitä ovat vain hypertasot ja valokartiot. Rakenne saadaan siis valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta, eli
+
+$$
+m^\mu=z^\mu(\tau)+r\left(1,\vec n(w)\right).
+$$
+
+Tilavuusosa häviää pinnoilla $\xi^k=f^k(w)$ symbolisesti mielivaltaisella radalla $z^\mu(\tau)$, ja hypertasot ovat tapaus, jossa kärki on äärettömyydessä. Tämä vastaa kysymystä H-J-rakenteiden määrästä. Tällä oletuksella rakenteet ovat yhden muuttujan funktioiden perhe. Sama luokka näkyy kirjallisuudessa, jossa ehtojen $\Box y=0$ ja $(\nabla y)^2=0$ ratkaisut vastaavat leikkauksettomia valonsädekongruensseja ([Baird ja Wood](https://arxiv.org/abs/dg-ga/9603005)). Kierteiset kongruenssit, kuten Kerrin kongruenssi, jäävät ulkopuolelle, koska niillä ei ole reaalista koordinaattia $u$.
+
+Kähler-osa on tiukempi. Tasaisesti liikkuvalla kärjellä se häviää suoran Lorentz-muunnetulle versiolle, mutta kiihtyvällä kärjellä testattu suora ei toteuta sitä.
