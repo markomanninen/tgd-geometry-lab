@@ -149,7 +149,15 @@ $$
 
 Tämä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$. Manninen (2024, s. 34) kirjoittaa kertoimeksi $1/(2\alpha_K)$, mikä antaisi eri arvon. Kirjan kaava kannattaa tarkistaa.
 
-Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. M⁴:n Kähler-osan vaikutus on häviävän pieni (~10⁻¹⁷ elektronille), joten se jätetään toistaiseksi pois.
+Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. Laskut käyttävät oletuksena pelkkää $CP_2$:n Kähler-muotoa, koska $M^4$:n Kähler-osan vaikutus on arvion mukaan häviävän pieni (~10⁻¹⁷ elektronille). Sillä on kuitenkin rakenteellinen rooli, joka on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
+
+### Kertoimien etumerkki
+
+Matti Pitkäsen linjaus 31.10.2026 ([#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27)) on, että etumerkki ei näy H-H-pintojen eikä Lagrangen minimipintojen kenttäyhtälöissä. Etumerkki vaikuttaa kosmologisen vakion arvoon ja Kähler-funktion eksponenttiin, joka määrittelee WCW:n tyhjiöfunktionaalin. Eksponentissa tilavuusosan on oltava negatiivinen, jotta eksponentti menee nollaan suurilla tilavuuksilla.
+
+Kähler-termissä sähköinen osa on negatiivinen ja magneettinen osa positiivinen, joten magneettinen osa kilpailee tilavuusosan kanssa. Tilavuuskerroin pienenee pitkissä skaaloissa kuten p-adisen pituusskaalan käänteisneliö. Twistorinostossa $1/\alpha_K$ on 6-ulotteisen Kähler-toiminnan yhteinen kerroin, joten se ei vaikuta kenttäyhtälöihin. Kompleksisen $\alpha_K$:n vaihetekijän tulkinta on avoin.
+
+Koodissa $c_K$ ja $c_V$ pysyvät symbolisina, joten mikään testi ei kiinnitä etumerkkiä.
 
 ### Kenttäyhtälöt
 
@@ -280,7 +288,7 @@ $$
 
 ### Kähler-kytkentä
 
-$CP_2$ ei ole spin-monisto. TGD:ssä spinoriyhteys kytketään Kähler-potentiaaliin kertoimella $k=1$ kvarkeille ja $k=3$ leptoneille (Pitkänen). Tällä normalisoinnilla testit vahvistavat kolme asiaa.
+$CP_2$ ei ole spin-monisto. TGD:ssä spinoriyhteys kytketään Kähler-potentiaaliin kertoimella $k=1$ kvarkeille ja $k=3$ leptoneille (Pitkänen). Sektorit vastaavat $H$-spinorien eri kätisyyksiä, ja Pitkäsen viestissä 31.10.2026 kvarkkien kerroin esiintyy myös muodossa $k=-1$. Vuon kokonaislukuisuus on testattu molemmilla merkeillä. Tällä normalisoinnilla testit vahvistavat kolme asiaa.
 
 **Kovariantisti vakio spinori.** Unitaarisessa kehyksessä $S^+$-lohkon yhteys on $\mathrm{diag}(3iA,-3iA)$, joten $k=3$ antaa kovariantisti vakion spinorin $\nu_R$.
 
@@ -324,7 +332,7 @@ Kosmisessa säikeessä $X^2\times Y^2$ osa $X^2\subset M^4$ on minimipinta, ja $
 
 Tyhjiöekstremaalissa $M^4\times Y^2$ osa $Y^2$ on Lagrangen pinta, jolla $J=0$. Lisäksi on CP₂-tyyppisiä tyhjiöekstremaaleja.
 
-Tunnetuille ratkaisuille Kähler-virta $j^\alpha=D_\beta J^{\alpha\beta}$ häviää tai on valon kaltainen.
+Tunnetuille ratkaisuille Kähler-virta $j^\alpha=D_\beta J^{\alpha\beta}$ häviää tai on valon kaltainen. Pitkäsen ehdotus yleiseksi ominaisuudeksi on Lorentz-voiman häviäminen, $j\times B=0$.
 
 ### Massattomat ekstremaalit
 
@@ -347,4 +355,55 @@ Taulukossa on laskettu tilanne. Se perustuu testeihin `tests/test-field-equation
 
 Toisella rivillä $T^{\alpha\beta}\propto k^\alpha k^\beta$ ja $j^\alpha\propto k^\alpha$. Kolmas rivi on geodeesi, jonka suunta kääntyy $u$:n mukana, ja sillä $J_{ux}\ne0$ ja $j^v\ne0$.
 
-Yleinen $f^k(u,v)$ on siis Kähler-toiminnan ekstremaali mutta ei minimipinta. Se, mikä näistä on ME:n määritelmä toiminnalle $S_K+S_V$, on kysymys Matille ([#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28)).
+Yleinen $f^k(u,v)$ on siis Kähler-toiminnan ekstremaali mutta ei minimipinta. Taulukon "0" tarkoittaa, että kyseisen termin Euler–Lagrange-osa häviää, ei sitä, että toiminnan arvo olisi nolla.
+
+Matti Pitkäsen linjaus 31.10.2026 ([#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28)) on, että ansatsi $s^k=f^k(u,v)$ on johdettu puhtaalle Kähler-toiminnalle. Toiminnalle $S_K+S_V$ sen korvaa holografia = holomorfia -ansatsi, jossa holomorfiasta seuraa minimipintaominaisuus.
+
+### Holografia = holomorfia
+
+Pitkäsen muotoilussa (viesti 31.10.2026 ja artikkeli [*Holography = holomorphy vision: analogues of elliptic curves and partonic orbits*](https://tgdtheory.fi/public_html/articles/Weierstrass.pdf)) avaruusaikapinta on kahden kompleksisen funktion yhteinen nollajoukko,
+
+$$
+f_1(\xi^1,\xi^2,u,w)=0,\qquad f_2(\xi^1,\xi^2,u,w)=0.
+$$
+
+Funktiot ovat analyyttisiä argumenteissaan eivätkä riipu liittokoordinaateista $\bar\xi^k$, $\bar w$ eivätkä toisesta valokartiokoordinaatista $v$. Ne voivat olla polynomeja, rationaalifunktioita tai yleisiä analyyttisiä funktioita, ja jokainen juuri on pinnan yksi lehti. Olennaista on, että $M^4$-projektio on neliulotteinen.
+
+Rakenne edellyttää Hamilton–Jacobi-rakennetta, joka on $M^4$:n integroituva jako pitkittäiseen ja poikittaiseen tangenttitasoon. Pitkäsen kaksi perustapausta on lueteltu alla.
+
+- Litteässä rakenteessa koordinaatit ovat $t\pm z$ ja tason kompleksikoordinaatti $w$.
+- Pallomaisessa rakenteessa koordinaatit ovat $t\pm r$ ja pallon $S^2$ stereografinen koordinaatti $w$.
+
+Lagrangen minimipinnat eivät kuulu tähän muotoon, vaan ne ovat oma ratkaisutyyppinsä, jonka kompleksirakenne ei indusoidu $H$:sta. Pitkäsen mukaan molempia tarvitaan. Myöskään $CP_2$-tyyppiset ekstremaalit ja niiden euklidiset deformaatiot eivät palaudu muotoon $(f_1,f_2)=(0,0)$, vaikka ne ovat holomorfisia.
+
+Moduulissa `tgd/solutions.mac` juuret antaa `hh_sheets`, ja testit ovat tiedostossa `tests/test-solutions.mac`.
+
+### Kähler-osa H-H-pinnoilla
+
+Pitkäsen mukaan H-H toteuttaa kenttäyhtälöt erikseen metriikka- ja Kähler-osalle ([*About the relationship of electroweak and strong interactions in the TGD Universe: part I*](https://tgdtheory.fi/public_html/articles/Martin1.pdf), luku 2). Laskenta tarkentaa tätä. Väite riippuu siitä, mikä Kähler-muoto toiminnassa on ja mikä Hamilton–Jacobi-rakenne on käytössä.
+
+Olkoon $\xi^k=f^k(u,w)$, ja olkoon $\omega$ Fubini–Study-metriikan vetäisyn kerroin koordinaatissa $w$ yksiköissä, joissa $M^4$:n poikittainen kerroin on $1$. Poikittainen virta häviää täsmälleen, kun Kähler-kulman suure
+
+$$
+C=\frac{J_{w\bar w}}{g_{w\bar w}}\propto\frac{\omega}{1+\omega}
+$$
+
+ei riipu $w$:stä. Pelkällä $CP_2$:n muodolla Lorentz-voiman ehto $j^\alpha J_{\alpha\beta}=0$ vaatii tämän, ja neliulotteisella $M^4$-projektiolla Kähler-osa häviää vain, jos Lorentz-voima häviää.
+
+Vakio $\omega$ tarkoittaisi litteää holomorfista kuvausta kompleksiviivalta $CP_2$:een. Silloin
+
+$$
+1+\lvert f^1\rvert^2+\lvert f^2\rvert^2=\lvert h(w)\rvert^2 e^{\omega\lvert w\rvert^2}.
+$$
+
+Oikean puolen Hermiten muodon rangi on ääretön ja vasemman puolen enintään kolme, joten $\omega=0$. Tämä on Calabin jäykkyyslause. Litteässä rakenteessa pelkkä $CP_2$:n Kähler-muoto ei siis anna yhtään Kähler-ekstremaalia, jolla on $w$-riippuvuus, ja implisiittifunktiolause vie saman tuloksen jokaisen lehden säännöllisiin pisteisiin.
+
+Jos muotoon lisätään poikittainen $M^4$-osa $\varepsilon\,dx\wedge dy$, pinnalla $\xi^1=w/2$ pätee
+
+$$
+E_k(J_{CP_2}+\varepsilon J_{M^4})=(1-\varepsilon)^2\,E_k(J_{CP_2}).
+$$
+
+Kähler-osa häviää siis arvolla $\varepsilon=1$, ja silloin $j=0$ ja $J_{\alpha\beta}J^{\alpha\beta}=2$. Tämä on Wirtingerin ehto kompleksikäyrälle tulossa $\mathbb C\times CP_2$. Erillisillä toimintatermeillä sama tapahtuu relatiivisella kertoimella $-1$, sillä $E_k(J_{CP_2})=E_k(J_{M^4})$ kaikilla testatuilla pinnoilla.
+
+Pallomaisessa rakenteessa ehto on toinen. Vetäisyn on oltava verrannollinen pallon metriikkaan, ja Calabin luokittelun mukaan vain suora ja kartioleikkaus toteuttavat tämän. Niillä $j=0$ ja kumpikin osa häviää.

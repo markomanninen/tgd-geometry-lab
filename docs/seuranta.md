@@ -9,7 +9,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | Testiajot | <https://github.com/markomanninen/tgd-geometry-lab/actions> |
 | Julkinen sivusto | <https://markomanninen.github.io/tgd-geometry-lab/> |
 
-## Tila 30.10.2026
+## Tila 31.10.2026
 
 | Välitavoite | Valmiina | Seuraavaksi |
 |---|---|---|
@@ -19,12 +19,12 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M4 Kaarevuus | 3/3 ✅ | – |
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
-| M7 Toiminta | 4/6 | #27 ja #28 odottavat Matin linjausta |
-| M8 Ratkaisut | 1/2 | Generaattori ja uudet ratkaisut on tehty, ja #31 odottaa H-H-periaatteen tarkennusta Matilta |
+| M7 Toiminta | 6/6 ✅ | – |
+| M8 Ratkaisut | 2/3 | #35 odottaa Matin linjausta $J(M^4)$:n roolista |
 
-Kaikki 263 testiä menevät läpi.
+Kaikki 283 testiä menevät läpi.
 
-Kriittinen polku on #18 → #16/#19 → #23 → #27 → #28. Ketju upotusavaruudesta kenttäyhtälöihin on nyt laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$, ja kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja. #27 ja #28 ovat auki, koska yleisen ME-ansatsin asema toiminnalle $S_K+S_V$ vaatii Matin linjauksen. Issueiden #27, #28 ja #31 kysymykset lähetettiin Matille sähköpostilla 31.10.2026, ja vastausta odotetaan.
+Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin yhden jatkokysymyksen, joka on issuessa #35.
 
 ## Päätöspisteet (tunniste `päätös`)
 
@@ -41,13 +41,19 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | ME-ansatsi (#28) | CP₂-koordinaatit funktioita $u=k\cdot m$, $v=\varepsilon\cdot m$ – vastaa omaamme. Lähde rajaa minimipintaväitteen sanoin "in their simplest form at least". Laskettu tulos on `docs/konventiot.md`:ssä | Pitkänen, *Extremals of the Kähler Action* (2024), luvut 6.2–6.3 | 🟡 ks. avoimet |
 | Vertailuekstremaalit (#31) | ME, kosminen säie $X^2\times Y^2$, Lagrangen tyhjiöekstremaalit, CP₂-tyyppiset | Pitkäsen blogi 2016 | ✅ lista |
 
+### Matin vastaukset 31.10.2026
+
+| Issue | Vastaus | Tila |
+|---|---|---|
+| #27 | Etumerkki ei näy H-H-pintojen eikä Lagrangen minimipintojen kenttäyhtälöissä. Se vaikuttaa kosmologiseen vakioon ja Kähler-funktion eksponenttiin, ja $1/\alpha_K$ on yhteinen kerroin | ✅ konventioissa |
+| #28 | Ansatsi $s^k(u,v)$ on johdettu puhtaalle Kähler-toiminnalle, ja toiminnalle $S_K+S_V$ sen korvaa H-H, josta minimipintaominaisuus seuraa | ✅ konventioissa |
+| #31 | $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w,u$. Lagrangen pinnat ovat oma ratkaisutyyppinsä | ✅ toteutettu ja testattu |
+
 ### Avoinna – kysytään Matilta
 
 | Issue | Kysymys |
 |---|---|
-| #27 | Mikä on twistorinoston $S_K+S_V$ tilavuustermin kertoimen etumerkki ja normalisointi suhteessa Kähler-termiin Minkowski-alueilla, ja mikä on kompleksisen $\alpha_K$:n rooli nykyisessä muotoilussa? |
-| #28 | Mikä on ME:n täsmällinen määritelmä toiminnalle $S_K+S_V$? Yleinen $s^k(u,v)$ on Kähler-ekstremaali, mutta se ei ole minimipinta. Ks. kysymys issuessa #28 |
-| #31 | Holografia = holomorfia -periaatteen (H-H) nykyinen täsmällinen muoto, jonka voisi toteuttaa ratkaisugeneraattorina (koordinaatit $u$, $w$ ja ehdot $f_1=f_2=0$) |
+| #35 | Mikä on $J(M^4)$:n paikka ja kerroin toiminnassa, kun pelkällä $CP_2$:n Kähler-muodolla holomorfisten pintojen Kähler-osa ei häviä litteässä rakenteessa? |
 
 ### Markolle
 

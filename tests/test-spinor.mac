@@ -69,8 +69,8 @@ check("k = 3: R/4 = 6 is cancelled by the Kahler term on nu_R",
 fluxJ : 2*%pi*integrate(rr/(1+rr^2)^2, rr, 0, inf)$
 check("Kahler flux through CP_1 is pi", is(fluxJ = %pi))$
 chern(k, q) := (k + q)*fluxJ/(2*%pi)$
-check("k = 1, 3: S+ flux (k +- 3)/2 integer (spin^c structure exists)",
-      every(lambda([k], integerp(chern(k, 3)) and integerp(chern(k, -3))), [1, 3]))$
+check("k = 1, -1, 3: S+ flux (k +- 3)/2 integer (spin^c structure exists)",
+      every(lambda([k], integerp(chern(k, 3)) and integerp(chern(k, -3))), [1, -1, 3]))$
 check("k = 0, 2: S+ flux half-integer (CP_2 is not spin)",
       every(lambda([k], not integerp(chern(k, 3))), [0, 2]))$
 /* Dirac operator on the unit S^2: first eigenvalue |lambda| = 1 */

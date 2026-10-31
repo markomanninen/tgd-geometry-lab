@@ -62,3 +62,32 @@ sph_H_X : append(sph_X, cp2_X)$
 sph_H_metric() := metric_direct_sum(
   matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -r^2, 0], [0, 0, 0, -r^2*sin(th)^2]),
   cp2_sign*cp2_metric())$
+
+/* ---------- holography = holomorphy ---------- */
+
+/* Pitkanen's form (Matti Pitkanen, mail 31.10.2026): f1 = f2 = 0 with f_i analytic in
+   xi1, xi2, w and a light-like u, not in their conjugates or in v.  Each root is one
+   sheet [xi1, xi2] of the surface.  The roots are taken with w as the atom hhw, because
+   sqrt((x + i y)^2) does not simplify; w is substituted afterwards. */
+hh_sheets(f1, f2, w) := map(lambda([s], subst(hhw = w, subst(s, [xi1, xi2]))),
+                            solve([f1, f2], [xi1, xi2]))$
+
+/* Lorentz force f_b = j^a J_ab.  D_a T^{ab} is proportional to it by dJ = 0, so with the
+   CP_2 Kahler form alone, on a minimal surface with A = 0 and a 4-D M^4 projection, the
+   Kahler part vanishes only where f_b does. */
+lorentz_force(em, Jind) := block([j : kahler_current(em, Jind), n : length(Jind)],
+  makelist(tgd_simp(sum(j[a]*Jind[a,b], a, 1, n)), b, 1, n))$
+
+/* transverse Kahler form dx ^ dy of M^4 on the flat H-J structure, as a form on H */
+H_kahler_m4t() := block([m : zeromatrix(8, 8)], m[2,3] : 1, m[3,2] : -1, m)$
+
+/* spherical H-J structure: t +- r and the stereographic coordinate w = sa + i sb of S^2 */
+sj_X : [ht, hr, sa, sb]$
+declare([ht, hr, sa, sb], real)$
+sj_w : sa + %i*sb$
+sj_rho : 4/(1 + sa^2 + sb^2)^2$
+sj_H_X : append(sj_X, cp2_X)$
+sj_H_metric() := metric_direct_sum(
+  matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -hr^2*sj_rho, 0], [0, 0, 0, -hr^2*sj_rho]),
+  cp2_sign*cp2_metric())$
+sj_surface(z1, z2) := append(sj_X, cp2_real(z1, z2))$

@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 263 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 283 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -8,11 +8,11 @@ Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on a
 
 Kolme tulosta kannattaa lukea ensin, koska ne tarkentavat aiempaa käsitystä tai lukitsevat normalisoinnin.
 
-**Massaton ekstremaali ei ole yleisessä muodossaan minimipinta.** Pitkäsen ansatsi on $s^k=f^k(u,v)$, ja lähteen mukaan massattomat ekstremaalit ovat minimipintoja "in their simplest form at least". Laskenta tarkentaa tätä. Yleinen $f^k(u,v)$ on Kähler-toiminnan ekstremaali, mutta tilavuustermi ei häviä. Tulos ja avoin kysymys ovat kohdassa [Ekstremaalit](#ekstremaalit).
+**Massaton ekstremaali ei ole yleisessä muodossaan minimipinta.** Pitkäsen ansatsi on $s^k=f^k(u,v)$, ja lähteen mukaan massattomat ekstremaalit ovat minimipintoja "in their simplest form at least". Laskenta tarkentaa tätä. Yleinen $f^k(u,v)$ on Kähler-toiminnan ekstremaali, mutta kenttäyhtälöiden tilavuusosa ei häviä. Pitkäsen vastauksen mukaan ansatsi on johdettu puhtaalle Kähler-toiminnalle, ja toiminnalle $S_K+S_V$ sen korvaa holografia = holomorfia. Tulos on kohdassa [Ekstremaalit](#ekstremaalit).
 
 **Kerroin $k=3$ tulee geometriasta.** Unitaarisessa kehyksessä $CP_2$:n spinoriyhteys on $S^+$-lohkossa täsmälleen $\mathrm{diag}(3iA,-3iA)$, kun $dA=J$. Leptonien kerroin $k=3$ kumoaa siis yhteyden kokonaan, ja yksi spinori on kovariantisti vakio. Tämä on TGD:n oikeakätinen neutriino.
 
-**Pitkäsen kaksi vuoputkiansatsia käyttäytyvät eri tavoin.** Kun Lagrangen pinta paksunnetaan artikkelin [*About Twistor Lift of TGD*](http://tgdtheory.fi/public_html/articles/hgrtwistor.pdf) tavalla, pinta on molempien termien ekstremaali. Kun saman tekee kompleksiselle pinnalle, tilavuusosa häviää mutta Kähler-osa ei. Erot ovat kohdassa [Ratkaisugeneraattori](#ratkaisugeneraattori).
+**Holomorfisen pinnan Kähler-osa riippuu siitä, mikä Kähler-muoto toiminnassa on.** Lagrangen vuoputken molemmat kenttäyhtälöiden osat häviävät, ja Pitkäsen vastauksen mukaan se on oma ratkaisutyyppinsä. Holomorfisilla pinnoilla tilavuusosa häviää aina, mutta litteässä Hamilton–Jacobi-rakenteessa pelkkä $CP_2$:n Kähler-muoto ei anna yhtään Kähler-ekstremaalia, jolla on $w$-riippuvuus. Kun mukaan lisätään $M^4$:n poikittainen Kähler-muoto kertoimella $1$, Kähler-osa häviää kaikilla testatuilla pinnoilla. Pallomaisessa rakenteessa se häviää ilman $M^4$:n muotoa täsmälleen suoralle ja kartioleikkaukselle. Tulokset ovat kohdassa [Holografia = holomorfia](#holografia-holomorfia).
 
 ## $CP_2$:n geometria
 
@@ -78,15 +78,20 @@ Toisella rivillä $T^{\alpha\beta}\propto k^\alpha k^\beta$ ja Kähler-virta on 
 
 Kolmas rivi osoittaa, että $x$-riippuvuus on silti mahdollinen. Se on $CP_2$:n geodeesi, jonka suunta kääntyy $u$:n mukana, ja sillä $J_{ux}\ne0$ ja virta $j^v\ne0$.
 
+Taulukon nolla tarkoittaa, että kyseisen termin Euler–Lagrange-osa häviää. Toiminnan arvon ei tarvitse olla nolla, ja Pitkäsen vastauksen mukaan ekstremaalille riittää juuri tämä. Koska kenttäyhtälöt ovat lineaarisia kertoimissa, minimipinta on toiminnan $S_K+S_V$ ekstremaali täsmälleen silloin, kun myös Kähler-osa häviää.
+
 ## Ratkaisugeneraattori
 
-Moduuli `tgd/solutions.mac` ottaa pinnan syötteenä ja kertoo, häviääkö indusoitu Kähler-muoto $J$, häviääkö kenttäyhtälöiden Kähler-osa ja häviääkö niiden tilavuusosa. Yhtälöt ovat lineaarisia kertoimissa $c_K$ ja $c_V$, joten nämä kaksi osaa ratkaisevat pinnan kaikilla kertoimilla. Holografia = holomorfia -periaatteen muotoa ei ole kiinnitetty, vaan $M^4$:n parametrointi ja $CP_2$:n funktiot ovat syötteitä.
+Moduuli `tgd/solutions.mac` ottaa pinnan syötteenä ja kertoo, häviääkö indusoitu Kähler-muoto $J$, häviääkö kenttäyhtälöiden Kähler-osa ja häviääkö niiden tilavuusosa. Yhtälöt ovat lineaarisia kertoimissa $c_K$ ja $c_V$, joten nämä kaksi osaa ratkaisevat pinnan kaikilla kertoimilla. $M^4$:n parametrointi ja $CP_2$:n funktiot ovat syötteitä, joten moduulilla voi tutkia myös H-H-muodon ulkopuolisia pintoja.
 
 | Pinta | $J$ | Kähler-osa | Tilavuusosa |
 |---|---|---|---|
 | CP₂-tyyppinen, kaareva valon kaltainen käyrä | $\ne0$ | 0 | $\ne0$ |
 | CP₂-tyyppinen, valon kaltainen geodeesi ja harmoninen parametri | $\ne0$ | 0 | 0 |
-| $z^k$ holomorfisia $w$:ssä | $\ne0$ | $\ne0$ | 0 |
+| $\xi^k$ holomorfisia $w$:ssä, litteä rakenne | $\ne0$ | $\ne0$ | 0 |
+| sama, $J=J(CP_2)+J(M^4)$ | $\ne0$ | 0 | 0 |
+| suora tai kartioleikkaus, pallomainen rakenne | $\ne0$ | 0 | 0 |
+| muu holomorfinen pinta, pallomainen rakenne | $\ne0$ | $\ne0$ | 0 |
 | Lagrangen pinta, muu kuin konformi kuvaus pallolle | 0 | 0 | $\ne0$ |
 | Lagrangen pinta, konformi kuvaus pallolle | 0 | 0 | 0 |
 | Pallosymmetrinen katenoidi | 0 | 0 | 0 |
@@ -113,7 +118,35 @@ $$
 
 Pinta on aika-akseli kertaa katenoidi avaruudessa $\mathbb R^3\times$ geodeesi, ja sen kaula on kohdassa $r^2=\lvert C\rvert$.
 
-**Holomorfinen skannaus.** Pitkäsen [blogin](https://matpitka.blogspot.com/2024/10/) mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja, ja toiminta näkyy vain singulaarisuuksissa. Skannauksen pinnat käyttävät litteää valokartiokarttaa ja $CP_2$:n funktioita $z^k(u,w)$. Tilavuusosa hävisi niillä kaikilla, mutta Kähler-osa ei hävinnyt yhdelläkään pinnalla, jolla on $w$-riippuvuus. Sama muoto on Pitkäsen ehdotus kosmisen säikeen paksuuntumiselle (luku 4.3, kohta 4). Saman luvun mukaan Kähler-osa häviää, kun $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}=0$ ja kun $j$ häviää tai on valon kaltainen. Pinnalla $z^1=w/2$ ensimmäinen ehto pätee, mutta $j$ ei ole nolla eikä valon kaltainen, ja $J_{\alpha\beta}J^{\alpha\beta}$ vaihtelee. Laskenta jättää $M^4$:n Kähler-muodon pois, joten tulos on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/31), ei johtopäätös.
+## Holografia = holomorfia
+
+Pitkäsen muotoilussa pinta on juurijoukko $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w$ ja valon kaltaisessa $u$:ssa. Generaattorin funktio `hh_sheets` ratkaisee juuret, ja jokainen juuri on yksi lehti. Esimerkiksi ehdot $(\xi^1)^2=w^2/4$ ja $\xi^2=(\xi^1)^2$ antavat kaksi lehteä, ja molemmat ovat minimipintoja. Täsmällinen muotoilu on [konventioissa](konventiot.md#holografia-holomorfia).
+
+**Litteä rakenne.** Pitkäsen mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja. Minimipintaominaisuus toteutuu kaikilla testatuilla pinnoilla. Kähler-osa ei sen sijaan häviä pelkällä $CP_2$:n Kähler-muodolla yhdelläkään pinnalla, jolla on $w$-riippuvuus. Pinnalla $\xi^1=w/2$ tensorisupistus $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}$ on nolla, mutta virta on poikittainen, ja Pitkäsen ehdottama Lorentz-voiman ehto $j\times B=0$ ei päde.
+
+Tämä ei ole yksittäisen esimerkin piirre. Lorentz-voiman häviäminen vaatii, että Fubini–Study-metriikan vetäisy on litteä, ja Calabin jäykkyyslauseen mukaan holomorfinen kuvaus kompleksiviivalta $CP_2$:een ei voi olla sellainen, ellei se ole vakio.
+
+**$M^4$:n Kähler-muoto.** Kun Kähler-muotoon lisätään poikittainen osa $\varepsilon\,dx\wedge dy$, kenttäyhtälöiden Kähler-osa pinnalla $\xi^1=w/2$ kertautuu täsmälleen tekijällä
+
+$$
+(1-\varepsilon)^2.
+$$
+
+Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Erillisillä toimintatermeillä sama tapahtuu relatiivisella kertoimella $-1$, koska kummankin muodon Kähler-osa on näillä pinnoilla sama. Kertoimen arvo ja $J(M^4)$:n paikka toiminnassa ovat [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+
+**Pallomainen rakenne.** Koordinaateissa $t\pm r$ ja $w$ pallolla $S^2$ tilanne on toinen, koska poikittainen metriikka on nyt kaareva. Pelkällä $CP_2$:n Kähler-muodolla Kähler-osa häviää, kun vetäisy on verrannollinen pallon metriikkaan. Yksinkertaisin esimerkki on suora
+
+$$
+\xi^1=w,\qquad\xi^2=0,
+$$
+
+jolla $j=0$, $J\ne0$ ja indusoitu metriikka on $\lvert g_{w\bar w}\rvert\propto(r^2+\tfrac14)\rho$. Toinen on kartioleikkaus
+
+$$
+\xi^1=\sqrt2\,w,\qquad\xi^2=w^2,
+$$
+
+jolla sama kerroin on $r^2+\tfrac12$. Calabin luokittelun mukaan muita ei ole, ja vertailupinnat $\xi^1=w^2$ ja $\xi^1=2w$ ovat vain minimipintoja. Näiden kahden pinnan $M^4$-projektio on neliulotteinen ja ne ovat molempien termien ekstremaaleja kaikilla kertoimilla.
 
 ## Säilymislait
 
@@ -137,9 +170,9 @@ Linearisoidut kenttäyhtälöt on kirjoitettu LanyonScriptsin `calcev`-tyyliin m
 | ME, pelkkä Kähler-toiminta | $k$:n suuntaan | $s=1$ seitsenkertaisena | heikosti hyperbolinen |
 | ME, pelkkä Kähler-toiminta | poikittain ($x$) | $s=0$ kuusinkertaisena | |
 
-Kaksi riviä on merkityksellisiä avoimien kysymysten kannalta.
+Kaksi riviä kannattaa nostaa esiin.
 
-Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin, ja se tekee [#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27):n kysymyksestä laskennallisesti merkityksellisen.
+Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin tällä taustalla. Pitkäsen mukaan etumerkki ei näy H-H-pintojen kenttäyhtälöissä, mutta kosmisen säikeen $M^4$-projektio on kaksiulotteinen, joten säie ei kuulu H-H-muotoon. Jos magneettinen osa ja tilavuusosa ovat erimerkkisiä myös tässä konventiossa, eli $c_K/c_V<0$, kaava antaa joko $s^2>1$ tai $s^2<0$. Tämä on kysymys [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35):ssä.
 
 Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut ja ME-taustalla heikosti hyperbolinen. Tämä on sopusoinnussa tunnetun Kähler-toiminnan tyhjiödegeneraation kanssa, mutta tulkinta on Pitkäsen.
 
@@ -149,8 +182,6 @@ Kuvat ovat kirjassa [Numeriikka ja kuvat](notebooks/04_numeriikka_ja_kuvat.ipynb
 
 ## Avoimet kysymykset
 
-Nämä odottavat Matti Pitkäsen linjausta:
+Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon ja tilavuustermin merkityksen kenttäyhtälöille. Laskennan perusteella jäljellä on seuraava kysymys ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
 
-- Mikä on massattoman ekstremaalin täsmällinen määritelmä toiminnalle $S_K+S_V$, ja vaaditaanko ekstremaalisuutta kummallekin termille erikseen vai vain niiden summalle ([#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28))?
-- Mikä on tilavuustermin kertoimen etumerkki ja normalisointi Kähler-termiin nähden Minkowski-alueilla, ja mikä on kompleksisen $\alpha_K$:n rooli ([#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27))?
-- Mikä on holografia = holomorfia -periaatteen täsmällinen muoto ratkaisugeneraattorina ([#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31))?
+- Mikä on $J(M^4)$:n paikka ja kerroin toiminnassa, jotta holomorfiset pinnat ovat litteässä Hamilton–Jacobi-rakenteessa myös Kähler-ekstremaaleja?

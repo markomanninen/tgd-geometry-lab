@@ -69,6 +69,68 @@ check("Lagrangian: stereographic f = w^2 is a vacuum extremal and minimal",
       report_is(rep_lag(lagrangian_stereo(lc_w^2)), true, true, true))$
 check("control: anti-conformal mix f = w + conj(w)/2 is a vacuum extremal but not minimal",
       report_is(rep_lag(lagrangian_stereo(lc_w + conjugate(lc_w)/2)), true, true, false))$
+/* holography = holomorphy in Pitkanen's form: every root of f1 = f2 = 0 is one sheet */
+none(p, l) := not some(p, l)$
+sheets : hh_sheets(xi1^2 - hhw^2/4, xi2 - xi1^2, lc_w)$
+check("H-H: xi1^2 = w^2/4, xi2 = xi1^2 has two sheets", is(length(sheets) = 2))$
+check("H-H: both sheets are minimal",
+      every(lambda([s], rhs(third(rep_holo(s[1], s[2])))), sheets))$
+sheets : hh_sheets(hhw*xi1 - 1, xi2, lc_w)$
+check("H-H: the rational root xi1 = 1/w is minimal",
+      rhs(third(rep_holo(sheets[1][1], sheets[1][2]))))$
+/* flat H-J structure: Lorentz force.  The Kahler part cannot vanish on a holomorphic
+   surface, the transverse current is the obstruction (Pitkanen's j x B = 0 test) */
+check("flat H-J, z1 = w/2: the Lorentz force j^a J_ab does not vanish",
+      is(lorentz_force(emH, JH) # [0, 0, 0, 0]))$
+check("flat H-J, z1 = w/2: j lies in the transverse plane",
+      is(jH[3] # 0))$
+/* with the transverse form eps dx ^ dy of M^4 added to J, the Kahler part is exactly
+   (eps - 1)^2 times the one without it */
+HJM : H_kahler_m4t()$
+EK0 : tgd_field_equations(emH, HJs, 1, 0)$
+EKe : tgd_field_equations(emH, HJs + eps*HJM, 1, 0)$
+check("flat H-J, z1 = w/2: E(J + eps J(M^4)) = (eps - 1)^2 E(J)",
+      every(lambda([e], is(e = 0)), map(tgd_simp, EKe - (eps - 1)^2*EK0)))$
+/* so the holomorphic surfaces become Kahler extremals in two ways, as one J = J(CP_2) + J(M^4)
+   with coefficient 1, or as a separate action with the relative coefficient -1 */
+flat_E(z1, z2, HJ) := tgd_field_equations(emb_setup(HGs, H_X, holo_surface(lc_m4, z1, z2), lc_chart), HJ, 1, 0)$
+holoScan : [[lc_w/2, 0], [lc_w^2/4, 0], [lc_w, lc_w^2], [uu + lc_w/3, 0], [uu*lc_w/3, 0]]$
+check("flat H-J: J alone never gives a Kahler extremal on the scan",
+      none(lambda([z], every(lambda([e], is(e = 0)), flat_E(z[1], z[2], HJs))), holoScan))$
+check("flat H-J: the sum J + J(M^4) gives a Kahler extremal on the whole scan",
+      every(lambda([z], every(lambda([e], is(e = 0)), flat_E(z[1], z[2], HJs + HJM))), holoScan))$
+check("flat H-J: separate actions E(J) - E(J(M^4)) cancel on the whole scan",
+      every(lambda([z], every(lambda([e], is(e = 0)),
+        map(tgd_simp, flat_E(z[1], z[2], HJs) - flat_E(z[1], z[2], HJM)))), holoScan))$
+JT : induced_kahler_form(HJs + HJM, H_X, emb_get(emH, 'h), lc_chart)$
+check("flat H-J, z1 = w/2 with the sum: j = 0 and J.J is constant",
+      is(kahler_current(emH, JT) = [0, 0, 0, 0]) and is(kahler_invariant(emb_get(emH, 'g), JT) = 2))$
+/* spherical H-J structure: the Kahler part vanishes when the pullback of the Fubini-Study
+   metric is proportional to the metric of S^2.  Calabi rigidity leaves the line and the conic */
+SHs : sj_H_metric()$
+sj_em(z1, z2) := emb_setup(SHs, sj_H_X, sj_surface(z1, z2), sj_X)$
+sj_rep(z1, z2) := extremal_report(sj_em(z1, z2), HJs)$
+check("spherical H-J, line xi1 = w: J # 0, both parts vanish",
+      report_is(sj_rep(sj_w, 0), false, true, true))$
+check("spherical H-J, Moebius xi1 = (1+w)/(1-w): both parts vanish",
+      report_is(sj_rep((1 + sj_w)/(1 - sj_w), 0), false, true, true))$
+check("spherical H-J, conic xi1 = sqrt(2) w, xi2 = w^2: both parts vanish",
+      report_is(sj_rep(sqrt(2)*sj_w, sj_w^2), false, true, true))$
+check("spherical H-J, xi1 = w^2: minimal only",
+      report_is(sj_rep(sj_w^2, 0), false, false, true))$
+check("spherical H-J, xi1 = 2 w: minimal only",
+      report_is(sj_rep(2*sj_w, 0), false, false, true))$
+emSL : sj_em(sj_w, 0)$
+JSL : induced_kahler_form(HJs, sj_H_X, emb_get(emSL, 'h), sj_X)$
+check("spherical H-J, line: j = 0 and the Lorentz force vanishes",
+      is(kahler_current(emSL, JSL) = [0, 0, 0, 0]) and is(lorentz_force(emSL, JSL) = [0, 0, 0, 0]))$
+check("spherical H-J, line: g_ww = -(r^2 + 1/4) rho, the CP_1 radius adds to r",
+      is(tgd_simp(emb_get(emSL, 'g)[3,3] + (hr^2 + 1/4)*sj_rho) = 0))$
+check("spherical H-J, line: J.J depends on r",
+      is(diff(kahler_invariant(emb_get(emSL, 'g), JSL), hr) # 0))$
+emSC : sj_em(sqrt(2)*sj_w, sj_w^2)$
+check("spherical H-J, conic: g_ww = -(r^2 + 1/2) rho, twice the line",
+      is(tgd_simp(emb_get(emSC, 'g)[3,3] + (hr^2 + 1/2)*sj_rho) = 0))$
 /* spherically symmetric: M^1 x a catenoid in R^3 x a geodesic of CP_2 */
 depends(chi, r)$
 sxi : [t, r, th, ph]$
