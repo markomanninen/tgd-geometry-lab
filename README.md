@@ -21,7 +21,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
 | 04 · Numeriikka ja kuvat | yhtälön tyyppi kertoimien funktiona, Kähler-vuo ja kentät ratkaisulla, ja numeriikka tarkistetaan analyyttisiä arvoja vasten | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/04_numeriikka_ja_kuvat.ipynb) |
 
-## Mitä on varmistettu (290 testiä)
+## Mitä on varmistettu (316 testiä)
 
 | Alue | Tarkistukset |
 |---|---|
@@ -35,7 +35,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | Ekstrinsinen geometria | $B^k{}_{\alpha\beta}$ ja $H^k$ sekä Gauss, Codazzi ja Ricci kaarevassa ympäristössä |
 | Toiminta | Euler–Lagrange → aaltoyhtälö, tilavuustoiminta → minimipintayhtälö ja kovariantti kenttäyhtälö = määritelmästä laskettu $E_k$ |
 | Säilymislait | $H$:n 18 isometriaa, $su(3)$ ja $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$ myös ei-ratkaisuilla. Virrat säilyvät vertailuratkaisuilla. |
-| Holografia = holomorfia | Juuret $f_1=f_2=0$ lehdittäin, minimipintaominaisuus sekä Kähler-osa litteässä ja pallomaisessa rakenteessa, ja $M^4$:n Kähler-muodon vaikutus $(1-\varepsilon)^2$ |
+| Holografia = holomorfia | Juuret $f_1=f_2=0$ lehdittäin, minimipintaominaisuus sekä Kähler-osa litteässä ja pallomaisessa rakenteessa, $M^4$:n Kähler-muodon vaikutus $(1-\varepsilon)^2$, Lorentz 4-voima, kertoimien etumerkit ja Hamilton–Jacobi-rakenteiden ehto |
 | Karakteristiikat | $\partial_tU+A\,\partial_xU=0$ sekä nopeudet $M^4$:n, kosmisen säikeen ja ME:n ympärillä. Yhtälön tyyppi riippuu kertoimista. |
 | Ekstremaalit | kosminen säie ja ME $s^k(u)$ kaikilla $c_K$, $c_V$. Yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä ([taulukko](docs/konventiot.md)) |
 | Clifford | $\{\gamma_a,\gamma_b\}=2\eta_{ab}$ signatuureille $(4,0)$ ja $(1,3)$ |
@@ -103,7 +103,7 @@ Dokumentit on tarkoitettu luettaviksi [sivustolla](https://markomanninen.github.
 | [M7 Toiminta](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 6/6 |
 | [M8 Ratkaisut](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | 2/3 |
 
-Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis, ja Matti Pitkäsen linjaukset on kirjattu konventioihin. Avoin jatkokysymys $J(M^4)$:n roolista on issuessa #35.
+Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis, ja Matti Pitkäsen linjaukset on kirjattu konventioihin. Avoimet jatkokysymykset Lorentz 4-voimasta ja Hamilton–Jacobi-rakenteista ovat issuessa #35.
 
 Järjestelmä ei todista TGD:tä fysikaalisesti oikeaksi. Sen tarkoitus on tarkistaa johdoksia ja tutkia erikoistapauksia luotettavasti.
 

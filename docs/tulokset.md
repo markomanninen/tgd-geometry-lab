@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 290 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 316 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -12,7 +12,7 @@ Kolme tulosta kannattaa lukea ensin, koska ne tarkentavat aiempaa käsitystä ta
 
 **Kerroin $k=3$ tulee geometriasta.** Unitaarisessa kehyksessä $CP_2$:n spinoriyhteys on $S^+$-lohkossa täsmälleen $\mathrm{diag}(3iA,-3iA)$, kun $dA=J$. Leptonien kerroin $k=3$ kumoaa siis yhteyden kokonaan, ja yksi spinori on kovariantisti vakio. Tämä on TGD:n oikeakätinen neutriino.
 
-**Holomorfisen pinnan Kähler-osa riippuu siitä, mikä Kähler-muoto toiminnassa on.** Lagrangen vuoputken molemmat kenttäyhtälöiden osat häviävät, ja Pitkäsen vastauksen mukaan se on oma ratkaisutyyppinsä. Holomorfisilla pinnoilla tilavuusosa häviää aina, mutta litteässä Hamilton–Jacobi-rakenteessa pelkkä $CP_2$:n Kähler-muoto ei anna yhtään Kähler-ekstremaalia, jolla on $w$-riippuvuus. Kun mukaan lisätään $M^4$:n poikittainen Kähler-muoto kertoimella $1$, Kähler-osa häviää kaikilla testatuilla pinnoilla. Pallomaisessa rakenteessa se häviää ilman $M^4$:n muotoa täsmälleen suoralle ja kartioleikkaukselle. Tulokset ovat kohdassa [Holografia = holomorfia](#holografia-holomorfia).
+**Holomorfisen pinnan Kähler-osa riippuu siitä, mikä Kähler-muoto toiminnassa on.** Lagrangen vuoputken molemmat kenttäyhtälöiden osat häviävät, ja Pitkäsen vastauksen mukaan se on oma ratkaisutyyppinsä. Holomorfisilla pinnoilla tilavuusosa häviää aina, mutta litteässä Hamilton–Jacobi-rakenteessa Lorentz 4-voima ei häviä yhdelläkään pinnalla, jolla on $w$-riippuvuus. Yhdellä summamuodolla $J(CP_2)+J(M^4)$ Kähler-osa häviäisi, mutta Pitkäsen linjauksen mukaan muodot ovat erilliset termit. Pallomaisessa rakenteessa Kähler-osa häviää ilman $M^4$:n muotoa täsmälleen suoralle ja kartioleikkaukselle. Tulokset ovat kohdassa [Holografia = holomorfia](#holografia-holomorfia).
 
 ## $CP_2$:n geometria
 
@@ -122,9 +122,11 @@ Pinta on aika-akseli kertaa katenoidi avaruudessa $\mathbb R^3\times$ geodeesi, 
 
 Pitkäsen muotoilussa pinta on juurijoukko $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w$ ja valon kaltaisessa $u$:ssa. Generaattorin funktio `hh_sheets` ratkaisee juuret, ja jokainen juuri on yksi lehti. Esimerkiksi ehdot $(\xi^1)^2=w^2/4$ ja $\xi^2=(\xi^1)^2$ antavat kaksi lehteä, ja molemmat ovat minimipintoja. Täsmällinen muotoilu on [konventioissa](konventiot.md#holografia-holomorfia).
 
-**Litteä rakenne.** Pitkäsen mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja. Minimipintaominaisuus toteutuu kaikilla testatuilla pinnoilla. Kähler-osa ei sen sijaan häviä pelkällä $CP_2$:n Kähler-muodolla yhdelläkään pinnalla, jolla on $w$-riippuvuus. Pinnalla $\xi^1=w/2$ tensorisupistus $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}$ on nolla, mutta virta on poikittainen, ja Pitkäsen ehdottama Lorentz-voiman ehto $j\times B=0$ ei päde.
+**Litteä rakenne.** Pitkäsen mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja. Minimipintaominaisuus toteutuu kaikilla testatuilla pinnoilla. Kähler-osa ei sen sijaan häviä pelkällä $CP_2$:n Kähler-muodolla yhdelläkään pinnalla, jolla on $w$-riippuvuus. Pinnalla $\xi^1=w/2$ tensorisupistus $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}$ on nolla, mutta virta on poikittainen, eikä Lorentz 4-voima häviä.
 
-Tämä ei ole yksittäisen esimerkin piirre. Lorentz-voiman häviäminen vaatii, että Fubini–Study-metriikan vetäisy on litteä, ja Calabin jäykkyyslauseen mukaan holomorfinen kuvaus kompleksiviivalta $CP_2$:een ei voi olla sellainen, ellei se ole vakio.
+Pitkäsen mukaan poikittaisen virran ei tarvitse hävitä, koska riittää, että Lorentz 4-voima häviää, ja H-H takaa tämän. Se laskettiin suoraan koko pintaluokalle $\xi^k=f^k(u,w)$. Virralla ei ole $u$-komponenttia, ja voimalle pätee $f_v=0$, $f_x=-j^yJ_{xy}$ ja $f_y=j^xJ_{xy}$. Voima häviää siis täsmälleen, kun poikittainen virta häviää. Sama ehto seuraa topologisoidusta virrasta ja virran valon kaltaisuudesta, koska instantonivirralla on tällä pintaluokalla vain $v$-komponentti ja $j^\alpha j_\alpha\propto(j^x)^2+(j^y)^2$.
+
+Poikittaisen virran häviäminen vaatii, että Fubini–Study-metriikan vetäisy on litteä, ja Calabin jäykkyyslauseen mukaan holomorfinen kuvaus kompleksiviivalta $CP_2$:een ei voi olla sellainen, ellei se ole vakio.
 
 **$M^4$:n Kähler-muoto.** Kun Kähler-muotoon lisätään poikittainen osa $\varepsilon\,dx\wedge dy$, kenttäyhtälöiden Kähler-osa pinnalla $\xi^1=w/2$ kertautuu täsmälleen tekijällä
 
@@ -132,7 +134,7 @@ $$
 (1-\varepsilon)^2.
 $$
 
-Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Erillisillä toimintatermeillä sama tapahtuu relatiivisella kertoimella $-1$, koska kummankin muodon Kähler-osa on näillä pinnoilla sama. Kertoimen arvo ja $J(M^4)$:n paikka toiminnassa ovat [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Pitkäsen linjaus on kuitenkin, että $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Koska kummankin muodon Kähler-osa on testatuilla pinnoilla sama, kokonaisosa on kertoimien summa kerrottuna tällä osalla. Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä. Tämä on [jatkokysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
 **Pallomainen rakenne.** Koordinaateissa $t\pm r$ ja $w$ pallolla $S^2$ tilanne on toinen, koska poikittainen metriikka on nyt kaareva. Pelkällä $CP_2$:n Kähler-muodolla Kähler-osa häviää, kun vetäisy on verrannollinen pallon metriikkaan. Yksinkertaisin esimerkki on suora
 
@@ -154,7 +156,9 @@ $$
 \Box f(t-r)=\frac{2f'(t-r)}{r}.
 $$
 
-Laskennassa käytettiin koordinaattia $u=t-r$, joten tulos koskee tätä valintaa. Onko Pitkäsen tarkoittama koordinaatti jokin muu, on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on $\{k\,w\bar w\}=0$, ja pallomaisessa rakenteessa juuri tämä ei päde, koska poikittainen metriikka riippuu $v$:stä.
+
+Tulos on yleinen. Jos $u$:n ja $w$:n gradientit ovat keskenään valon kaltaisia, kaikki funktiot $F(u,w)$ ovat harmonisia täsmälleen, kun $\Box u=\Box w=0$. Bochnerin kaavan mukaan tasopinnat $u=$ vakio ovat silloin valon kaltaisia hypertasoja, ja ehto $\Box w=0$ pakottaa ne yhdensuuntaisiksi. Tällaisista rakenteista ainoa on siis litteä rakenne muunnoksia vaille. Funktioille $F(w)$ rakenteita on paljon enemmän, ja ne liittyvät leikkauksettomiin valonsädekongruensseihin. Yksityiskohdat ovat [konventioissa](konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
 
 ## Säilymislait
 
@@ -180,7 +184,7 @@ Linearisoidut kenttäyhtälöt on kirjoitettu LanyonScriptsin `calcev`-tyyliin m
 
 Kaksi riviä kannattaa nostaa esiin.
 
-Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin tällä taustalla. Pitkäsen mukaan etumerkki ei näy H-H-pintojen kenttäyhtälöissä, mutta kosmisen säikeen $M^4$-projektio on kaksiulotteinen, joten säie ei kuulu H-H-muotoon. Jos magneettinen osa ja tilavuusosa ovat erimerkkisiä myös tässä konventiossa, eli $c_K/c_V<0$, kaava antaa joko $s^2>1$ tai $s^2<0$. Tämä on kysymys [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35):ssä.
+Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin tällä taustalla. Pitkäsen etumerkkisäännöistä seuraa $c_K>0$ ja $c_V>0$ ([konventiot](konventiot.md#kertoimien-etumerkki)), joten nopeus jää valon nopeuden alle ja $0<s^2<1$, kun $c_V>2c_K$. Jos magneettinen osa on suurempi, eli $c_V<2c_K$, kaava antaa $s^2<0$. Pitkäsen mukaan magneettinen osa on kosmisilla säikeillä suuri, joten tämän alueen merkitys on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
 Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut ja ME-taustalla heikosti hyperbolinen. Tämä on sopusoinnussa tunnetun Kähler-toiminnan tyhjiödegeneraation kanssa, mutta tulkinta on Pitkäsen.
 
@@ -190,7 +194,8 @@ Kuvat ovat kirjassa [Numeriikka ja kuvat](notebooks/04_numeriikka_ja_kuvat.ipynb
 
 ## Avoimet kysymykset
 
-Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon ja tilavuustermin merkityksen kenttäyhtälöille. Laskennan perusteella jäljellä on kaksi kysymystä ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
+Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon, tilavuustermin merkityksen kenttäyhtälöille, $J(M^4)$:n paikan erillisenä terminä ja kertoimien etumerkit. Laskennan perusteella jäljellä on kolme kysymystä ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
 
-- Mikä on $J(M^4)$:n paikka ja kerroin toiminnassa, jotta holomorfiset pinnat ovat litteässä Hamilton–Jacobi-rakenteessa myös Kähler-ekstremaaleja?
-- Mikä on hyperkompleksinen koordinaatti pallomaisessa rakenteessa, kun $u=t-r$ rikkoo minimipintaominaisuuden?
+- Millä pinnoilla Lorentz 4-voima häviää, kun litteässä rakenteessa se vaatii poikittaisen virran häviämisen?
+- Kuuluuko $u$-riippuvuus H-H-pintoihin muissa kuin litteässä rakenteessa, kun $u=t-r$ ei toteuta ehtoa $\{k\,w\bar w\}=0$?
+- Kilpailevatko magneettinen osa ja tilavuusosa putken paksuuden kautta, ja mitä alue $c_V<2c_K$ tarkoittaa kosmisen säikeen poikki?

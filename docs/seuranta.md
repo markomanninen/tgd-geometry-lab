@@ -20,11 +20,11 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
 | M7 Toiminta | 6/6 ✅ | – |
-| M8 Ratkaisut | 2/3 | #35 odottaa Matin linjausta $J(M^4)$:n roolista |
+| M8 Ratkaisut | 2/3 | #35:n jatkokysymykset Lorentz 4-voimasta ja H-J-rakenteista |
 
-Kaikki 290 testiä menevät läpi.
+Kaikki 316 testiä menevät läpi.
 
-Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Ne lähetettiin Matille sähköpostilla 31.10.2026, ja vastausta odotetaan.
+Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Seuraavat kysymykset ovat valmiina, ja niitä ei ole vielä lähetetty.
 
 ## Päätöspisteet (tunniste `päätös`)
 
@@ -48,12 +48,13 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #27 | Etumerkki ei näy H-H-pintojen eikä Lagrangen minimipintojen kenttäyhtälöissä. Se vaikuttaa kosmologiseen vakioon ja Kähler-funktion eksponenttiin, ja $1/\alpha_K$ on yhteinen kerroin | ✅ konventioissa |
 | #28 | Ansatsi $s^k(u,v)$ on johdettu puhtaalle Kähler-toiminnalle, ja toiminnalle $S_K+S_V$ sen korvaa H-H, josta minimipintaominaisuus seuraa | ✅ konventioissa |
 | #31 | $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w,u$. Lagrangen pinnat ovat oma ratkaisutyyppinsä | ✅ toteutettu ja testattu |
+| #35 | $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Lorentz 4-voiman pitäisi hävitä H-H-pinnoilla ilman, että poikittainen virta häviää. Etumerkit seuraavat energian positiivisuudesta | 🟡 merkit laskettu ($c_K,c_V>0$), voima ei häviä litteässä rakenteessa |
 
 ### Avoinna – kysytään Matilta
 
 | Issue | Kysymys |
 |---|---|
-| #35 | Mikä on $J(M^4)$:n paikka ja kerroin toiminnassa, kun pelkällä $CP_2$:n Kähler-muodolla holomorfisten pintojen Kähler-osa ei häviä litteässä rakenteessa? Mikä on hyperkompleksinen koordinaatti pallomaisessa rakenteessa? |
+| #35 | Millä pinnoilla Lorentz 4-voima häviää, kun litteässä rakenteessa se vaatii poikittaisen virran häviämisen? Kuuluuko $u$-riippuvuus H-H-pintoihin muissa kuin litteässä rakenteessa? Mitä kertoimien alue $c_V<2c_K$ tarkoittaa kosmisen säikeen poikki? |
 
 ### Markolle
 

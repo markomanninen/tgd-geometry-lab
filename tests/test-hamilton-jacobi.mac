@@ -1,0 +1,127 @@
+section("tgd/solutions: Hamilton-Jacobi structures, Lorentz 4-force and signs")$
+HGh : H_metric()$
+HJh : H_kahler()$
+/* ---------- Lorentz 4-force on the flat structure ---------- */
+/* Every surface xi^k = f^k(u, w) has this form in the chart (u, v, x, y): nothing depends
+   on v, g_vv = g_vx = g_vy = 0, J_va = 0, and the transverse block is hermitian. */
+depends([hG, hA, hB, hP, hQ, hp, hq, Au, Ax, Ay], [uu, xx, yy])$
+hj_g : matrix([hG, 1/2, hA, hB], [1/2, 0, 0, 0], [hA, 0, -hP, 0], [hB, 0, 0, -hP])$
+hj_J : matrix([0, 0, hp, hq], [0, 0, 0, 0], [-hp, 0, 0, hQ], [-hq, 0, -hQ, 0])$
+hj_gi : ratsimp(invert(hj_g))$
+hj_s : hP/2$
+hj_Ju : ratsimp(hj_gi . hj_J . hj_gi)$
+hj_j : makelist(ratsimp(sum(diff(hj_s*hj_Ju[a,b], lc_chart[a]), a, 1, 4)/hj_s), b, 1, 4)$
+hj_f : makelist(ratsimp(sum(hj_j[a]*hj_J[a,b], a, 1, 4)), b, 1, 4)$
+check("H-J ansatz: sqrt|g| = P/2", is(ratsimp(determinant(hj_g) + hj_s^2) = 0))$
+check("H-J ansatz: g^uu = g^ux = g^uy = 0",
+      is([hj_gi[1,1], hj_gi[1,3], hj_gi[1,4]] = [0, 0, 0]))$
+check("H-J ansatz: j^u = 0 for every f(u, w)", is(hj_j[1] = 0))$
+check("H-J ansatz: j^x, j^y are the gradient of C = J_xy/P",
+      is(ratsimp(hj_j[3] + diff(hQ/hP, yy)/hP) = 0)
+      and is(ratsimp(hj_j[4] - diff(hQ/hP, xx)/hP) = 0))$
+check("H-J ansatz: f_v = 0, f_x = -j^y J_xy, f_y = j^x J_xy",
+      is(hj_f[2] = 0) and is(ratsimp(hj_f[3] + hj_j[4]*hQ) = 0)
+      and is(ratsimp(hj_f[4] - hj_j[3]*hQ) = 0))$
+check("H-J ansatz: j.j = -P ((j^x)^2 + (j^y)^2), light-like means no transverse part",
+      is(ratsimp(sum(sum(hj_g[a,b]*hj_j[a]*hj_j[b], b, 1, 4), a, 1, 4)
+                 + hP*(hj_j[3]^2 + hj_j[4]^2)) = 0))$
+/* the topologised current of Pitkanen (Extremals of the Kahler Action, 4.2.1),
+   j = psi eps^{abcd} J_bc A_d: on this ansatz A_v = 0, so only the v component survives */
+eps4(l) := if length(unique(l)) < 4 then 0
+           else determinant(genmatrix(lambda([i, k], if l[i] = k then 1 else 0), 4, 4))$
+hj_A : [Au, 0, Ax, Ay]$
+hj_I : makelist(sum(sum(sum(eps4([a, b, c, d])*hj_J[b,c]*hj_A[d], d, 1, 4), c, 1, 4), b, 1, 4), a, 1, 4)$
+check("H-J ansatz: the instanton current has only a v component",
+      is([hj_I[1], hj_I[3], hj_I[4]] = [0, 0, 0]) and is(hj_I[2] # 0))$
+/* the same on explicit surfaces, one with a three-dimensional CP_2 projection */
+hj_em(z1, z2) := emb_setup(HGh, H_X, holo_surface(lc_m4, z1, z2), lc_chart)$
+hj_Jind(em) := induced_kahler_form(HJh, H_X, emb_get(em, 'h), lc_chart)$
+emU : hj_em(uu + lc_w/3, 0)$
+JU : hj_Jind(emU)$
+jU : kahler_current(emU, JU)$
+check("flat H-J, z1 = u + w/3: j^u = 0 and j has a transverse part",
+      is(jU[1] = 0) and is(jU[3] # 0))$
+check("flat H-J, z1 = u + w/3: f_v = 0 and f_x # 0",
+      block([f : lorentz_force(emU, JU)], is(f[2] = 0) and is(f[3] # 0)))$
+emU3 : hj_em(uu*lc_w/3, 0)$
+JU3 : hj_Jind(emU3)$
+check("flat H-J, z1 = u w/3: j^u = 0 and the Lorentz force does not vanish",
+      is(kahler_current(emU3, JU3)[1] = 0) and is(lorentz_force(emU3, JU3)[3] # 0))$
+/* ---------- signs ---------- */
+/* orthonormal frame, E along z, B along z */
+g0 : diag_matrix(1, -1, -1, -1)$
+J0 : matrix([0, 0, 0, E0], [0, 0, B0, 0], [0, -B0, 0, 0], [-E0, 0, 0, 0])$
+T0 : tgd_stress(g0, J0, cK, cV)$
+check("signs: J.J = 2 (B^2 - E^2)", is(ratsimp(kahler_invariant(g0, J0) - 2*(B0^2 - E0^2)) = 0))$
+check("signs: energy density 2 T^tt = c_V + 2 c_K (B^2 + E^2)",
+      is(ratsimp(2*T0[1,1] - cV - 2*cK*(B0^2 + E0^2)) = 0))$
+/* energy positive in both parts with action magnetic +, electric -, volume +:
+   the rules hold together exactly for c_K > 0, c_V > 0 */
+energy(k, v, b, e) := v + 2*k*(b^2 + e^2)$
+action(k, v, b, e) := v + 2*k*(b^2 - e^2)$
+check("signs: c_K = c_V = 1 gives energy > 0, action electric < 0 < magnetic",
+      is(energy(1, 1, 1, 1) > 0) and is(action(1, 0, 1, 0) > 0) and is(action(1, 0, 0, 1) < 0)
+      and is(action(0, 1, 0, 0) > 0))$
+check("signs: c_K/c_V < 0 gives a negative energy part",
+      is(energy(-1, 1, 1, 1) < 0) or is(energy(1, -1, 0, 0) < 0))$
+emCs : emb_setup(HGh, H_X, [tt, 0, 0, zz, aa, bb, 0, 0], [tt, zz, aa, bb])$
+check("signs: cosmic string, the energy current is (c_V + 2 c_K) in the direction of t",
+      is(tgd_simp(noether_current(emCs, HJh, H_translation(1), cK, cV)[1] - (cV + 2*cK)) = 0))$
+/* a tube of flux Phi and area A has tension T(A) = c_V A + 2 c_K Phi^2/A: the two terms
+   compete through A and have a minimum exactly when they have the same sign */
+tens(A) := cV*A + 2*cK*Phi^2/A$
+dT : diff(tens(AA), AA)$
+check("signs: tension stationary at A^2 = 2 c_K Phi^2/c_V",
+      is(ratsimp(subst(AA^2 = 2*cK*Phi^2/cV, ratsimp(dT*AA^2))) = 0))$
+d2T : diff(tens(AA), AA, 2)$
+check("signs: at c_K = c_V = Phi = 1 the point A = sqrt(2) is a minimum, T = 2 sqrt(2)",
+      is(subst([cK = 1, cV = 1, Phi = 1, AA = sqrt(2)], d2T) > 0)
+      and is(ratsimp(subst([cK = 1, cV = 1, Phi = 1, AA = sqrt(2)], tens(AA)) - 2*sqrt(2)) = 0))$
+/* ---------- which H-J structures carry all holomorphic functions ---------- */
+/* F(u, w) with mutually null gradients has box F = F_u box u + F_w box w, so all of them
+   are harmonic exactly when box u = box w = 0.  The Bochner identity turns box u = 0 for a
+   null u into u_ab u^ab = 0, and then the level sets are null hyperplanes. */
+depends(qq, [tt, xx, yy, zz])$
+mX : [tt, xx, yy, zz]$
+md : [1, -1, -1, -1]$
+wave(f) := sum(md[i]*diff(f, mX[i], 2), i, 1, 4)$
+gdot(f, h) := sum(md[i]*diff(f, mX[i])*diff(h, mX[i]), i, 1, 4)$
+hess2(f) := sum(sum(md[i]*md[k]*diff(f, mX[i], 1, mX[k], 1)^2, k, 1, 4), i, 1, 4)$
+check("Bochner: box(grad q)^2/2 = q_ab q^ab + grad q . grad box q",
+      is(ratsimp(wave(gdot(qq, qq))/2 - hess2(qq) - gdot(qq, wave(qq))) = 0))$
+rr : sqrt(xx^2 + yy^2 + zz^2)$
+us : tt - rr$
+rsimp(e) := ratsimp(radcan(e))$
+check("t - r: null, box u = 2/r, u_ab u^ab = 2/r^2",
+      is(rsimp(gdot(us, us)) = 0) and is(rsimp(wave(us) - 2/rr) = 0) and is(rsimp(hess2(us) - 2/rr^2) = 0))$
+check("t - r: the transverse Hessian is the expansion of the light cone, grad u . grad box u = -2/r^2",
+      is(rsimp(gdot(us, wave(us)) + 2/rr^2) = 0))$
+/* a family of null hyperplanes k(s).x = g(s) with a turning normal: the implicit u = s is
+   null and harmonic, but the transverse coordinate e(s).x is not */
+depends(gpl, spl)$
+kpl : [1, cos(spl), sin(spl), 0]$
+epl : [0, -sin(spl), cos(spl), %i]$
+mdot(a, b) := sum(md[i]*a[i]*b[i], i, 1, 4)$
+Fpl : mdot(kpl, mX) - gpl$
+Fpls : diff(Fpl, spl)$
+grad_u : makelist(-diff(Fpl, mX[i])/Fpls, i, 1, 4)$
+Dd(f, i) := diff(f, mX[i]) + diff(f, spl)*grad_u[i]$
+tsimp(e) := ratsimp(trigsimp(ratsimp(e)))$
+zpl : mdot(epl, mX)$
+grad_z : makelist(Dd(zpl, i), i, 1, 4)$
+gu_gu : sum(md[i]*grad_u[i]^2, i, 1, 4)$
+check("turning hyperplanes: (grad u)^2 = 0 and box u = 0",
+      is(tsimp(gu_gu) = 0)
+      and is(tsimp(sum(md[i]*Dd(grad_u[i], i), i, 1, 4)) = 0))$
+check("turning hyperplanes: grad u . grad z = 0 and (grad z)^2 = 0",
+      is(tsimp(sum(md[i]*grad_u[i]*grad_z[i], i, 1, 4)) = 0)
+      and is(tsimp(sum(md[i]*grad_z[i]^2, i, 1, 4)) = 0))$
+check("turning hyperplanes: box z # 0, it is 2 e'.grad u",
+      block([b : tsimp(sum(md[i]*Dd(grad_z[i], i), i, 1, 4))],
+        is(b # 0) and is(tsimp(b - 2*sum(diff(epl, spl)[i]*grad_u[i], i, 1, 4)) = 0)))$
+/* Pitkanen's condition {k, w wbar} = 0 (Extremals of the Kahler Action, 4.22) */
+Gamuww(em) := block([G : emb_get(em, 'G)], tgd_simp(G[1][3][3] + G[1][4][4]))$
+check("flat H-J: {u, w wbar} = 0",
+      is(Gamuww(emb_setup(HGh, H_X, holo_surface(lc_m4, 0, 0), lc_chart)) = 0))$
+check("spherical H-J: {u, w wbar} # 0, the transverse metric depends on v",
+      is(Gamuww(emb_setup(sj_H_metric(), sj_H_X, sj_lc_surface(0, 0), sj_chart)) # 0))$

@@ -149,15 +149,44 @@ $$
 
 Tämä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$. Manninen (2024, s. 34) kirjoittaa kertoimeksi $1/(2\alpha_K)$, mikä antaisi eri arvon. Kirjan kaava kannattaa tarkistaa.
 
-Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. Laskut käyttävät oletuksena pelkkää $CP_2$:n Kähler-muotoa, koska $M^4$:n Kähler-osan vaikutus on arvion mukaan häviävän pieni (~10⁻¹⁷ elektronille). Sillä on kuitenkin rakenteellinen rooli, joka on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
+Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. Laskut käyttävät oletuksena pelkkää $CP_2$:n Kähler-muotoa, koska $M^4$:n Kähler-osan vaikutus on arvion mukaan häviävän pieni (~10⁻¹⁷ elektronille).
+
+Matti Pitkäsen linjaus 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) on, että $J(M^4)$ ja $J(CP_2)$ antavat toimintaan erilliset termit eivätkä summaudu yhdeksi muodoksi. Muodolla $J(M^4)$ on vain poikittainen osa. Pitkittäiseen osaan liittyy gradienttina esitettävä mittapotentiaali, joka vastaa Newtonin potentiaalia, ja poikittaisiin vapausasteisiin liittyy gravimagneettinen kenttä. Termin vaikutus riippuu sen kertoimesta ja ratkaisun parametreista, ja perusskaala on $CP_2$:n skaala. Rakenteellinen vaikutus on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
 
 ### Kertoimien etumerkki
 
 Matti Pitkäsen linjaus 31.10.2026 ([#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27)) on, että etumerkki ei näy H-H-pintojen eikä Lagrangen minimipintojen kenttäyhtälöissä. Etumerkki vaikuttaa kosmologisen vakion arvoon ja Kähler-funktion eksponenttiin, joka määrittelee WCW:n tyhjiöfunktionaalin. Eksponentissa tilavuusosan on oltava negatiivinen, jotta eksponentti menee nollaan suurilla tilavuuksilla.
 
-Kähler-termissä sähköinen osa on negatiivinen ja magneettinen osa positiivinen, joten magneettinen osa kilpailee tilavuusosan kanssa. Tilavuuskerroin pienenee pitkissä skaaloissa kuten p-adisen pituusskaalan käänteisneliö. Twistorinostossa $1/\alpha_K$ on 6-ulotteisen Kähler-toiminnan yhteinen kerroin, joten se ei vaikuta kenttäyhtälöihin. Kompleksisen $\alpha_K$:n vaihetekijän tulkinta on avoin.
+Tilavuuskerroin pienenee pitkissä skaaloissa kuten p-adisen pituusskaalan käänteisneliö. Twistorinostossa $1/\alpha_K$ on 6-ulotteisen Kähler-toiminnan yhteinen kerroin, joten se ei vaikuta kenttäyhtälöihin. Kompleksisen $\alpha_K$:n vaihetekijän tulkinta on avoin.
 
-Koodissa $c_K$ ja $c_V$ pysyvät symbolisina, joten mikään testi ei kiinnitä etumerkkiä.
+Pitkäsen toisessa vastauksessa 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) merkit johdetaan neljästä säännöstä, ja lasku pyydettiin tekemään tässä:
+
+- Sekä Kähler-osan että tilavuusosan on tuotava energiatiheyteen positiivinen osuus.
+- Toiminnassa $CP_2$:n sähköinen osa on negatiivinen, ja magneettiset osat ovat positiivisia sekä $M^4$:ssä että $CP_2$:ssa.
+- Tilavuusosa on positiivinen sekä toiminnassa että energiassa.
+- Kähler-funktio on $K=-S$, joten tilavuusosa on eksponentissa negatiivinen eikä eksponentti räjähdä.
+
+Ortonormaalissa kehyksessä $J_{\alpha\beta}J^{\alpha\beta}=2(B^2-E^2)$, ja jännitystensori antaa energiatiheydeksi
+
+$$
+2T^{tt}=c_V+2c_K\left(B^2+E^2\right).
+$$
+
+Noether-virta antaa saman arvon, ja kosmisella säikeellä se on $c_V+2c_K$. Säännöt toteutuvat yhdessä täsmälleen, kun
+
+$$
+c_K>0,\qquad c_V>0.
+$$
+
+Toiminnan yhteinen merkki ei näy kenttäyhtälöissä, mutta jo energian positiivisuus kiinnittää suhteen $c_K/c_V>0$. Normalisointi $c_K=1/(4g_K^2)$ on tämän mukainen. Testit ovat tiedostossa `tests/test-hamilton-jacobi.mac`, ja laskuissa kertoimet pysyvät muuten symbolisina.
+
+Ensimmäisessä vastauksessaan Pitkänen kirjoitti, että magneettinen osa ja tilavuusosa ovat erimerkkisiä ja kilpailevat keskenään. Säännöissä ne ovat samanmerkkisiä. Kilpailu voi syntyä silti putken paksuuden kautta, sillä vuolla $\Phi$ ja poikkipinnalla $A$ jännitys on
+
+$$
+T(A)=c_VA+\frac{2c_K\Phi^2}{A}.
+$$
+
+Tällä on minimi kohdassa $A^2=2c_K\Phi^2/c_V$ täsmälleen silloin, kun termit ovat samanmerkkisiä. Tämä on yksinkertaistettu malli, ja vastaavan tulkinnan vahvistaminen on kysymys issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
 ### Kenttäyhtälöt
 
@@ -388,7 +417,21 @@ $$
 C=\frac{J_{w\bar w}}{g_{w\bar w}}\propto\frac{\omega}{1+\omega}
 $$
 
-ei riipu $w$:stä. Pelkällä $CP_2$:n muodolla Lorentz-voiman ehto $j^\alpha J_{\alpha\beta}=0$ vaatii tämän, ja neliulotteisella $M^4$-projektiolla Kähler-osa häviää vain, jos Lorentz-voima häviää.
+ei riipu $w$:stä. Neliulotteisella $M^4$-projektiolla Kähler-osa häviää vain, jos Lorentz 4-voima $f_\beta=j^\alpha J_{\alpha\beta}$ häviää.
+
+Pitkäsen mukaan $j^w$:n ei tarvitse hävitä, kunhan $f_\beta$ häviää, ja H-H takaa tämän. Laskenta osoittaa, että tällä pintaluokalla ehdot ovat samat. Kartassa $(u,v,x,y)$ mikään ei riipu $v$:stä, ja $g_{vv}=g_{vx}=g_{vy}=0$ sekä $J_{v\alpha}=0$. Tästä seuraa $g^{uu}=g^{ux}=g^{uy}=0$ ja edelleen $j^u=0$, joten
+
+$$
+f_v=0,\qquad f_x=-j^yJ_{xy},\qquad f_y=j^xJ_{xy}.
+$$
+
+Holomorfisella pinnalla $J_{xy}$ on nolla vain siellä, missä $\partial_wf^k=0$, joten $f_\beta=0$ vaatii ehdon $j^w=0$. Pitkäsen kaksi muuta mekanismia johtavat samaan (*Extremals of the Kähler Action*, luku 4.2). Instantonivirralla on tällä pintaluokalla vain $v$-komponentti, joten topologisoitu virta $j=\psi j_I$ on ilman poikittaista osaa. Valon kaltaisuus taas tarkoittaa samaa, koska
+
+$$
+j^\alpha j_\alpha=-P\left((j^x)^2+(j^y)^2\right),\qquad P=-g_{xx}.
+$$
+
+Kahdella viimeisellä kaavalla ei ole oletuksia funktioista $f^k$, joten ne koskevat koko pintaluokkaa.
 
 Vakio $\omega$ tarkoittaisi litteää holomorfista kuvausta kompleksiviivalta $CP_2$:een. Silloin
 
@@ -396,7 +439,7 @@ $$
 1+\lvert f^1\rvert^2+\lvert f^2\rvert^2=\lvert h(w)\rvert^2 e^{\omega\lvert w\rvert^2}.
 $$
 
-Oikean puolen Hermiten muodon rangi on ääretön ja vasemman puolen enintään kolme, joten $\omega=0$. Tämä on Calabin jäykkyyslause. Litteässä rakenteessa pelkkä $CP_2$:n Kähler-muoto ei siis anna yhtään Kähler-ekstremaalia, jolla on $w$-riippuvuus, ja implisiittifunktiolause vie saman tuloksen jokaisen lehden säännöllisiin pisteisiin.
+Oikean puolen Hermiten muodon rangi on ääretön ja vasemman puolen enintään kolme, joten $\omega=0$. Tämä on Calabin jäykkyyslause. Litteässä rakenteessa pelkkä $CP_2$:n Kähler-termi ei siis anna yhtään ekstremaalia, jolla on $w$-riippuvuus, ja implisiittifunktiolause vie saman tuloksen jokaisen lehden säännöllisiin pisteisiin.
 
 Jos muotoon lisätään poikittainen $M^4$-osa $\varepsilon\,dx\wedge dy$, pinnalla $\xi^1=w/2$ pätee
 
@@ -404,7 +447,15 @@ $$
 E_k(J_{CP_2}+\varepsilon J_{M^4})=(1-\varepsilon)^2\,E_k(J_{CP_2}).
 $$
 
-Kähler-osa häviää siis arvolla $\varepsilon=1$, ja silloin $j=0$ ja $J_{\alpha\beta}J^{\alpha\beta}=2$. Tämä on Wirtingerin ehto kompleksikäyrälle tulossa $\mathbb C\times CP_2$. Erillisillä toimintatermeillä sama tapahtuu relatiivisella kertoimella $-1$, sillä $E_k(J_{CP_2})=E_k(J_{M^4})$ kaikilla testatuilla pinnoilla.
+Yhdellä summamuodolla Kähler-osa häviää siis arvolla $\varepsilon=1$, ja silloin $j=0$ ja $J_{\alpha\beta}J^{\alpha\beta}=2$. Tämä on Wirtingerin ehto kompleksikäyrälle tulossa $\mathbb C\times CP_2$.
+
+Pitkäsen linjauksen mukaan muodot ovat kuitenkin erilliset termit, joilla on kertoimet $c_{CP_2}$ ja $c_{M^4}$. Koska $E_k(J_{CP_2})=E_k(J_{M^4})$ kaikilla testatuilla pinnoilla, Kähler-osa on näillä pinnoilla
+
+$$
+\left(c_{CP_2}+c_{M^4}\right)E_k(J_{CP_2}).
+$$
+
+Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä. Pitkäsen käsitys on, että $M^4$:n ja $CP_2$:n osat häviävät erikseen. Testatuilla pinnoilla kumpikaan ei häviä, ja tämä on kysymys issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
 Pallomaisessa rakenteessa ehto on toinen. Vetäisyn on oltava verrannollinen pallon metriikkaan, ja Calabin luokittelun mukaan vain suora ja kartioleikkaus toteuttavat tämän. Niillä $j=0$ ja kumpikin osa häviää.
 
@@ -414,4 +465,24 @@ $$
 \Box f(t-r)=\frac{2f'(t-r)}{r}\ne0.
 $$
 
-Testatuista pinnoista $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora eivät siksi ole minimipintoja tässä rakenteessa, vaikka samat lausekkeet ovat minimipintoja litteässä rakenteessa. Pinnat, jotka eivät riipu $u$:sta, pysyvät minimipintoina. Pitkäsen tarkoittama hyperkompleksinen koordinaatti tälle tapaukselle on kysymys issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Testatuista pinnoista $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora eivät siksi ole minimipintoja tässä rakenteessa, vaikka samat lausekkeet ovat minimipintoja litteässä rakenteessa. Pinnat, jotka eivät riipu $u$:sta, pysyvät minimipintoina.
+
+### Mitkä Hamilton–Jacobi-rakenteet kantavat kaikki holomorfiset funktiot
+
+Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on (*Extremals of the Kähler Action*, kaava 4.22)
+
+$$
+\{k\,w\bar w\}=0,\qquad\{k\,{+-}\}=0.
+$$
+
+Litteässä rakenteessa ehto pätee. Pallomaisessa rakenteessa poikittainen metriikka $r^2\rho$ riippuu $v$:stä, joten $\{u\,w\bar w\}\ne0$. Lasku ja kaava 4.22 antavat siis saman tuloksen.
+
+Yleisemmin olkoot $u$ reaalinen ja $w$ kompleksinen funktio, joiden gradientit ovat keskenään valon kaltaisia, eli $(\nabla u)^2=\nabla u\cdot\nabla w=(\nabla w)^2=0$. Silloin $\Box F(u,w)=F_u\Box u+F_w\Box w$, joten kaikki holomorfiset funktiot ovat harmonisia täsmälleen, kun $\Box u=\Box w=0$. Bochnerin kaava on
+
+$$
+\tfrac12\Box(\nabla u)^2=u_{\alpha\beta}u^{\alpha\beta}+\nabla u\cdot\nabla\Box u.
+$$
+
+Ehdoista seuraa $u_{\alpha\beta}u^{\alpha\beta}=0$, jolloin poikittainen Hessen matriisi häviää ja tasopinnat $u=$ vakio ovat valon kaltaisia hypertasoja $k(u)\cdot m=g(u)$. Tason poikittainen koordinaatti on $\zeta=e(u)\cdot m$, ja $\Box\zeta=2e'\cdot\nabla u$. Tämä häviää vain, jos $k'\propto k$, eli hypertasot ovat yhdensuuntaiset. Rakenne on silloin litteä rakenne Poincarén muunnosta ja uudelleenparametrisointia $(u,w)\to(g(u),F(u,w))$ vaille.
+
+Todistus on tehty käsin oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Jos rajoitutaan funktioihin $F(w)$, luokka on paljon laajempi. Bairdin ja Woodin tulosten mukaan kompleksiset ratkaisut ehdoille $\Box y=0$ ja $(\nabla y)^2=0$ vastaavat leikkauksettomia valonsädekongruensseja ([arXiv:dg-ga/9603005](https://arxiv.org/abs/dg-ga/9603005)), ja Kerrin lause kuvaa nämä kongruenssit kompleksianalyyttisina pintoina twistoriavaruudessa. Pallomaisen rakenteen $w$ on tällainen funktio. Tämä on vihje Pitkäsen kysymykseen H-J-rakenteiden määrästä, eikä sitä ole vielä testattu tässä projektissa.

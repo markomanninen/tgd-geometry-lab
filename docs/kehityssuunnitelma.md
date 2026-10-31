@@ -4,7 +4,7 @@ Versio 1.1, 30.10.2026.
 Tavoitteena on rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen. ✅ tarkoittaa toteutettua ja testattua, 🟡 osittain tehtyä ja ⬜ tekemätöntä.
-> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 290 testiä menevät läpi.
+> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 316 testiä menevät läpi.
 > GitHubissa jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Tilanne on koottu [seurantaan](seuranta.md).
 
 ---
@@ -380,7 +380,7 @@ Moduuli `tgd/characteristics.mac` laskee pääosan suoraan $L$:n toisista deriva
 
 Issuet [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31), [#32](https://github.com/markomanninen/tgd-geometry-lab/issues/32) ja [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 - **8.1 Symmetriset erikoistapaukset** – moduuli `tgd/solutions.mac` luokittelee syötteenä annetun pinnan. CP₂-tyyppiset ekstremaalit, Lagrangen pinnat ja pallosymmetrinen ansatsi on tehty ([tulokset](tulokset.md#ratkaisugeneraattori)).
-- **8.2 Analyyttiset ratkaisut** – tarkat ratkaisut ovat Pitkäsen Lagrangen vuoputkiansatsin eksplisiittinen muoto ja pallosymmetrinen katenoidi. H-H-generaattori on toteutettu Matin vastauksen mukaan, ja lisäksi tarkkoja ratkaisuja ovat suora ja kartioleikkaus pallomaisessa rakenteessa ([tulokset](tulokset.md#holografia-holomorfia)). $J(M^4)$:n rooli on avoinna (#35).
+- **8.2 Analyyttiset ratkaisut** – tarkat ratkaisut ovat Pitkäsen Lagrangen vuoputkiansatsin eksplisiittinen muoto ja pallosymmetrinen katenoidi. H-H-generaattori on toteutettu Matin vastauksen mukaan, ja lisäksi tarkkoja ratkaisuja ovat suora ja kartioleikkaus pallomaisessa rakenteessa ([tulokset](tulokset.md#holografia-holomorfia)). Lorentz 4-voiman rooli H-H-pinnoilla on avoinna (#35).
 - **8.3 Karakteristinen analyysi** – tehty vaiheessa 7.5.
 - **8.4 Numeeriset menetelmät** – Maxima-lausekkeet muunnetaan NumPy-funktioiksi (`lab.numeric`). Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus ovat vielä tekemättä.
 - **8.5 Visualisointi** – kirja `04_numeriikka_ja_kuvat.ipynb` (Maxima vastaa symbolisesta laskennasta, Python numeriikasta ja kuvista). Kirja tarkistaa numeeriset arvot analyyttisiä arvoja vasten.
@@ -407,7 +407,7 @@ tgd-geometry-lab/
 ├── tgd/noether.mac           isometriat ja Noether-virrat
 ├── tgd/characteristics.mac   karakteristinen analyysi
 ├── tgd/solutions.mac         ratkaisugeneraattori
-├── tests/                    290 automaattista testiä
+├── tests/                    316 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -465,8 +465,8 @@ Toteutusjärjestys on ensin M1–M4, sitten M5–M6 ja vasta sen jälkeen M7–M
 
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
-1. **Matin linjaus** #35:een eli $J(M^4)$:n paikkaan ja kertoimeen toiminnassa.
-2. **Pallomaisen rakenteen hyperkompleksinen koordinaatti.** Koordinaatti $u=t-r$ rikkoo minimipintaominaisuuden, ja kysymys on issuessa #35.
+1. **Lorentz 4-voima H-H-pinnoilla.** Litteässä rakenteessa se vaatii poikittaisen virran häviämisen, ja jatkokysymys on issuessa #35.
+2. **Hamilton–Jacobi-rakenteet.** Kaikki funktiot $F(u,w)$ kantaa vain litteä rakenne, ja funktioille $F(w)$ reitti kulkee leikkauksettomien valonsädekongruenssien kautta (#35).
 
 ---
 
