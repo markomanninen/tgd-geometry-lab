@@ -149,6 +149,13 @@ JC2 : induced_kahler_form(HJh, sj_H_X, emb_get(sj2_em(sqrt(2)*sj_w, sj_w^2), 'h)
 check("spherical H-J: J = rho/4 on the line, rho/2 on the conic, flux pi and 2 pi",
       is(tgd_simp(JL2[3,4] - sj_rho/4) = 0) and is(tgd_simp(JC2[3,4] - sj_rho/2) = 0)
       and is(integrate(4/(1 + rho^2)^2*2*%pi*rho, rho, 0, inf)/4 = %pi))$
+/* Pitkanen's classification (Martin3, 3.2.1): a curve of CP_1 x CP_2 cut by bi-degrees (a1,b1),
+   (a2,b2) has b1 b2 sheets over CP_1, degree a1 b2 + a2 b1 in CP_2 and
+   2 g - 2 = (a1 + a2 - 2) b1 b2 + (b1 + b2 - 3)(a1 b2 + a2 b1) */
+curve_data(a1, b1, a2, b2) := block([s : b1*b2, d : a1*b2 + a2*b1],
+  [s, d, ((a1 + a2 - 2)*s + (b1 + b2 - 3)*d + 2)/2])$
+check("Martin3: line (1,1),(0,1) and conic (1,1),(1,1) have sheets, degree, genus 1,1,0 and 1,2,0",
+      is(curve_data(1, 1, 0, 1) = [1, 1, 0]) and is(curve_data(1, 1, 1, 1) = [1, 2, 0]))$
 check("spherical H-J, line: J_ab/g_ab = 1/(4 r^2 + 1), a field that falls like 1/r^2",
       is(tgd_simp(JL2[3,4]/emb_get(emL2, 'g)[3,3] + 1/(4*hr^2 + 1)) = 0))$
 check("spherical H-J, line: dt^2 - dr^2 - (r^2 + 1/4) dOmega^2, smooth at r = 0",

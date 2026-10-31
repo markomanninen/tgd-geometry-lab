@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 329 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 330 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -134,7 +134,7 @@ $$
 (1-\varepsilon)^2.
 $$
 
-Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Pitkäsen linjaus on kuitenkin, että $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Koska kummankin muodon Kähler-osa on testatuilla pinnoilla sama, kokonaisosa on kertoimien summa kerrottuna tällä osalla. Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä näillä pinnoilla. Tämä kuuluu [jatkokysymykseen Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Pitkäsen linjaus on kuitenkin, että $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Julkaistuna ratkaisu on artikkelissa Martin2 partoniratojen Kähler–Chern–Simons-toiminnalle. Koska kummankin muodon Kähler-osa on testatuilla pinnoilla sama, kokonaisosa on kertoimien summa kerrottuna tällä osalla. Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä näillä pinnoilla. Tämä kuuluu [jatkokysymykseen Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
 **Pallomainen rakenne.** Koordinaateissa $t\pm r$ ja $w$ pallolla $S^2$ tilanne on toinen, koska poikittainen metriikka on nyt kaareva. Pelkällä $CP_2$:n Kähler-muodolla Kähler-osa häviää, kun vetäisy on verrannollinen pallon metriikkaan. Yksinkertaisin esimerkki on suora
 
@@ -148,7 +148,7 @@ $$
 \xi^1=\sqrt2\,w,\qquad\xi^2=w^2,
 $$
 
-jolla sama kerroin on $r^2+\tfrac12$. Calabin luokittelun mukaan muita ei ole, ja vertailupinnat $\xi^1=w^2$ ja $\xi^1=2w$ ovat vain minimipintoja. Näiden kahden pinnan $M^4$-projektio on neliulotteinen ja ne ovat molempien termien ekstremaaleja kaikilla kertoimilla. Ne kantavat Kähler-vuon $\pi$ ja $2\pi$ jokaisen pallon läpi, ja niillä $M^4$:n ja $CP_2$:n Kähler-osat häviävät erikseen, kun $J(M^4)$ on pallon pintamuoto. Suoran metriikka on sileä kohdassa $r=0$, jossa pallon säde on $1/2$.
+jolla sama kerroin on $r^2+\tfrac12$. Calabin luokittelun mukaan muita ei ole, ja vertailupinnat $\xi^1=w^2$ ja $\xi^1=2w$ ovat vain minimipintoja. Näiden kahden pinnan $M^4$-projektio on neliulotteinen ja ne ovat molempien termien ekstremaaleja kaikilla kertoimilla. Ne kantavat Kähler-vuon $\pi$ ja $2\pi$ jokaisen pallon läpi, ja niillä $M^4$:n ja $CP_2$:n Kähler-osat häviävät erikseen, kun $J(M^4)$ on pallon pintamuoto. Suoran metriikka on sileä kohdassa $r=0$, jossa pallon säde on $1/2$. Pinnat kuuluvat Pitkäsen Martin3-artikkelin luokitteluun genuksen $0$ käyrinä tulossa $CP_1\times CP_2$, joiden aste pinnassa $CP_2$ on $1$ ja $2$.
 
 **Valon suuntainen riippuvuus pallomaisessa rakenteessa.** Litteässä rakenteessa $u$-riippuvuus säilyttää minimipintaominaisuuden, mutta pallomaisessa rakenteessa ei. Pinnat $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora $\xi^1=e^{ia(u)}w$ eivät ole siellä minimipintoja. Syy on tuttu aaltoyhtälöstä. Pallomainen aalto ei ole $f(t-r)$ vaan $f(t-r)/r$, koska valonsäteiden kimppu laajenee ja
 

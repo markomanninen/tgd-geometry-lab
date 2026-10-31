@@ -151,7 +151,7 @@ Tämä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$. Manninen (2024, s. 34
 
 Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. Laskut käyttävät oletuksena pelkkää $CP_2$:n Kähler-muotoa, koska $M^4$:n Kähler-osan vaikutus on arvion mukaan häviävän pieni (~10⁻¹⁷ elektronille).
 
-Matti Pitkäsen linjaus 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) on, että $J(M^4)$ ja $J(CP_2)$ antavat toimintaan erilliset termit eivätkä summaudu yhdeksi muodoksi. Muodolla $J(M^4)$ on vain poikittainen osa. Pitkittäiseen osaan liittyy gradienttina esitettävä mittapotentiaali, joka vastaa Newtonin potentiaalia, ja poikittaisiin vapausasteisiin liittyy gravimagneettinen kenttä. Termin vaikutus riippuu sen kertoimesta ja ratkaisun parametreista, ja perusskaala on $CP_2$:n skaala. Rakenteellinen vaikutus on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
+Matti Pitkäsen linjaus 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) on, että $J(M^4)$ ja $J(CP_2)$ antavat toimintaan erilliset termit eivätkä summaudu yhdeksi muodoksi. Julkaistuna ratkaisu on [Martin2](https://tgdtheory.fi/public_html/articles/Martin2.pdf):ssa partoniratojen Kähler–Chern–Simons-toiminnalle, jossa mittabosonien propagaattorit saadaan vain erillisillä termeillä. Viestin mukaan sama koskee sisäosan toimintaa, jossa magneettiset osat ovat positiivisia sekä $M^4$:ssä että $CP_2$:ssa. Muodolla $J(M^4)$ on vain poikittainen osa. Pitkittäiseen osaan liittyy gradienttina esitettävä mittapotentiaali, joka vastaa Newtonin potentiaalia, ja poikittaisiin vapausasteisiin liittyy gravimagneettinen kenttä. Termin vaikutus riippuu sen kertoimesta ja ratkaisun parametreista, ja perusskaala on $CP_2$:n skaala. Rakenteellinen vaikutus on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
 
 ### Kertoimien etumerkki
 
@@ -459,7 +459,7 @@ $$
 
 Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä näillä pinnoilla.
 
-Pitkäsen käsitys on, että $M^4$:n ja $CP_2$:n osat häviävät erikseen. Laskennassa näin käy kahdessa tapauksessa, jotka ovat litteän rakenteen pinnat $f(u)$ ja pallomaisen rakenteen suora ja kartioleikkaus. Pallomaisessa rakenteessa poikittaiseksi muodoksi on otettu pallon pintamuoto $\rho\,da\wedge db$, joka on suljettu ja kantaa $M^4$:n monopolivarauksen. Muodon valinta on oletus, sillä lähteet sanovat vain, että $J(M^4)$ on poikittainen.
+Pitkäsen käsitys on, että $M^4$:n ja $CP_2$:n osat häviävät erikseen. Laskennassa näin käy kahdessa tapauksessa, jotka ovat litteän rakenteen pinnat $f(u)$ ja pallomaisen rakenteen suora ja kartioleikkaus. Pallomaisessa rakenteessa poikittaiseksi muodoksi on otettu pallon pintamuoto $\rho\,da\wedge db$ vakiokertoimella, joka on suljettu ja kantaa $M^4$:n monopolivarauksen. Martin2:n mukaan muodon suuruus on pallolla $CP_1\subset\delta M^4_+$ verrannollinen säteen neliöön, ja testi kattaa tämän, kun säde on kiinteä. Säteen mukana muuttuva kerroin ei olisi suljettu muoto, joten sitä ei ole laskettu.
 
 Pallomaisessa rakenteessa ehto on toinen. Vetäisyn on oltava verrannollinen pallon metriikkaan, ja Calabin luokittelun mukaan vain suora ja kartioleikkaus toteuttavat tämän. Niillä $j=0$ ja kumpikin osa häviää.
 
@@ -469,7 +469,7 @@ $$
 ds^2=dt^2-dr^2-\left(r^2+\tfrac14\right)d\Omega^2.
 $$
 
-Metriikka on sileä kohdassa $r=0$, jossa pallon säde on $1/2$. Kähler-vuo on suoralla $\pi$ ja kartioleikkauksella $2\pi$ jokaisen pallon läpi, ja suoralla $J_{ab}/\lvert g_{ab}\rvert=1/(4r^2+1)$. Vuo on homologisesti epätriviaali, joten kyse on monopolivuosta. Ovatko nämä pinnat Pitkäsen tarkoittamia monopoliratkaisuja, on hänen arvioitavansa.
+Metriikka on sileä kohdassa $r=0$, jossa pallon säde on $1/2$. Kähler-vuo on suoralla $\pi$ ja kartioleikkauksella $2\pi$ jokaisen pallon läpi, ja suoralla $J_{ab}/\lvert g_{ab}\rvert=1/(4r^2+1)$. Vuo on homologisesti epätriviaali, joten kyse on monopolivuosta. Vakiosäteiset leikkaukset kuuluvat [Martin3](https://tgdtheory.fi/public_html/articles/Martin3.pdf):n luokitteluun, jossa partonipinta on käyrä tulossa $CP_1\times CP_2$. Suora on genuksen $0$ käyrä, jolla on yksi lehti yli $CP_1$:n ja aste $1$ pinnassa $CP_2$. Kartioleikkaus on sama käyrä asteella $2$, ja se vastaa Martin3:n esimerkkiä bi-asteista $(1,1)$ ja $(1,1)$.
 
 Pallomaisessa rakenteessa $u=t-r$ ei toimi samalla tavalla kuin litteässä. Valonsäteiden kimppu laajenee, joten
 
