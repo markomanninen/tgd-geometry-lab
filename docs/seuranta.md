@@ -22,7 +22,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M7 Toiminta | 6/6 ✅ | – |
 | M8 Ratkaisut | 2/3 | #35 odottaa Matin linjausta $J(M^4)$:n roolista |
 
-Kaikki 283 testiä menevät läpi.
+Kaikki 290 testiä menevät läpi.
 
 Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin yhden jatkokysymyksen, joka on issuessa #35.
 
@@ -53,7 +53,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 | Issue | Kysymys |
 |---|---|
-| #35 | Mikä on $J(M^4)$:n paikka ja kerroin toiminnassa, kun pelkällä $CP_2$:n Kähler-muodolla holomorfisten pintojen Kähler-osa ei häviä litteässä rakenteessa? |
+| #35 | Mikä on $J(M^4)$:n paikka ja kerroin toiminnassa, kun pelkällä $CP_2$:n Kähler-muodolla holomorfisten pintojen Kähler-osa ei häviä litteässä rakenteessa? Mikä on hyperkompleksinen koordinaatti pallomaisessa rakenteessa? |
 
 ### Markolle
 

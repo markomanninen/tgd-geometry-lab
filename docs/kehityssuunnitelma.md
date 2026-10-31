@@ -4,7 +4,7 @@ Versio 1.1, 30.10.2026.
 Tavoitteena on rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen. ✅ tarkoittaa toteutettua ja testattua, 🟡 osittain tehtyä ja ⬜ tekemätöntä.
-> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 283 testiä menevät läpi.
+> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 290 testiä menevät läpi.
 > GitHubissa jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Tilanne on koottu [seurantaan](seuranta.md).
 
 ---
@@ -407,7 +407,7 @@ tgd-geometry-lab/
 ├── tgd/noether.mac           isometriat ja Noether-virrat
 ├── tgd/characteristics.mac   karakteristinen analyysi
 ├── tgd/solutions.mac         ratkaisugeneraattori
-├── tests/                    283 automaattista testiä
+├── tests/                    290 automaattista testiä
 ├── notebooks/                Colab-kirjat + tgdlab.py-silta
 └── docs/                     tämä suunnitelma ja konventiot
 ```
@@ -466,7 +466,7 @@ Toteutusjärjestys on ensin M1–M4, sitten M5–M6 ja vasta sen jälkeen M7–M
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
 1. **Matin linjaus** #35:een eli $J(M^4)$:n paikkaan ja kertoimeen toiminnassa.
-2. **Pallomaisen rakenteen $u$-riippuvat pinnat.** Niitä ei ole vielä laskettu loppuun.
+2. **Pallomaisen rakenteen hyperkompleksinen koordinaatti.** Koordinaatti $u=t-r$ rikkoo minimipintaominaisuuden, ja kysymys on issuessa #35.
 
 ---
 

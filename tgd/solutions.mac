@@ -91,3 +91,6 @@ sj_H_metric() := metric_direct_sum(
   matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -hr^2*sj_rho, 0], [0, 0, 0, -hr^2*sj_rho]),
   cp2_sign*cp2_metric())$
 sj_surface(z1, z2) := append(sj_X, cp2_real(z1, z2))$
+/* the same with the light-like chart u = t - r, v = t + r, for surfaces that depend on u */
+sj_chart : [uu, vv, sa, sb]$
+sj_lc_surface(z1, z2) := append([(uu+vv)/2, (vv-uu)/2, sa, sb], cp2_real(z1, z2))$

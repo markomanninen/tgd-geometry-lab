@@ -407,3 +407,11 @@ $$
 Kähler-osa häviää siis arvolla $\varepsilon=1$, ja silloin $j=0$ ja $J_{\alpha\beta}J^{\alpha\beta}=2$. Tämä on Wirtingerin ehto kompleksikäyrälle tulossa $\mathbb C\times CP_2$. Erillisillä toimintatermeillä sama tapahtuu relatiivisella kertoimella $-1$, sillä $E_k(J_{CP_2})=E_k(J_{M^4})$ kaikilla testatuilla pinnoilla.
 
 Pallomaisessa rakenteessa ehto on toinen. Vetäisyn on oltava verrannollinen pallon metriikkaan, ja Calabin luokittelun mukaan vain suora ja kartioleikkaus toteuttavat tämän. Niillä $j=0$ ja kumpikin osa häviää.
+
+Pallomaisessa rakenteessa $u=t-r$ ei toimi samalla tavalla kuin litteässä. Valonsäteiden kimppu laajenee, joten
+
+$$
+\Box f(t-r)=\frac{2f'(t-r)}{r}\ne0.
+$$
+
+Testatuista pinnoista $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora eivät siksi ole minimipintoja tässä rakenteessa, vaikka samat lausekkeet ovat minimipintoja litteässä rakenteessa. Pinnat, jotka eivät riipu $u$:sta, pysyvät minimipintoina. Pitkäsen tarkoittama hyperkompleksinen koordinaatti tälle tapaukselle on kysymys issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).

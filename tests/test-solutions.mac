@@ -131,6 +131,23 @@ check("spherical H-J, line: J.J depends on r",
 emSC : sj_em(sqrt(2)*sj_w, sj_w^2)$
 check("spherical H-J, conic: g_ww = -(r^2 + 1/2) rho, twice the line",
       is(tgd_simp(emb_get(emSC, 'g)[3,3] + (hr^2 + 1/2)*sj_rho) = 0))$
+/* u dependence on the spherical structure: the light rays expand, so a function of u is
+   not a wave, box f(t - r) = 2 f'/r.  The same surfaces are minimal on the flat structure. */
+sj_lc_rep(z1, z2) := extremal_report(emb_setup(SHs, sj_H_X, sj_lc_surface(z1, z2), sj_chart), HJs)$
+rphase : (1 + %i*uu)/(1 - %i*uu)$
+check("spherical H-J, u,v chart: the line without u stays minimal",
+      rhs(third(sj_lc_rep(sj_w, 0))))$
+check("spherical H-J: the rotated line xi1 = e^{i a(u)} w is not minimal",
+      not rhs(third(sj_lc_rep(rphase*sj_w, 0))))$
+check("spherical H-J: xi1 = u + w is not minimal", not rhs(third(sj_lc_rep(uu + sj_w, 0))))$
+check("spherical H-J: xi1 = u is not minimal", not rhs(third(sj_lc_rep(uu, 0))))$
+check("flat H-J: the rotated line xi1 = e^{i a(u)} w is minimal",
+      rhs(third(rep_holo(rphase*lc_w, 0))))$
+check("flat H-J: xi1 = u is minimal", rhs(third(rep_holo(uu, 0))))$
+waveF : (ht - hr)^3$
+check("M^4: box f(t - r) = 2 f'/r on the spherical wave f = (t - r)^3",
+      is(ratsimp(diff(waveF, ht, 2) - diff(waveF, hr, 2) - 2/hr*diff(waveF, hr)
+                 - 2/hr*3*(ht - hr)^2) = 0))$
 /* spherically symmetric: M^1 x a catenoid in R^3 x a geodesic of CP_2 */
 depends(chi, r)$
 sxi : [t, r, th, ph]$

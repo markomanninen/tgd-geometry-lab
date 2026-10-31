@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 283 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 290 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -148,6 +148,14 @@ $$
 
 jolla sama kerroin on $r^2+\tfrac12$. Calabin luokittelun mukaan muita ei ole, ja vertailupinnat $\xi^1=w^2$ ja $\xi^1=2w$ ovat vain minimipintoja. Näiden kahden pinnan $M^4$-projektio on neliulotteinen ja ne ovat molempien termien ekstremaaleja kaikilla kertoimilla.
 
+**Valon suuntainen riippuvuus pallomaisessa rakenteessa.** Litteässä rakenteessa $u$-riippuvuus säilyttää minimipintaominaisuuden, mutta pallomaisessa rakenteessa ei. Pinnat $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora $\xi^1=e^{ia(u)}w$ eivät ole siellä minimipintoja. Syy on tuttu aaltoyhtälöstä. Pallomainen aalto ei ole $f(t-r)$ vaan $f(t-r)/r$, koska valonsäteiden kimppu laajenee ja
+
+$$
+\Box f(t-r)=\frac{2f'(t-r)}{r}.
+$$
+
+Laskennassa käytettiin koordinaattia $u=t-r$, joten tulos koskee tätä valintaa. Onko Pitkäsen tarkoittama koordinaatti jokin muu, on [kysymys Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+
 ## Säilymislait
 
 Tarkistuksessa on mukana $H$:n kaikki 18 isometriaa eli neljä translaatiota, kuusi Lorentz-generaattoria ja kahdeksan värigeneraattoria. Ne säilyttävät sekä metriikan että Kähler-muodon, ja värigeneraattorit muodostavat $su(3)$-algebran.
@@ -182,6 +190,7 @@ Kuvat ovat kirjassa [Numeriikka ja kuvat](notebooks/04_numeriikka_ja_kuvat.ipynb
 
 ## Avoimet kysymykset
 
-Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon ja tilavuustermin merkityksen kenttäyhtälöille. Laskennan perusteella jäljellä on seuraava kysymys ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
+Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon ja tilavuustermin merkityksen kenttäyhtälöille. Laskennan perusteella jäljellä on kaksi kysymystä ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
 
 - Mikä on $J(M^4)$:n paikka ja kerroin toiminnassa, jotta holomorfiset pinnat ovat litteässä Hamilton–Jacobi-rakenteessa myös Kähler-ekstremaaleja?
+- Mikä on hyperkompleksinen koordinaatti pallomaisessa rakenteessa, kun $u=t-r$ rikkoo minimipintaominaisuuden?
