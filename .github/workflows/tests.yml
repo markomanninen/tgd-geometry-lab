@@ -1,7 +1,32 @@
 name: tests
 on:
   push:
+    branches: [main]
+    paths:
+      - "algebra/**"
+      - "core/**"
+      - "embedding/**"
+      - "forms/**"
+      - "geometry/**"
+      - "spaces/**"
+      - "tgd/**"
+      - "tests/**"
+      - "tgd-lab.mac"
+      - "scripts/run_tests.sh"
+      - ".github/workflows/tests.yml"
   pull_request:
+    paths:
+      - "algebra/**"
+      - "core/**"
+      - "embedding/**"
+      - "forms/**"
+      - "geometry/**"
+      - "spaces/**"
+      - "tgd/**"
+      - "tests/**"
+      - "tgd-lab.mac"
+      - "scripts/run_tests.sh"
+      - ".github/workflows/tests.yml"
 jobs:
   maxima:
     runs-on: ubuntu-latest
