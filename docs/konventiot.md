@@ -149,7 +149,19 @@ $$
 L_K=\frac{1}{4g_K^2}J^{\mu\nu}J_{\mu\nu}\sqrt g,\qquad \alpha_K=\frac{g_K^2}{4\pi}.
 $$
 
-Tämä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$. Manninen (2024, s. 34) kirjoittaa kertoimeksi $1/(2\alpha_K)$, mikä antaisi eri arvon. Kirjan kaava kannattaa tarkistaa.
+Tämä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$. Arvo seuraa siitä, että $CP_2$:n yli otettu integraali on
+
+$$
+\int_{CP_2}J_{\alpha\beta}J^{\alpha\beta}\sqrt g\,d^4x=4\cdot\frac{\pi^2}{2}=2\pi^2.
+$$
+
+Integraalin ja arvon $\pi/(8\alpha_K)$ suhde kiinnittää kertoimen, joka on
+
+$$
+\frac{1}{16\pi\alpha_K}=\frac{1}{4g_K^2}.
+$$
+
+Manninen (2024, s. 34) kirjoittaa kertoimeksi $1/(2\alpha_K)$. Tällä kertoimella sama integraali antaa arvon $\pi^2/\alpha_K$, joka on $8\pi\approx25{,}13$ kertaa arvo $\pi/(8\alpha_K)$. Metriikan toinen normalisointi `cp2_metric_factor : 1` ei selitä eroa, koska integraali kasvaa siinä arvoon $8\pi^2$ ja kertoimien suhde arvoon $32\pi$. Laskut ovat tiedostossa `tests/test-cp2.mac`, ja esseen muut kaavat on koottu [tuloksiin](tulokset.md#mannisen-esseen-kaavat-vertailutesteina).
 
 Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. Laskut käyttävät oletuksena pelkkää $CP_2$:n Kähler-muotoa, koska $M^4$:n Kähler-osan vaikutus on arvion mukaan häviävän pieni (~10⁻¹⁷ elektronille).
 

@@ -89,6 +89,37 @@ check("s^1 = x: H^k # 0, x is not an affine parameter",
       not null_vec(meH([xx, 0, 0, 0])))$
 check("s^1 = tan(x), FS geodesic in affine parameter: H^k = 0",
       is(map(trigsimp, meH([tan(xx), 0, 0, 0])) = makelist(0, i, 1, 8)))$
+/* Manninen (2024, p. 37, #34): g^ab D_b d_a h^k = 0 holds for the holomorphic ansatz because
+   g^ab has type (1,1), D d h has type (2,0) + (0,2) and the two have no common indices.  In the
+   basis d_u, d_v, d_w, d_wbar every single product g^ab B^k_ab must vanish, not only the sum. */
+ty_C : matrix([1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1/2, 1/2], [0, 0, -%i/2, %i/2])$
+ty_null(z1, z2) := block([em, B, gi, Bk, ok : true],
+  em : emb_setup(GHm, H_X, holo_surface(lc_m4, z1, z2), lc_chart),
+  B : second_fundamental_form(em),
+  gi : tgd_msimp(mat_inverse(transpose(ty_C) . emb_get(em, 'g) . ty_C)),
+  for k thru 8 do (
+    Bk : tgd_msimp(transpose(ty_C) . genmatrix(lambda([a, b], B[k][a][b]), 4, 4) . ty_C),
+    for a thru 4 do for b thru 4 do
+      ok : ok and is(tgd_simp(gi[a,b]*Bk[a,b]) = 0)),
+  ok)$
+check("holomorphic z1 = w/2: every product g^ab B^k_ab vanishes", ty_null(lc_w/2, 0))$
+check("holomorphic z1 = u w/3 + w^2/5: every product g^ab B^k_ab vanishes", ty_null(uu*lc_w/3 + lc_w^2/5, 0))$
+check("holomorphic z1 = u + w/3, z2 = w^2: every product g^ab B^k_ab vanishes", ty_null(uu + lc_w/3, lc_w^2))$
+check("control: non-holomorphic z1 = conj(w)^2 + w leaves products", not ty_null(conjugate(lc_w)^2 + lc_w, 0))$
+/* the same for string world sheets: the 2-surface (u, v) with CP_2 functions of u alone */
+ws_H(s) := block([em : emb_setup(GHm, H_X, append([(uu+vv)/2, 0, 0, (vv-uu)/2], s), [uu, vv])],
+  mean_curvature(em, second_fundamental_form(em)))$
+check("string world sheet s^k(u), four arbitrary functions: H^k = 0", null_vec(ws_H([a1, a2, a3, a4])))$
+check("control: the world sheet s^1 = u v is not minimal", not null_vec(ws_H([uu*vv, 0, 0, 0])))$
+/* the one-dimensional case of the essay: a straight curve in H with g_tt = c^2 - b^2 solves the
+   geodesic equation for all c and b, also at c = b, where it is light-like and has no g^ab */
+ge_Gam : christoffel(GHm, H_X)$
+ge_acc(h) := block([G : subst(map("=", H_X, h), ge_Gam), d : diff(h, tau)],
+  makelist(trigsimp(tgd_simp(diff(h[k], tau, 2) + sum(sum(G[k][l][m]*d[l]*d[m], m, 1, 8), l, 1, 8))), k, 1, 8))$
+check("curve in H: t = c s, x1 = tan(b s) is a geodesic for all c, b, c = b included",
+      null_vec(ge_acc([cvc*tau, 0, 0, 0, tan(cvb*tau), 0, 0, 0])))$
+check("control: x1 = b s is not in affine parameter",
+      not null_vec(ge_acc([cvc*tau, 0, 0, 0, cvb*tau, 0, 0, 0])))$
 /* Gauss, Codazzi and Ricci (#24) */
 check("Gauss: sphere in R^3",
       null_vec(gauss_defects(emS, emb_ambient_riemann(BEuc, RX, Ssph), BS)))$

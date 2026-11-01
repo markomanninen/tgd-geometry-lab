@@ -68,6 +68,27 @@ IKJ : 2*%pi^2 * integrate(rr^3 * kahler_invariant(G, W)/(1+rr^2)^3, rr, 0, inf)$
 check("Vol(CP_2) = pi^2/2", is(2*%pi^2*integrate(rr^3/(1+rr^2)^3, rr, 0, inf) = %pi^2/2))$
 check("Kahler action of CP_2: S_K = pi/(8 alpha_K) with L_K = J.J sqrt(g)/(4 g_K^2)",
       is(ratsimp(subst(gK2 = 4*%pi*alphaK, IKJ/(4*gK2)) - %pi/(8*alphaK)) = 0))$
+/* Manninen (2024, p. 34, #34) writes the coefficient 1/(2 alpha_K).  The coefficient c that
+   reproduces S_K(CP_2) follows from the integral alone. */
+check("int J.J sqrt(g) over CP_2 = 2 pi^2", is(IKJ = 2*%pi^2))$
+check("S_K = pi/(8 alpha_K) requires c = 1/(16 pi alpha_K) = 1/(4 g_K^2)",
+      is(solve(cS*IKJ = %pi/(8*alphaK), cS) = [cS = 1/(16*%pi*alphaK)]))$
+check("the coefficient 1/(2 alpha_K) gives pi^2/alpha_K, 8 pi times S_K(CP_2)",
+      is(ratsimp(IKJ/(2*alphaK) - %pi^2/alphaK) = 0)
+      and is(ratsimp((IKJ/(2*alphaK))/(%pi/(8*alphaK))) = 8*%pi))$
+/* the other metric normalisation doubles g and J, so the integral grows and the gap with it */
+block([cp2_metric_factor : 1, G2, W2],
+  G2 : cp2_metric(),
+  W2 : cp2_kahler_matrix(),
+  check("cp2_metric_factor = 1: int J.J sqrt(g) = 8 pi^2, the coefficient gap grows to 32 pi",
+        is(tgd_simp(determinant(G2) - 16/(1+cp2_rho2)^6) = 0)
+        and is(2*%pi^2*integrate(rr^3*kahler_invariant(G2, W2)*4/(1+rr^2)^3, rr, 0, inf) = 8*%pi^2)))$
+/* Manninen (2024, p. 41, #34): the holonomy group of CP_2 is U(2).  By the Ambrose-Singer
+   theorem the curvature operator on 2-forms spans the holonomy algebra, at a general point. */
+cu_pairs : [[1,2], [1,3], [1,4], [2,3], [2,4], [3,4]]$
+cu_op(pt) := genmatrix(lambda([i, j], subst(pt, Rl[cu_pairs[i][1]][cu_pairs[i][2]][cu_pairs[j][1]][cu_pairs[j][2]])), 6, 6)$
+check("the curvature operator has rank 4 = dim U(2) of the 6 of so(4)",
+      is(rank(cu_op([x1=0, y1=0, x2=0, y2=0])) = 4) and is(rank(cu_op([x1=1/3, y1=-2, x2=1/2, y2=1])) = 4))$
 /* general radius: Ric is scale invariant, so Ric = 6 g / R^2 */
 block([cp2_R2 : Rsq],
   GR : cp2_metric(),

@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 376 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 419 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -199,6 +199,43 @@ Pelkkä Kähler-vaikutus on $M^4$:n ympärillä degeneroitunut ja ME-taustalla h
 Tulokset koskevat yhtälön pääosaa yhdessä pisteessä. Ne eivät vielä kerro ratkaisujen stabiiliudesta.
 
 Kuvat ovat kirjassa [Numeriikka ja kuvat](notebooks/04_numeriikka_ja_kuvat.ipynb).
+
+## Mannisen esseen kaavat vertailutesteinä
+
+Marko Mannisen essee *Through the Wormhole on Spacetime Surface* (2024) esittää TGD:n vaikutuksen, indusoidun geometrian ja minimipintojen kenttäyhtälön kaavoina. Claude kävi kaavat läpi issuessa [#34](https://github.com/markomanninen/tgd-geometry-lab/issues/34) ja muotoili kustakin väitteen, jonka Maxima voi tarkistaa. Taulukon sivunumero viittaa esseeseen. Kaavat on luettu esseen tekstiversiosta, josta indeksien korkeudet ovat kadonneet, joten yläindeksit on päätelty asiayhteydestä.
+
+| Sivu | Testattu väite | Testit |
+|---|---|---|
+| 19 | Einstein–Hilbert-vaikutuksen $\int R\sqrt{-g}\,d^4x$ variaatio antaa Einsteinin tensorin signatuurissa $(-,+,+,+)$. | [curvature](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-curvature.mac) |
+| 22–24 | Riemannin tensorin kaava on sama kuin konventioissa, ja $G^{\mu\nu}$:n divergenssi häviää. | [curvature](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-curvature.mac), [cp2](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-cp2.mac), [curvature-action](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-curvature-action.mac) |
+| 24 | Riemannin tensorilla on neljässä ulottuvuudessa 20 riippumatonta komponenttia, ja niistä 10 kuuluu Riccin tensorille. | [curvature](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-curvature.mac) |
+| 33 | Tason $M^2$ imaginaariyksikön neliö on $+1$ ja tason $E^2$ imaginaariyksikön neliö on $-1$. | [embedding](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-embedding.mac) |
+| 34 | Kokonaisvaikutus on Kähler-vaikutuksen ja tilavuusvaikutuksen summa $S=S_K+S_V$, joten kenttäyhtälöt ovat lineaarisia kertoimissa $c_K$ ja $c_V$. | [field-equations](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-field-equations.mac) |
+| 34 | Summan arvo tunnetulla ratkaisulla on kosmisella säikeellä $\pi(2c_K+c_V)$ tason $M^2$ pinta-alayksikköä kohti. | [embedding](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-embedding.mac) |
+| 34 | Kähler-vaikutuksen kerroin $1/(2\alpha_K)$ antaa $CP_2$:n yli arvon $\pi^2/\alpha_K$, ja Pitkäsen arvo $\pi/(8\alpha_K)$ vaatii kertoimen $1/(16\pi\alpha_K)$. | [cp2](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-cp2.mac) |
+| 34 | $J_{\mu\nu}J^{\mu\nu}$ on skalaari, ja $\sqrt{\lvert g\rvert}\,d^4x$ säilyy parametrien vaihdossa. | [embedding](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-embedding.mac) |
+| 35 | $g_{\alpha\beta}=h_{kl}\partial_\alpha h^k\partial_\beta h^l$ ja $J_{\alpha\beta}=J_{kl}\partial_\alpha h^k\partial_\beta h^l$ muuntuvat tensoreina, ja vertailuarvot ovat kanoninen $M^4$ ja kosminen säie. | [embedding](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-embedding.mac) |
+| 35 | Muoto $J_{\alpha\beta}$ on antisymmetrinen ja suljettu. | [embedding](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-embedding.mac) |
+| 35 | Tilavuustiheyden $\sqrt{\lvert g\rvert}$ kenttäyhtälö on $\tfrac12h_{kl}H^l=0$, joka on minimipintayhtälö. | [field-equations](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-field-equations.mac), [action](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-action.mac) |
+| 36 | Instantonitermin tiheys $J\wedge J$ on kokonaisdivergenssi $d(A\wedge J)$. Sen variaatio antaa kenttäyhtälöihin nollan, ja integraali supistuu reunan Chern–Simons-termiksi. | [forms](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-forms.mac), [field-equations](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-field-equations.mac) |
+| 36 | Valon kaltaisella 3-pinnalla $\det g=0$, joten käänteismetriikkaa ei ole. | [embedding](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-embedding.mac) |
+| 36, 39 | Twistorinoston yksinkertaisimmassa tulomallissa 6-ulotteinen Kähler-vaikutus antaa neliulotteiset kenttäyhtälöt, joissa on tilavuustermi. | [field-equations](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-field-equations.mac) |
+| 37 | Holomorfisella pinnalla jokainen tulo $g^{ab}B^k_{ab}$ häviää kompleksikannassa erikseen, ei vain summa. | [second-form](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-second-form.mac) |
+| 37 | Säikeen maailmanpinta $s^k(u)$ on minimipinta, ja suora käyrä avaruudessa $H$ on geodeesi myös valon kaltaisena. | [second-form](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-second-form.mac) |
+| 37 | Yhtälöistä $E_k$ vain neljä on riippumattomia, koska $E_k\partial_\alpha h^k=0$ pätee jokaisella pinnalla. | [field-equations](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-field-equations.mac) |
+| 37 | Yang–Mills-analogian virta säilyy, eli $D_\beta j^\beta=0$ myös pinnalla, joka ei ole ratkaisu. | [field-equations](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-field-equations.mac) |
+| 37 | Alaviitteen 33 divergenssi on $D_\alpha(G^{\alpha\beta}\partial_\beta h^k)=G^{\alpha\beta}B^k_{\alpha\beta}$. | [curvature-action](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-curvature-action.mac) |
+| 39 | Lainauksen väite minimipinnoista ja indusoidun geometrian vaikutuksista on tarkistettu Hamilton–Jacobi-rakenteiden pinnoilla, ja tulos on osiossa Kaarevuusskalaari ja indusoidun geometrian vaikutukset. | [curvature-action](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-curvature-action.mac), [solutions](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-solutions.mac) |
+| 41 | $CP_2=SU(3)/U(2)$, sillä $SU(3)$ toimii transitiivisesti ja isotropiaryhmän ulottuvuus on 4. Holonomian ulottuvuus on samoin 4. | [noether](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-noether.mac), [cp2](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-cp2.mac) |
+| 41 | $CP_2$:lla ei ole tavallista spin-rakennetta, ja Kähler-kytkentä tekee vuosta kokonaisluvun. | [spinor](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-spinor.mac) |
+
+Twistorinoston tulomalli on yksinkertaistus. Siinä pinta $X^6$ on neliulotteinen pinta kertaa pallo, ja yksi pallon piste kuvautuu samaan pisteeseen avaruuksien $T(M^4)$ ja $T(CP_2)$ pallotekijöissä. Mallissa kuusiulotteisen invariantin $J_{\alpha\beta}J^{\alpha\beta}$ pallo-osa on vakio. Kun vakio kerrotaan mittatekijällä $\sqrt{\lvert g\rvert}$, tulos on neliulotteisen pinnan tilavuustermi. Kertoimien suhteeksi tulee
+
+$$
+\frac{c_V}{c_K}=\frac{2(k_1+k_2)^2}{(r_1^2+r_2^2)^2},
+$$
+
+jossa $r_i$ ovat pallotekijöiden säteet ja $k_i$ niiden Kähler-muotojen kertoimet. Suhde $c_V/c_K$ on positiivinen, ja sama merkki seuraa [etumerkkisäännöistä](konventiot.md#kertoimien-etumerkki). Tulomalli ei kiinnitä suhteen lukuarvoa, koska säteet ja kertoimet ovat siinä vapaita. Todellisessa nostossa $X^6$ on pallokimppu eikä tulo.
 
 ## Avoimet kysymykset
 

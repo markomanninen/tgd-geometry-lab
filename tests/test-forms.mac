@@ -57,3 +57,20 @@ check("CP_1 disc: Stokes with the Kahler potential",
 check("flux through CP_1 = pi", is(integrate(fluxP([rp*cos(ph), rp*sin(ph), 0, 0]), rp, 0, inf) = %pi))$
 check("flux through the conic z2 = z1^2 = 2 pi (degree 2)",
       is(ratsimp(integrate(fluxP([rp*cos(ph), rp*sin(ph), rp^2*cos(2*ph), rp^2*sin(2*ph)]), rp, 0, inf)) = 2*%pi))$
+/* Manninen (2024, p. 36, #34): the instanton term is a total divergence that reduces to the
+   Chern-Simons-Kahler term on the boundary.  With dA = J, J ^ J = d(A ^ J) on the chart, and
+   Stokes holds on the ball |z| < q.  Hopf angles (p1, a, p2) carry the outward orientation. */
+AJF : wedge(Apot, omegaF)$
+JJF : wedge(omegaF, omegaF)$
+check("instanton density: J ^ J = d(A ^ J) on CP_2", form_zerop(form_sub(dform(AJF, cp2_X), JJF)))$
+hopf : [rq*cos(ha)*cos(hp1), rq*cos(ha)*sin(hp1), rq*sin(ha)*cos(hp2), rq*sin(ha)*sin(hp2)]$
+csB : trigsimp(top_coef(form_pullback(AJF, cp2_X, hopf, [hp1, ha, hp2])))$
+csI : integrate(integrate(integrate(csB, hp1, 0, 2*%pi), ha, 0, %pi/2), hp2, 0, 2*%pi)$
+inB : 2*%pi^2*integrate(rp^3*2/(1+rp^2)^3, rp, 0, rq)$
+check("Stokes: int J ^ J over the ball = Chern-Simons term of the 3-sphere, pi^2 q^4/(1+q^2)^2",
+      is(ratsimp(csI - inB) = 0) and is(ratsimp(csI - %pi^2*rq^4/(1+rq^2)^2) = 0))$
+/* the integrand 2/(1+r^2)^3 of inB is the coefficient of J ^ J, checked here on the chart */
+check("int J ^ J over CP_2 = pi^2 = (flux through CP_1)^2, the generator squares to 1",
+      is(tgd_simp(top_coef(JJF) - 2/(1+cp2_rho2)^3) = 0)
+      and is(limit(inB, rq, inf) = %pi^2)
+      and is(integrate(fluxP([rp*cos(ph), rp*sin(ph), 0, 0]), rp, 0, inf)^2 = %pi^2))$

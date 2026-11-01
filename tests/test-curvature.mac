@@ -8,3 +8,42 @@ check("S^2 Christoffel Gamma^th_{ph ph} = -sin cos", is(trigsimp(GamS[1][2][2] +
 check("S^2 Ricci = g", zero_matrix_p(trigsimp(RicS - gS)))$
 check("S^2 scalar curvature = 2", is(trigsimp(scalar_curvature(gS, RicS)) = 2))$
 check("S^2 metric compatibility nabla g = 0", nested_zero_p(trigsimp(cov_deriv_02(gS, GamS, XS))))$
+/* Manninen (2024, p. 24, #34): the Riemann tensor of four-dimensional spacetime has 20
+   independent components out of 256 and its contraction has 10.  The counts are the rank of
+   the linear system of the algebraic symmetries, the closed formula is not used. */
+rm_pos(a, b, c, d) := 64*(a-1) + 16*(b-1) + 4*(c-1) + d$
+rm_row(l) := block([v : makelist(0, i, 1, 256)],
+  for e in l do v[e[1]] : v[e[1]] + e[2], v)$
+rm_sym : []$
+for a thru 4 do for b thru 4 do for c thru 4 do for d thru 4 do
+  rm_sym : append([rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(b,a,c,d), 1]]),
+                   rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(a,b,d,c), 1]]),
+                   rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(c,d,a,b), -1]]),
+                   rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(a,c,d,b), 1], [rm_pos(a,d,b,c), 1]])], rm_sym)$
+rm_rank : rank(apply(matrix, rm_sym))$
+rm_ric : create_list(rm_row(makelist([rm_pos(a,b,a,d), 1], a, 1, 4)), b, 1, 4, d, 1, 4)$
+check("the Riemann symmetries leave 20 of the 256 components in dimension 4", is(256 - rm_rank = 20))$
+check("the Ricci contraction carries 10 of the 20 components",
+      is(rank(apply(matrix, append(rm_ric, rm_sym))) - rm_rank = 10))$
+/* Manninen (2024, #34), p. 19: the variation of int R sqrt(-g) d^4x gives the Einstein tensor,
+   in the essay's signature (-,+,+,+).  Homogeneous metric ds^2 = -N^2 dt^2 + a^2 dx^2, with
+   d(sqrt(-g) R) = -sqrt(-g) G^mn dg_mn up to a total derivative.  The Lagrangian has second
+   derivatives, so the Euler operator has three terms. */
+depends([Nf, af], tt)$
+XF : [tt, xx, yy, zz]$
+gF : diag_matrix(-Nf^2, af^2, af^2, af^2)$
+RicF : ricci(riemann(christoffel(gF, XF), XF))$
+RF : tgd_simp(scalar_curvature(gF, RicF))$
+GuF : tgd_msimp(mat_inverse(gF) . (RicF - RF/2*gF) . mat_inverse(gF))$
+eh_el(L, q) := block([d1 : diff(q, tt), d2 : diff(q, tt, 2), Ls, back],
+  Ls : subst(d1 = q1v, subst(d2 = q2v, L)),
+  back : [q2v = d2, q1v = d1],
+  tgd_simp(subst(back, diff(Ls, q)) - diff(subst(back, diff(Ls, q1v)), tt)
+           + diff(subst(back, diff(Ls, q2v)), tt, 2)))$
+LF : Nf*af^3*RF$
+ehN : eh_el(LF, Nf)$
+eha : eh_el(LF, af)$
+check("Einstein-Hilbert: the lapse equation is -sqrt(-g) G^tt dg_tt/dN and it does not vanish",
+      is(ehN # 0) and is(tgd_simp(ehN + Nf*af^3*GuF[1,1]*diff(gF[1,1], Nf)) = 0))$
+check("Einstein-Hilbert: the scale factor equation is -sqrt(-g) G^ij dg_ij/da",
+      is(eha # 0) and is(tgd_simp(eha + Nf*af^3*sum(GuF[i,i]*diff(gF[i,i], af), i, 2, 4)) = 0))$

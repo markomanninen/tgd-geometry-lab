@@ -96,3 +96,74 @@ check("rotating geodesic: J_ux # 0", is(trigsimp(JR[1,3]) # 0))$
 check("rotating geodesic: only j^v is non-zero", is(jR[1] = 0 and jR[3] = 0 and jR[4] = 0 and jR[2] # 0))$
 check("rotating geodesic: volume term vanishes", trig_zero(meEq(sR, 0, cV)))$
 check("rotating geodesic: Kahler term vanishes", trig_zero(meEq(sR, cK, 0)))$
+/* Manninen (2024, pp. 34-37, #34).  The equations are built nonlinearly from J.J, T and j, so
+   the sum S = S_K + S_V is a statement about tgd_field_equations, on a surface that is no solution. */
+xi : [tt, xx, yy, zz]$
+embL : [tt, xx, yy, zz, tt/3 + xx/5, tt/7 - xx/4, xx/11, tt/13]$
+emL : emb_setup(GHm, H_X, embL, xi)$
+EqL : tgd_field_equations(emL, JHm, cK, cV)$
+EqK : tgd_field_equations(emL, JHm, 1, 0)$
+EqV : tgd_field_equations(emL, JHm, 0, 1)$
+check("S = S_K + S_V: E is linear in c_K and c_V, both parts non-zero",
+      null_vec(EqL - cK*EqK - cV*EqV) and not null_vec(EqK) and not null_vec(EqV))$
+/* the volume part is the essay's equation g^ab D_b d_a h^k = 0 */
+check("volume part: E_k = h_kl H^l / 2 for L_V = sqrt|g|",
+      null_vec(EqV - list_matrix_entries(emb_get(emL, 'hh)
+                 . transpose(matrix(mean_curvature(emL, second_fundamental_form(emL)))))/2))$
+/* of the 8 equations only 4 are independent: general coordinate invariance gives 4 identities */
+check("4-D general coordinate invariance: E_k d_a h^k = 0 on a surface that is no solution",
+      every(lambda([tv], is(tgd_simp(sum(EqL[k]*tv[k], k, 1, 8)) = 0)), emb_get(emL, 't)))$
+/* footnote 35: j^b = D_a J^ab is the current of the Maxwell analogue, conserved off shell */
+jL : kahler_current(emL, induced_kahler_form(JHm, H_X, embL, xi))$
+check("Kahler current: D_b j^b = 0 and j # 0 on a surface that is no solution",
+      not null_vec(jL) and is(tgd_simp(noether_divergence(emL, jL)) = 0))$
+/* the instanton term has no interior field equations: E_k vanishes from the definition,
+   exactly, on a surface with J ^ J # 0.  A single term of the sum is the control. */
+embI : [tt, xx, yy, zz, tt*yy/3 + xx/5, tt*zz/7 - xx^2/4, xx*yy/5 + zz/3, tt/5 + yy*zz/2]$
+JacI : jacobian_matrix(embI, xi)$
+ptI : [tt = 1/2, xx = 1/3, yy = 1/5, zz = 1/7]$
+Lin(hv, Jc) := instanton_density(transpose(Jc) . psubst(map("=", H_X, hv), JHm) . Jc)$
+ELall(Lf, k) := block([dL, Jp],
+  dL : subst(ee = 0, diff(Lf(embI + ee*makelist(if i = k then 1 else 0, i, 1, 8), JacI), ee)),
+  for a thru 4 do (
+    Jp : copymatrix(JacI), Jp[k,a] : Jp[k,a] + ee,
+    dL : dL - diff(subst(ee = 0, diff(Lf(embI, Jp), ee)), xi[a])),
+  dL)$
+check("instanton term: J ^ J # 0 on the test surface", is(subst(ptI, Lin(embI, JacI)) # 0))$
+check("instanton term: E_k = 0 for all 8 coordinates, from the definition",
+      every(lambda([k], is(ratsimp(subst(ptI, ELall(Lin, k))) = 0)), [1, 2, 3, 4, 5, 6, 7, 8]))$
+Lc1(hv, Jc) := block([Ji : transpose(Jc) . psubst(map("=", H_X, hv), JHm) . Jc], Ji[1,2]*Ji[3,4])$
+check("control: one product J_12 J_34 of J ^ J has E_5 # 0 on the same surface",
+      is(ratsimp(subst(ptI, ELall(Lc1, 5))) # 0))$
+/* twistor lift (Manninen 2024, pp. 36 and 39): X^6 is an S^2 bundle in T(M^4) x T(CP_2), 12
+   dimensions.  This is the simplest product model: the two S^2 factors have radii r1, r2 and
+   Kahler coefficients k1, k2, and X^6 is X^4 times the diagonal sphere.  The S^2 part of the
+   6-D Kahler density is constant, so 6-D Kahler action alone gives c_V/c_K = 2 k^2/r^4. */
+tw_s(a, b) := 4/(1 + a^2 + b^2)^2$
+assume(tw_r1 > 0, tw_r2 > 0)$
+tw_X : append(H_X, [ta1, tb1, ta2, tb2])$
+tw_G : metric_direct_sum(GHm, diag_matrix(-tw_r1^2*tw_s(ta1, tb1), -tw_r1^2*tw_s(ta1, tb1),
+                                          -tw_r2^2*tw_s(ta2, tb2), -tw_r2^2*tw_s(ta2, tb2)))$
+tw_J : metric_direct_sum(JHm, matrix([0, tw_k1*tw_s(ta1, tb1), 0, 0], [-tw_k1*tw_s(ta1, tb1), 0, 0, 0],
+                                     [0, 0, 0, tw_k2*tw_s(ta2, tb2)], [0, 0, -tw_k2*tw_s(ta2, tb2), 0]))$
+tw_h4 : meX([xx/2, yy/2 + xx^2/3, 0, 0])$
+tw_h6 : append(tw_h4, [sa, sb, sa, sb])$
+tw_xi : append(xl, [sa, sb])$
+tw_em4 : emb_setup(GHm, H_X, tw_h4, xl)$
+tw_em6 : emb_setup(tw_G, tw_X, tw_h6, tw_xi)$
+tw_g4 : emb_get(tw_em4, 'g)$
+tw_J4 : induced_kahler_form(JHm, H_X, tw_h4, xl)$
+tw_g6 : emb_get(tw_em6, 'g)$
+tw_c : 2*(tw_k1 + tw_k2)^2/(tw_r1^2 + tw_r2^2)^2$
+check("twistor model: J.J in 6-D = J.J in 4-D + 2 k^2/r^4",
+      is(tgd_simp(kahler_invariant(tw_g6, induced_kahler_form(tw_J, tw_X, tw_h6, tw_xi))
+                  - kahler_invariant(tw_g4, tw_J4) - tw_c) = 0))$
+check("twistor model: sqrt|g| in 6-D = sqrt|g| in 4-D times the area element of S^2",
+      is(tgd_simp(determinant(tw_g6) - determinant(tw_g4)*(tw_r1^2 + tw_r2^2)^2*tw_s(sa, sb)^2) = 0))$
+tw_E6 : tgd_field_equations(tw_em6, tw_J, 1, 0)$
+tw_E4 : tgd_field_equations(tw_em4, JHm, 1, tw_c)$
+check("twistor model: the 6-D Kahler equations are the 4-D equations with c_V/c_K = 2 k^2/r^4",
+      null_vec(makelist(tw_E6[k] - tw_E4[k], k, 1, 8)) and null_vec(makelist(tw_E6[k], k, 9, 12)))$
+tw_E0 : tgd_field_equations(tw_em4, JHm, 1, 0)$
+check("control: the 4-D Kahler equations alone differ from the 6-D ones",
+      not null_vec(makelist(tw_E6[k] - tw_E0[k], k, 1, 8)))$

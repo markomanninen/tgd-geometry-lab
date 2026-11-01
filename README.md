@@ -21,7 +21,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | 03 · Upotus ja vaikutus | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_vaikutus.ipynb) |
 | 04 · Numeriikka ja kuvat | yhtälön tyyppi kertoimien funktiona, Kähler-vuo ja kentät ratkaisulla, ja numeriikka tarkistetaan analyyttisiä arvoja vasten | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/04_numeriikka_ja_kuvat.ipynb) |
 
-## Mitä on varmistettu (376 testiä)
+## Mitä on varmistettu (419 testiä)
 
 | Alue | Tarkistukset |
 |---|---|
@@ -38,6 +38,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | Holografia = holomorfia | Juuret $f_1=f_2=0$ lehdittäin, minimipintaominaisuus sekä Kähler-osa litteässä ja pallomaisessa rakenteessa, $M^4$:n Kähler-muodon vaikutus $(1-\varepsilon)^2$, Lorentz 4-voima, kertoimien etumerkit ja Hamilton–Jacobi-rakenteiden ehto |
 | Karakteristiikat | $\partial_tU+A\,\partial_xU=0$ sekä nopeudet $M^4$:n, kosmisen säikeen ja ME:n ympärillä. Yhtälön tyyppi riippuu kertoimista. |
 | Ekstremaalit | kosminen säie ja ME $s^k(u)$ kaikilla $c_K$, $c_V$. Yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä ([taulukko](docs/konventiot.md)) |
+| Mannisen essee (2024) | Vaikutus $S_K+S_V$, indusoitu $g_{\alpha\beta}$ ja $J_{\alpha\beta}$, minimipinnat ja twistorinoston tulomalli vertailutesteinä, ja kerroin $1/(2\alpha_K)$ antaa arvon $\pi^2/\alpha_K$ ([tulokset](docs/tulokset.md)) |
 | Clifford | $\{\gamma_a,\gamma_b\}=2\eta_{ab}$ signatuureille $(4,0)$ ja $(1,3)$ |
 
 ## Käyttö paikallisesti

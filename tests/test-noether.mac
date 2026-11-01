@@ -9,6 +9,11 @@ check("su(3): generators anti-Hermitian and traceless",
       every(lambda([A], zero2(A + conjugate(transpose(A))) and is(tgd_simp(mat_trace(A)) = 0)), gens))$
 check("CP_2: all 8 generators are Killing", every(lambda([K], zero2(lie_derivative_02(GC, K, cp2_X))), KC))$
 check("CP_2: all 8 generators preserve J", every(lambda([K], zero2(lie_derivative_02(WC, K, cp2_X))), KC))$
+/* Manninen (2024, p. 41, #34): CP_2 = SU(3)/U(2).  At a point the 8 generators span the
+   tangent space of dimension 4, so the isotropy algebra has dimension 8 - 4 = 4 = dim U(2). */
+kc_rank(pt) := rank(apply(matrix, map(lambda([K], subst(pt, K)), KC)))$
+check("SU(3) acts transitively on CP_2 with isotropy of dimension 4 = dim U(2)",
+      is(kc_rank([x1=0, y1=0, x2=0, y2=0]) = 4) and is(kc_rank([x1=1/3, y1=-2, x2=1/2, y2=1]) = 4))$
 /* a non-isometry must fail */
 check("control: a coordinate dilation is not Killing",
       not zero2(lie_derivative_02(GC, [x1, y1, x2, y2], cp2_X)))$
