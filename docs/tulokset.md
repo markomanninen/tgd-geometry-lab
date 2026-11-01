@@ -162,6 +162,12 @@ Tulos on yleinen. Jos $u$:n ja $w$:n gradientit ovat keskenään valon kaltaisia
 
 **Kuinka paljon H-J-rakenteita on.** Funktioille $F(w)$ rakenteita on paljon enemmän. Keskenään valon kaltaisilla gradienteilla ne saadaan valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta. Tilavuusosa häviää symbolisesti mielivaltaisella radalla. Kähler-osa on tiukempi, sillä se häviää suoralle ja kartioleikkaukselle levossa olevalla kärjellä ja niiden Lorentz-muunnoksille mutta ei testatulla kiihtyvällä kärjellä. Yksityiskohdat ovat [konventioissa](konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
 
+## Kaarevuusskalaari ja indusoidun geometrian vaikutukset
+
+Claude laski 1.11.2026 tilavuuden, kaarevuusskalaarin ja vaikutuksen $\int R^2\sqrt{\lvert g\rvert}$ kenttäyhtälöt Hamilton–Jacobi-rakenteiden pinnoilla. Kaarevuusskalaarin kenttäyhtälö $G^{\alpha\beta}B^k_{\alpha\beta}=0$ on Pitkäsen johtama muoto, jolla on sama rakenne kuin Regge–Teitelboimin tyhjiöyhtälöllä.
+
+Pallomaisessa rakenteessa kaikkien kolmen kenttäyhtälöt toteutuvat suoralla, kartioleikkauksella ja kuvauksella $S^2\to RP^2$. Clauden päättelyn mukaan syy on symmetria, joten sama pätee jokaiselle indusoidusta geometriasta rakennetulle vaikutukselle. Litteässä rakenteessa kaarevuusskalaarin kenttäyhtälö toteutuu pinnoilla, jotka eivät riipu koordinaatista $v$, ja testatuilla holomorfisilla pinnoilla vaikutuksen $R^2$ kenttäyhtälö ei toteudu. Laskut, testit ja tulkintaa koskevat kysymykset ovat [sivututkimussivulla](sivututkimus/regge-teitelboim.md#osa-3-laskut).
+
 ## Säilymislait
 
 Tarkistuksessa on mukana $H$:n kaikki 18 isometriaa eli neljä translaatiota, kuusi Lorentz-generaattoria ja kahdeksan värigeneraattoria. Ne säilyttävät sekä metriikan että Kähler-muodon, ja värigeneraattorit muodostavat $su(3)$-algebran.

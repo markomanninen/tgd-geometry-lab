@@ -99,3 +99,10 @@ emUV : emb_setup(HGr, H_X, holo_surface(lc_m4, uu*vv*lc_w, 0), lc_chart)$
 BUV : second_fundamental_form(emUV)$
 check("flat, z1 = u v w: the Einstein trace does not vanish",
       not ca_null(second_form_trace(induced_einstein(emUV), BUV)))$
+/* xi1 = 2 w on the spherical structure: the w directions cancel, r and w mix */
+check("xi1 = 2 w: the mixed component B^k_{w wbar} vanishes",
+      ca_null(makelist(tgd_simp(BRn[k][3][3] + BRn[k][4][4]), k, 1, 8)))$
+check("xi1 = 2 w: the w part of the Einstein trace vanishes",
+      ca_null(makelist(tgd_simp(GRn[3,3]*BRn[k][3][3] + GRn[4,4]*BRn[k][4][4] + 2*GRn[3,4]*BRn[k][3][4]), k, 1, 8)))$
+check("xi1 = 2 w: the part that mixes r and w does not vanish",
+      not ca_null(makelist(tgd_simp(GRn[2,3]*BRn[k][2][3] + GRn[2,4]*BRn[k][2][4]), k, 1, 8)))$
