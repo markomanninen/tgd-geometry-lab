@@ -236,6 +236,8 @@ Perustelu kaarevuusskalaarin epäonnistumiselle on kuitenkin muualla. Pitkäsen 
 
 Varhaiset tekstit kertovat samasta etumerkistä. [Vuoden 1983 artikkelissa](https://doi.org/10.1007/BF02084785) kaarevuusskalaari on mukana vaikutuksessa Yang–Mills-osan parina, ja yhtälö $G^{\alpha\beta}H^k_{\alpha\beta}=0$ on kaava (C22), joka on tyhjiösektorin sisäyhtälö. Artikkeli kirjaa epäpositiivisen Poincaré-energian ongelmaksi. [Preprintti 22.4.1983](https://lib-extopc.kek.jp/preprints/PDF/1983/8306/8306118.pdf) sulkee kaarevuusskalaarin pois efektiivisestä vaikutuksesta positiivisen definiittiyden perusteella, ja [preprintti 19.3.1984](https://lib-extopc.kek.jp/preprints/PDF/1984/8406/8406324.pdf) toistaa tämän. Sama preprintti sisältää termin $J^{\alpha\beta}J_{\alpha\beta}$ efektiivisen vaikutuksen pitkän mittakaavan muodossa ja puhuu U(1)- ja Maxwell-vaikutuksesta. Kähler-vaikutuksen perusasema on Pitkäsen oman ajoituksen mukaan noin vuodelta 1990.
 
+[Vuoden 1981 artikkelissa](https://doi.org/10.1007/BF00673694) kaarevuusskalaaria ei vielä ole. Upotusavaruus on $M^4\times S^2$, ja vaikutus on kaavan (12) mukaan Yang–Mills- ja spinoriosa. Artikkeli kysyy, miten gravitaatio syntyy, ja avaruuden $S$ koko on siinä hadronin mittakaavaa. Vuonna 1983 kaarevuusskalaari on mukana, koska gravitaatiovakio olisi muuten väärä kertoimella $10^{38}$. Energian positiivisuus on mukana jo vuonna 1981, sillä tulomuoto $M^4\times S$ tekee mittaryhmästä kompaktin ja ei-kompakti ryhmä antaisi energiatiheyden, joka ei ole positiivisesti definiitti. Sen, että sama vaatimus palaa vuonna 1983 kaarevuusskalaaria vastaan, päättelen itse.
+
 Yhteys sanan "non-physical" ja tämän etumerkin välillä on oma päätelmäni eikä lähteen väite, sillä Pitkänen ei yhdistä näitä kohtia. Vuoden 1983 kaavan (C24) ja muistelman mukaan pallolla on eri etumerkki, mutta ratkaisut ovat eri ratkaisuja, ja ero voi olla sopimuskysymys.
 
 Pitkäsen [laskuteksti joulukuulta 2009](https://web.archive.org/web/20220120114648/http://tgdtheory.fi/public_html/tgdclass/einstein.pdf) lisää kaarevuusskalaarin ja aineen vaikutukseen ehdon, joka sanoo metriikan olevan indusoitu,
@@ -245,6 +247,8 @@ $$
 $$
 
 Variaatiot antavat yhtälöt $T^{\alpha\beta}-kG^{\alpha\beta}=\Lambda^{\alpha\beta}$ ja $D_\alpha(\Lambda^{\alpha\beta}\partial_\beta h^l)=0$. Hän kutsuu tätä nimellä "General Relativity with a sub-manifold constraint" [blogissa 7.12.2009](https://matpitka.blogspot.com/2009/12/long-length-scale-limit-of-tgd-as.html). Oman päätelmäni mukaan yhtälöt ovat muodoltaan samat kuin [Pastonin vuoden 2020](https://arxiv.org/abs/2009.06950) upotusgravitaation yhtälöt, kun $\Lambda^{\alpha\beta}$ vastaa suuretta $-\tau^{\alpha\beta}$. Ympäristö on eri, ja kumpikaan kirjoittaja ei tee rinnastusta. Sama teksti on luvussa 6.2.3 viXra-versiossa [0908.0017v5](https://vixra.org/pdf/0908.0017v5.pdf), ja se puuttuu myöhemmistä versioista.
+
+Rakenne on Pitkäsellä painettuna jo [vuonna 1981](https://doi.org/10.1007/BF00673694). Sivuilla 857–858 hän sanoo, että yksinkertaisin tapa johtaa liikeyhtälöt on käsitellä metriikkaa ja konnektiota itsenäisinä muuttujina ja lisätä määritelmät Lagrangen kertojilla. Kaavassa (16a) on rakenne $D_\alpha(T^{\alpha\beta}h^k_{\ \beta})$ ja Yang–Mills-osan Lorentz-termi. Oman päätelmäni mukaan tämä on vuoden 2009 kertojamuodon vastine, jossa $\Lambda^{\alpha\beta}$:n paikalla on $T^{\alpha\beta}$. Deserin ryhmän artikkelissa sama kertojarakenne on jo vuonna 1976, mutta vuoden 1981 lähdeluettelo ei viittaa siihen.
 
 **Regge–Teitelboim-tutkijat eivät mainitse TGD:tä.** Yksikään 107 viittaavasta työstä ei sisällä sanoja Pitkänen, Topological Geometrodynamics tai CP2. Myöskään Pavšičin ja Tapian [lähdeluettelo](https://arxiv.org/abs/gr-qc/0010045), joka kokoaa alan viitteitä, ei mainitse sitä. Hakukoneet eivät löytäneet yhtään vertailua kumpaankaan suuntaan.
 
@@ -525,7 +529,7 @@ Jatkohaku 1.11.2026 sulki osan aiemmista aukoista. Seuraavat asiat ovat nyt tied
 - ViXran 142 paperia on haettu uusimpien versioiden osalta ilman nimiosumia. Aiempi virhe 406 riippui asiakasohjelmasta. Kirjojen välissä olevista versioista haettiin vain 0908.0017v5.
 - ResearchGate palautti yhä virheen 403, ja sen sisältö jäi lukematta. Otsikoita saatiin muista rekistereistä. Kuolleita linkkejä oli uudessa haussa 257, ja niistä 135 jäi tavoittamatta. Kansiosta `pdfpool` jäi 366 tiedostoa hakematta.
 - Blogin kaikki 6717 kommenttia on haettu ilman nimiosumia. Kommentit antavat perusteita kaarevuusskalaaria vastaan, mutta niistä ei selviä, tunsiko Pitkänen nämä työt.
-- Vuoden 1983 artikkelin luin paikallisesta kopiosta, josta puuttuvat sivut 618–619, ja vuosien 1982–1984 preprintit ovat avoimia. Vuosien 1981, 1985–1986 ja 1988 kokotekstit ja vuoden 1982 väitöskirja jäivät lukematta.
+- Vuoden 1983 artikkelin luin paikallisesta kopiosta, josta puuttuvat sivut 618–619, ja vuosien 1982–1984 preprintit ovat avoimia. Vuoden 1981 artikkelin luin kokonaan. Vuosien 1985–1986 ja 1988 kokotekstit ja vuoden 1982 väitöskirja jäivät lukematta.
 - Lausetta kaikkien Einsteinin ratkaisujen upotettavuudesta avaruuteen $M^4\times CP_2$ tai kahdeksanulotteiseen avaruuteen ei löytynyt kumpaankaan suuntaan. Analyyttiset lauseet pysähtyvät ulottuvuuteen 10 ja sileät ulottuvuuteen 14. Oman päätelmäni mukaan paikalliset upotukset avaruuteen $R^{1,5}$ siirtyvät avaruuteen $H$ litteän Cliffordin toruksen kautta, mutta Kerrin metriikalle tätä reittiä ei löytynyt.
 - Tapian preprintin luin. Franken ja Tapian artikkelista löytyi vain tiivistelmä. Kuzeevin työt tunnetaan viittauksista, ja ne koskevat Kerrin metriikan upotusta eivätkä upotusgravitaatiota.
 - Marko Mannisen esseen teksti on haettu kokonaan. Siinä ei ole nimiä Regge, Teitelboim eikä Pirani, ja Deser esiintyy vain ADM-formalismin yhteydessä.
@@ -553,6 +557,7 @@ Väitteissä mainitut pääartikkelit ovat nämä:
 Pitkäsen aineisto on tässä:
 
 - [TGD-sivusto](https://tgdtheory.fi/), josta kirjatiedostot ovat osoitteessa `tgdtheory.fi/bookpdf/`
+- M. Pitkänen, [*Geometroelectrodynamics*](https://doi.org/10.1007/BF00673694), Int. J. Theor. Phys. 20, 843 (1981), ja [*Topological geometrodynamics*](https://doi.org/10.1007/BF02084785), Int. J. Theor. Phys. 22, 575 (1983)
 - M. T. Manninen, [*Through the Wormhole on Spacetime Surface: Early History and Main Concepts of Topological Geometrodynamics Theory*](https://www.researchgate.net/publication/380719999_Through_the_Wormhole_on_Spacetime_Surface_Early_History_of_Topological_Geometrodynamics_Theory_TGD), Holistic Science Publications 2024, ISBN 978-952-65432-3-9
 - [Blogi](https://matpitka.blogspot.com/)
 

@@ -437,6 +437,8 @@ Kahdella viimeisellä kaavalla ei ole oletuksia funktioista $f^k$, joten ne kosk
 
 Pitkäsen artikkelissa perustelu on, että Kähler-muodon variaatio antaa valon kaltaisen virran ja valon kaltaisen vektorin supistuksen, joka häviää ([Martin1](https://tgdtheory.fi/public_html/articles/Martin1.pdf)). Lasku tukee tätä askelta. Jos virta on muotoa $j\propto\partial_v$, supistukset häviävät, koska $J_{v\alpha}=0$ ja $\partial_vh^l=0$ kaikilla $CP_2$-koordinaateilla. Pinnoilla, joilla on $w$-riippuvuus, virralla on kuitenkin myös poikittainen osa, joten oletus ei toteudu niillä.
 
+Sama supistus on jo [vuoden 1981 artikkelin](https://doi.org/10.1007/BF00673694) fotoniratkaisussa (kaava 38), jossa $\Theta=f(k\cdot x)$ ja $\Phi=g(k\cdot x,x_T)$. Koska $\Theta$ riippuu vain muuttujasta $k\cdot x$, Kähler-muodolla ei ole komponenttia $J_{xy}$. Clauden päättelyn mukaan juuri tämä tekee oletuksesta toimivan, sillä silloin suure $C$ on nolla, eikä virralla ole poikittaista osaa.
+
 Vakio $\omega$ tarkoittaisi litteää holomorfista kuvausta kompleksiviivalta $CP_2$:een. Silloin
 
 $$
