@@ -64,7 +64,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 ## Sivututkimuspolut
 
-Sivututkimuspolut eivät kuulu milestoneihin. [Regge–Teitelboim ja TGD](sivututkimus/regge-teitelboim.md) kokoaa nykytutkimuksen upotusgravitaatiosta ja sen yhtymäkohdat TGD:hen. Tilanne 1.11.2026 on, että selvitys on tarkistettu ja laskut ovat testeissä. Matille jää neljä kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572) ja lähetetään vasta Markon päätöksellä.
+Sivututkimuspolut eivät kuulu milestoneihin. [Regge–Teitelboim ja TGD](sivututkimus/regge-teitelboim.md) kokoaa nykytutkimuksen upotusgravitaatiosta ja sen yhtymäkohdat TGD:hen. Tilanne 1.11.2026 on, että selvitys on tarkistettu ja laskut ovat testeissä. Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572), ja vastausta odotetaan.
 
 ## Tunnisteet
 
