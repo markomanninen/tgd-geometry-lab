@@ -527,7 +527,7 @@ $$
 k^b\partial_bk_a=k^b\partial_ak_b=\tfrac12\partial_a\left(k^bk_b\right)=0.
 $$
 
-Kentän integraalikäyrät ovat siis $M^4$:ssä suoria, ja sama koskee gradienttiin verrannollisia kenttiä, koska kertoimen muutos vain parametrisoi käyrän uudelleen. Käyräviivainen valon kaltainen säde, esimerkiksi ruuviviiva, tarvitsee kentän, joka ei ole gradientti. Clauden päättelyn mukaan tällainen rakenne kuuluu kaavan 4.19 ristitermien alueelle, jota edellä oleva luokittelu ei kata. Sitä, antaako tällainen rakenne minimipintoja, ei ole laskettu.
+Kentän integraalikäyrät ovat siis $M^4$:ssä suoria, ja sama koskee gradienttiin verrannollisia kenttiä, koska kertoimen muutos vain parametrisoi käyrän uudelleen. Käyräviivainen valon kaltainen säde, esimerkiksi ruuviviiva, tarvitsee kentän, joka ei ole verrannollinen gradienttiin. Clauden päättelyn mukaan tällainen rakenne kuuluu kaavan 4.19 ristitermien alueelle, jota edellä oleva luokittelu ei kata. Sitä, antaako tällainen rakenne minimipintoja, ei ole laskettu.
 
 Aaltorintamat näyttävät, miksi oletus rajaa rakenteet palloihin ja tasoihin. Olkoot $\kappa_1$ ja $\kappa_2$ rintaman pääkaarevuudet. Kun rintama etenee säteitä pitkin matkan $s$, pituudet pääsuunnissa kertautuvat tekijöillä $1+\kappa_1s$ ja $1+\kappa_2s$. Pieni ympyrä muuttuu ellipsiksi, ellei $\kappa_1=\kappa_2$, joten kompleksikoordinaatti ei säily kompleksikoordinaattina koko säteen matkalla. Tämä on täysin napaisuuden sisältö. Epäpallomaisen valolähteen rintamilla säteet ovat suoria, mutta niillä ei ole koordinaattia $w$, joka toteuttaisi ehdot $\nabla u\cdot\nabla w=(\nabla w)^2=0$.
 

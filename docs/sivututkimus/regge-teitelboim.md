@@ -494,7 +494,7 @@ Ensimmäinen termi on jäljen termi, ja se häviää minimipinnoilla. Toisessa t
 
 Matti Pitkänen lähetti samana aamuna toisen viestin, joka kommentoi 31.10. lähetettyjä kysymyksiä. Se ei käsittele viittä kysymystä, jotka on kuvattu [ehdotuksissa](#ehdotukset-jatkoon). Viestissä hän pitää arvionsa, että virta häviää yleisillä minimipinnoilla ilman holomorfiaa, ja pyytää osoittamaan tuloksen suoralla laskulla tai riittävän tiheällä hilalla.
 
-Claude laski virran ja keskikaarevuuden hilalla ilman Maxima-kirjastoa, ja jokainen derivaatta on neljännen kertaluvun differenssi ([skripti](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)). Taulukon luvut on laskettu pelkällä muodolla $J(CP_2)$ hilan keskipisteessä tiheydellä $N=97$. Virran arvot pysyvät viiden numeron tarkkuudella tiheyksillä $N=25$, $49$ ja $97$.
+Claude laski virran ja keskikaarevuuden hilalla ilman Maxima-kirjastoa, ja jokainen derivaatta on neljännen kertaluvun differenssi ([skripti](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)). Taulukon luvut on laskettu pelkällä muodolla $J(CP_2)$ tiheydellä $N=97$. Virran normi on $\sqrt{\sum_a(j^a)^2}$ koordinaateissa, joten se ei ole invariantti. Litteässä rakenteessa koordinaatit ovat $(u,v,x,y)$ ja piste on $u=0{,}8$, $x=y=0{,}7$. Pallomaisessa rakenteessa koordinaatit ovat $(t,r,a,b)$, $w=a+ib$, ja piste on $r=1{,}5$, $a=b=0{,}6$. Arvo $0$ tarkoittaa, että kaikki komponentit häviävät. Virran arvot pysyvät viiden numeron tarkkuudella tiheyksillä $N=25$, $49$ ja $97$.
 
 | Pinta | Rakenne | Virran normi | Keskikaarevuus |
 |---|---|---|---|
