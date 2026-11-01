@@ -10,6 +10,6 @@ load(sconcat(tgd_root, "/tgd-lab.mac"))$
 load(sconcat(tgd_root, "/tests/testlib.mac"))$
 for f in ["test-metric", "test-curvature", "test-forms", "test-cp2",
           "test-vielbein", "test-cartan", "test-spinor", "test-embedding", "test-second-form", "test-action",
-          "test-field-equations", "test-noether", "test-characteristics", "test-solutions", "test-hamilton-jacobi", "test-clifford"] do
+          "test-field-equations", "test-noether", "test-characteristics", "test-solutions", "test-curvature-action", "test-hamilton-jacobi", "test-clifford"] do
   batchload(sconcat(tgd_root, "/tests/", f, ".mac"))$
 test_summary()$

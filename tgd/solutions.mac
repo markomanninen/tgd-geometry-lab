@@ -94,3 +94,21 @@ sj_surface(z1, z2) := append(sj_X, cp2_real(z1, z2))$
 /* the same with the light-like chart u = t - r, v = t + r, for surfaces that depend on u */
 sj_chart : [uu, vv, sa, sb]$
 sj_lc_surface(z1, z2) := append([(uu+vv)/2, (vv-uu)/2, sa, sb], cp2_real(z1, z2))$
+
+/* SU(2) acting on S^2 and through SU(3) on CP_2.  The equivariant maps S^2 -> CP_2 are the
+   line (rep 2+1), the conic and RP^2 (rep 3) and their conjugates, see docs/sivututkimus */
+s2_killing(i) := block([w : sj_w, d],
+  d : rectform(if i = 1 then 1 + w^2 else if i = 2 then %i - %i*w^2 else %i*w),
+  [realpart(d), imagpart(d)])$
+su2_line : [matrix([0,-1,0],[1,0,0],[0,0,0]), matrix([0,%i,0],[%i,0,0],[0,0,0]),
+            matrix([-%i/2,0,0],[0,%i/2,0],[0,0,0])]$
+su2_conic : [sqrt(2)*matrix([0,-1,0],[1,0,-1],[0,1,0]), sqrt(2)*matrix([0,%i,0],[%i,0,%i],[0,%i,0]),
+             matrix([-%i,0,0],[0,0,0],[0,0,%i])]$
+su2_rp2 : [matrix([0,-2,0],[2,0,0],[0,0,0]), matrix([0,0,-2],[0,0,0],[2,0,0]),
+           matrix([0,0,0],[0,0,-1],[0,1,0])]$
+sj_rp2 : [2*sa/(1 - sa^2 - sb^2), 2*sb/(1 - sa^2 - sb^2)]$
+/* the field S^2 + A on H, and the tangency of S^2 -> (z1, z2) to it */
+su2_field(A, i) := append([0, 0], s2_killing(i), cp2_killing(A))$
+su2_tangent(z1, z2, A, i) := block([ph : cp2_real(z1, z2), k : s2_killing(i), Kc : cp2_killing(A)],
+  makelist(tgd_simp(subst([x1=ph[1], y1=ph[2], x2=ph[3], y2=ph[4]], Kc[m])
+     - k[1]*diff(ph[m], sa) - k[2]*diff(ph[m], sb)), m, 1, 4))$

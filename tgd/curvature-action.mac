@@ -1,0 +1,47 @@
+/* ================================================================
+   TGD Geometry Lab -- tgd/curvature-action.mac
+   Actions of the induced metric alone, for the comparison with
+   Regge-Teitelboim gravity (side study, docs/sivututkimus).
+
+   For L = sqrt|g| f(g) the variation of h^k gives E^k = D_a(P^{ab} d_b h^k)
+   with P^{ab} symmetric.  The same divergence as for the Kahler stress is
+   used, so it is tgd_T_divergence with T = P.
+       volume              P = g^{ab}            E = H^k
+       curvature scalar    P = G^{ab}            E = G^{ab} B^k_ab (Bianchi)
+       R^2                 P = 2 R R^{ab} - R^2 g^{ab}/2
+                               + 2 (g^{ab} box R - D^a D^b R)
+   Pitkanen derives the second one as G^{ab} D_b d_a h^k = 0.
+   Requires tgd/field-equations.mac.
+   ================================================================ */
+
+induced_ricci(em) := ricci(riemann(emb_get(em, 'G), emb_get(em, 'xi)))$
+
+/* G^{ab} with upper indices */
+induced_einstein(em) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), Ric, Rs],
+  Ric : induced_ricci(em),
+  Rs : scalar_curvature(g, Ric),
+  tgd_msimp(gi . (Ric - Rs/2*g) . gi))$
+
+/* G^{ab} B^k_ab, or any symmetric P^{ab} traced with the second form */
+second_form_trace(P, B) := block([p:length(P)],
+  makelist(tgd_simp(sum(sum(P[a,b]*B[k][a][b], b, 1, p), a, 1, p)), k, 1, length(B)))$
+
+einstein_trace(em) := second_form_trace(induced_einstein(em), second_fundamental_form(em))$
+
+/* D_a(P^{ab} d_b h^k) */
+induced_action_equation(em, P) := tgd_T_divergence(em, P, emb_get(em, 'xi))$
+
+/* D_a d_b f = d_a d_b f - G^c_ab d_c f */
+scalar_hessian(em, f) := block([xi:emb_get(em,'xi), G:emb_get(em,'G), n:length(emb_get(em,'xi))],
+  genmatrix(lambda([a,b], tgd_simp(diff(f, xi[a], 1, xi[b], 1)
+     - sum(G[c][a][b]*diff(f, xi[c]), c, 1, n))), n, n))$
+
+/* P^{ab} for L = R^2 sqrt|g| */
+r2_stress(em) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), Ric, Rs, Hs, box],
+  Ric : induced_ricci(em),
+  Rs : scalar_curvature(g, Ric),
+  Hs : gi . scalar_hessian(em, Rs) . gi,
+  box : tgd_simp(mat_trace_with(g, Hs)),
+  tgd_msimp(2*Rs*(gi . Ric . gi) - Rs^2/2*gi + 2*(box*gi - Hs)))$
+
+mat_trace_with(g, U) := block([n:length(g)], sum(sum(g[a,b]*U[a,b], b, 1, n), a, 1, n))$

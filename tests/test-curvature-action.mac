@@ -1,0 +1,101 @@
+section("tgd/curvature-action: actions of the induced metric")$
+ca_null(v) := every(lambda([e], is(e = 0)), flatten(if matrixp(v) then args(v) else v))$
+/* S^3 of radius r in R^4, stereographic chart: G_ab = -g_ab/r^2, so the trace is -H^k/r^2 */
+assume(sa3 > 0)$
+xiS3 : [xx, yy, zz]$
+ca_s : 1 + xx^2 + yy^2 + zz^2$
+emS3 : emb_setup(ident(4), [q1, q2, q3, q4],
+   [2*sa3*xx/ca_s, 2*sa3*yy/ca_s, 2*sa3*zz/ca_s, sa3*(2 - ca_s)/ca_s], xiS3)$
+BS3 : second_fundamental_form(emS3)$
+GS3 : induced_einstein(emS3)$
+check("S^3 of radius r: G^ab = -g^ab/r^2",
+      is(tgd_msimp(GS3 + emb_get(emS3, 'gi)/sa3^2) = zeromatrix(3, 3)))$
+tS3 : second_form_trace(GS3, BS3)$
+hS3 : mean_curvature(emS3, BS3)$
+check("S^3: G^ab B^k_ab = -H^k/r^2 # 0",
+      ca_null(map(tgd_simp, tS3 + hS3/sa3^2)) and not ca_null(hS3))$
+/* the same surface decides the signs of the R^2 stress: R is constant, P^ab = 6/r^4 g^ab */
+check("S^3: the stress of R^2 is 2 R R^ab - R^2 g^ab/2",
+      is(tgd_msimp(r2_stress(emS3) - 6/sa3^4*emb_get(emS3, 'gi)) = zeromatrix(3, 3)))$
+/* two dimensions */
+emS2 : emb_setup(ident(3), [q1, q2, q3], [2*xx/(1+xx^2+yy^2), 2*yy/(1+xx^2+yy^2), (1-xx^2-yy^2)/(1+xx^2+yy^2)], [xx, yy])$
+check("S^2: the Einstein tensor vanishes in two dimensions",
+      is(induced_einstein(emS2) = zeromatrix(2, 2)))$
+/* divergence form, normality and identities on a surface that is not a solution */
+HGr : H_metric()$
+HJr : H_kahler()$
+SHr : sj_H_metric()$
+HJa : block([m : zeromatrix(8, 8)], m[3,4] : sj_rho, m[4,3] : -sj_rho, m)$
+ca_em(z1, z2) := emb_setup(SHr, sj_H_X, sj_surface(z1, z2), sj_X)$
+emRn : ca_em(2*sj_w, 0)$
+GRn : induced_einstein(emRn)$
+BRn : second_fundamental_form(emRn)$
+vRn : second_form_trace(GRn, BRn)$
+check("control xi1 = 2 w: minimal, the Einstein trace does not vanish",
+      ca_null(mean_curvature(emRn, BRn)) and not ca_null(vRn))$
+check("Bianchi: D_a(G^ab d_b h^k) = G^ab B^k_ab",
+      ca_null(map(tgd_simp, induced_action_equation(emRn, GRn) - vRn)))$
+check("the Einstein trace is normal to the surface",
+      every(lambda([tv], is(tgd_simp(emb_inner(emRn, tv, vRn)) = 0)), emb_get(emRn, 't)))$
+PRn : r2_stress(emRn)$
+xiR : emb_get(emRn, 'xi)$
+GaRn : emb_get(emRn, 'G)$
+divP : makelist(tgd_simp(sum(diff(PRn[a,b], xiR[a])
+          + sum(GaRn[a][a][c]*PRn[c,b] + GaRn[b][a][c]*PRn[a,c], c, 1, 4), a, 1, 4)), b, 1, 4)$
+check("R^2: the stress is divergence free", ca_null(divP))$
+eRn : second_form_trace(PRn, BRn)$
+check("control xi1 = 2 w: the R^2 equation does not vanish", not ca_null(eRn))$
+/* equivariant maps: the field acts on H and is tangent to the surface */
+ca_orbit(z1, z2, As) := every(lambda([i], ca_null(lie_derivative_02(SHr, su2_field(As[i], i), sj_H_X))
+                                         and ca_null(su2_tangent(z1, z2, As[i], i))), [1, 2, 3])$
+check("su(2) acts on H and is tangent to the line", ca_orbit(sj_w, 0, su2_line))$
+check("su(2) acts on H and is tangent to the conic", ca_orbit(sqrt(2)*sj_w, sj_w^2, su2_conic))$
+check("su(2) acts on H and is tangent to RP^2", ca_orbit(sj_rp2[1], sj_rp2[2], su2_rp2))$
+check("the rotation field of the line is not tangent to xi1 = 2 w",
+      not ca_null(su2_tangent(2*sj_w, 0, su2_line[1], 1)))$
+/* the equations of three actions on the equivariant surfaces */
+ca_all(z1, z2) := block([em : ca_em(z1, z2), B, P],
+  B : second_fundamental_form(em),
+  P : r2_stress(em),
+  ca_null(mean_curvature(em, B)) and ca_null(second_form_trace(induced_einstein(em), B))
+     and ca_null(induced_action_equation(em, P)) and ca_null(second_form_trace(P, B)))$
+check("line: volume, Einstein and R^2 equations vanish", ca_all(sj_w, 0))$
+check("conic: volume, Einstein and R^2 equations vanish", ca_all(sqrt(2)*sj_w, sj_w^2))$
+check("RP^2: volume, Einstein and R^2 equations vanish", ca_all(sj_rp2[1], sj_rp2[2]))$
+emRP : ca_em(sj_rp2[1], sj_rp2[2])$
+check("RP^2: g_ww = -(r^2 + 1) rho, twice the conic",
+      is(tgd_simp(emb_get(emRP, 'g)[3,3] + (hr^2 + 1)*sj_rho) = 0))$
+check("RP^2: the scalar curvature depends on r",
+      is(diff(tgd_simp(scalar_curvature(emb_get(emRP, 'g), induced_ricci(emRP))), hr) # 0))$
+check("RP^2: J(CP_2) vanishes, the Kahler and volume parts vanish",
+      report_is(extremal_report(emRP, HJr), true, true, true))$
+check("RP^2: J(M^4) as the area form gives J # 0 and the Kahler part vanishes",
+      report_is(extremal_report(emRP, HJa), false, true, true))$
+/* flat structure: the null vector d_v is covariantly constant, so G^ab B^k_ab = 0 without H = 0 */
+ca_flat(z1, z2) := block([em : emb_setup(HGr, H_X, holo_surface(lc_m4, z1, z2), lc_chart), B],
+  B : second_fundamental_form(em),
+  [ca_null(mean_curvature(em, B)), ca_null(second_form_trace(induced_einstein(em), B)),
+   ca_null(second_form_trace(r2_stress(em), B))])$
+check("flat, z1 = w: minimal, Einstein trace 0, R^2 equation # 0",
+      is(ca_flat(lc_w, 0) = [true, true, false]))$
+check("flat, z1 = w^2: minimal, Einstein trace 0, R^2 equation # 0",
+      is(ca_flat(lc_w^2, 0) = [true, true, false]))$
+check("flat, z1 = u w: minimal, Einstein trace 0, R^2 equation # 0",
+      is(ca_flat(uu*lc_w, 0) = [true, true, false]))$
+emNM : emb_setup(HGr, H_X, holo_surface(lc_m4, uu*conjugate(lc_w)^2 + lc_w, 0), lc_chart)$
+BNM : second_fundamental_form(emNM)$
+check("flat, z1 = u conj(w)^2 + w: H # 0, Einstein trace 0",
+      not ca_null(mean_curvature(emNM, BNM)) and ca_null(second_form_trace(induced_einstein(emNM), BNM)))$
+/* z1 = w: H = 0 and R^ab = K g^ab on the transverse part leave only the Hessian of R */
+emFw : emb_setup(HGr, H_X, holo_surface(lc_m4, lc_w, 0), lc_chart)$
+BFw : second_fundamental_form(emFw)$
+giFw : emb_get(emFw, 'gi)$
+RFw : scalar_curvature(emb_get(emFw, 'g), induced_ricci(emFw))$
+HsFw : tgd_msimp(giFw . scalar_hessian(emFw, RFw) . giFw)$
+check("flat, z1 = w: the R^2 equation is -2 D^a D^b R B^k_ab",
+      ca_null(map(tgd_simp, second_form_trace(r2_stress(emFw), BFw) + 2*second_form_trace(HsFw, BFw))))$
+/* a surface that depends on both u and v is outside the argument */
+emUV : emb_setup(HGr, H_X, holo_surface(lc_m4, uu*vv*lc_w, 0), lc_chart)$
+BUV : second_fundamental_form(emUV)$
+check("flat, z1 = u v w: the Einstein trace does not vanish",
+      not ca_null(second_form_trace(induced_einstein(emUV), BUV)))$

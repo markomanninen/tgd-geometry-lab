@@ -36,5 +36,6 @@ tgd_load("tgd/field-equations.mac")$
 tgd_load("tgd/noether.mac")$
 tgd_load("tgd/characteristics.mac")$
 tgd_load("tgd/solutions.mac")$
+tgd_load("tgd/curvature-action.mac")$
 
 print("TGD Geometry Lab loaded from", tgd_root)$
