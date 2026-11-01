@@ -1,0 +1,163 @@
+section("tgd/effective-metric: lumping of sheets (Vaihe X)")$
+em_null(v) := every(lambda([q], is(ratsimp(q) = 0)), flatten(if matrixp(v) then args(v) else [v]))$
+xiE : [tt, xx, yy, zz]$
+etaE : minkowski_metric()$
+GHe : H_metric()$
+JHe : H_kahler()$
+sheet(s) := emb_setup(GHe, H_X, append(xiE, s), xiE)$
+
+/* the recipe */
+em1 : sheet([c1*(tt - zz), 0, 0, 0])$
+em2 : sheet([0, 0, c2*(tt - xx), 0])$
+gS1 : emb_get(em1, 'g)$
+gS2 : emb_get(em2, 'g)$
+check("eff: one sheet gives its induced metric", em_null(eff_metric(etaE, [gS1]) - gS1))$
+check("eff: a sheet with constant CP_2 point has no deviation",
+      em_null(eff_metric(etaE, [emb_get(sheet([1/2, 0, 0, 0]), 'g)]) - etaE))$
+check("eff: the order of the sheets does not matter",
+      em_null(eff_metric(etaE, [gS1, gS2]) - eff_metric(etaE, [gS2, gS1])))$
+/* a graph over M^4: the deviation is the CP_2 part with the sign of cp2_sign */
+fS : [q1, q2, q3, q4]$
+Fs : map(lambda([f], f*tt + f^2*xx), fS)$
+Sg : subst(map("=", cp2_X, Fs), cp2_sign*cp2_metric())$
+Jg : jacobian(Fs, xiE)$
+check("eff: the deviation of a graph is the pullback of the CP_2 metric",
+      em_null(emb_get(sheet(Fs), 'g) - etaE - transpose(Jg) . Sg . Jg))$
+
+/* one sheet: T = kappa G + Lambda g */
+xiC2 : cp2_X$
+emCP : emb_setup(GHe, H_X, append([0, 0, 0, 0], cp2_X), xiC2)$
+gCP : emb_get(emCP, 'g)$
+JCP : induced_kahler_form(JHe, H_X, emb_get(emCP, 'h), xiC2)$
+check("CP_2 sheet: the Maxwell tensor of the Kahler action vanishes",
+      em_null(tgd_stress(gCP, JCP, 1, 0)))$
+GCP : induced_einstein(emCP)$
+check("CP_2 sheet: G^ab = -6 sigma g^ab for the induced metric sigma g",
+      em_null(GCP + 6*cp2_sign*emb_get(emCP, 'gi)))$
+RCP : tgd_simp(scalar_curvature(gCP, induced_ricci(emCP)))$
+check("CP_2 sheet: T = 0 = k G + Lambda g gives Lambda = 6 sigma k and R = 4 Lambda / k = 24 sigma",
+      is(ratsimp(RCP - 24*cp2_sign) = 0))$
+/* the holomorphic line of the side study: minimal, but no constants exist */
+SHe : sj_H_metric()$
+emL : emb_setup(SHe, sj_H_X, sj_surface(sj_w, 0), sj_X)$
+gL : emb_get(emL, 'g)$
+giL : emb_get(emL, 'gi)$
+GL : induced_einstein(emL)$
+JL : induced_kahler_form(block([m : zeromatrix(8, 8)], m[3,4] : sj_rho, m[4,3] : -sj_rho, m) + H_kahler(), sj_H_X, emb_get(emL, 'h), sj_X)$
+TL : tgd_stress(gL, JL, ck, cv)$
+ptL : [hr = 1/2, sa = 0, sb = 0]$
+ptM : [hr = 1, sa = 0, sb = 0]$
+eqL(pt) := map(lambda([ab], subst(pt, TL[ab[1],ab[2]] - kap*GL[ab[1],ab[2]] - lam*giL[ab[1],ab[2]])),
+               [[1,1], [2,2], [3,3]])$
+solL : linsolve(append(eqL(ptL), eqL(ptM)), [kap, lam, ck, cv])$
+check("holomorphic line: G^ab is not proportional to g^ab",
+      not em_null(GL[1,1]/giL[1,1] - GL[2,2]/giL[2,2]))$
+check("holomorphic line: T = kappa G + Lambda g forces kappa = 0 and c_K = 0",
+      block([s : subst(solL, [kap, lam, ck, cv])], is(s[1] = 0 and s[3] = 0)))$
+
+/* two sheets: both flat, the lump is not */
+kE : [1, 0, 0, -1]$
+lE : [1, -1, 0, 0]$
+Au : a0 + a1*(tt - zz) + a2*(tt - zz)^2/2 + a3*(tt - zz)^3/6$
+Bv : b0 + b1*(tt - xx) + b2*(tt - xx)^2/2 + b3*(tt - xx)^3/6$
+hA : -ee*Au*eff_null_part(kE, kE, 4)$
+hB : -ee*Bv*eff_null_part(lE, lE, 4)$
+check("two waves: the exact sheet s(t - z) has zero Riemann tensor",
+      em_null(riemann(christoffel(gS1, xiE), xiE)))$
+check("two waves: the Kahler form of the sheet s(t - z) vanishes",
+      em_null(induced_kahler_form(JHe, H_X, emb_get(em1, 'h), xiE)))$
+check("two waves: deviation of the sheet s(t - z) is -A k k",
+      block([d : tgd_msimp(gS1 - etaE)], em_null(d + d[1,1]*(-1)*eff_null_part(kE, kE, 4))))$
+check("two waves: each sheet of the general form has zero Ricci tensor",
+      em_null(eff_ricci(etaE + hA, xiE)) and em_null(eff_ricci(etaE + hB, xiE)))$
+RicE : eff_ricci(eff_metric(etaE, [etaE + hA, etaE + hB]), xiE)$
+check("two waves: the lump has zero Ricci tensor at first order", em_null(eff_order(RicE, ee, 1)))$
+Ric2 : eff_order(RicE, ee, 2)$
+FF : diff(Au, tt)*diff(Bv, tt)$
+Ric2w : FF/4*(eff_null_part(kE, lE, 4) + eff_null_part(lE, kE, 4))$
+check("two waves: at second order Ric_ab = A'(u) B'(v) (k_a l_b + l_a k_b)/4",
+      em_null(Ric2 - Ric2w) and not em_null(Ric2))$
+G2 : Ric2w - (FF/2)/2*etaE$
+check("two waves: the Einstein tensor of the lump is the cross term of a massless scalar field",
+      em_null(G2 - FF/4*(eff_null_part(kE, lE, 4) + eff_null_part(lE, kE, 4) - etaE)))$
+check("two waves: the cross term is divergence free",
+      em_null(makelist(sum(etaE[a,a]*diff(G2[a,b], xiE[a]), a, 1, 4), b, 1, 4)))$
+/* a periodic wave averages away */
+assume(w > 0)$
+Aper : c^2*cos(w*uu)^2$
+check("two waves: the derivative of a periodic A averages to zero over a period",
+      is(ratsimp(integrate(diff(Aper, uu), uu, 0, 2*%pi/w)) = 0))$
+
+/* cosmological term */
+matrix_sym(nm) := genmatrix(lambda([i, j], nm[min(i, j), max(i, j)]), 4, 4)$
+h1s : matrix_sym(h1s_)$ h2s : matrix_sym(h2s_)$
+G1s : matrix_sym(G1s_)$ G2s : matrix_sym(G2s_)$
+T1s : kap*G1s + lam*(etaE + h1s)$
+T2s : kap*G2s + lam*(etaE + h2s)$
+check("Lambda: the plain sum of the tensors counts eta twice",
+      em_null(T1s + T2s - kap*(G1s + G2s) - lam*(etaE + h1s + h2s) - lam*etaE))$
+check("Lambda: the sum of deviations from lam eta closes the equation at first order",
+      em_null(lam*etaE + (T1s - lam*etaE) + (T2s - lam*etaE) - kap*(G1s + G2s) - lam*(etaE + h1s + h2s)))$
+
+/* three waves: every sheet keeps its charge, the energy flux of the lump does not vanish */
+mE : [1, 0, -1, 0]$
+g3 : etaE - ee*p1*(tt - zz)*eff_null_part(kE, kE, 4) - ee*p2*(tt - xx)*eff_null_part(lE, lE, 4)
+          - ee*p3*(tt - yy)*eff_null_part(mE, mE, 4)$
+gi3 : mat_inverse(g3)$
+G3 : eff_einstein(g3, xiE)$
+Gm3 : gi3 . G3$
+sq3 : sqrt(ratsimp(-determinant(g3)))$
+flux3 : ratsimp(taylor(sum(diff(sq3*Gm3[a,1], xiE[a]), a, 1, 4), ee, 0, 3))$
+bal3 : ratsimp(taylor(sum(sum(diff(g3, tt)[a,b]*(Gm3 . gi3)[a,b], a, 1, 4), b, 1, 4)/2, ee, 0, 3))$
+check("three waves: d_a(sqrt|g| G^a_t) = sqrt|g| d_t g_ab G^ab / 2 to third order", em_null(flux3 - bal3))$
+check("three waves: the energy flux of the lump is -3 A' B' C' / 4 at third order",
+      em_null(flux3 + 3*p1*p2*p3*ee^3/4))$
+check("two waves: the energy balance term of the lump vanishes exactly",
+      block([g2w : etaE + hA + hB, gi2, Gu2],
+        gi2 : mat_inverse(g2w), Gu2 : gi2 . eff_einstein(g2w, xiE) . gi2,
+        em_null(sum(sum(diff(g2w, tt)[a,b]*Gu2[a,b], a, 1, 4), b, 1, 4))))$
+
+/* the Newton field from two sheets, near the origin of CP_2 */
+assume(kw > 0)$
+depends(aw, [xx, yy, zz])$
+Fl : cp2_sign*subst([x1 = 0, y1 = 0, x2 = 0, y2 = 0], cp2_metric())$
+pairw(q) := [aw/kw*cos(kw*q), aw/kw*sin(kw*q)]$
+hflat(s) := block([J : jacobian(s, xiE)], matrixmap(lambda([q], ratsimp(trigsimp(q))), transpose(J) . Fl . J))$
+da : [0, diff(aw, xx), diff(aw, yy), diff(aw, zz)]$
+check("Newton: two sheets of four circles give sigma (a^2 delta_ab + 4 da_a da_b / k^2)",
+      em_null(hflat(append(pairw(tt), pairw(xx))) + hflat(append(pairw(yy), pairw(zz)))
+              - cp2_sign*(aw^2*ident(4) + 4/kw^2*eff_null_part(da, da, 4))))$
+rs : sqrt(xx^2 + yy^2 + zz^2)$
+gN : etaE - 2*ee*mm/rs*ident(4)$
+gI : genmatrix(lambda([i, j], if i # j then 0 elseif i = 1 then ((1 - ee*mm/(2*rs))/(1 + ee*mm/(2*rs)))^2
+                              else -(1 + ee*mm/(2*rs))^4), 4, 4)$
+check("Newton: h = -2 phi delta is the first order of the isotropic Schwarzschild metric",
+      em_null(eff_order(gI, ee, 1) + 2*mm/rs*ident(4)))$
+check("Newton: h = -2 m/r delta has zero Ricci tensor at first order",
+      em_null(eff_order(eff_ricci(gN, xiE), ee, 1)))$
+check("Newton: the sign of the graph deviation is the sign of the attractive field",
+      is(Fl[1,1] < 0))$
+check("Newton: the Minkowski trace of a null sheet vanishes, that of the Newton field does not",
+      is(sum(etaE[a,a]*eff_null_part(kE, kE, 4)[a,a], a, 1, 4) = 0)
+      and is(ratsimp(sum(etaE[a,a]*(-2*mm/rs), a, 1, 4)) # 0))$
+HFl : metric_direct_sum(etaE, Fl)$
+emFl : emb_setup(HFl, H_X, append(xiE, subst(aw = a0, append(pairw(tt), pairw(xx)))), xiE)$
+check("control: the sheet of the circle construction is not minimal",
+      not em_null(map(trigsimp, mean_curvature(emFl, second_fundamental_form(emFl)))))$
+
+/* a test particle in the effective metric, static field with sum Phi of two sheets */
+depends([f1, f2], xx)$
+Ph : f1 + f2$
+gP : etaE - 2*ee*Ph*ident(4)$
+Gxtt : christoffel(gP, xiE)[2][1][1]$
+check("geodesic: the first order acceleration is the sum over the sheets",
+      is(ratsimp(coeff(ratexpand(taylor(Gxtt, ee, 0, 1)), ee, 1) + diff(f1, xx) + diff(f2, xx)) = 0))$
+check("geodesic: the relative correction is -2 Phi",
+      is(ratsimp(coeff(ratexpand(taylor(Gxtt, ee, 0, 2)), ee, 2) - 2*Ph*(diff(f1, xx) + diff(f2, xx))) = 0))$
+/* one mass in the effective metric against the mass split over the sheets */
+Lpart(mm_, Ph_, vv_) := -mm_*sqrt(1 - 2*ee*Ph_ - vv_^2)$
+aA : ratsimp(coeff(ratexpand(taylor(diff(subst(vv = 0, Lpart(m1 + m2, f1 + f2, vv)), xx), ee, 0, 1)), ee, 1)/(m1 + m2))$
+aB : ratsimp(coeff(ratexpand(taylor(diff(subst(vv = 0, Lpart(m1, f1, vv) + Lpart(m2, f2, vv)), xx), ee, 0, 1)), ee, 1)/(m1 + m2))$
+check("particle: one mass in the effective metric feels the sum", is(ratsimp(aA - diff(f1, xx) - diff(f2, xx)) = 0))$
+check("particle: a mass split over the sheets feels the weighted average",
+      is(ratsimp(aB - (m1*diff(f1, xx) + m2*diff(f2, xx))/(m1 + m2)) = 0))$

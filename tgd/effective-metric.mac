@@ -1,0 +1,23 @@
+/* ================================================================
+   TGD Geometry Software Lab -- tgd/effective-metric.mac
+   Lumping of space-time sheets over common M^4 coordinates (Vaihe X).
+
+   Pitkanen's recipe in Btgdclass1, luku 7: the effective metric is the
+   Minkowski metric plus the deviations of the sheets,
+       g_eff = eta + sum_i (g_i - eta),
+   so that one sheet gives back its induced metric.  The effective metric is
+   a metric on a region of M^4, in general not an induced metric.
+   eff_order picks the coefficient of e^n of a matrix that depends on e.
+   ================================================================ */
+
+eff_metric(eta, gs) := eta + lsum(g - eta, g, gs)$
+
+eff_ricci(g, X) := ricci(riemann(christoffel(g, X), X))$
+
+/* G_ab with lower indices */
+eff_einstein(g, X) := block([Ric : eff_ricci(g, X)], Ric - scalar_curvature(g, Ric)/2*g)$
+
+eff_order(m, e, n) := matrixmap(lambda([q], ratsimp(coeff(ratexpand(taylor(q, e, 0, n)), e, n))), m)$
+
+/* a_i b_j as an n x n matrix */
+eff_null_part(a, b, n) := genmatrix(lambda([i, j], a[i]*b[j]), n, n)$

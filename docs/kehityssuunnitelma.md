@@ -4,7 +4,7 @@ Versio 1.1, 30.10.2026.
 Tavoitteena on rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen. ✅ tarkoittaa toteutettua ja testattua, 🟡 osittain tehtyä ja ⬜ tekemätöntä.
-> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 419 testiä menevät läpi.
+> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 452 testiä menevät läpi.
 > GitHubissa jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Tilanne on koottu [seurantaan](seuranta.md).
 
 ---
@@ -397,6 +397,112 @@ Pitkäsen linjauksen 1.11.2026 mukaan sisäosan vaikutus on tilavuustermi, ja K�
 - **9.4 Modifioidut gammamatriisit ja Diracin yhtälö radalla** – [#39](https://github.com/markomanninen/tgd-geometry-lab/issues/39).
 - **9.5 Partonipinnat käyrinä tulossa $CP_1\times CP_2$** – [#40](https://github.com/markomanninen/tgd-geometry-lab/issues/40).
 - **9.6 Lagrangen partonipinnat** – [#41](https://github.com/markomanninen/tgd-geometry-lab/issues/41).
+
+---
+
+## 10.2 Vaihe X – Lehtien kokoaminen ja Einsteinin raja 🟡
+
+Tämä vaihe laskee kaksi Pitkäsen väitettä, jotka labissa on toistaiseksi tarkistettu vain lähteestä. Ensimmäisen väitteen mukaan lehtien kootun metriikan voi lukea Einsteinin teorian metriikkana, ja toisen mukaan hiukkanen, joka koskettaa useita lehtiä, kokee lehtien kenttien voimien summan.
+
+Koottu metriikka on Minkowskin metriikka lisättynä lehtien poikkeamien summalla.
+
+$$
+g^{\mathrm{eff}}_{\mu\nu}=\eta_{\mu\nu}+\sum_i h^{(i)}_{\mu\nu},\qquad h^{(i)}_{\mu\nu}=g^{(i)}_{\mu\nu}-\eta_{\mu\nu}
+$$
+
+Pitkäsen sanamuoto on varovainen. Teoksessa *Btgdclass1* (luku 7) kootun metriikan kohdalla lukee "Einstein's equations could hold true for the effective metric", ja perusteena on Poincarén invarianssi. Hiukkasen kohdalla ehto on "If test particles touch all space-time sheets involved, they experience the sum".
+
+Yhtälöä $T=\kappa G+\Lambda g$ ei voi tarkistaa pelkästä metriikasta, koska mikä tahansa metriikka toteuttaa sen, jos $T$ määritellään metriikasta. Lasku saa sisältöä vasta, kun $T$ tulee lehdiltä itsenäisesti. Sama koskee voimien summaa, joka seuraa suoraan oletuksesta, jos hiukkasen oletetaan kytkeytyvän jokaiseen lehteen erikseen. Siksi vaihe etenee määritelmistä esimerkkeihin ja päättyy mallin vertailuun.
+
+### Step 10.1 – Määritelmät lähteistä 🟡
+
+Luettu osa on tehty. Testihiukkanen on madonreikäkontakti, geodeesiliike on postulaatti, ja lähde ei anna reseptiä tensorille $T^{\mathrm{eff}}$. Tulokset ovat sivulla [tulokset](tulokset.md#lehtien-kokoaminen-ja-einsteinin-raja). Avoimeksi jää $T^{\mathrm{eff}}$:n määritelmä ja sen sovitus linjaukseen 1.11.2026.
+
+Claude lukee Pitkäsen johdon ja kirjaa sen konventioihin sanatarkasti. Luettavat kohdat ovat *Btgdclass1*:n luvut "Could Einstein's equations emerge dynamically?" ja "How Einstein's equations and General Relativity in long length scales emerges from TGD", luku 7.3.3 Reissner–Nordströmin metriikan upotuksesta sekä tekstit `HGT`, `fourmomentum`, `HJdireq` ja `dirprop`.
+
+Vastattavia kysymyksiä on kolme:
+
+- Mikä on $T$ koottua metriikkaa varten, ja miten se saadaan lehtien tensoreista?
+- Miten kirjan muotoilu, jossa $T$ on Kählerin Maxwell-tensori, sopii Pitkäsen linjaukseen 1.11.2026, jonka mukaan sisäosan vaikutus on tilavuustermi?
+- Miten hiukkasen massa ja varaus jakautuvat lehdille madonreikäkontaktien välityksellä?
+
+Jos vastaus ei löydy lähteistä, $T$:n valinta on `päätös`. Silloin Claude tekee vertailulaskut ja pysähtyy.
+
+### Step 10.2 – Koottu metriikka kirjastoon ✅
+
+Uusi moduuli `tgd/effective-metric.mac` kokoaa metriikan lehdistä, jotka ovat kuvaajia saman $M^4$-alueen yllä. Ensin kirjoitetaan testit tunnetuilla identiteeteillä. Yhden lehden tuloksen on oltava sen indusoitu metriikka, tasaisen lehden poikkeaman on oltava nolla, ja lehtien järjestys ei saa vaikuttaa tulokseen. Kun lehti on kuvaaja $M^4\to CP_2$, poikkeamalla on kiinteä muoto.
+
+$$
+h^{(i)}_{\mu\nu}=-s_{kl}\,\partial_\mu s^k\,\partial_\nu s^l
+$$
+
+### Step 10.3 – Ehto yhdellä pinnalla ✅
+
+Tämä askel testaa ehdon $T=\kappa G+\Lambda g$ labin tunnetuilla pinnoilla. Kirjasto sisältää jo funktiot `induced_einstein` ja Kähler-tensorin. Vertailuarvoja on kaksi. Pitkäsen mukaan Einsteinin tensori on $CP_2$-tyyppisillä tyhjiöekstremaaleilla verrannollinen metriikkaan, ja massattomilla ekstremaaleilla $T=\Lambda g$ ei voi päteä. Tuloksena on taulukko pinnoista, joilla ehto pätee, sekä kertoimet $\kappa$ ja $\Lambda$. Jos sisäosan $T$ on tilavuustermin mukaan verrannollinen metriikkaan, ehto vaatii, että $G$ on verrannollinen metriikkaan, ja tämä testataan erikseen.
+
+### Step 10.4 – Kahden lehden ristitermi ✅
+
+Einsteinin tensori on ensimmäisessä kertaluvussa lineaarinen, joten yhteenlasku tällä tarkkuudella ei kerro TGD:stä mitään. Sisältö on ristitermissä.
+
+$$
+\Delta G_{\mu\nu}=G_{\mu\nu}[\eta+h^{(1)}+h^{(2)}]-G_{\mu\nu}[\eta+h^{(1)}]-G_{\mu\nu}[\eta+h^{(2)}]
+$$
+
+Lasku antaa $\Delta G$:n suljetussa muodossa kahdelle aaltoesimerkille ja kertoo, milloin se on pieni verrattuna lehtien tensoreihin.
+
+### Step 10.5 – Kosmologinen termi summassa ✅
+
+Jos jokainen $N$ lehdestä täyttää ehdon erikseen, ensimmäisessä kertaluvussa saadaan summa, jossa tasainen osa on mukana $N$ kertaa.
+
+$$
+\sum_i T^{(i)}_{\mu\nu}\approx\kappa\sum_i G^{(i)}_{\mu\nu}+\Lambda\Bigl(N\eta_{\mu\nu}+\sum_i h^{(i)}_{\mu\nu}\Bigr)
+$$
+
+Kootun metriikan yhtälössä tasainen osa on mukana kerran. Ero $(N-1)\Lambda\eta_{\mu\nu}$ on Clauden päättelyä, eikä sitä ole lähteessä. Askel selvittää, poistuuko ero $T$:n määritelmällä vai Pitkäsen mainitsemalla keskiarvoistuksella, jossa pieni $\Lambda$ syntyy euklidisten alueiden pienestä tilavuusosuudesta.
+
+### Step 10.6 – Heikko painovoima lehtien summana 🟡
+
+Tämä askel on väitteen suorin koe. Kootun metriikan pitäisi tuottaa massan $M$ heikko kenttä, joka on isotrooppisissa koordinaateissa signatuurilla $(+,-,-,-)$ muotoa
+
+$$
+h_{\mu\nu}=-2\phi\,\delta_{\mu\nu},\qquad \phi=\frac{GM}{r}.
+$$
+
+Kuvaajan poikkeama on samanmerkkinen, joten etenkin puoleensavetävä kenttä on tavoitettavissa. Hylkivää kenttää $\phi<0$ ei saa pelkistä $CP_2$-suunnan kuvaajista, mikä on Clauden päättelyä ja tarkistetaan laskulla. Yhdestä lehdestä tulee ajasta riippuvassa upotuksessa ristitermi $h_{tr}$. Kahden lehden summassa se voi kumoutua, jos lehdet ovat toistensa peilikuvia. Lasku etsii eksplisiittiset lehdet, joiden summa antaa kentän ensimmäisessä kertaluvussa, tai näyttää esteen. Vertailukohta on Pitkäsen yksilehtinen Reissner–Nordström-upotus.
+
+### Step 10.7 – Testihiukkanen kootussa metriikassa ✅
+
+Tämä askel olettaa, että hiukkanen liikkuu kootun metriikan geodeesia pitkin, ja vertaa sen kiihtyvyyttä lehtien kiihtyvyyksien summaan. Ero on toista kertalukua poikkeamissa, joten lasku antaa sanalle "likimain" suuruusluvun tämän oletuksen sisällä. Oletusta itseään askel ei testaa.
+
+### Step 10.8 – Summa vai painotettu keskiarvo 🟡
+
+Tässä testataan oletus. Vertailussa on kaksi mallia. Mallissa A hiukkasella on yksi massa kootussa metriikassa. Mallissa B massa jakautuu lehdille osuuksina $m_i$, joiden summa on $m$.
+
+$$
+L_A=m\sqrt{g^{\mathrm{eff}}_{\mu\nu}\dot x^\mu\dot x^\nu},\qquad L_B=\sum_i m_i\sqrt{g^{(i)}_{\mu\nu}\dot x^\mu\dot x^\nu}
+$$
+
+Malli A antaa kiihtyvyyksien summan, ja malli B antaa painotetun keskiarvon, jossa painot ovat $m_i/m$. Malleja voi erottaa vain, jos lähde kertoo, miten massa jakautuu lehdille. Tämä on askeleen 10.1 kolmas kysymys ja mahdollinen Matin kysymys, koska fysikaalinen tulkinta on hänen.
+
+### Step 10.9 – Kosketus pintana ⬜
+
+Täysi malli kuvaa kosketuksen $CP_2$-tyyppisenä pintana, joka liimataan kahteen lehteen valon kaltaisilla reunoilla. Askel riippuu vaiheen IX työstä, erityisesti issueista [#36](https://github.com/markomanninen/tgd-geometry-lab/issues/36) ja [#38](https://github.com/markomanninen/tgd-geometry-lab/issues/38), joten se aloitetaan vasta niiden jälkeen.
+
+### Step 10.10 – Energian siirtyminen lehdeltä toiselle 🟡
+
+Pitkäsen mukaan näennäinen energian häviäminen Einsteinin teoriassa on energian siirtymistä lehdeltä toiselle. Yhden lehden varaus muuttuu vain sen reunan yli kulkevan virran verran.
+
+$$
+\frac{dQ^{(i)}}{dt}=-\oint_{\partial X^{(i)}}j^{(i)}\cdot dA
+$$
+
+Laskussa on kaksi tasoa. Ensimmäinen taso käyttää kahden lehden esimerkkiä askeleesta 10.4 ilman kosketusta. Lehtien yhteenlaskettu varaus säilyy, ja verrattavana on askeleen 10.1 määritelmän mukainen tehokkaan metriikan energia, joka voi muuttua, koska tehokkaalla metriikalla ei yleensä ole ajan siirtosymmetriaa. Toinen taso vaatii kosketuksen mallin, jossa virta kulkee reunan yli, ja se riippuu issueista [#37](https://github.com/markomanninen/tgd-geometry-lab/issues/37) ja [#38](https://github.com/markomanninen/tgd-geometry-lab/issues/38). Ensimmäinen taso näyttää vain, että kirjanpito on ristiriidaton. Siirtymisen mekanismi näkyy vasta toisella tasolla.
+
+### Järjestys ja rajat
+
+Askeleet 10.1 ja 10.2 tulevat ensin, koska muut käyttävät niiden määritelmiä ja moduulia. Askeleet 10.3, 10.4 ja 10.7 ovat puhdasta matematiikkaa, joten ne voi tehdä itsenäisesti. Askeleet 10.5, 10.6 ja 10.8 riippuvat $T$:n ja massan määritelmistä. Jos symbolinen lasku ei valmistu kymmenessä minuutissa, havainto kirjataan ja kysytään ennen isoa muutosta.
+
+Vaihe ei voi todentaa koko väitettä, koska esimerkit ovat kahden lehden malleja ja monen lehden kokoamiselle ei ole lähteessä reseptiä. Tulos kertoo, millä ehdoilla väite pätee esimerkeissä ja missä se vaatii lisäoletuksen.
 
 ---
 

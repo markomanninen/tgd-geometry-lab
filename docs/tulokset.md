@@ -237,6 +237,54 @@ $$
 
 jossa $r_i$ ovat pallotekijöiden säteet ja $k_i$ niiden Kähler-muotojen kertoimet. Suhde $c_V/c_K$ on positiivinen, ja sama merkki seuraa [etumerkkisäännöistä](konventiot.md#kertoimien-etumerkki). Tulomalli ei kiinnitä suhteen lukuarvoa, koska säteet ja kertoimet ovat siinä vapaita. Todellisessa nostossa $X^6$ on pallokimppu eikä tulo.
 
+## Lehtien kokoaminen ja Einsteinin raja
+
+Pitkäsen resepti kokoaa lehdet yhteisissä $M^4$-koordinaateissa. Koottu metriikka on Minkowskin metriikka lisättynä lehtien poikkeamien summalla.
+
+$$
+g^{\mathrm{eff}}_{ab}=\eta_{ab}+\sum_i\bigl(g^{(i)}_{ab}-\eta_{ab}\bigr)
+$$
+
+Hänen tekstissään ([*Btgdclass1*](https://tgdtheory.fi/bookpdf/Btgdclass1.pdf), luku 7) testihiukkanen on madonreikäkontakti, joka koskettaa kaikkia lehtiä, joiden $M^4$-projektio osuu kohdalle. Einsteinin yhtälöstä hän kirjoittaa "could hold true for the effective metric", ja geodeesiliike on postulaatti "one can also postulate". Hän ei anna reseptiä kootun metriikan energia-liikemäärätensorille. Siksi Claude laski väitteen niiltä osin, jotka voi laskea ilman sitä. Testit ovat tiedostossa [test-effective-metric](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-effective-metric.mac).
+
+**Yhden lehden ehto ei ole yleinen.** Vanhemmassa tekstissä Pitkänen ehdottaa jokaiselle ekstremaalille ehtoa $T=\kappa G+\Lambda g$. Lehti $CP_2$ toteuttaa sen, koska Kählerin Maxwell-tensori häviää ja $G^{ab}=-6\sigma g^{ab}$, jolloin $\Lambda=6\sigma\kappa$ ja $R=4\Lambda/\kappa=24\sigma$. Holomorfisella viivalla $G^{ab}$ ei ole verrannollinen metriikkaan, ja yhtälön ainoa ratkaisu on triviaali $\kappa=0$, $c_K=0$. Yhtälö kuuluu siis koottuun metriikkaan eikä yksittäiseen lehteen, mikä sopii Pitkäsen myöhempään muotoiluun.
+
+**Kaksi tasaista lehteä tuottaa kaarevuuden.** Olkoot lehdet $s(u)$ ja $s(v)$, joissa $u=t-z$ ja $v=t-x$. Molempien poikkeama on muotoa $-A(u)\,k_ak_b$ ja $-B(v)\,l_al_b$, niiden Riemannin tensori on nolla ja niiden Kähler-muoto on nolla. Kootun metriikan Ricci-tensori häviää ensimmäisessä kertaluvussa, ja toisessa kertaluvussa se on
+
+$$
+R_{ab}=\tfrac14A'(u)B'(v)\,(k_al_b+l_ak_b).
+$$
+
+Einsteinin tensori on sama rakenne kuin massattoman skalaarikentän ristitermi.
+
+$$
+G_{ab}=\tfrac14A'(u)B'(v)\,\bigl(k_al_b+l_ak_b-\eta_{ab}\,k\cdot l\bigr)
+$$
+
+Lehtien omat Kähler-tensorit ovat nolla, joten kootun metriikan tensori ei ole lehtien tensorien summa. Tämä on täsmällinen muoto Pitkäsen lauseelle, että koottu metriikka sisältää lehtien väliset vuorovaikutustermit. Jos $A$ on jaksollinen, sen derivaatan keskiarvo jakson yli on nolla, joten ristitermi häviää keskiarvossa, kun $u$ ja $v$ ovat riippumattomia. Tässä esimerkissä summa pätee siis pitkän mittakaavan keskiarvona.
+
+**Kosmologinen termi vaatii poikkeamien summan.** Jos $N$ lehteä täyttää ehdon erikseen, tensorien suora summa laskee Minkowskin osan $N$ kertaa. Ristiriita poistuu ensimmäisessä kertaluvussa, kun myös tensori kootaan poikkeamista, eli $T^{\mathrm{eff}}=\Lambda\eta+\sum_i(T^{(i)}-\Lambda\eta)$. Tämä sääntö on Clauden päättelyä, eikä sitä ole lähteessä.
+
+**Newtonin kenttä saadaan kahdesta lehdestä.** Heikko kenttä on isotrooppisissa koordinaateissa $h_{ab}=-2\phi\,\delta_{ab}$, ja se on Schwarzschildin metriikan ensimmäinen kertaluku. Kaksi lehteä, joilla on yhteensä neljä ympyrää $(a/k)(\cos kq,\sin kq)$ koordinaateissa $q=t,x,y,z$, antavat $CP_2$:n origon lähellä täsmälleen
+
+$$
+\sum_i h^{(i)}_{ab}=\sigma\Bigl(a^2\,\delta_{ab}+\frac{4}{k^2}\,\partial_aa\,\partial_ba\Bigr).
+$$
+
+Kun $a^2=2\phi$, tulos on Newtonin kenttä, ja suhteellinen virhe on luokkaa $1/(kr)^2$. Ympyrän säteen $a/k$ on oltava pieni $CP_2$:n säteeseen verrattuna. Kuvaajan poikkeamalla on sama etumerkki kuin puoleensavetävällä kentällä. Rakenne on kinemaattinen, koska nämä lehdet eivät ole minimipintoja. Valon kaltaiset lehdet eivät riitä staattiseen kenttään, koska niiden Minkowski-jälki on nolla ja Newtonin kentän jälki ei ole. Kysymys siitä, antavatko kenttäyhtälöiden ratkaisut tämän summan, jää auki.
+
+**Geodeesi antaa sanalle likimain suuruusluvun.** Staattisessa kentässä $h_{ab}=-2\Phi\,\delta_{ab}$, jossa $\Phi$ on lehtien potentiaalien summa, pätee $\Gamma^x{}_{tt}=-\Phi'/(1+2\Phi)$. Ensimmäisessä kertaluvussa kiihtyvyydet summautuvat, ja suhteellinen korjaus on $2\Phi$, Maan pinnalla noin $1{,}4\cdot10^{-9}$. Tämä pätee, jos hiukkanen kulkee kootun metriikan geodeesia, eli luku ei testaa postulaattia.
+
+**Yksi massa ja jaettu massa eroavat.** Massa $m$ kootussa metriikassa saa kiihtyvyyksien summan. Jos massa jaetaan lehdille osuuksina $m_i$, tulos on painotettu keskiarvo painoilla $m_i/m$. Pitkäsen postulaatti vastaa ensimmäistä mallia. Toisessa mallissa putoamiskiihtyvyys riippuisi massan jakautumisesta, mikä on ristiriidassa ekvivalenssiperiaatteen kanssa, joten Claude pitää ensimmäistä mallia johdonmukaisena.
+
+**Kootun metriikan energia ei säily.** Jokaisen lehden Noether-virta säilyy. Kun energia määritellään kootulle metriikalle yhtälöllä $T^{\mathrm{eff}}=G/\kappa$, kahden aallon energiatase häviää täsmälleen. Kolmen aallon $A(t-z)$, $B(t-x)$, $C(t-y)$ tapauksessa kolmannessa kertaluvussa saadaan
+
+$$
+\partial_a\bigl(\sqrt{\lvert g\rvert}\,G^a{}_t\bigr)=-\tfrac34A'B'C'.
+$$
+
+Tämä on esimerkki Pitkäsen lauseesta, että globaalit säilymislait eivät päde tarkasti kootulle aika-avaruudelle, vaikka lehtien varaukset säilyvät. Energian siirtymisen mekanismi lehdeltä toiselle vaatii kosketuksen mallin.
+
 ## Avoimet kysymykset
 
 Pitkäsen vastaukset 31.10.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon, tilavuustermin merkityksen kenttäyhtälöille, $J(M^4)$:n paikan erillisenä terminä ja kertoimien etumerkit. Laskennan perusteella jäljellä on kaksi kysymystä ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):
