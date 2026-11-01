@@ -20,9 +20,9 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
 | M7 Vaikutus | 6/6 ✅ | – |
-| M8 Ratkaisut | 2/3 | #35, Matin kahdeksan ehtoa $j^\alpha X^k_{\ \alpha}=0$ ja Kähler-vaikutuksen paikka |
+| M8 Ratkaisut | 2/3 | #35, Matin linjaus sisäosan vaikutuksesta odottaa vahvistusta |
 
-Kaikki 371 testiä menevät läpi.
+Kaikki 375 testiä menevät läpi.
 
 Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Seuraavat kysymykset ovat valmiina, ja niitä ei ole vielä lähetetty.
 
@@ -54,7 +54,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 | Issue | Kysymys |
 |---|---|
-| #35 | Matti vahvisti 1.11.2026 virran toisen termin, ja Kähler-osa on $j^\alpha X^k_{\ \alpha}$, joka ei häviä kaikilla testatuilla pinnoilla. Hyväksyykö hän ehdot, vai siirtyykö Kähler-vaikutus partonipinnoille? Mitä seuraa siitä, että Kähler-osa häviää vain osalla H-H-pinnoista? Mikä on $u$:n rooli kausaalitimantissa, kun $u$-riippuvat polynomit ovat minimipintoja vain litteässä rakenteessa? |
+| #35 | Matti vahvisti 1.11.2026 virran toisen termin, ja Kähler-osa on $j^\alpha X^k_{\ \alpha}$, joka ei häviä kaikilla testatuilla pinnoilla. Hänen arvionsa mukaan sisäosassa on tilavuustermi ja Kähler–Chern–Simons-vaikutus on partonipinnoilla. Onko linjaus lopullinen? Mitä seuraa siitä, että Kähler-osa häviää vain osalla H-H-pinnoista? Mikä on $u$:n rooli kausaalitimantissa, kun $u$-riippuvat polynomit ovat minimipintoja vain litteässä rakenteessa? |
 
 ### Markolle
 

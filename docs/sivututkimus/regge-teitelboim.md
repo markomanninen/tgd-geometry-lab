@@ -238,7 +238,7 @@ Varhaiset tekstit kertovat samasta etumerkistä. [Vuoden 1983 artikkelissa](http
 
 [Vuoden 1981 artikkelissa](https://doi.org/10.1007/BF00673694) kaarevuusskalaaria ei vielä ole. Upotusavaruus on $M^4\times S^2$, ja vaikutus on kaavan (12) mukaan Yang–Mills- ja spinoriosa. Artikkeli kysyy, miten gravitaatio syntyy, ja avaruuden $S$ koko on siinä hadronin mittakaavaa. Vuonna 1983 kaarevuusskalaari on mukana, koska gravitaatiovakio olisi muuten väärä kertoimella $10^{38}$. Energian positiivisuus on mukana jo vuonna 1981, sillä tulomuoto $M^4\times S$ tekee mittaryhmästä kompaktin ja ei-kompakti ryhmä antaisi energiatiheyden, joka ei ole positiivisesti definiitti. Sen, että sama vaatimus palaa vuonna 1983 kaarevuusskalaaria vastaan, päättelen itse.
 
-Pitkänen vahvisti tämän yhteyden 1.11.2026. Hänen mukaansa kaarevuusskalaarilla on ratkaisuja, joille energian merkki ei ole positiivisesti definiitti, sillä säietyyppisillä ratkaisuilla energia on negatiivinen joko pallolla tai genuksella $g>1$, ja energia on verrannollinen topologiseen invarianttiin $\int R\sqrt g$. Sanat joko ja tai selittävät, miksi kaava (C24) ja muistelma antavat pallolle eri etumerkin. Toisena perusteena hän mainitsee toiset derivaatat, ja kolmantena sen, että twistorinosto pakottaa vaikutuksen muotoon Kähler plus tilavuus.
+Pitkänen vahvisti tämän yhteyden 1.11.2026. Hänen mukaansa sana non-physical tarkoittaa, että energian merkki ei ole positiivisesti definiitti, ja kosmologisen vakion sopivalla valinnalla merkki saataisiin positiiviseksi. Einsteinin tensorin termi $-g^{tt}R/2$ antaa säietyyppisille ratkaisuille energian, joka riippuu vain pinnan $X^2$ topologiasta. Kaarevuusskalaarin integraali on pallolla positiivinen, joten energia on negatiivinen, ja genuksilla $g\ge1$ merkki on hänen mukaansa positiivinen. Tämä vastaa kaavaa (C24), ja muistelman päinvastainen etumerkki on hänen arvionsa mukaan todennäköisimmin kirjoitusvirhe. Toisena perusteena hän mainitsee toiset derivaatat ja kolmantena sen, että twistorinosto pakottaa vaikutuksen muotoon Kähler plus tilavuus.
 
 Pitkäsen [laskuteksti joulukuulta 2009](https://web.archive.org/web/20220120114648/http://tgdtheory.fi/public_html/tgdclass/einstein.pdf) lisää kaarevuusskalaarin ja aineen vaikutukseen ehdon, joka sanoo metriikan olevan indusoitu,
 
@@ -543,6 +543,12 @@ Kolmannessa kysymyksessä hän kysyy, mitä $RP^2$ tarkoittaa. Se on $CP_2$:n re
 
 Viidennessä kysymyksessä hän sanoo, ettei tiennyt näiden kirjoittajien työstä. Kaarevuusskalaarin perustelu oli hänelle alimonistogravitaation idea. Kenttäyhtälöt saataisiin kaarevuusskalaarista, energiaongelma ratkeaisi, ja isometriavirrat olisivat Einsteinin tensorin määräämiä. Hän kutsuu tätä todella kauniiksi mutta ei realistiseksi.
 
+### Matin linjaus sisäosan vaikutuksesta
+
+Pitkänen kirjoitti samana päivänä myöhemmässä viestissä, että H-H:n perusteella sisäosan vaikutus näyttäisi olevan tilavuustermi ja vähemmän todennäköisesti kaarevuusskalaari. Kähler–Chern–Simons-vaikutus on hänen mukaansa mukana vain valon kaltaisilla partonipinnoilla, ja partonipintojen ratoihin rajoitettu Diracin vaikutus antaa alkeishiukkasfysiikan. Hän kävi Kähler-virran laskun läpi alusta alkaen ja päätyi samaan tulokseen kuin Claude. Virran häviämisestä saadaan kahdeksan lisäehtoa, ja jos sisäosassa on vain tilavuustermi, H-H:ta ei menetetä.
+
+Viestissä on myös Hamilton–Jacobi-rakennetta koskevia tarkennuksia, jotka on kirjattu [konventioihin](../konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot). Lagrangen kertojista hän sanoo, että ne ovat vaihtoehtoinen tapa pakottaa metriikka indusoiduksi eivätkä muuta sisältöä. Luvun 6.2.3 poistamisen syytä hän ei muista.
+
 ### Rajaukset
 
 Symmetriapäättely ja litteän rakenteen päättely ovat Clauden päättelyä, ja ne on tarkistettu kerran riippumattomasti. Testit kattavat symmetriapäättelystä kolme pintaa, kolme vaikutusta ja kenttäyhtälöiden Kähler-osat ja litteän rakenteen päättelystä neljä pintaa. Symmetriapäättely koskee kenttäyhtälöä pisteittäin, kun $r>0$, ja muoto $J(M^4)$ on pallon pintamuotona singulaarinen kohdassa $r=0$. Regge–Teitelboimin teoriassa ympäröivä avaruus on tasainen, kun taas tässä se on kaareva $H$, joten yhtäläisyys koskee vain yhtälön muotoa. Laskuissa ei myöskään ole aineen termiä $T^{\alpha\beta}$.
@@ -565,7 +571,7 @@ Jatkohaku 1.11.2026 sulki osan aiemmista aukoista. Seuraavat asiat ovat nyt tied
 
 Aiempi ehdotus tarkistaa yhtälö $\mathrm{Tr}(GH^k)=0$ on tehty [osassa 3](#osa-3-laskut). Artikkelin aineksia on kaksi. Toinen on symmetriatulos, joka selittää yhdellä päättelyllä, miksi kenttäyhtälöt häviävät suoralla, kartioleikkauksella ja pinnalla $RP^2$. Toinen on litteän rakenteen tulos. Kirjallisuusvertailu pelkästään ei olisi artikkeli, mutta se on hyvä johdanto näille kahdelle tulokselle. Artikkelista päättää Marko, ja tulkinta kuuluu Matille.
 
-Matille lähetettiin 1.11.2026 viisi kysymystä, ja hän vastasi niihin samana päivänä. Vastaukset on kirjattu [edellä](#matin-vastaus-viiteen-kysymykseen). Auki jäivät hänen kahdeksan ehtonsa asema ja se, miksi kirjan luku 6.2.3 poistettiin.
+Matille lähetettiin 1.11.2026 viisi kysymystä, ja hän vastasi niihin samana päivänä. Vastaukset on kirjattu [edellä](#matin-vastaus-viiteen-kysymykseen). Auki on, onko sisäosan vaikutusta koskeva linjaus lopullinen, ja millä kompleksikoordinaatilla rakenne $(t\pm\rho)$ toteutuu.
 
 ## Lähteet
 

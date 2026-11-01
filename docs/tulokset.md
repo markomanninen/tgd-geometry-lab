@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 371 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 375 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -126,7 +126,7 @@ Pitkäsen muotoilussa pinta on juurijoukko $f_1=f_2=0$, jossa $f_i$ ovat analyyt
 
 Pitkäsen mukaan poikittaisen virran ei tarvitse hävitä, koska riittää, että Lorentz 4-voima häviää, ja H-H takaa tämän. Se laskettiin suoraan koko pintaluokalle $\xi^k=f^k(u,w)$. Virralla ei ole $u$-komponenttia, ja voimalle pätee $f_v=0$, $f_x=-j^yJ_{xy}$ ja $f_y=j^xJ_{xy}$. Voima häviää siis täsmälleen, kun poikittainen virta häviää. Sama ehto seuraa topologisoidusta virrasta ja virran valon kaltaisuudesta, koska instantonivirralla on tällä pintaluokalla vain $v$-komponentti ja $j^\alpha j_\alpha\propto(j^x)^2+(j^y)^2$.
 
-Poikittaisen virran häviäminen vaatii, että Fubini–Study-metriikan vetäisy on litteä. Holomorfinen kuvaus kompleksiviivalta $CP_2$:een ei voi olla sellainen, ellei se ole vakio, ja [konventioissa](konventiot.md#kahler-osa-h-h-pinnoilla) on tälle suora rangilasku. Tulos tunnetaan Calabin jäykkyyslauseena, joka on eri lause kuin Calabi–Yau-lause, ja se koskee kuvan käyrää $CP_2$:ssa eikä nelipintaa. Claude toisti virran laskun hilalla ilman Maxima-kirjastoa, ja [arvot](sivututkimus/regge-teitelboim.md#matin-toinen-viesti-1112026) ovat samat kuin symbolisessa laskussa. Pitkänen vahvisti 1.11.2026 virran toisen termin ja johti kenttäyhtälön Kähler-osalle muodon $j^\alpha X^k_{\ \alpha}$. Lasku vahvistaa rakenteen testatuilla holomorfisilla minimipinnoilla, ja [ehto](sivututkimus/regge-teitelboim.md#matin-vastaus-viiteen-kysymykseen) ei täyty niillä automaattisesti.
+Poikittaisen virran häviäminen vaatii, että Fubini–Study-metriikan vetäisy on litteä. Holomorfinen kuvaus kompleksiviivalta $CP_2$:een ei voi olla sellainen, ellei se ole vakio, ja [konventioissa](konventiot.md#kahler-osa-h-h-pinnoilla) on tälle suora rangilasku. Tulos tunnetaan Calabin jäykkyyslauseena, joka on eri lause kuin Calabi–Yau-lause, ja se koskee kuvan käyrää $CP_2$:ssa eikä nelipintaa. Claude toisti virran laskun hilalla ilman Maxima-kirjastoa, ja [arvot](sivututkimus/regge-teitelboim.md#matin-toinen-viesti-1112026) ovat samat kuin symbolisessa laskussa. Pitkänen vahvisti 1.11.2026 virran toisen termin ja johti kenttäyhtälön Kähler-osalle muodon $j^\alpha X^k_{\ \alpha}$. Lasku vahvistaa rakenteen testatuilla holomorfisilla minimipinnoilla, ja [ehto](sivututkimus/regge-teitelboim.md#matin-vastaus-viiteen-kysymykseen) ei täyty niillä automaattisesti. Hänen myöhemmän arvionsa mukaan [sisäosan vaikutus](sivututkimus/regge-teitelboim.md#matin-linjaus-sisaosan-vaikutuksesta) näyttäisi olevan tilavuustermi, ja Kähler–Chern–Simons-vaikutus on vain partonipinnoilla, jolloin H-H säilyy.
 
 **$M^4$:n Kähler-muoto.** Kun Kähler-muotoon lisätään poikittainen osa $\varepsilon\,dx\wedge dy$, kenttäyhtälöiden Kähler-osa pinnalla $\xi^1=w/2$ kertautuu täsmälleen tekijällä
 

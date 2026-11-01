@@ -210,3 +210,24 @@ cy_G : metric_direct_sum(matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -hr^2, 0], [
 cy_em : emb_setup(cy_G, append(cy_X, cp2_X), append(cy_X, cp2_real((sb + %i*sa)/2, 0)), cy_X)$
 check("(t - rho, z + i phi): xi1 = (z + i phi)/2 is not minimal",
       not hj_null(mean_curvature(cy_em, second_fundamental_form(cy_em))))$
+/* ---------- the line element 4.19 of Basic Extremals of the Kahler Action ---------- */
+/* g_++ = g_-- = g_ww = g_wbwb = 0 does not give g^ww = 0: a holomorphic function contracts
+   with the upper components.  Cross terms on one light-like side keep them zero. */
+hj419(a, b, c, d, e, f) := matrix([0, a, b, c], [a, 0, d, e], [b, d, 0, f], [c, e, f, 0])$
+check("line element 4.19: g^ww det = 2 g_+- g_+wb g_-wb with cross terms on both sides",
+      block([M : hj419(pa, pb, pc, pd, pe, pf)],
+        is(ratsimp(invert(M)[3,3]*determinant(M) - 2*pa*pc*pe) = 0)))$
+check("line element 4.19 with cross terms of S+ only: g^++ = g^+w = g^ww = 0",
+      block([I : ratsimp(invert(hj419(pa, pb, pc, 0, 0, pf)))],
+        is(I[1,1] = 0) and is(I[1,3] = 0) and is(I[1,4] = 0) and is(I[3,3] = 0) and is(I[4,4] = 0)))$
+/* a light cone family with an accelerated vertex z(s) = (sinh s, cosh s, 0, 0) and the ray
+   l = (1, 0, 1, 0): the coordinate curve at fixed w with dr/ds = -z'^2/(2 z'.l) is light-like
+   and not straight, while the rays themselves are straight */
+hjz : [sinh(ss), cosh(ss), 0, 0]$
+hjl : [1, 0, 1, 0]$
+hjT : diff(hjz, ss) - hjl/(2*cosh(ss))$
+mink(a, b) := a[1]*b[1] - a[2]*b[2] - a[3]*b[3] - a[4]*b[4]$
+check("accelerated vertex: the coordinate curve has a light-like tangent",
+      is(trigsimp(mink(hjT, hjT)) = 0))$
+check("accelerated vertex: the light-like coordinate curve is not straight",
+      block([d : diff(hjT, ss)], is(abs(float(subst(ss = 1, d[1]*hjT[2] - d[2]*hjT[1]))) > 0.01)))$

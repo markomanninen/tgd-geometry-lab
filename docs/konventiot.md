@@ -155,6 +155,8 @@ Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. Laskut käyttävät ol
 
 Matti Pitkäsen linjaus 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) on, että $J(M^4)$ ja $J(CP_2)$ antavat vaikutukseen erilliset termit eivätkä summaudu yhdeksi muodoksi. Julkaistuna ratkaisu on [Martin2](https://tgdtheory.fi/public_html/articles/Martin2.pdf):ssa partoniratojen Kähler–Chern–Simons-vaikutukselle, jossa mittabosonien propagaattorit saadaan vain erillisillä termeillä. Viestin mukaan sama koskee sisäosan vaikutusta, jossa magneettiset osat ovat positiivisia sekä $M^4$:ssä että $CP_2$:ssa. Muodolla $J(M^4)$ on vain poikittainen osa. Pitkittäiseen osaan liittyy gradienttina esitettävä mittapotentiaali, joka vastaa Newtonin potentiaalia, ja poikittaisiin vapausasteisiin liittyy gravimagneettinen kenttä. Termin suuruus riippuu sen kertoimesta ja ratkaisun parametreista, ja perusskaala on $CP_2$:n skaala. Rakenteellinen seuraus on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
 
+Pitkänen arvioi 1.11.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)), että H-H:n perusteella sisäosan vaikutus on tilavuustermi ja vähemmän todennäköisesti kaarevuusskalaari. Kähler–Chern–Simons-vaikutus on mukana vain valon kaltaisilla partonipinnoilla, ja partonipintojen ratoihin rajoitettu Diracin vaikutus antaa alkeishiukkasfysiikan. Laskut pitävät kertoimet $c_K$ ja $c_V$ symboleina, joten sisäosan arvo $c_K=0$ kuuluu niiden piiriin.
+
 ### Kertoimien etumerkki
 
 Matti Pitkäsen linjaus 31.10.2026 ([#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27)) on, että etumerkki ei näy H-H-pintojen eikä Lagrangen minimipintojen kenttäyhtälöissä. Etumerkki vaikuttaa kosmologisen vakion arvoon ja Kähler-funktion eksponenttiin, joka määrittelee WCW:n tyhjiöfunktionaalin. Eksponentissa tilavuusosan on oltava negatiivinen, jotta eksponentti menee nollaan suurilla tilavuuksilla.
@@ -519,7 +521,13 @@ $$
 ds^2=g_{+-}\,dS^+dS^-+g_{w\bar w}\,dw\,d\bar w+g_{+w}\,dS^+dw+g_{+\bar w}\,dS^+d\bar w+g_{-w}\,dS^-dw+g_{-\bar w}\,dS^-d\bar w.
 $$
 
-Ristitermien kanssa $\nabla S_\pm\cdot\nabla w$ ei yleensä häviä, joten tämä tulos ei kata niitä. Lähteen tiedosto on poistunut Pitkäsen sivustolta, ja linkki vie Internet Archiven kopioon.
+Holomorfinen funktio supistuu yläindeksisten komponenttien $g^{++}$, $g^{+w}$ ja $g^{ww}$ kanssa, ja alaindeksien nollat eivät takaa niiden häviämistä. Viivaelementille pätee
+
+$$
+g^{ww}\det g=2\,g_{+-}\,g_{+\bar w}\,g_{-\bar w},
+$$
+
+joten komponentit eivät yleensä häviä, kun ristitermejä on molemmilla valokoordinaateilla. Kun ristitermejä on vain koordinaatilla $S^+$, pätee $g^{++}=g^{+w}=g^{ww}=0$. Tällöin gradientit ovat keskenään valon kaltaisia, ja tapaus kuuluu tämän tuloksen piiriin. Tulos ei kata tapausta, jossa ristitermejä on molemmilla puolilla. Lähteen tiedosto on poistunut Pitkäsen sivustolta, ja linkki vie Internet Archiven kopioon.
 
 Jos rajoitutaan funktioihin $F(w)$, luokka on paljon laajempi. Oletuksesta seuraa, että tasopinnat $u=$ vakio ovat täysin napaisia valon kaltaisia hyperpintoja. Minkowskin avaruudessa niitä ovat vain hypertasot ja valokartiot. Rakenne saadaan siis valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta, eli
 
@@ -535,13 +543,21 @@ Pitkäsen viestissä 1.11.2026 H-J-rakenne on $M^4$:n tangenttiavaruuden integro
 
 Merkintä $F(u,w)$ tarkoittaa tässä osiossa pintaa $\xi^k=F^k(u,w)$, jolla $CP_2$-koordinaatit ovat holomorfisia funktioita. Pinta ei siis ole funktion $F$ nollajoukko.
 
-Gradientin antamat säteet ovat suoria. Olkoon $k_a=\partial_au$ ja $k^ak_a=0$. Koska $\partial_ak_b$ on symmetrinen, pätee
+Valon kaltaisen gradientin antamat säteet ovat suoria. Lause koskee vain valon kaltaista gradienttia, sillä esimerkiksi sähköstaattisen potentiaalin voimaviivat ovat kaarevia. Olkoon $k_a=\partial_au$ ja $k^ak_a=0$. Koska $\partial_ak_b$ on symmetrinen, pätee
 
 $$
 k^b\partial_bk_a=k^b\partial_ak_b=\tfrac12\partial_a\left(k^bk_b\right)=0.
 $$
 
-Kentän integraalikäyrät ovat siis $M^4$:ssä suoria, ja sama koskee gradienttiin verrannollisia kenttiä, koska kertoimen muutos vain parametrisoi käyrän uudelleen. Käyräviivainen valon kaltainen säde, esimerkiksi ruuviviiva, tarvitsee kentän, joka ei ole verrannollinen gradienttiin. Clauden päättelyn mukaan tällainen rakenne kuuluu kaavan 4.19 ristitermien alueelle, jota edellä oleva luokittelu ei kata. Sitä, antaako tällainen rakenne minimipintoja, ei ole laskettu.
+Kentän integraalikäyrät ovat siis $M^4$:ssä suoria, ja sama koskee gradienttiin verrannollisia kenttiä, koska kertoimen muutos vain parametrisoi käyrän uudelleen. Käyräviivainen valon kaltainen säde, esimerkiksi ruuviviiva, tarvitsee kentän, joka ei ole verrannollinen gradienttiin. Pitkäsen mukaan (1.11.2026) yleisessä H-J-rakenteessa vain koordinaattikäyrän tangentti on valon kaltainen, eli $g_{uu}=g_{vv}=0$, ja $u$ ja $v$ ovat $M^4$:n käyräviivaisia koordinaatteja. Hänen arvionsa mukaan $\nabla S_\pm$ tarkoittaa tätä tangenttia.
+
+Tällaisia koordinaatteja on. Valokartioissa, joiden kärki kulkee radalla $z(\tau)$, säteet ovat suoria ja $\nabla\tau$ on valon kaltainen. Olkoon $l$ säteen suunta. Kun säteen pituus $r$ riippuu parametrista $\tau$ niin, että
+
+$$
+\frac{dr}{d\tau}=-\frac{\dot z^2}{2\,\dot z\cdot l},
+$$
+
+kiinteän $w$:n käyrä on valon kaltainen, ja kiihtyvällä kärjellä se ei ole suora. Rakenteen ristitermit ovat yhdellä puolella, joten se kuuluu edellä olevaan tapaukseen, ja pinnat $\xi^k=f^k(w)$ ovat minimipintoja.
 
 Aaltorintamat näyttävät, miksi oletus rajaa rakenteet palloihin ja tasoihin. Olkoot $\kappa_1$ ja $\kappa_2$ rintaman pääkaarevuudet. Kun rintama etenee säteitä pitkin matkan $s$, pituudet pääsuunnissa kertautuvat tekijöillä $1+\kappa_1s$ ja $1+\kappa_2s$. Pieni ympyrä muuttuu ellipsiksi, ellei $\kappa_1=\kappa_2$, joten kompleksikoordinaatti ei säily kompleksikoordinaattina koko säteen matkalla. Tämä on täysin napaisuuden sisältö. Epäpallomaisen valolähteen rintamilla säteet ovat suoria, mutta niillä ei ole koordinaattia $w$, joka toteuttaisi ehdot $\nabla u\cdot\nabla w=(\nabla w)^2=0$.
 
@@ -551,4 +567,4 @@ $$
 (\nabla w)^2=\frac{1-\rho^2}{\rho^2},
 $$
 
-ja pinta $\xi^1=(z+i\phi)/2$ ei ole minimipinta. Aaltorintama on siinä sylinteri, jonka pääkaarevuudet ovat $1/\rho$ ja $0$. Pitkäsen mukaan H-J-rakenteesta tuskin löytyy kirjallisuutta, ja edellä mainitut leikkauksettomat kongruenssit kattavat vain tapauksen, jossa gradientit ovat keskenään valon kaltaisia.
+ja pinta $\xi^1=(z+i\phi)/2$ ei ole minimipinta. Aaltorintama on siinä sylinteri, jonka pääkaarevuudet ovat $1/\rho$ ja $0$. Pitkänen tarkoitti tätä rakennetta, joten kompleksikoordinaatin valinta jää hänen kanssaan auki. Pitkäsen mukaan H-J-rakenteesta tuskin löytyy kirjallisuutta, ja edellä mainitut leikkauksettomat kongruenssit kattavat vain tapauksen, jossa gradientit ovat keskenään valon kaltaisia.
