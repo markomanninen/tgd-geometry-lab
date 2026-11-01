@@ -545,9 +545,11 @@ Viidennessä kysymyksessä hän sanoo, ettei tiennyt näiden kirjoittajien työs
 
 ### Matin linjaus sisäosan vaikutuksesta
 
-Pitkänen kirjoitti samana päivänä myöhemmässä viestissä, että H-H:n perusteella sisäosan vaikutus näyttäisi olevan tilavuustermi ja vähemmän todennäköisesti kaarevuusskalaari. Kähler–Chern–Simons-vaikutus on hänen mukaansa mukana vain valon kaltaisilla partonipinnoilla, ja partonipintojen ratoihin rajoitettu Diracin vaikutus antaa alkeishiukkasfysiikan. Hän kävi Kähler-virran laskun läpi alusta alkaen ja päätyi samaan tulokseen kuin Claude. Virran häviämisestä saadaan kahdeksan lisäehtoa, ja jos sisäosassa on vain tilavuustermi, H-H:ta ei menetetä.
+Pitkänen kirjoitti samana päivänä, että H-H:n perusteella sisäosan vaikutus näyttäisi olevan tilavuustermi ja vähemmän todennäköisesti kaarevuusskalaari. Kähler–Chern–Simons-vaikutus on hänen mukaansa mukana vain valon kaltaisilla partonipinnoilla, ja partonipintojen ratoihin rajoitettu Diracin vaikutus antaa alkeishiukkasfysiikan. Hän kävi Kähler-virran laskun läpi alusta alkaen ja päätyi samaan tulokseen kuin Claude. Virran häviämisestä saadaan kahdeksan lisäehtoa, ja jos sisäosassa on vain tilavuustermi, H-H:ta ei menetetä.
 
 Viestissä on myös Hamilton–Jacobi-rakennetta koskevia tarkennuksia, jotka on kirjattu [konventioihin](../konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot). Lagrangen kertojista hän sanoo, että ne ovat vaihtoehtoinen tapa pakottaa metriikka indusoiduksi eivätkä muuta sisältöä. Luvun 6.2.3 poistamisen syytä hän ei muista.
+
+Pitkänen ratkaisi asian seuraavassa viestissään. Hän ei halua tuoda lisäehtoja, koska minimipintaominaisuus ja holografia ovat hänen sanoin "aivan liian kaunis" ratkaisu luovuttavaksi. Sisäosan fysiikka olisi puhdasta gravitaatiota kuten AdS/CFT:ssä, ja fermionit, bosonit ja kenttäteorian fysiikka saadaan partonipinnoilta. Hänen mukaansa ennusteet eivät juuri muutu. Kähler–Chern–Simons-vaikutus on välttämätön, ja indusoitu Diracin vaikutus antaa hiukkasfysiikan ennusteet. Monopolivuoputkien vaikutus kosmologiassa olisi puhdas tilavuusvaikutus, ja faasitransitiot säilyvät, jos kosmologinen vakio on kääntäen verrannollinen kausaalitimantin kokoon. Twistorinostolle hän mainitsee vaihtoehtoisen toteutuksen, jossa twistoripallot vastaavat kausaalitimantin homologisesti epätriviaaleja palloja. Kosmologisen vakion on hänen mukaansa mentävä nollaan pitkissä mittakaavoissa, ja vakuumifunktionaalin käsite voi olla kenttäteorioista peritty taakka.
 
 ### Rajaukset
 
@@ -571,7 +573,7 @@ Jatkohaku 1.11.2026 sulki osan aiemmista aukoista. Seuraavat asiat ovat nyt tied
 
 Aiempi ehdotus tarkistaa yhtälö $\mathrm{Tr}(GH^k)=0$ on tehty [osassa 3](#osa-3-laskut). Artikkelin aineksia on kaksi. Toinen on symmetriatulos, joka selittää yhdellä päättelyllä, miksi kenttäyhtälöt häviävät suoralla, kartioleikkauksella ja pinnalla $RP^2$. Toinen on litteän rakenteen tulos. Kirjallisuusvertailu pelkästään ei olisi artikkeli, mutta se on hyvä johdanto näille kahdelle tulokselle. Artikkelista päättää Marko, ja tulkinta kuuluu Matille.
 
-Matille lähetettiin 1.11.2026 viisi kysymystä, ja hän vastasi niihin samana päivänä. Vastaukset on kirjattu [edellä](#matin-vastaus-viiteen-kysymykseen). Auki on, onko sisäosan vaikutusta koskeva linjaus lopullinen, ja millä kompleksikoordinaatilla rakenne $(t\pm\rho)$ toteutuu.
+Matille lähetettiin 1.11.2026 viisi kysymystä, ja hän vastasi niihin samana päivänä. Vastaukset on kirjattu [edellä](#matin-vastaus-viiteen-kysymykseen). Auki on, millä kompleksikoordinaatilla rakenne $(t\pm\rho)$ toteutuu.
 
 ## Lähteet
 

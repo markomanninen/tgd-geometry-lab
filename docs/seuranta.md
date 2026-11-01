@@ -20,9 +20,9 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
 | M7 Vaikutus | 6/6 ✅ | – |
-| M8 Ratkaisut | 2/3 | #35, Matin linjaus sisäosan vaikutuksesta odottaa vahvistusta |
+| M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 
-Kaikki 375 testiä menevät läpi.
+Kaikki 376 testiä menevät läpi.
 
 Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Seuraavat kysymykset ovat valmiina, ja niitä ei ole vielä lähetetty.
 
@@ -41,7 +41,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | ME-ansatsi (#28) | CP₂-koordinaatit funktioita $u=k\cdot m$, $v=\varepsilon\cdot m$ – vastaa omaamme. Lähde rajaa minimipintaväitteen sanoin "in their simplest form at least". Laskettu tulos on `docs/konventiot.md`:ssä | Pitkänen, *Extremals of the Kähler Action* (2024), luvut 6.2–6.3 | 🟡 ks. avoimet |
 | Vertailuekstremaalit (#31) | ME, kosminen säie $X^2\times Y^2$, Lagrangen tyhjiöekstremaalit, CP₂-tyyppiset | Pitkäsen blogi 2016 | ✅ lista |
 
-### Matin vastaukset 31.10.2026
+### Matin vastaukset 31.10.–1.11.2026
 
 | Issue | Vastaus | Tila |
 |---|---|---|
@@ -49,12 +49,13 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #28 | Ansatsi $s^k(u,v)$ on johdettu puhtaalle Kähler-vaikutukselle, ja vaikutukselle $S_K+S_V$ sen korvaa H-H, josta minimipintaominaisuus seuraa | ✅ konventioissa |
 | #31 | $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w,u$. Lagrangen pinnat ovat oma ratkaisutyyppinsä | ✅ toteutettu ja testattu |
 | #35 | $J(M^4)$ ja $J(CP_2)$ ovat vaikutuksessa erilliset termit. Lorentz 4-voiman pitäisi hävitä H-H-pinnoilla ilman, että poikittainen virta häviää. Etumerkit seuraavat energian positiivisuudesta | 🟡 merkit laskettu ($c_K,c_V>0$), voima ei häviä litteässä rakenteessa |
+| #35 | Lisäehtoja ei tuoda. Sisäosan vaikutus on tilavuustermi, ja Kähler–Chern–Simons-vaikutus on partonipinnoilla. | ✅ kirjattu konventioihin |
 
 ### Avoinna – kysytään Matilta
 
 | Issue | Kysymys |
 |---|---|
-| #35 | Matti vahvisti 1.11.2026 virran toisen termin, ja Kähler-osa on $j^\alpha X^k_{\ \alpha}$, joka ei häviä kaikilla testatuilla pinnoilla. Hänen arvionsa mukaan sisäosassa on tilavuustermi ja Kähler–Chern–Simons-vaikutus on partonipinnoilla. Onko linjaus lopullinen? Mitä seuraa siitä, että Kähler-osa häviää vain osalla H-H-pinnoista? Mikä on $u$:n rooli kausaalitimantissa, kun $u$-riippuvat polynomit ovat minimipintoja vain litteässä rakenteessa? |
+| – | Mikä on rakenteen $(t\pm\rho)$ kompleksikoordinaatti, ja mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? |
 
 ### Markolle
 

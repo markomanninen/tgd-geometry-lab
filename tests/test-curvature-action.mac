@@ -138,3 +138,9 @@ check("flat, z1 = w/2: the M^4 components of the eight-force are the induced 4-f
       block([f : makelist(tgd_simp(sum(sum(ca_jf[a]*ca_Jf[a,c]*emb_get(ca_emf,'gi)[c,b], c, 1, 4), a, 1, 4)), b, 1, 4),
              hh : emb_get(ca_emf,'hh), t : emb_get(ca_emf,'t)],
         ca_null(makelist(tgd_simp(ca_Ef[k] - 2*sum(f[b]*sum(hh[k,l]*t[b][l], l, 1, 8), b, 1, 4)), k, 1, 4))))$
+/* Pitkanen's line of 1.11.2026: no extra conditions, the interior action is the volume term.
+   With c_K = 0 the holomorphic minimal surfaces of the eight-force tests are extremals. */
+check("volume alone: flat z1 = w/2, z1 = u w/3 and spherical xi1 = 2 w are extremals",
+      ca_null(tgd_field_equations(emb_setup(HGr, H_X, holo_surface(lc_m4, lc_w/2, 0), lc_chart), HJr, 0, 1))
+      and ca_null(tgd_field_equations(emb_setup(HGr, H_X, holo_surface(lc_m4, uu*lc_w/3, 0), lc_chart), HJr, 0, 1))
+      and ca_null(tgd_field_equations(ca_em(2*sj_w, 0), HJr, 0, 1)))$
