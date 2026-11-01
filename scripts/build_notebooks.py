@@ -51,7 +51,7 @@ Erona Lanyonin esimerkkiin on, että jokainen moduuli tarkistetaan **automaattis
 (tunnetut identiteetit kuten $d^2=0$, $d\\omega=0$, $\\mathrm{{Ric}}=3g$, Bianchi), jotta
 laskentakirjaston virheet eivät sekoitu TGD:n fysikaalisiin oletuksiin (välitavoite M1)."""),
 ("code", SETUP),
-("md", "## Testisarja\n\nAjaa kaikki `tests/`-hakemiston testit (metriikka, kaarevuus, muodot, $CP_2$, upotus, toiminta, Clifford)."),
+("md", "## Testisarja\n\nAjaa kaikki `tests/`-hakemiston testit (metriikka, kaarevuus, muodot, $CP_2$, upotus, vaikutus, Clifford)."),
 ("code", "ok = lab.tests()\nprint('KAIKKI TESTIT LÄPI' if ok else 'TESTEJÄ EPÄONNISTUI')"),
 ("md", """## Clifford-algebra (Prodanov)
 
@@ -123,7 +123,7 @@ $J^2=-1$, $J^TgJ=g$, $d\\omega=0$ sekä $\\omega\\wedge\\omega/2=\\mathrm{vol}$.
 Levi-Civita-yhteys, Riemannin ja Riccin tensorit. Tuloksena $CP_2$ on Kähler–Einstein,
 $\\mathrm{Ric}=6g$, $R=24$, ja holomorfinen leikkauskaarevuus on vakio $4$ ja
 leikkauskaarevuus vaihtelee välillä $[1,\\,4]$ (TGD-normalisointi, $R^2=1$). Lopuksi CP₂-tyyppisen
-tyhjiöekstremaalin Kähler-toiminta $S_K=\\pi/(8\\alpha_K)$ – Pitkäsen tunnettu arvo."""),
+tyhjiöekstremaalin Kähler-vaikutus $S_K=\\pi/(8\\alpha_K)$ – Pitkäsen tunnettu arvo."""),
 ("code", f'''lab.show("{CURV} e1:[1,0,0,0]$ Je1 : list_matrix_entries(Jc . transpose(matrix(e1)))$", [
   ("\\\\Gamma^{{x_1}}{{}}_{{x_1x_1}}", "factor(Gam[1][1][1])"),
   ("\\\\mathrm{{Ric}}-6g", "tgd_msimp(Ric - 6*G)"),
@@ -131,7 +131,7 @@ tyhjiöekstremaalin Kähler-toiminta $S_K=\\pi/(8\\alpha_K)$ – Pitkäsen tunne
   ("K(e_{{x_1}},Je_{{x_1}})", "sectional_curvature(G, Rl, e1, Je1)"),
   ("K(e_{{x_1}},e_{{x_2}})|_0", "subst([x1=0,y1=0,x2=0,y2=0], sectional_curvature(G, Rl, [1,0,0,0], [0,0,1,0]))"),
   ("\\\\nabla J\\\\ \\\\text{{(kaikki nollia?)}}", "nested_zero_p(cov_deriv_11(Jc, Gam, cp2_X))")])'''),
-("md", "### CP₂-tyyppisen ekstremaalin toiminta TGD:n vertailuarvona\n\n$S_K=\\frac{1}{4g_K^2}\\int J_{kl}J^{kl}\\sqrt g\\,d^4x$, $\\alpha_K=g_K^2/4\\pi$."),
+("md", "### CP₂-tyyppisen ekstremaalin vaikutus TGD:n vertailuarvona\n\n$S_K=\\frac{1}{4g_K^2}\\int J_{kl}J^{kl}\\sqrt g\\,d^4x$, $\\alpha_K=g_K^2/4\\pi$."),
 ("code", f'''lab.show("{CP2}", [
   ("J_{{kl}}J^{{kl}}", "kahler_invariant(G, W)"),
   ("\\\\mathrm{{Vol}}(CP_2)", "2*%pi^2*integrate(r^3/(1+r^2)^3, r, 0, inf)"),
@@ -148,9 +148,9 @@ Siirtokuvauksella vedetty metriikka on sama Fubini–Study-kaava uudessa kartass
 # ---------------------------------------------------------------- 03
 H = "GH : H_metric()$ JH : H_kahler()$ "
 nb03 = nb([
-("md", f"""# 03 · Upotusgeometria $H=M^4\\times CP_2$ ja toimintaperiaate
+("md", f"""# 03 · Upotusgeometria $H=M^4\\times CP_2$ ja vaikutusintegraali
 
-{badge("03_upotus_ja_toiminta.ipynb")}
+{badge("03_upotus_ja_vaikutus.ipynb")}
 
 Vaiheet I.4, VI ja VII (välitavoitteet M6–M7, alkuvaihe). Aika-avaruuspinta $X^4\\subset H$ annetaan
 upotuskoordinaatteina $h^k(\\xi)$, ja indusoidut suureet ovat
@@ -179,7 +179,7 @@ Tuloksena on vakiosuuruinen magneettinen Kähler-kenttä, jolle $J_{\\alpha\\bet
 
 Valokartioparametrit $\\xi=(u,v,x,y)$, $t=(u+v)/2$, $z=(v-u)/2$. $CP_2$-koordinaatit riippuvat vain $u=t-z$:stä
 ja poikittaisesta $x$:stä. Indusoitu Kähler-kenttä on nollasta poikkeava mutta *nollakenttä*, koska
-$J_{\\alpha\\beta}J^{\\alpha\\beta}=0$ ja $J\\wedge J=0$. Siksi Kähler-toiminnan tiheys häviää."""),
+$J_{\\alpha\\beta}J^{\\alpha\\beta}=0$ ja $J\\wedge J=0$. Siksi Kähler-vaikutuksen tiheys häviää."""),
 ("code", f'''lab.show("{H} xl:[uu,vv,xx,yy]$ depends([F1,F2],[uu,xx])$ eME:[(uu+vv)/2,xx,yy,(vv-uu)/2,F1,F2,0,0]$ g:induced_metric(GH,H_X,eME,xl)$ J:induced_kahler_form(JH,H_X,eME,xl)$", [
   ("J_{{ux}}", "factor(J[1,3])"),
   ("g^{{uu}}", "mat_inverse(g)[1,1]"),
@@ -188,7 +188,7 @@ $J_{\\alpha\\beta}J^{\\alpha\\beta}=0$ ja $J\\wedge J=0$. Siksi Kähler-toiminna
 ("md", """## Euler–Lagrange-moottori (Step 7.3)
 
 `euler_lagrange(L, kentät, muuttujat)` laskee $\\partial L/\\partial\\phi-\\partial_\\alpha\\,\\partial L/\\partial(\\partial_\\alpha\\phi)$.
-Tarkistuksena tilavuustoiminta $\\sqrt{\\det g}$ graafipinnalle $z=f(x,y)$ antaa minimipintayhtälön –
+Tarkistuksena tilavuusvaikutus $\\sqrt{\\det g}$ graafipinnalle $z=f(x,y)$ antaa minimipintayhtälön –
 TGD:n tilavuustermin $L_V=k\\sqrt{-g}$ yksinkertaisin analogi."""),
 ("code", r'''lab.show("depends(fz,[xx,yy])$ gg:induced_metric(ident(3),[X1,X2,X3],[xx,yy,fz],[xx,yy])$ EL:euler_lagrange(sqrt(determinant(gg)),[fz],[xx,yy])$", [
   ("g_{\\alpha\\beta}", "gg"),
@@ -202,7 +202,7 @@ Kompleksiset käyrät ovat minimipintoja myös silloin, kun ne eivät ole totaal
   ("H^k", "mean_curvature(emQ,BQ)")])'''),
 ("md", """## Kenttäyhtälöt ja ekstremaalit (Step 7.2, #27, #28)
 
-Toiminnan $S=\\int(c_KJ_{\\alpha\\beta}J^{\\alpha\\beta}+c_V)\\sqrt{|g|}\\,d^4\\xi$ variaatio upotuskoordinaattien suhteen antaa
+Vaikutuksen $S=\\int(c_KJ_{\\alpha\\beta}J^{\\alpha\\beta}+c_V)\\sqrt{|g|}\\,d^4\\xi$ variaatio upotuskoordinaattien suhteen antaa
 $h_{kl}D_\\alpha(T^{\\alpha\\beta}\\partial_\\beta h^l)+2c_K\\,j^\\beta J_{kl}\\partial_\\beta h^l=0$.
 Kertoimet ovat symbolisia. Alla Kähler- ja tilavuustermi on eroteltu. ME $s^k(u)$ toteuttaa molemmat, mutta yleisellä
 $s^k(u,x)$:llä häviää vain Kähler-termi (ks. `docs/konventiot.md`)."""),
@@ -220,7 +220,7 @@ riippuu kertoimista kaavan $s^2=(c_V-2c_K)/(c_V+2c_K)$ mukaan."""),
   ("\\\\det(\\\\ldots)\\\\ \\\\text{{säikeen poikki}}", "speed_polynomial(Pa[1][1],Pa[1][2],Pa[2][2],s)")])'''),
 ("md", """## Seuraavat askeleet
 
-* Matilta odotetaan linjausta tilavuustermin kertoimesta (#27) ja ME:n määritelmästä toiminnalle $S_K+S_V$ (#28).
+* Matilta odotetaan linjausta tilavuustermin kertoimesta (#27) ja ME:n määritelmästä vaikutukselle $S_K+S_V$ (#28).
 * Ratkaisugeneraattori (#31) rakennetaan, kun holografia = holomorfia -periaatteen muoto on selvä."""),
 ])
 
@@ -338,6 +338,6 @@ fig.tight_layout(); plt.show()"""),
 ])
 
 for name, n in [("01_ymparisto_ja_testit.ipynb", nb01), ("02_cp2_fubini_study.ipynb", nb02),
-                ("03_upotus_ja_toiminta.ipynb", nb03), ("04_numeriikka_ja_kuvat.ipynb", nb04)]:
+                ("03_upotus_ja_vaikutus.ipynb", nb03), ("04_numeriikka_ja_kuvat.ipynb", nb04)]:
     nbf.write(n, OUT / name)
     print("wrote", name)

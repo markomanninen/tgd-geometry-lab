@@ -109,7 +109,7 @@ Taulukon arvot pätevät, kun $R^2=1$. Yleisellä säteellä $\mathrm{Ric}=6g/R^
 | Tilavuus | $\mathrm{Vol}(CP_2)=\pi^2/2$ |
 | $CP_1\subset CP_2$ | pallo, jonka säde on $1/2$ |
 
-Normalisoinnin lukitsee testinä CP₂-tyyppisen tyhjiöekstremaalin Kähler-toiminta, jolle Pitkänen antaa arvon (hep-ph/9510361)
+Normalisoinnin lukitsee testinä CP₂-tyyppisen tyhjiöekstremaalin Kähler-vaikutus, jolle Pitkänen antaa arvon (hep-ph/9510361)
 
 $$
 S_K=\frac{\pi}{8\alpha_K},\qquad L_K=\frac{1}{4g_K^2}J_{\alpha\beta}J^{\alpha\beta}\sqrt g,\qquad \alpha_K=\frac{g_K^2}{4\pi}.
@@ -129,7 +129,9 @@ $$
 
 Etumerkki $\sigma$ on `cp2_sign`, oletuksena $-1$, jolloin signatuuri on $(1,7)$.
 
-## Toiminta
+## Vaikutus
+
+Englannin sana *action* on suomeksi vaikutus eli vaikutusintegraali, ja se on koko pinnasta laskettu yksi luku. Sama sana on nimessä pienimmän vaikutuksen periaate. Kähler action on siis Kähler-vaikutus. Matti Pitkänen käyttää sanaa vaikutus, ja hänen viestinsä [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35):ssä toteaa, ettei sana toiminta ole standarditermi. Ryhmän toiminta (*group action*) on eri käsite, ja se säilyy matematiikan terminä.
 
 ### Lagrangen tiheys
 
@@ -151,19 +153,19 @@ Tämä tuottaa testatun arvon $S_K(CP_2)=\pi/(8\alpha_K)$. Manninen (2024, s. 34
 
 Twistorinostossa $S=S_K+S_V$ ja lisäksi instantonitermi. Laskut käyttävät oletuksena pelkkää $CP_2$:n Kähler-muotoa, koska $M^4$:n Kähler-osan vaikutus on arvion mukaan häviävän pieni (~10⁻¹⁷ elektronille).
 
-Matti Pitkäsen linjaus 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) on, että $J(M^4)$ ja $J(CP_2)$ antavat toimintaan erilliset termit eivätkä summaudu yhdeksi muodoksi. Julkaistuna ratkaisu on [Martin2](https://tgdtheory.fi/public_html/articles/Martin2.pdf):ssa partoniratojen Kähler–Chern–Simons-toiminnalle, jossa mittabosonien propagaattorit saadaan vain erillisillä termeillä. Viestin mukaan sama koskee sisäosan toimintaa, jossa magneettiset osat ovat positiivisia sekä $M^4$:ssä että $CP_2$:ssa. Muodolla $J(M^4)$ on vain poikittainen osa. Pitkittäiseen osaan liittyy gradienttina esitettävä mittapotentiaali, joka vastaa Newtonin potentiaalia, ja poikittaisiin vapausasteisiin liittyy gravimagneettinen kenttä. Termin vaikutus riippuu sen kertoimesta ja ratkaisun parametreista, ja perusskaala on $CP_2$:n skaala. Rakenteellinen vaikutus on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
+Matti Pitkäsen linjaus 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) on, että $J(M^4)$ ja $J(CP_2)$ antavat vaikutukseen erilliset termit eivätkä summaudu yhdeksi muodoksi. Julkaistuna ratkaisu on [Martin2](https://tgdtheory.fi/public_html/articles/Martin2.pdf):ssa partoniratojen Kähler–Chern–Simons-vaikutukselle, jossa mittabosonien propagaattorit saadaan vain erillisillä termeillä. Viestin mukaan sama koskee sisäosan vaikutusta, jossa magneettiset osat ovat positiivisia sekä $M^4$:ssä että $CP_2$:ssa. Muodolla $J(M^4)$ on vain poikittainen osa. Pitkittäiseen osaan liittyy gradienttina esitettävä mittapotentiaali, joka vastaa Newtonin potentiaalia, ja poikittaisiin vapausasteisiin liittyy gravimagneettinen kenttä. Termin suuruus riippuu sen kertoimesta ja ratkaisun parametreista, ja perusskaala on $CP_2$:n skaala. Rakenteellinen seuraus on laskettu kohdassa [Holografia = holomorfia](#holografia-holomorfia).
 
 ### Kertoimien etumerkki
 
 Matti Pitkäsen linjaus 31.10.2026 ([#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27)) on, että etumerkki ei näy H-H-pintojen eikä Lagrangen minimipintojen kenttäyhtälöissä. Etumerkki vaikuttaa kosmologisen vakion arvoon ja Kähler-funktion eksponenttiin, joka määrittelee WCW:n tyhjiöfunktionaalin. Eksponentissa tilavuusosan on oltava negatiivinen, jotta eksponentti menee nollaan suurilla tilavuuksilla.
 
-Tilavuuskerroin pienenee pitkissä skaaloissa kuten p-adisen pituusskaalan käänteisneliö. Twistorinostossa $1/\alpha_K$ on 6-ulotteisen Kähler-toiminnan yhteinen kerroin, joten se ei vaikuta kenttäyhtälöihin. Kompleksisen $\alpha_K$:n vaihetekijän tulkinta on avoin.
+Tilavuuskerroin pienenee pitkissä skaaloissa kuten p-adisen pituusskaalan käänteisneliö. Twistorinostossa $1/\alpha_K$ on 6-ulotteisen Kähler-vaikutuksen yhteinen kerroin, joten se ei vaikuta kenttäyhtälöihin. Kompleksisen $\alpha_K$:n vaihetekijän tulkinta on avoin.
 
 Pitkäsen toisessa vastauksessa 31.10.2026 ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)) merkit johdetaan neljästä säännöstä, ja lasku pyydettiin tekemään tässä:
 
 - Sekä Kähler-osan että tilavuusosan on tuotava energiatiheyteen positiivinen osuus.
-- Toiminnassa $CP_2$:n sähköinen osa on negatiivinen, ja magneettiset osat ovat positiivisia sekä $M^4$:ssä että $CP_2$:ssa.
-- Tilavuusosa on positiivinen sekä toiminnassa että energiassa.
+- Vaikutuksessa $CP_2$:n sähköinen osa on negatiivinen, ja magneettiset osat ovat positiivisia sekä $M^4$:ssä että $CP_2$:ssa.
+- Tilavuusosa on positiivinen sekä vaikutuksessa että energiassa.
 - Kähler-funktio on $K=-S$, joten tilavuusosa on eksponentissa negatiivinen eikä eksponentti räjähdä.
 
 Ortonormaalissa kehyksessä $J_{\alpha\beta}J^{\alpha\beta}=2(B^2-E^2)$, ja jännitystensori antaa energiatiheydeksi
@@ -178,7 +180,7 @@ $$
 c_K>0,\qquad c_V>0.
 $$
 
-Toiminnan yhteinen merkki ei näy kenttäyhtälöissä, mutta jo energian positiivisuus kiinnittää suhteen $c_K/c_V>0$. Normalisointi $c_K=1/(4g_K^2)$ on tämän mukainen. Testit ovat tiedostossa `tests/test-hamilton-jacobi.mac`, ja laskuissa kertoimet pysyvät muuten symbolisina.
+Vaikutuksen yhteinen merkki ei näy kenttäyhtälöissä, mutta jo energian positiivisuus kiinnittää suhteen $c_K/c_V>0$. Normalisointi $c_K=1/(4g_K^2)$ on tämän mukainen. Testit ovat tiedostossa `tests/test-hamilton-jacobi.mac`, ja laskuissa kertoimet pysyvät muuten symbolisina.
 
 Ensimmäisessä vastauksessaan Pitkänen kirjoitti, että magneettinen osa ja tilavuusosa ovat erimerkkisiä ja kilpailevat keskenään. Säännöissä ne ovat samanmerkkisiä. Kilpailu voi syntyä silti putken paksuuden kautta, sillä vuolla $\Phi$ ja poikkipinnalla $A$ jännitys on
 
@@ -384,9 +386,9 @@ Taulukossa on laskettu tilanne. Se perustuu testeihin `tests/test-field-equation
 
 Toisella rivillä $T^{\alpha\beta}\propto k^\alpha k^\beta$ ja $j^\alpha\propto k^\alpha$. Kolmas rivi on geodeesi, jonka suunta kääntyy $u$:n mukana, ja sillä $J_{ux}\ne0$ ja $j^v\ne0$.
 
-Yleinen $f^k(u,v)$ on siis Kähler-toiminnan ekstremaali mutta ei minimipinta. Taulukon "0" tarkoittaa, että kyseisen termin Euler–Lagrange-osa häviää, ei sitä, että toiminnan arvo olisi nolla.
+Yleinen $f^k(u,v)$ on siis Kähler-vaikutuksen ekstremaali mutta ei minimipinta. Taulukon "0" tarkoittaa, että kyseisen termin Euler–Lagrange-osa häviää, ei sitä, että vaikutuksen arvo olisi nolla.
 
-Matti Pitkäsen linjaus 31.10.2026 ([#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28)) on, että ansatsi $s^k=f^k(u,v)$ on johdettu puhtaalle Kähler-toiminnalle. Toiminnalle $S_K+S_V$ sen korvaa holografia = holomorfia -ansatsi, jossa holomorfiasta seuraa minimipintaominaisuus.
+Matti Pitkäsen linjaus 31.10.2026 ([#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28)) on, että ansatsi $s^k=f^k(u,v)$ on johdettu puhtaalle Kähler-vaikutukselle. Vaikutukselle $S_K+S_V$ sen korvaa holografia = holomorfia -ansatsi, jossa holomorfiasta seuraa minimipintaominaisuus.
 
 ### Holografia = holomorfia
 
@@ -409,7 +411,7 @@ Moduulissa `tgd/solutions.mac` juuret antaa `hh_sheets`, ja testit ovat tiedosto
 
 ### Kähler-osa H-H-pinnoilla
 
-Pitkäsen mukaan H-H toteuttaa kenttäyhtälöt erikseen metriikka- ja Kähler-osalle ([*About the relationship of electroweak and strong interactions in the TGD Universe: part I*](https://tgdtheory.fi/public_html/articles/Martin1.pdf), luku 2). Laskenta tarkentaa tätä. Väite riippuu siitä, mikä Kähler-muoto toiminnassa on ja mikä Hamilton–Jacobi-rakenne on käytössä.
+Pitkäsen mukaan H-H toteuttaa kenttäyhtälöt erikseen metriikka- ja Kähler-osalle ([*About the relationship of electroweak and strong interactions in the TGD Universe: part I*](https://tgdtheory.fi/public_html/articles/Martin1.pdf), luku 2). Laskenta tarkentaa tätä. Väite riippuu siitä, mikä Kähler-muoto vaikutuksessa on ja mikä Hamilton–Jacobi-rakenne on käytössä.
 
 Olkoon $\xi^k=f^k(u,w)$, ja olkoon $\omega$ Fubini–Study-metriikan vetäisyn kerroin koordinaatissa $w$ yksiköissä, joissa $M^4$:n poikittainen kerroin on $1$. Poikittainen virta häviää täsmälleen, kun Kähler-kulman suure
 
