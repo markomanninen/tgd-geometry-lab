@@ -118,3 +118,23 @@ check("spherical, xi1 = 2 w: the same split",
       is(ca_current(ca_em(2*sj_w, 0)) = [true, true, false]))$
 check("spherical line: both terms vanish",
       is(ca_current(ca_em(sj_w, 0)) = [true, true, true]))$
+/* the Kahler part of the field equations is the eight-force 2 j^a X_ka on minimal holomorphic
+   surfaces, and with J(CP_2) alone its M^4 components carry the Lorentz 4-force */
+ca_eight(em) := block([E : tgd_field_equations(em, HJr, 1, 0), F : kahler_eight_force(em, HJr)],
+  [ca_null(map(tgd_simp, E - 2*F)), ca_null(E)])$
+check("flat, z1 = w/2: the Kahler part is 2 j^a X_ka and does not vanish",
+      is(ca_eight(emb_setup(HGr, H_X, holo_surface(lc_m4, lc_w/2, 0), lc_chart)) = [true, false]))$
+check("flat, z1 = u w/3: the Kahler part is 2 j^a X_ka and does not vanish",
+      is(ca_eight(emb_setup(HGr, H_X, holo_surface(lc_m4, uu*lc_w/3, 0), lc_chart)) = [true, false]))$
+check("spherical, xi1 = 2 w: the Kahler part is 2 j^a X_ka and does not vanish",
+      is(ca_eight(ca_em(2*sj_w, 0)) = [true, false]))$
+check("spherical line: the eight-force vanishes",
+      is(ca_eight(ca_em(sj_w, 0)) = [true, true]))$
+ca_emf : emb_setup(HGr, H_X, holo_surface(lc_m4, lc_w/2, 0), lc_chart)$
+ca_Jf : induced_kahler_form(HJr, emb_get(ca_emf,'X), emb_get(ca_emf,'h), emb_get(ca_emf,'xi))$
+ca_jf : kahler_current(ca_emf, ca_Jf)$
+ca_Ef : tgd_field_equations(ca_emf, HJr, 1, 0)$
+check("flat, z1 = w/2: the M^4 components of the eight-force are the induced 4-force",
+      block([f : makelist(tgd_simp(sum(sum(ca_jf[a]*ca_Jf[a,c]*emb_get(ca_emf,'gi)[c,b], c, 1, 4), a, 1, 4)), b, 1, 4),
+             hh : emb_get(ca_emf,'hh), t : emb_get(ca_emf,'t)],
+        ca_null(makelist(tgd_simp(ca_Ef[k] - 2*sum(f[b]*sum(hh[k,l]*t[b][l], l, 1, 8), b, 1, 4)), k, 1, 4))))$

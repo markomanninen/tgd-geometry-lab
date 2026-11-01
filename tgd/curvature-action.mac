@@ -57,3 +57,14 @@ kahler_current_terms(em, HJ) := block([gi:emb_get(em,'gi), t:emb_get(em,'t), xi:
   [makelist(tgd_simp(sum(sum(Js[k,l]*Hk[k]*t[b][l], l, 1, N), k, 1, N)), b, 1, n),
    makelist(tgd_simp(sum(sum(gi[a,c]*sum(sum(Js[k,l]*t[a][k]*B[l][c][b], l, 1, N), k, 1, N),
                              c, 1, n), a, 1, n)), b, 1, n)])$
+
+/* Pitkanen's eight-force on a minimal holomorphic surface: the Kahler part of the field
+   equations is 2 j^a X_ka with X_ka = J_a^b t_bk + J_kl t^l_a (reply of 1.11.2026) */
+kahler_eight_force(em, HJ) := block([gi:emb_get(em,'gi), hh:emb_get(em,'hh), t:emb_get(em,'t),
+    xi:emb_get(em,'xi), HX:emb_get(em,'X), h:emb_get(em,'h), n, N, Jm, Js, j],
+  n : length(xi), N : length(HX),
+  Jm : induced_kahler_form(HJ, HX, h, xi),
+  Js : emb_on_surface(HJ, HX, h),
+  j : kahler_current(em, Jm),
+  makelist(tgd_simp(sum(j[a]*(sum(sum(Jm[a,c]*gi[c,b]*sum(hh[k,l]*t[b][l], l, 1, N), c, 1, n), b, 1, n)
+                              + sum(Js[k,l]*t[a][l], l, 1, N)), a, 1, n)), k, 1, N))$

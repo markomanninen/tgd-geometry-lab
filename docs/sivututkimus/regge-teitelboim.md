@@ -8,7 +8,7 @@ Ensimmäinen selvitys perustui artikkelien abstrakteihin. Sen viisitoista väite
 
 Viidestätoista väitteestä kaksitoista pitää ja kolme pitää osittain. Yksikään väite ei ole kokonaan väärä, mutta yhden väitteen sisällä oleva sana "umpikuja" ei ole lähteessä. Osittain pitävät väitteet ovat 4, 8 ja 13. Väitteissä 1, 6, 7, 9 ja 10 kieli on oikein, mutta niistä puuttuu rajaus, joka muuttaa lukemista olennaisesti.
 
-Tärkein uusi löydös on, että nimihaku antaa nollatuloksen mutta asiasisältö ei. Pitkänen ei mainitse Reggeä ja Teitelboimia, upotusgravitaatiota, Pastonia eikä Deseriä yhdessäkään tutkitussa tekstissä. Silti hän kirjoittaa, että TGD:n ensimmäinen vaikutusehdokas oli kaarevuusskalaari, ja hän johtaa siitä yhtälön $G^{\alpha\beta}D_\beta\partial_\alpha h^k=0$, joka on rakenteeltaan Regge–Teitelboimin tyhjiöyhtälö kaarevassa ympäristössä $H$. Hän toteaa myös itse ylimääräisten ratkaisujen olemassaolon ja antaa syyn, miksi 8 ulottuvuutta ei ehkä riitä pyörivälle mustalle aukolle. Yhtälö on painettuna jo vuoden 1983 artikkelin kaavana (C22), ja joulukuussa 2009 Pitkänen kirjoitti rajoitteen Lagrangen kertojalla. Oman päätelmäni mukaan tämä kertojamuoto on muodoltaan sama kuin upotusgravitaation yhtälöt.
+Tärkein uusi löydös on, että nimihaku antaa nollatuloksen mutta asiasisältö ei. Pitkänen ei mainitse Reggeä ja Teitelboimia, upotusgravitaatiota, Pastonia eikä Deseriä yhdessäkään tutkitussa tekstissä. Silti hän kirjoittaa, että TGD:n ensimmäinen vaikutusehdokas oli kaarevuusskalaari, ja hän johtaa siitä yhtälön $G^{\alpha\beta}D_\beta\partial_\alpha h^k=0$, joka on rakenteeltaan Regge–Teitelboimin tyhjiöyhtälö kaarevassa ympäristössä $H$. Hän toteaa myös itse ylimääräisten ratkaisujen olemassaolon ja antaa syyn, miksi 8 ulottuvuutta ei ehkä riitä pyörivälle mustalle aukolle. Pitkänen kertoi 1.11.2026, ettei tiennyt Reggen, Teitelboimin, Deserin, Piranin ja Robinsonin työstä. Yhtälö on painettuna jo vuoden 1983 artikkelin kaavana (C22), ja joulukuussa 2009 Pitkänen kirjoitti rajoitteen Lagrangen kertojalla. Oman päätelmäni mukaan tämä kertojamuoto on muodoltaan sama kuin upotusgravitaation yhtälöt.
 
 Toinen uusi löydös on, että Deserin, Piranin ja Robinsonin havaitsema linearisoinnin ongelma litteän taustan ympärillä on olemassa myös TGD:ssä, ja Pitkänen kirjaa sen itse. Teoriat ratkaisevat saman ongelman eri tavoin. Paston vaatii täysirankaisen upotuksen, mikä ei ole mahdollista 8 ulottuvuudessa, ja Pitkänen siirtää superposition monilehtisyyden tasolle.
 
@@ -228,7 +228,7 @@ Seitsemäs kohta kirjoittaa saman rakenteen jälkinä (Btgdclass1, PDF-sivu 186)
 
 Oma päätelmäni on, että Pitkäsen $G^{\alpha\beta}D_\beta\partial_\alpha h^k=0$ on muodollisesti Regge–Teitelboimin tyhjiöyhtälö, kun tasainen ympäristö korvataan avaruudella $H$. Ero koskee asemaa, ei muotoa. Regge ja Teitelboim pitävät yhtälöä teorian kenttäyhtälönä ja ylimääräisiä ratkaisuja puutteena. Pitkänen hylkää kaarevuusskalaarin perusvaikutuksena, mutta käyttää yhtälöä gravitaationelikulman säilymisen ehtona ja lisäehtona tyhjiöekstremaaleille. Hänen perusvaikutuksensa on toinen.
 
-Aikajärjestyksestä lähteet kertovat tämän verran. Regge ja Teitelboim esittivät ajatuksen 1975 ja julkaisu ilmestyi 1977. Deserin artikkeli on vuodelta 1976. Pitkänen sanoo vuoden 2014 olleen 37 vuotta TGD:n löytämisestä, mikä viittaa vuoteen 1977. [Marko Mannisen esseessä](https://www.researchgate.net/publication/380719999_Through_the_Wormhole_on_Spacetime_Surface_Early_History_of_Topological_Geometrodynamics_Theory_TGD) hän ajoittaa perusidean lokakuuhun 1977. Lähteistä ei selviä, tunsiko Pitkänen näitä töitä, enkä päättele sitä. En myöskään löytänyt perustelua sanalle "non-physical" tästä tekstikohdasta.
+Aikajärjestyksestä lähteet kertovat tämän verran. Regge ja Teitelboim esittivät ajatuksen 1975 ja julkaisu ilmestyi 1977. Deserin artikkeli on vuodelta 1976. Pitkänen sanoo vuoden 2014 olleen 37 vuotta TGD:n löytämisestä, mikä viittaa vuoteen 1977. [Marko Mannisen esseessä](https://www.researchgate.net/publication/380719999_Through_the_Wormhole_on_Spacetime_Surface_Early_History_of_Topological_Geometrodynamics_Theory_TGD) hän ajoittaa perusidean lokakuuhun 1977. Pitkänen kertoi 1.11.2026, ettei tiennyt näiden kirjoittajien työstä, joten hänen polkunsa kaarevuusskalaarista oli heistä riippumaton. En myöskään löytänyt perustelua sanalle "non-physical" tästä tekstikohdasta.
 
 Perustelu kaarevuusskalaarin epäonnistumiselle on kuitenkin muualla. Pitkäsen [muistelman vuodelta 2012](https://web.archive.org/web/20220120143223/https://tgdtheory.fi/public_html/articles/tgdhistory.pdf) mukaan kaarevuusskalaari oli "the obvious first guess". Pinnoilla $M^2\times X^2$ kenttäyhtälöt toteutuvat triviaalisti, koska kaksiulotteisen pinnan Einsteinin tensori häviää. Staattisen ratkaisun lepoenergia on verrannollinen kaarevuusskalaarin integraaliin pinnan $X^2$ yli, joten sen etumerkki riippuu pinnan genuksesta. Pitkänen tiivistää, että "field equations were correct but the action was wrong".
 
@@ -238,7 +238,7 @@ Varhaiset tekstit kertovat samasta etumerkistä. [Vuoden 1983 artikkelissa](http
 
 [Vuoden 1981 artikkelissa](https://doi.org/10.1007/BF00673694) kaarevuusskalaaria ei vielä ole. Upotusavaruus on $M^4\times S^2$, ja vaikutus on kaavan (12) mukaan Yang–Mills- ja spinoriosa. Artikkeli kysyy, miten gravitaatio syntyy, ja avaruuden $S$ koko on siinä hadronin mittakaavaa. Vuonna 1983 kaarevuusskalaari on mukana, koska gravitaatiovakio olisi muuten väärä kertoimella $10^{38}$. Energian positiivisuus on mukana jo vuonna 1981, sillä tulomuoto $M^4\times S$ tekee mittaryhmästä kompaktin ja ei-kompakti ryhmä antaisi energiatiheyden, joka ei ole positiivisesti definiitti. Sen, että sama vaatimus palaa vuonna 1983 kaarevuusskalaaria vastaan, päättelen itse.
 
-Yhteys sanan "non-physical" ja tämän etumerkin välillä on oma päätelmäni eikä lähteen väite, sillä Pitkänen ei yhdistä näitä kohtia. Vuoden 1983 kaavan (C24) ja muistelman mukaan pallolla on eri etumerkki, mutta ratkaisut ovat eri ratkaisuja, ja ero voi olla sopimuskysymys.
+Pitkänen vahvisti tämän yhteyden 1.11.2026. Hänen mukaansa kaarevuusskalaarilla on ratkaisuja, joille energian merkki ei ole positiivisesti definiitti, sillä säietyyppisillä ratkaisuilla energia on negatiivinen joko pallolla tai genuksella $g>1$, ja energia on verrannollinen topologiseen invarianttiin $\int R\sqrt g$. Sanat joko ja tai selittävät, miksi kaava (C24) ja muistelma antavat pallolle eri etumerkin. Toisena perusteena hän mainitsee toiset derivaatat, ja kolmantena sen, että twistorinosto pakottaa vaikutuksen muotoon Kähler plus tilavuus.
 
 Pitkäsen [laskuteksti joulukuulta 2009](https://web.archive.org/web/20220120114648/http://tgdtheory.fi/public_html/tgdclass/einstein.pdf) lisää kaarevuusskalaarin ja aineen vaikutukseen ehdon, joka sanoo metriikan olevan indusoitu,
 
@@ -517,6 +517,32 @@ Virta häviää täsmälleen, kun $\omega/\Omega$ on vakio, ja hila täsmää t�
 
 Viestin Hamilton–Jacobi-rakennetta koskevat kohdat ovat [konventioissa](../konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
 
+### Matin vastaus viiteen kysymykseen
+
+Matti Pitkänen vastasi viiteen kysymykseen 1.11.2026. Ensimmäisessä kysymyksessä hän vahvistaa, että virran lausekkeesta $j^\alpha=D_\beta J^{\alpha\beta}$ tulee kaksi termiä, joista toinen ei häviä. Hänen mukaansa pelkkä virta ei kuitenkaan riitä, vaan on laskettava koko kenttäyhtälö, jossa ovat mukana sekä Kähler-muodon että metriikan variaatiot. Hän päätyy kahdeksaan ehtoon
+
+$$
+j^\alpha X^k_{\ \alpha}=0,
+$$
+
+joissa $X^k_{\ \alpha}$ on suureiden $J_\alpha^{\ \beta}\partial_\beta h^k$ ja $J^k_{\ l}\partial_\alpha h^l$ yhdistelmä. Hän kysyy, takaako holomorfia nämä ehdot automaattisesti. Hänen mukaansa neljävoiman ei tarvitse hävitä, vaan häviävä suure on kahdeksanvoima, jossa ovat mukana Poincarén ja värin suunnat.
+
+Claude laski tämän. Laskujen Kähler-osa on koko Euler–Lagrange-lauseke, joten molemmat variaatiot ovat olleet siinä mukana. Testatuilla holomorfisilla minimipinnoilla se on täsmälleen
+
+$$
+E_k=2\,j^a\left(J_a^{\ b}t_{bk}+J_{kl}\,t^l_{\ a}\right),
+$$
+
+joten Pitkäsen rakenne pitää etumerkkikonventiota vaille. Yhtälö on testattu pinnoilla $\xi^1=w/2$ ja $\xi^1=uw/3$ litteässä rakenteessa sekä $\xi^1=2w$ ja suoralla $\xi^1=w$ pallomaisessa rakenteessa. Kolmella ensimmäisellä pinnalla $E_k$ ei häviä, joten ehdot eivät näillä pinnoilla täyty holomorfiasta. Suoralla $j=0$. Pelkällä muodolla $J(CP_2)$ yhtälön $M^4$-komponentit sisältävät vain ensimmäisen termin, joka on indusoitu neljävoima $j^aJ_a^{\ b}$. Silloin kahdeksanvoiman $M^4$-osan häviäminen vaatii, että neljävoima häviää. Sen, mitä tämä merkitsee, arvioi Matti.
+
+Pitkänen ehdottaa kahta ulospääsyä. Ratkaisuja löytyy, kun toinen perusmuoto häviää, ja säieratkaisut ovat tästä esimerkki. Toinen on, että Kähler-vaikutus tai sen Chern–Simons-muoto on vain valon kaltaisilla partonipinnoilla ja muualla vaikutus on puhtaasti geometrinen, esimerkiksi tilavuus. Hänen mukaansa tämä ei muuttaisi artikkeleiden Martin1–3 laskuja, koska niissä on vain Kähler–Chern–Simons-vaikutus, ja holomorfia olisi silloin paljon yleisempi. Twistorinoston kosmologisen vakion kohdalla hän sanoo, että jotain menetettäisiin. Valinta kuuluu hänelle.
+
+Toisessa kysymyksessä hän sanoo esittäneensä yleisen argumentin, eikä hän osaa sanoa, välttääkö kombinatoriikka termit, joiden kontraktiot eivät häviä minimipintaoletuksella. Vaikutuksesta $R^2$ hän toteaa, että sillä on ongelmia yleisessä suhteellisuusteoriassa ja että twistorinosto pakottaa vaikutuksen muotoon Kähler plus tilavuus.
+
+Kolmannessa kysymyksessä hän kysyy, mitä $RP^2$ tarkoittaa. Se on $CP_2$:n reaalisten pisteiden joukko, jossa projektiiviset koordinaatit ovat reaalisia, ja kuvaus $S^2\to RP^2$ on sen kaksinkertainen peite. Hänen mukaansa homologisesti triviaali geodeettinen pallo on Lagrangen monisto, jolla Kähler-muoto häviää ja tilavuustermi antaa minimipinnan yhtälöt. Oman päätelmäni mukaan tämä on sama kohde, koska $CP_2$:ssa on kaksi totaaligeodeettista pintaa, $CP_1$ ja $RP^2$. Hän viittaa Lagrangen pintojen osalta artikkelin Martin3 liitteeseen ja artikkeliin superminimal.pdf.
+
+Viidennessä kysymyksessä hän sanoo, ettei tiennyt näiden kirjoittajien työstä. Kaarevuusskalaarin perustelu oli hänelle alimonistogravitaation idea. Kenttäyhtälöt saataisiin kaarevuusskalaarista, energiaongelma ratkeaisi, ja isometriavirrat olisivat Einsteinin tensorin määräämiä. Hän kutsuu tätä todella kauniiksi mutta ei realistiseksi.
+
 ### Rajaukset
 
 Symmetriapäättely ja litteän rakenteen päättely ovat Clauden päättelyä, ja ne on tarkistettu kerran riippumattomasti. Testit kattavat symmetriapäättelystä kolme pintaa, kolme vaikutusta ja kenttäyhtälöiden Kähler-osat ja litteän rakenteen päättelystä neljä pintaa. Symmetriapäättely koskee kenttäyhtälöä pisteittäin, kun $r>0$, ja muoto $J(M^4)$ on pallon pintamuotona singulaarinen kohdassa $r=0$. Regge–Teitelboimin teoriassa ympäröivä avaruus on tasainen, kun taas tässä se on kaareva $H$, joten yhtäläisyys koskee vain yhtälön muotoa. Laskuissa ei myöskään ole aineen termiä $T^{\alpha\beta}$.
@@ -539,7 +565,7 @@ Jatkohaku 1.11.2026 sulki osan aiemmista aukoista. Seuraavat asiat ovat nyt tied
 
 Aiempi ehdotus tarkistaa yhtälö $\mathrm{Tr}(GH^k)=0$ on tehty [osassa 3](#osa-3-laskut). Artikkelin aineksia on kaksi. Toinen on symmetriatulos, joka selittää yhdellä päättelyllä, miksi kenttäyhtälöt häviävät suoralla, kartioleikkauksella ja pinnalla $RP^2$. Toinen on litteän rakenteen tulos. Kirjallisuusvertailu pelkästään ei olisi artikkeli, mutta se on hyvä johdanto näille kahdelle tulokselle. Artikkelista päättää Marko, ja tulkinta kuuluu Matille.
 
-Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572) toiseksi kysymyssarjaksi. Vastausta odotetaan. Ensimmäinen koskee sitä, onko Kähler-virran toinen termi mukana hänen laskussaan. Toinen koskee sitä, sisältyvätkö termit $G^{rw}B^k_{rw}$ ja $D^wD^wR\,B^k_{ww}$ hänen arveluunsa, ja rajautuuko arvelu pintoihin, jotka eivät riipu koordinaatista $v$. Kolmas koskee symmetriapäättelyn pätevyyttä ja pinnan $S^2\to RP^2$ paikkaa tyhjiöekstremaaleissa. Neljäs on, miksi kaarevuusskalaari hylättiin perusvaikutuksena. Viides on, olivatko Reggen ja Teitelboimin sekä Deserin, Piranin ja Robinsonin työt hänelle tuttuja. Jatkohaun jälkeen neljännelle kysymykselle on tausta [ristiviittauksissa](#a-ristiviittaukset), ja se tarkentuu koskemaan sanaa "non-physical", luvun 6.2.3 poistamista ja kaavan (C24) etumerkkiä.
+Matille lähetettiin 1.11.2026 viisi kysymystä, ja hän vastasi niihin samana päivänä. Vastaukset on kirjattu [edellä](#matin-vastaus-viiteen-kysymykseen). Auki jäivät hänen kahdeksan ehtonsa asema ja se, miksi kirjan luku 6.2.3 poistettiin.
 
 ## Lähteet
 

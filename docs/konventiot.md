@@ -487,6 +487,14 @@ Matti Pitkänen arvioi sähköpostissaan 1.11.2026, että Kähler-virta häviä�
 
 Toisessa viestissään samana päivänä Pitkänen pitää arvionsa ja pyytää osoittamaan tuloksen suoralla laskulla tai riittävän tiheällä hilalla. Claude laski virran hilalla ilman Maxima-kirjastoa ([`scripts/lattice_kahler_current.py`](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)), ja arvot ovat samat kuin symbolisessa laskussa. Luvut ovat [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-toinen-viesti-1112026).
 
+Pitkänen vahvisti 1.11.2026, että virrassa on toinen termi, joka ei häviä, ja korosti, että ratkaisevaa on koko kenttäyhtälö. Testatuilla holomorfisilla minimipinnoilla kenttäyhtälön Kähler-osa on
+
+$$
+E_k=2\,j^a\left(J_a^{\ b}t_{bk}+J_{kl}\,t^l_{\ a}\right).
+$$
+
+Tämä on hänen kahdeksan ehtonsa $j^\alpha X^k_{\ \alpha}=0$ rakenne etumerkkikonventiota vaille. Ehto ei täyty pinnoilla $\xi^1=w/2$, $\xi^1=uw/3$ ja $\xi^1=2w$. Testit ovat tiedostossa `tests/test-curvature-action.mac`, ja käsittely on [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-vastaus-viiteen-kysymykseen).
+
 ### Mitkä Hamilton–Jacobi-rakenteet kantavat kaikki holomorfiset funktiot
 
 Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on ([*Basic Extremals of the Kähler Action*](http://web.archive.org/web/20161222094333/http://tgdtheory.fi/public_html/pdfpool/class.pdf), 2015, kaava 4.22)
