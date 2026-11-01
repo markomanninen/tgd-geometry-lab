@@ -481,6 +481,8 @@ $$
 
 Testatuista pinnoista $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora eivät siksi ole minimipintoja tässä rakenteessa, vaikka samat lausekkeet ovat minimipintoja litteässä rakenteessa. Pinnat, jotka eivät riipu $u$:sta, pysyvät minimipintoina.
 
+Matti Pitkänen arvioi sähköpostissaan 1.11.2026, että Kähler-virta häviää minimipinnoilla singulariteetteja lukuun ottamatta, koska toisia kovariantteja derivaattoja sisältävät termit ovat verrannollisia jälkiin. Clauden laskussa $j^b=J_{kl}H^kt^{l\,b}+J_{kl}t^k{}_aB^{l\,ab}$. Ensimmäinen termi on jäljen termi, ja toinen termi ei ole jälki. Tulos on [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-vastaus-1112026), ja kysymys on issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+
 ### Mitkä Hamilton–Jacobi-rakenteet kantavat kaikki holomorfiset funktiot
 
 Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on (*Extremals of the Kähler Action*, kaava 4.22)

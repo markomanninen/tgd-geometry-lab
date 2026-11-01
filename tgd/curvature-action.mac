@@ -45,3 +45,15 @@ r2_stress(em) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), Ric, Rs, Hs, box],
   tgd_msimp(2*Rs*(gi . Ric . gi) - Rs^2/2*gi + 2*(box*gi - Hs)))$
 
 mat_trace_with(g, U) := block([n:length(g)], sum(sum(g[a,b]*U[a,b], b, 1, n), a, 1, n))$
+
+/* D_a J^{ab} = J_kl H^k t^{l b} + J_kl t^k_a B^{l ab}: the first term is the trace of the
+   second form, the second is not.  Returned with the index b lowered. */
+kahler_current_terms(em, HJ) := block([gi:emb_get(em,'gi), t:emb_get(em,'t), xi:emb_get(em,'xi),
+    B, Hk, Js, n, N],
+  n : length(xi), N : length(emb_get(em,'X)),
+  B : second_fundamental_form(em),
+  Hk : mean_curvature(em, B),
+  Js : emb_on_surface(HJ, emb_get(em,'X), emb_get(em,'h)),
+  [makelist(tgd_simp(sum(sum(Js[k,l]*Hk[k]*t[b][l], l, 1, N), k, 1, N)), b, 1, n),
+   makelist(tgd_simp(sum(sum(gi[a,c]*sum(sum(Js[k,l]*t[a][k]*B[l][c][b], l, 1, N), k, 1, N),
+                             c, 1, n), a, 1, n)), b, 1, n)])$

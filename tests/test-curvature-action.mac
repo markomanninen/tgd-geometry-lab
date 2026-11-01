@@ -106,3 +106,15 @@ check("xi1 = 2 w: the w part of the Einstein trace vanishes",
       ca_null(makelist(tgd_simp(GRn[3,3]*BRn[k][3][3] + GRn[4,4]*BRn[k][4][4] + 2*GRn[3,4]*BRn[k][3][4]), k, 1, 8)))$
 check("xi1 = 2 w: the part that mixes r and w does not vanish",
       not ca_null(makelist(tgd_simp(GRn[2,3]*BRn[k][2][3] + GRn[2,4]*BRn[k][2][4]), k, 1, 8)))$
+/* the Kahler current splits into the trace of the second form and a term that is not a trace */
+ca_current(em) := block([Jm : induced_kahler_form(HJr, emb_get(em,'X), emb_get(em,'h), emb_get(em,'xi)),
+    tt : kahler_current_terms(em, HJr), gi : emb_get(em,'gi), j],
+  j : kahler_current(em, Jm),
+  [ca_null(map(tgd_simp, j - makelist(sum(gi[b,d]*(tt[1][d] + tt[2][d]), d, 1, 4), b, 1, 4))),
+   ca_null(tt[1]), ca_null(tt[2])])$
+check("flat, z1 = w/2: j is the two terms, the trace term vanishes, the other does not",
+      is(ca_current(emb_setup(HGr, H_X, holo_surface(lc_m4, lc_w/2, 0), lc_chart)) = [true, true, false]))$
+check("spherical, xi1 = 2 w: the same split",
+      is(ca_current(ca_em(2*sj_w, 0)) = [true, true, false]))$
+check("spherical line: both terms vanish",
+      is(ca_current(ca_em(sj_w, 0)) = [true, true, true]))$

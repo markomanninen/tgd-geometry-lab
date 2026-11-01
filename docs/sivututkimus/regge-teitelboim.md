@@ -450,6 +450,14 @@ Matti Pitkänen käsitteli samaa asiaa sähköpostissaan 1.11.2026. Hän kysyy, 
 
 Litteässä rakenteessa laskut ja arvelu kertovat saman pinnoilla, jotka eivät riipu koordinaatista $v$. Pallomaisessa rakenteessa testattiin pinta $\xi^1=2w$. Sillä $B^k_{w\bar w}=0$, ja tensorin $G^{\alpha\beta}$ supistuksesta häviää se osa, jossa molemmat indeksit ovat $w$-suuntia, kuten tyyppipäättely sanoo. Nollasta poikkeava osa on termi $G^{rw}B^k_{rw}$, joka sekoittaa suunnat $r$ ja $w$. Litteällä pinnalla $\xi^1=w$ vaikutuksen $R^2$ yhtälöön jää termi $D^wD^wR\,B^k_{ww}$, koska $R$ riippuu muuttujasta $w$. Sen, sisältyvätkö nämä termit hänen päättelyynsä, arvioi Matti.
 
+Samassa viestissä Matti kysyy, häviääkö Kähler-virta minimipinnoilla. Hänen laskunsa mukaan toisia kovariantteja derivaattoja sisältävät termit ovat verrannollisia jälkiin, joten virta häviää singulariteetteja lukuun ottamatta. Claude kirjoitti virran kahtena terminä
+
+$$
+j^b=J_{kl}H^kt^{l\,b}+J_{kl}\,t^k{}_a\,B^{l\,ab}.
+$$
+
+Ensimmäinen termi on jäljen termi, ja se häviää minimipinnoilla. Toisessa termissä toinen perusmuoto supistuu tangentin kanssa eikä metriikan kanssa, joten se ei ole jälki. Testit vahvistavat kaavan pelkällä muodolla $J(CP_2)$. Toinen termi on nollasta poikkeava holomorfisilla minimipinnoilla $\xi^1=w/2$ litteässä rakenteessa ja $\xi^1=2w$ pallomaisessa rakenteessa, ja lisälasku antaa saman pinnalla $\xi^1=w^2$ litteässä rakenteessa. Pallomaisella suoralla molemmat termit häviävät. Ei-holomorfisista minimipinnoista on testattu vain $S^2\to RP^2$.
+
 ### Rajaukset
 
 Symmetriapäättely ja litteän rakenteen päättely ovat Clauden päättelyä, ja ne on tarkistettu kerran riippumattomasti. Testit kattavat symmetriapäättelystä kolme pintaa, kolme vaikutusta ja kenttäyhtälöiden Kähler-osat ja litteän rakenteen päättelystä neljä pintaa. Symmetriapäättely koskee kenttäyhtälöä pisteittäin, kun $r>0$, ja muoto $J(M^4)$ on pallon pintamuotona singulaarinen kohdassa $r=0$. Regge–Teitelboimin teoriassa ympäröivä avaruus on tasainen, kun taas tässä se on kaareva $H$, joten yhtäläisyys koskee vain yhtälön muotoa. Laskuissa ei myöskään ole aineen termiä $T^{\alpha\beta}$.
@@ -470,7 +478,7 @@ Seuraavat asiat jäivät auki, ja ne on hyvä sanoa suoraan:
 
 Aiempi ehdotus tarkistaa yhtälö $\mathrm{Tr}(GH^k)=0$ on tehty [osassa 3](#osa-3-laskut). Artikkelin aineksia on kaksi. Toinen on symmetriatulos, joka selittää yhdellä päättelyllä, miksi kenttäyhtälöt häviävät suoralla, kartioleikkauksella ja pinnalla $RP^2$. Toinen on litteän rakenteen tulos. Kirjallisuusvertailu pelkästään ei olisi artikkeli, mutta se on hyvä johdanto näille kahdelle tulokselle. Artikkelista päättää Marko, ja tulkinta kuuluu Matille.
 
-Tutkimuksen jälkeen Matille jää neljä kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572) toiseksi kysymyssarjaksi. Niitä ei ole lähetetty. Ensimmäinen koskee sitä, sisältyvätkö termit $G^{rw}B^k_{rw}$ ja $D^wD^wR\,B^k_{ww}$ hänen arveluunsa, ja rajautuuko arvelu pintoihin, jotka eivät riipu koordinaatista $v$. Toinen koskee symmetriapäättelyn pätevyyttä ja pinnan $S^2\to RP^2$ paikkaa tyhjiöekstremaaleissa. Kolmas on, miksi kaarevuusskalaari hylättiin perusvaikutuksena. Neljäs on, olivatko Reggen ja Teitelboimin sekä Deserin, Piranin ja Robinsonin työt hänelle tuttuja.
+Tutkimuksen jälkeen Matille jää viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572) toiseksi kysymyssarjaksi. Ensimmäinen koskee sitä, onko Kähler-virran toinen termi mukana hänen laskussaan. Toinen koskee sitä, sisältyvätkö termit $G^{rw}B^k_{rw}$ ja $D^wD^wR\,B^k_{ww}$ hänen arveluunsa, ja rajautuuko arvelu pintoihin, jotka eivät riipu koordinaatista $v$. Kolmas koskee symmetriapäättelyn pätevyyttä ja pinnan $S^2\to RP^2$ paikkaa tyhjiöekstremaaleissa. Neljäs on, miksi kaarevuusskalaari hylättiin perusvaikutuksena. Viides on, olivatko Reggen ja Teitelboimin sekä Deserin, Piranin ja Robinsonin työt hänelle tuttuja.
 
 ## Lähteet
 

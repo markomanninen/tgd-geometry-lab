@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 359 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 362 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
