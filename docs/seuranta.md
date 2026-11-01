@@ -22,7 +22,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M7 Vaikutus | 6/6 ✅ | – |
 | M8 Ratkaisut | 2/3 | #35:n kaksi jatkokysymystä Kähler-osasta ja $u$:n roolista |
 
-Kaikki 362 testiä menevät läpi.
+Kaikki 366 testiä menevät läpi.
 
 Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Seuraavat kysymykset ovat valmiina, ja niitä ei ole vielä lähetetty.
 
@@ -64,7 +64,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 ## Sivututkimuspolut
 
-Sivututkimuspolut eivät kuulu milestoneihin. [Regge–Teitelboim ja TGD](sivututkimus/regge-teitelboim.md) kokoaa nykytutkimuksen upotusgravitaatiosta ja sen yhtymäkohdat TGD:hen. Tilanne 1.11.2026 on, että selvitys on tarkistettu ja laskut ovat testeissä. Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572), ja vastausta odotetaan.
+Sivututkimuspolut eivät kuulu milestoneihin. [Regge–Teitelboim ja TGD](sivututkimus/regge-teitelboim.md) kokoaa nykytutkimuksen upotusgravitaatiosta ja sen yhtymäkohdat TGD:hen. Tilanne 1.11.2026 on, että selvitys on tarkistettu ja laskut ovat testeissä. Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572), ja vastausta odotetaan. Sivu päivitettiin 1.11.2026 lähdehaun tuloksilla ja Matin toisella viestillä, joka ei vielä käsittele viittä kysymystä.
 
 ## Tunnisteet
 

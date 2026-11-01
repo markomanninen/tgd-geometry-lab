@@ -483,6 +483,8 @@ Testatuista pinnoista $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora eivät siksi ole
 
 Matti Pitkänen arvioi sähköpostissaan 1.11.2026, että Kähler-virta häviää minimipinnoilla singulariteetteja lukuun ottamatta, koska toisia kovariantteja derivaattoja sisältävät termit ovat verrannollisia jälkiin. Clauden laskussa $j^b=J_{kl}H^kt^{l\,b}+J_{kl}t^k{}_aB^{l\,ab}$. Ensimmäinen termi on jäljen termi, ja toinen termi ei ole jälki. Tulos on [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-vastaus-1112026), ja kysymys on issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
+Toisessa viestissään samana päivänä Pitkänen pitää arvionsa ja pyytää osoittamaan tuloksen suoralla laskulla tai riittävän tiheällä hilalla. Claude laski virran hilalla ilman Maxima-kirjastoa ([`scripts/lattice_kahler_current.py`](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)), ja arvot ovat samat kuin symbolisessa laskussa. Luvut ovat [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-toinen-viesti-1112026).
+
 ### Mitkä Hamilton–Jacobi-rakenteet kantavat kaikki holomorfiset funktiot
 
 Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on (*Extremals of the Kähler Action*, kaava 4.22)
@@ -512,3 +514,25 @@ $$
 Tilavuusosa häviää pinnoilla $\xi^k=f^k(w)$ symbolisesti mielivaltaisella radalla $z^\mu(\tau)$, ja hypertasot ovat tapaus, jossa kärki on äärettömyydessä. Tämä vastaa kysymystä H-J-rakenteiden määrästä. Tällä oletuksella rakenteet ovat yhden muuttujan funktioiden perhe. Sama luokka näkyy kirjallisuudessa, jossa ehtojen $\Box y=0$ ja $(\nabla y)^2=0$ ratkaisut vastaavat leikkauksettomia valonsädekongruensseja ([Baird ja Wood](https://arxiv.org/abs/dg-ga/9603005)). Kierteiset kongruenssit, kuten Kerrin kongruenssi, jäävät ulkopuolelle, koska niillä ei ole reaalista koordinaattia $u$.
 
 Kähler-osa on tiukempi. Tasaisesti liikkuvalla kärjellä se häviää suoran Lorentz-muunnetulle versiolle, mutta kiihtyvällä kärjellä testattu suora ei toteuta sitä.
+
+Pitkäsen viestissä 1.11.2026 H-J-rakenne on $M^4$:n tangenttiavaruuden integroituva jako pitkittäiseen hyperkompleksiseen osaan $M^2(x)$ ja poikittaiseen kompleksiseen osaan $E^2(x)$. Fysikaalisesti se olisi hänen mukaansa mittateorian jako pitkittäisiin ja poikittaisiin vapausasteisiin geometrian tasolla. Koordinaattikäyrien $u$ ja $v$ tangentit ovat valon kaltaisia, ja ne saadaan $u$:n ja $v$:n gradienteista. Hän pitää mahdollisena myös käyräviivaisia säteitä.
+
+Merkintä $F(u,w)$ tarkoittaa tässä osiossa pintaa $\xi^k=F^k(u,w)$, jolla $CP_2$-koordinaatit ovat holomorfisia funktioita. Pinta ei siis ole funktion $F$ nollajoukko.
+
+Gradientin antamat säteet ovat suoria. Olkoon $k_a=\partial_au$ ja $k^ak_a=0$. Koska $\partial_ak_b$ on symmetrinen, pätee
+
+$$
+k^b\partial_bk_a=k^b\partial_ak_b=\tfrac12\partial_a\left(k^bk_b\right)=0.
+$$
+
+Kentän integraalikäyrät ovat siis $M^4$:ssä suoria, ja sama koskee gradienttiin verrannollisia kenttiä, koska kertoimen muutos vain parametrisoi käyrän uudelleen. Käyräviivainen valon kaltainen säde, esimerkiksi ruuviviiva, tarvitsee kentän, joka ei ole gradientti. Clauden päättelyn mukaan tällainen rakenne kuuluu kaavan 4.19 ristitermien alueelle, jota edellä oleva luokittelu ei kata. Sitä, antaako tällainen rakenne minimipintoja, ei ole laskettu.
+
+Aaltorintamat näyttävät, miksi oletus rajaa rakenteet palloihin ja tasoihin. Olkoot $\kappa_1$ ja $\kappa_2$ rintaman pääkaarevuudet. Kun rintama etenee säteitä pitkin matkan $s$, pituudet pääsuunnissa kertautuvat tekijöillä $1+\kappa_1s$ ja $1+\kappa_2s$. Pieni ympyrä muuttuu ellipsiksi, ellei $\kappa_1=\kappa_2$, joten kompleksikoordinaatti ei säily kompleksikoordinaattina koko säteen matkalla. Tämä on täysin napaisuuden sisältö. Epäpallomaisen valolähteen rintamilla säteet ovat suoria, mutta niillä ei ole koordinaattia $w$, joka toteuttaisi ehdot $\nabla u\cdot\nabla w=(\nabla w)^2=0$.
+
+Sylinterikoordinaatit antavat kaksi eri rakennetta. Rakenteessa $(t\pm z,\log\rho+i\phi)$ on $w=\log(x+iy)$, joten se on litteä rakenne uudelleenparametrisoituna. Rakenteessa $(t\pm\rho,z+i\phi)$ on $\nabla u\cdot\nabla w=0$, mutta
+
+$$
+(\nabla w)^2=\frac{1-\rho^2}{\rho^2},
+$$
+
+ja pinta $\xi^1=(z+i\phi)/2$ ei ole minimipinta. Aaltorintama on siinä sylinteri, jonka pääkaarevuudet ovat $1/\rho$ ja $0$. Pitkäsen mukaan H-J-rakenteesta tuskin löytyy kirjallisuutta, ja edellä mainitut leikkauksettomat kongruenssit kattavat vain tapauksen, jossa gradientit ovat keskenään valon kaltaisia.

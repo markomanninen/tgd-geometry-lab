@@ -187,3 +187,26 @@ check("cone with velocity 1/2: the boosted line xi1 = w/sqrt(3) has a vanishing 
       hj_null(cone_K([tau0, 0, 0, tau0/2], sj_w/sqrt(3), 0)))$
 check("cone with acceleration: the Kahler part of the line does not vanish",
       not hj_null(cone_K(accel, sj_w, 0)))$
+/* ---------- the rays of a null gradient and the cylindrical structures ---------- */
+/* k_a = d_a q gives k^b d_b k_a = d_a (k.k)/2, so a null gradient has straight rays.
+   A curved null ray needs a field that is not a gradient. */
+check("null gradient: k^b d_b k_a = d_a (k.k)/2, so the rays are straight",
+      every(lambda([a], is(ratsimp(sum(md[b]*diff(qq, mX[b])*diff(qq, mX[a], 1, mX[b], 1), b, 1, 4)
+                                   - diff(gdot(qq, qq), mX[a])/2) = 0)),
+            [1, 2, 3, 4]))$
+rhc : sqrt(xx^2 + yy^2)$
+phc : atan(yy/xx)$
+check("(t - rho, z + i phi): null u, grad u . grad w = 0, (grad w)^2 = (1 - rho^2)/rho^2",
+      block([uc : tt - rhc, wc : zz + %i*phc],
+        is(rsimp(gdot(uc, uc)) = 0) and is(rsimp(gdot(uc, wc)) = 0)
+        and is(rsimp(gdot(wc, wc) - (1 - rhc^2)/rhc^2) = 0)))$
+check("(t - z, log rho + i phi) is the flat structure with F(w) = log w",
+      block([uc : tt - zz, wc : log(rhc) + %i*phc],
+        is(rsimp(gdot(wc, wc)) = 0) and is(rsimp(gdot(uc, wc)) = 0) and is(rsimp(wave(wc)) = 0)))$
+/* a holomorphic function of z + i phi in the chart (t, rho, phi, z) */
+cy_X : [ht, hr, sa, sb]$
+cy_G : metric_direct_sum(matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -hr^2, 0], [0, 0, 0, -1]),
+                         cp2_sign*cp2_metric())$
+cy_em : emb_setup(cy_G, append(cy_X, cp2_X), append(cy_X, cp2_real((sb + %i*sa)/2, 0)), cy_X)$
+check("(t - rho, z + i phi): xi1 = (z + i phi)/2 is not minimal",
+      not hj_null(mean_curvature(cy_em, second_fundamental_form(cy_em))))$

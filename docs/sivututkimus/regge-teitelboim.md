@@ -8,7 +8,7 @@ Ensimmäinen selvitys perustui artikkelien abstrakteihin. Sen viisitoista väite
 
 Viidestätoista väitteestä kaksitoista pitää ja kolme pitää osittain. Yksikään väite ei ole kokonaan väärä, mutta yhden väitteen sisällä oleva sana "umpikuja" ei ole lähteessä. Osittain pitävät väitteet ovat 4, 8 ja 13. Väitteissä 1, 6, 7, 9 ja 10 kieli on oikein, mutta niistä puuttuu rajaus, joka muuttaa lukemista olennaisesti.
 
-Tärkein uusi löydös on, että nimihaku antaa nollatuloksen mutta asiasisältö ei. Pitkänen ei mainitse Reggeä ja Teitelboimia, upotusgravitaatiota, Pastonia eikä Deseriä yhdessäkään tutkitussa tekstissä. Silti hän kirjoittaa, että TGD:n ensimmäinen vaikutusehdokas oli kaarevuusskalaari, ja hän johtaa siitä yhtälön $G^{\alpha\beta}D_\beta\partial_\alpha h^k=0$, joka on rakenteeltaan Regge–Teitelboimin tyhjiöyhtälö kaarevassa ympäristössä $H$. Hän toteaa myös itse ylimääräisten ratkaisujen olemassaolon ja antaa syyn, miksi 8 ulottuvuutta ei ehkä riitä pyörivälle mustalle aukolle.
+Tärkein uusi löydös on, että nimihaku antaa nollatuloksen mutta asiasisältö ei. Pitkänen ei mainitse Reggeä ja Teitelboimia, upotusgravitaatiota, Pastonia eikä Deseriä yhdessäkään tutkitussa tekstissä. Silti hän kirjoittaa, että TGD:n ensimmäinen vaikutusehdokas oli kaarevuusskalaari, ja hän johtaa siitä yhtälön $G^{\alpha\beta}D_\beta\partial_\alpha h^k=0$, joka on rakenteeltaan Regge–Teitelboimin tyhjiöyhtälö kaarevassa ympäristössä $H$. Hän toteaa myös itse ylimääräisten ratkaisujen olemassaolon ja antaa syyn, miksi 8 ulottuvuutta ei ehkä riitä pyörivälle mustalle aukolle. Yhtälö on painettuna jo vuoden 1983 artikkelin kaavana (C22), ja joulukuussa 2009 Pitkänen kirjoitti rajoitteen Lagrangen kertojalla. Oman päätelmäni mukaan tämä kertojamuoto on muodoltaan sama kuin upotusgravitaation yhtälöt.
 
 Toinen uusi löydös on, että Deserin, Piranin ja Robinsonin havaitsema linearisoinnin ongelma litteän taustan ympärillä on olemassa myös TGD:ssä, ja Pitkänen kirjaa sen itse. Teoriat ratkaisevat saman ongelman eri tavoin. Paston vaatii täysirankaisen upotuksen, mikä ei ole mahdollista 8 ulottuvuudessa, ja Pitkänen siirtää superposition monilehtisyyden tasolle.
 
@@ -39,6 +39,8 @@ Neljäs löydös on laskennallinen, ja se on [osassa 3](#osa-3-laskut). Kaarevuu
 Luin kokonaan kahdeksan väitteissä mainittua arXiv-artikkelia. Niiden lisäksi luin kokonaan Pastonin vuoden 2023 artikkelit 2311.02515 ja 2307.01307 sekä Pastonin ja Sheykinin inflaatioartikkelin 1106.5212 varsinaisen tekstin. Artikkelista 2509.00980 luin johdannon, lineaarisen vaiheen analyysin ja keskustelun, ja artikkelista 2503.00598 upotuksen rakenteen ja johtopäätökset. Tiivistelmä- ja johtopäätöstasolla luin työt 2404.02867, 2410.01229, 2411.13135, 2511.17807 ja 2602.23538.
 
 Pitkäsen aineistossa tein tekstihaun 494 tiedostoon. Niihin kuuluvat kaikki sivuston listaamat 55 kirjatiedostoa ja 439 artikkelia yhteensä 585 linkistä. Loput 91 linkkiä eivät palauttaneet tekstiä, ja näistä tarkistamani antoivat virheen 404. Blogista latasin koko arkiston, joka on 2497 kirjoitusta aikaväliltä 3.2.2005–30.10.2026. Lisäksi tarkistin viisi Pitkäsen 1990-luvun arXiv-artikkelia.
+
+Jatkohaku kattoi 1030 sivuston tekstitiedostoa, 142 viXra-paperia ja 6717 blogikommenttia. Uudessa haussa kuolleita linkkejä oli 257, ja niistä 122 saatiin Internet Archivesta.
 
 Käänteisessä suunnassa keräsin INSPIRE-tietokannasta kaikki Deserin, Piranin ja Robinsonin sekä Reggen ja Teitelboimin artikkeleihin viittaavat työt, joilla on arXiv-tunnus. Niitä on 108, ja sain niistä tekstiksi 107. Lisäksi tarkistin Pavšičin ja Tapian lähdeluettelon gr-qc/0010045.
 
@@ -122,7 +124,7 @@ Verdikti on **OSITTAIN**. Lähde on [Karasik ja Davidson, Geodetic Brane Gravity
 
 > "The trouble is, however, that the parent Regge-Teitelboim [1] Hamiltonian has never been derived!"
 
-Väitteen ensimmäinen puoli pitää. Sana umpikuja ei ole lähteessä, vaan kyseessä on väitteen oma tulkinta. Lähde puhuu vaikeudesta, ja jo Regge ja Teitelboim kertovat, että neljättä sidosta ei saada suljettuun muotoon sanoin "cannot be written down in closed form". Työtä alalla tehtiin tällä välin, sillä [Paston 2023](https://arxiv.org/abs/2311.02515) listaa kanonisen analyysin alkaen Tapiasta 1989 sekä Franken ja Tapian artikkelista 1992. En lukenut näitä kahta.
+Väitteen ensimmäinen puoli pitää. Sana umpikuja ei ole lähteessä, vaan kyseessä on väitteen oma tulkinta. Lähde puhuu vaikeudesta, ja jo Regge ja Teitelboim kertovat, että neljättä sidosta ei saada suljettuun muotoon sanoin "cannot be written down in closed form". Työtä alalla tehtiin tällä välin, sillä [Paston 2023](https://arxiv.org/abs/2311.02515) listaa kanonisen analyysin alkaen Tapiasta 1989 sekä Franken ja Tapian artikkelista 1992. Luin Tapian [preprintin vuodelta 1988](https://lib-extopc.kek.jp/preprints/PDF/2000/0035/0035179.pdf) kokonaan. Siinä kanoninen analyysi on lykätty myöhempään, joten Pastonin listaus on luettava väljästi. Franken ja Tapian artikkelista löytyi vain [tiivistelmä](https://inspirehep.net/literature/345837), jonka mukaan aikavälin sidosta ei laskettu. Sidosalgebra [osoitettiin suljetuksi](https://arxiv.org/abs/1705.07361) vuonna 2017.
 
 Lisäksi tulos on rajatumpi kuin väite antaa ymmärtää. Hamiltonin funktio saadaan lisäämällä apukenttä $\lambda$, ja GRT:n raja on rappeutunut.
 
@@ -192,7 +194,7 @@ Artikkeli ei mainitse TGD:tä, eikä Pitkäsen 494 tiedostosta yksikään mainit
 
 ### a. Ristiviittaukset
 
-**Pitkäseltä ei löydy yhtään nimimainintaa.** Sanat Teitelboim, Paston, Sheykin, Deser, Pirani, Karasik, Pavšič ja "embedding gravity" antoivat nollatuloksen 494 tiedostossa, 2497 blogikirjoituksessa ja viidessä arXiv-artikkelissa. Pelkkä sana Regge esiintyy hadronifysiikan yhteydessä, kuten Regge-trajektoreissa, ja satunnaisesti Regge-kalkyylin yhteydessä, joka on eri asia. Tämä pätee tutkittuun aineistoon, ja rajaukset ovat kohdassa Mitä jäi löytymättä.
+**Pitkäseltä ei löydy yhtään nimimainintaa.** Sanat Teitelboim, Paston, Sheykin, Deser, Pirani, Karasik, Pavšič ja "embedding gravity" antoivat nollatuloksen 494 tiedostossa, 2497 blogikirjoituksessa ja viidessä arXiv-artikkelissa. Pelkkä sana Regge esiintyy hadronifysiikan yhteydessä, kuten Regge-trajektoreissa, ja satunnaisesti Regge-kalkyylin yhteydessä, joka on eri asia. Jatkohaun laajempi aineisto antoi saman nollatuloksen, ja se kattoi myös sivuston 1030 tekstitiedostoa, 142 viXra-paperia ja 6717 blogikommenttia. Pitkäsen oma nimitys vastaavalle rakenteelle on "sub-manifold constraint". Tämä pätee tutkittuun aineistoon, ja rajaukset ovat kohdassa Mitä jäi löytymättä.
 
 **Asiasisältö löytyy silti, ja tämä on raportin tärkein tulos.** Kaikki seuraavat lainaukset ovat Pitkäsen tekstiä, ja PDF-sivut viittaavat tiedostoihin [Btgdclass1.pdf](https://tgdtheory.fi/bookpdf/Btgdclass1.pdf) ja [Btgdclass2.pdf](https://tgdtheory.fi/bookpdf/Btgdclass2.pdf).
 
@@ -228,30 +230,54 @@ Oma päätelmäni on, että Pitkäsen $G^{\alpha\beta}D_\beta\partial_\alpha h^k
 
 Aikajärjestyksestä lähteet kertovat tämän verran. Regge ja Teitelboim esittivät ajatuksen 1975 ja julkaisu ilmestyi 1977. Deserin artikkeli on vuodelta 1976. Pitkänen sanoo vuoden 2014 olleen 37 vuotta TGD:n löytämisestä, mikä viittaa vuoteen 1977. Lähteistä ei selviä, tunsiko Pitkänen näitä töitä, enkä päättele sitä. En myöskään löytänyt perustelua sanalle "non-physical" tästä tekstikohdasta.
 
+Perustelu kaarevuusskalaarin epäonnistumiselle on kuitenkin muualla. Pitkäsen [muistelman vuodelta 2012](https://web.archive.org/web/20220120143223/https://tgdtheory.fi/public_html/articles/tgdhistory.pdf) mukaan kaarevuusskalaari oli "the obvious first guess". Pinnoilla $M^2\times X^2$ kenttäyhtälöt toteutuvat triviaalisti, koska kaksiulotteisen pinnan Einsteinin tensori häviää. Staattisen ratkaisun lepoenergia on verrannollinen kaarevuusskalaarin integraaliin pinnan $X^2$ yli, joten sen etumerkki riippuu pinnan genuksesta. Pitkänen tiivistää, että "field equations were correct but the action was wrong".
+
+Varhaiset tekstit kertovat samasta etumerkistä. [Vuoden 1983 artikkelissa](https://doi.org/10.1007/BF02084785) kaarevuusskalaari on mukana vaikutuksessa Yang–Mills-osan parina, ja yhtälö $G^{\alpha\beta}H^k_{\alpha\beta}=0$ on kaava (C22), joka on tyhjiösektorin sisäyhtälö. Artikkeli kirjaa epäpositiivisen Poincaré-energian ongelmaksi. [Preprintti 22.4.1983](https://lib-extopc.kek.jp/preprints/PDF/1983/8306/8306118.pdf) sulkee kaarevuusskalaarin pois efektiivisestä vaikutuksesta positiivisen definiittiyden perusteella, ja [preprintti 19.3.1984](https://lib-extopc.kek.jp/preprints/PDF/1984/8406/8406324.pdf) toistaa tämän. Sama preprintti sisältää termin $J^{\alpha\beta}J_{\alpha\beta}$ efektiivisen vaikutuksen pitkän mittakaavan muodossa ja puhuu U(1)- ja Maxwell-vaikutuksesta. Kähler-vaikutuksen perusasema on Pitkäsen oman ajoituksen mukaan noin vuodelta 1990.
+
+Yhteys sanan "non-physical" ja tämän etumerkin välillä on oma päätelmäni eikä lähteen väite, sillä Pitkänen ei yhdistä näitä kohtia. Vuoden 1983 kaavan (C24) ja muistelman mukaan pallolla on eri etumerkki, mutta ratkaisut ovat eri ratkaisuja, ja ero voi olla sopimuskysymys.
+
+Pitkäsen [laskuteksti joulukuulta 2009](https://web.archive.org/web/20220120114648/http://tgdtheory.fi/public_html/tgdclass/einstein.pdf) lisää kaarevuusskalaarin ja aineen vaikutukseen ehdon, joka sanoo metriikan olevan indusoitu,
+
+$$
+\Lambda^{\alpha\beta}\left(g_{\alpha\beta}-h_{kl}\,\partial_\alpha h^k\,\partial_\beta h^l\right).
+$$
+
+Variaatiot antavat yhtälöt $T^{\alpha\beta}-kG^{\alpha\beta}=\Lambda^{\alpha\beta}$ ja $D_\alpha(\Lambda^{\alpha\beta}\partial_\beta h^l)=0$. Hän kutsuu tätä nimellä "General Relativity with a sub-manifold constraint" [blogissa 7.12.2009](https://matpitka.blogspot.com/2009/12/long-length-scale-limit-of-tgd-as.html). Oman päätelmäni mukaan yhtälöt ovat muodoltaan samat kuin [Pastonin vuoden 2020](https://arxiv.org/abs/2009.06950) upotusgravitaation yhtälöt, kun $\Lambda^{\alpha\beta}$ vastaa suuretta $-\tau^{\alpha\beta}$. Ympäristö on eri, ja kumpikaan kirjoittaja ei tee rinnastusta. Sama teksti on luvussa 6.2.3 viXra-versiossa [0908.0017v5](https://vixra.org/pdf/0908.0017v5.pdf), ja se puuttuu myöhemmistä versioista.
+
 **Regge–Teitelboim-tutkijat eivät mainitse TGD:tä.** Yksikään 107 viittaavasta työstä ei sisällä sanoja Pitkänen, Topological Geometrodynamics tai CP2. Myöskään Pavšičin ja Tapian [lähdeluettelo](https://arxiv.org/abs/gr-qc/0010045), joka kokoaa alan viitteitä, ei mainitse sitä. Hakukoneet eivät löytäneet yhtään vertailua kumpaankaan suuntaan.
 
 ### b. Deserin, Piranin ja Robinsonin kritiikki
 
-**En päässyt lukemaan koko artikkelia.** [APS:n sivu](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.14.3301) vaatii tunnukset, eikä avointa kopiota löytynyt. Sanatarkka tiivistelmä on kuitenkin julkinen, ja se löytyy sekä APS:ltä että INSPIRE-tietokannasta.
+Luin koko artikkelin [Caltechin arkiston avoimesta kopiosta](https://authors.library.caltech.edu/records/6mkh2-1s908/files/PhysRevD.14.3301.pdf). Tekijänoikeudet kuuluvat American Physical Societylle, joten repossa on vain linkki. Painettu otsikko on *New embedding model of general relativity*, ja tiivistelmä on sanatarkasti seuraava.
 
 > "The string-model analog of general relativity is shown to be unphysically dependent on an embedding gauge. Moreover, an explicit example confirms that it is inequivalent to Einstein's theory."
 
 INSPIRE listaa saman julkaisun nimellä "Imbedding the G-String", ja myös Stern ja Xu viittaavat siihen tällä nimellä. Se on sama artikkeli, Phys. Rev. D 14, 3301.
 
-Muu sisältö on koottu toissijaisista lähteistä, joten se on luotettavuudeltaan heikompaa kuin tiivistelmä. Lähteet ovat kuitenkin toisistaan riippumattomia ja kuvaavat seuraavia kohtia:
+Seuraavat toissijaiset kuvaukset on tarkistettu alkuperäistä vasten, ja kaksi niistä tarvitsee tarkennuksen:
 
-- [Paston ja Semenova](https://arxiv.org/abs/1003.0172) kertovat, että yhtälöt ovat kolmilineaarisia toisissa derivaatoissa ja että tämä "obstructs linearizing the theory near the flat surface".
+- [Paston ja Semenova](https://arxiv.org/abs/1003.0172) kertovat, että yhtälöt ovat kolmilineaarisia toisissa derivaatoissa ja että tämä "obstructs linearizing the theory near the flat surface". Alkuperäinen on lievempi, sillä se sanoo "makes it difficult" ja aloittaa sanoilla "Heuristically speaking".
 - Sama lähde kertoo, että upotuksen epäyksikäsitteisyydestä kysyttiin, onko siirtymä toiselle samanmetriselle pinnalle fysikaalinen vai "a change of the embedding gauge".
 - [Willison](https://arxiv.org/abs/1311.6203) kertoo, että linearisoidun GRT:n vapausasteet näkyvät tyypillisissä upotuksissa vasta toisessa kertaluvussa.
 - [Paston ja Franke](https://arxiv.org/abs/0711.0576) kertovat, että lisäehtojen lisääminen käsin nähtiin epätyydyttävänä ja että parempi tie olisi muutettu vaikutus, mutta "how to do this is unknown".
-- [Bustamante ym.](https://arxiv.org/abs/gr-qc/0509090) mainitsevat Deserin ryhmän todenneen, että toisella perusmuodolla on enintään kuusi riippumatonta komponenttia, ja viittaavat Lagrangen kertoimen muotoiluun.
+- [Bustamante ym.](https://arxiv.org/abs/gr-qc/0509090) mainitsevat Deserin ryhmän todenneen, että toisella perusmuodolla on enintään kuusi riippumatonta komponenttia, ja viittaavat Lagrangen kertoimen muotoiluun. Luku kuusi tulee kuitenkin Reggeltä ja Teitelboimilta, ja Deserin ryhmä sanoo vain, että suureet eivät ole lineaarisesti riippumattomia. Lagrangen kertoimen muoto on artikkelissa itsessään.
 - [Sheykin ja Paston](https://arxiv.org/abs/1402.1121) viittaavat siihen tuloksessa, että aikaderivaattojen kertaluku ei ylitä kahta.
 
-Tiivistelmän "explicit example" jää minulle tuntemattomaksi, enkä arvaa sitä. Tulkinnat myös vaihtelevat. [Pinto ja Martins](https://arxiv.org/abs/2506.22006) lukevat kritiikin niin, että ennusteet riippuvat mielivaltaisesta valinnasta, mutta tulkitsevat valinnat eri malliluokiksi. [Davidson](https://arxiv.org/abs/gr-qc/9710005) kuvaa kritiikin keskittyneen sanoin "with the focus on the gauge dependence".
+Tiivistelmän "explicit example" on tasoaaltojen luokka
+
+$$
+ds^2=2\,du\,dv+2H(x,y,u)\,du^2+dx^2+dy^2,
+$$
+
+joka upotetaan seitsemänulotteiseen tasaiseen avaruuteen $E^{5,2}$, jossa on kaksi aikasuuntaa. Ensimmäisessä upotuksessa kaikki funktiot ovat lineaarisia muuttujassa $v$. Artikkelin yhtälö (7) on $G^{\mu\nu}\nabla_\mu\nabla_\nu y^A=\Box H\,y_{,vv}$, joten kenttäyhtälö toteutuu jokaisella funktiolla $H$, vaikka Einsteinin tyhjiöyhtälö vaatii lisäksi ehdon $\Box H=0$. Toinen upotus kuuluu metriikalle $H=\tfrac12x^2$, ja siinä kenttäyhtälö ei toteudu. Sama metriikka on siis ratkaisu yhdessä upotuksessa ja ei toisessa. Kirjoittajat eivät löytäneet ristiriitaa havaintojen kanssa ("no manifest conflict with observation"), ja he pitävät mittariippuvuutta silti mahdottomana hyväksyä. Tarkistin molemmat upotukset symbolisesti.
+
+Oman päätelmäni mukaan yhtälön (7) mekanismi on sama kuin [litteässä rakenteessa](#littea-rakenne). Kummassakin tensorin $G^{\alpha\beta}$ nollasta poikkeavissa komponenteissa on indeksi $v$, ja vastaava toisen perusmuodon komponentti on nolla, kun pinta riippuu muuttujasta $v$ enintään lineaarisesti. Sitä, säilyykö esimerkki ympäristössä, jossa on yksi aikasuunta, ei lähteistä selvinnyt.
+
+Tulkinnat vaihtelevat. [Pinto ja Martins](https://arxiv.org/abs/2506.22006) lukevat kritiikin niin, että ennusteet riippuvat mielivaltaisesta valinnasta, mutta tulkitsevat valinnat eri malliluokiksi. [Davidson](https://arxiv.org/abs/gr-qc/9710005) kuvaa kritiikin keskittyneen sanoin "with the focus on the gauge dependence".
 
 **Koskeeko sama vastaväite TGD:tä?** Tämä osa on kokonaan oma päätelmäni. Väitteitä on syytä käsitellä erikseen.
 
-Upotuksen mittariippuvuus ei siirry TGD:hen samassa muodossa. Regge–Teitelboimin vaikutus riippuu vain metriikasta, joten kaksi samanmetristä upotusta antaa saman vaikutuksen, ja kysymys on siitä, kumpi on fysikaalinen. TGD:ssä Kähler-osa riippuu indusoidusta Kähler-muodosta, joten samanmetriset pinnat eivät yleensä ole samanarvoisia. Pelkälle tilavuusosalle kysymys kuitenkin säilyy.
+Upotuksen mittariippuvuus ei siirry TGD:hen samassa muodossa. Regge–Teitelboimin vaikutus riippuu vain metriikasta, joten kaksi samanmetristä upotusta antaa saman vaikutuksen, ja kysymys on siitä, kumpi on fysikaalinen. TGD:ssä Kähler-osa riippuu indusoidusta Kähler-muodosta, joten samanmetriset pinnat eivät yleensä ole samanarvoisia. Pelkälle tilavuusosalle kysymys kuitenkin säilyy. Deserin ryhmän väite on lisäksi vahvempi kuin kysymys siitä, kumpi upotus on fysikaalinen, koska heidän esimerkissään metriikan asema ratkaisuna riippuu upotuksesta. Heidän upotusmittansa kohdassa (c) upotukseen lisätään koordinaattipari, jolla ei ole vastinetta kiinteässä avaruudessa $H$. Kohta (b) eli pinnan muodonmuutos voi sen sijaan koskea myös TGD:tä.
 
 Epäekvivalenssi Einsteinin teorian kanssa ei ole TGD:lle vastaväite samalla tavalla, koska TGD ei väitä olevansa GRT:n uudelleenmuotoilu perustasolla. Pitkäsen mukaan GRT-aika-avaruus on "fictive notion".
 
@@ -259,7 +285,7 @@ Linearisoinnin ongelma sen sijaan koskee TGD:tä, ja Pitkänen kirjaa sen itse o
 
 > "The action is vanishing up to fourth order in imbedding space coordinates so that canonical momentum densities vanish identically and there is no hope of defining propagator in path integral approach."
 
-Syy on oman päättelyni mukaan sama kuin Regge–Teitelboimilla. Litteän pinnan ympärillä metriikan muutos on neliöllinen upotuksen muutoksessa. Paston nostaa saman asian superposition ongelmaksi sanoin "the nonlinearity of the equations of motion in the weak gravity limit contradicts the principle of superposition for the gravitational field". Pitkänen tunnistaa saman menetyksen ja vastaa siihen monilehtisyydellä sanoin "replacing superposition of fields with the set-theoretic union of space-time surfaces".
+Syy on sama kuin Regge–Teitelboimilla. Deserin ryhmän tekstissä litteän pinnan ympärillä metriikan muutos on neliöllinen upotuksen muutoksessa, ja tämän siirto avaruuteen $H$ on oma päättelyni. Paston nostaa saman asian superposition ongelmaksi sanoin "the nonlinearity of the equations of motion in the weak gravity limit contradicts the principle of superposition for the gravitational field". Pitkänen tunnistaa saman menetyksen ja vastaa siihen monilehtisyydellä sanoin "replacing superposition of fields with the set-theoretic union of space-time surfaces".
 
 Ratkaisut ovat siis erilaiset. Pastonin ratkaisu on täysirankainen tausta, ja Pitkäsen ratkaisu on, että koehiukkaseen kohdistuvat eri lehtien osuudet summautuvat. Tätä rinnastusta en löytänyt yhdestäkään lähteestä, joten se on arvioitava omana päätelmänäni.
 
@@ -277,9 +303,9 @@ Seuraava kohta on erityisen tarkka.
 
 > "Whether the embeddings of the metrics believed to describe rotating objects in GRT Universe are possible at all, is not known but it might well be that the dimension of the embedding space is too low to allow them."
 
-Sanat "is not known" ovat tässä tärkeät, sillä Pitkänen ei väitä upotuksen olevan mahdoton. Kerrin metriikalle tunnetut upotukset ovat [Kuzeevin $N=9$ ja 14-ulotteinen upotus](https://arxiv.org/abs/1512.08280), mutta en lukenut alkuperäisiä töitä, eikä minulla ole tietoa Kerrin metriikan pienimmästä upotusluokasta. Pitkäsen ratkaisu on, että GRT-raja ei vaadi upotettavuutta.
+Pitkäsen sanamuoto vaihtelee. Muualla hän sanoo "probably not" ja "fail to be imbeddable as an induced metric" ([Btgdclass1.pdf](https://tgdtheory.fi/bookpdf/Btgdclass1.pdf), PDF-sivut 415 ja 332) sekä "certainly the Kerr-Newman blackhole is non-imbeddable" ([Btgdclass2.pdf](https://tgdtheory.fi/bookpdf/Btgdclass2.pdf), PDF-sivu 950). Luetuissa kohdissa väitteelle ei ole johtoa. Kerrin metriikalle tunnetut upotukset ovat [Kuzeevin upotus ulottuvuudessa 9 signatuurilla (3,6), Hongin ja Kimin upotus ulottuvuudessa 14](https://arxiv.org/abs/1512.08280) ja [Markovin ja Sheykinin](https://arxiv.org/abs/2610.24735) preprintin upotus ulottuvuudessa 12 signatuurilla (5,7). Signatuurit (3,6) ja (5,7) eivät kerro avaruudesta $H$ mitään, koska sen signatuuri on (1,7). Kerrin metriikan pienintä upotusluokkaa ei löytynyt. Pitkäsen ratkaisu on, että GRT-raja ei vaadi upotettavuutta.
 
-Oma päätelmäni jakautuu kolmeen osaan. Laskenta ensinnäkin näyttää, että 8 funktiota ja 10 yhtälöä on ylimääräytetty järjestelmä, joten yleistä metriikkaa ei voi odottaa upotettavaksi. Tämä ei yksin ratkaise Einsteinin ratkaisujen kysymystä, koska ne muodostavat erityisen osajoukon, enkä siksi väitä, että jokin tietty ratkaisu ei upottuisi.
+Oma päätelmäni jakautuu kolmeen osaan. Laskenta ensinnäkin näyttää, että 8 funktiota ja 10 yhtälöä on ylimääräytetty järjestelmä, joten yleistä metriikkaa ei voi odottaa upotettavaksi. Tämä ei yksin ratkaise Einsteinin ratkaisujen kysymystä, koska ne muodostavat erityisen osajoukon, enkä siksi väitä, että jokin tietty ratkaisu ei upottuisi. [Gromovin](https://www.numdam.org/article/AST_1985__S131__129_0.pdf) lauseen mukaan yleinen analyyttinen metriikka ei immersoidu riittävän sileästi avaruuteen $R^q$, kun $q<n(n+1)/2$. Lause koskee tasaista kohdetta, ja sen siirtoa kaarevaan kohteeseen ei ole tarkistettu.
 
 Toiseksi Pastonin ehto on suoraan laskettavissa. Hänen mukaansa heikon kentän superpositio vaatii toiselta perusmuodolta rangin 6. Kahdeksassa ulottuvuudessa normaaliavaruus on neliulotteinen, joten rangi on enintään 4. Täysirankainen upotus ei siis ole mahdollinen millään kahdeksanulotteisella ympäristöllä, kaareva avaruus $H$ mukaan lukien. Pitkäsen ja Pastonin erilainen ratkaisu superpositioon ei siis ole makuasia, vaan Pastonin keino ei ole TGD:ssä käytettävissä. Lauseesta ei seuraa mitään monilehtisyyden toimivuudesta.
 
@@ -330,7 +356,7 @@ Pimeän aineen tulkinnalle sama tulos on ongelma. [Paston 2023](https://arxiv.or
 
 > "for a natural ratio taken at the beginning of the inflation epoch, the contribution of fictitious matter turns out to be strongly suppressed at the present time"
 
-Hän esittää myös pakotien. Viisiulotteinen Friedmannin upotus ei ole täysirankainen, joten tulos ei ehkä päde, kun pinta poikkeaa pienissä mittakaavoissa aliavaruudesta. Hän kirjoittaa, että "it seems unlikely that the results obtained for a precisely five-dimensional embedding would then remain true". [Sushkov ja Paston 2025](https://arxiv.org/abs/2503.00598) kokeilivat tätä täysirankaisella kahdeksanulotteisella upotuksella, ja tulos oli kielteinen.
+Hän esittää myös pakotien. Viisiulotteinen Friedmannin upotus ei ole täysirankainen, joten tulos ei ehkä päde, kun pinta poikkeaa pienissä mittakaavoissa aliavaruudesta. Hän kirjoittaa, että "it seems unlikely that the results obtained for a precisely five-dimensional embedding would then remain true". [Sushkov ja Paston 2025](https://arxiv.org/abs/2503.00598) kokeilivat tätä kahdeksanulotteisella upotuksella avaruudessa $R^{1,9}$, ja tulos oli kielteinen. Artikkelin sana "unfolded" tarkoittaa, että toisen perusmuodon rangi on suurin mahdollinen upotuksen omassa ulottuvuudessa $N$. Kahdeksassa ulottuvuudessa se on 4, joten upotus ei ole kohdan c rangin 6 mielessä täysirankainen.
 
 > "ensuring the observed amount of dark matter in the current epoch still requires assuming a high density of dark matter at the beginning of inflation"
 
@@ -458,27 +484,55 @@ $$
 
 Ensimmäinen termi on jäljen termi, ja se häviää minimipinnoilla. Toisessa termissä toinen perusmuoto supistuu tangentin kanssa eikä metriikan kanssa, joten se ei ole jälki. Testit vahvistavat kaavan pelkällä muodolla $J(CP_2)$. Toinen termi on nollasta poikkeava holomorfisilla minimipinnoilla $\xi^1=w/2$ litteässä rakenteessa ja $\xi^1=2w$ pallomaisessa rakenteessa, ja lisälasku antaa saman pinnalla $\xi^1=w^2$ litteässä rakenteessa. Pallomaisella suoralla molemmat termit häviävät. Ei-holomorfisista minimipinnoista on testattu vain $S^2\to RP^2$.
 
+### Matin toinen viesti 1.11.2026
+
+Matti Pitkänen lähetti samana aamuna toisen viestin, joka kommentoi 31.10. lähetettyjä kysymyksiä. Se ei käsittele viittä kysymystä, jotka on kuvattu [ehdotuksissa](#ehdotukset-jatkoon). Viestissä hän pitää arvionsa, että virta häviää yleisillä minimipinnoilla ilman holomorfiaa, ja pyytää osoittamaan tuloksen suoralla laskulla tai riittävän tiheällä hilalla.
+
+Claude laski virran ja keskikaarevuuden hilalla ilman Maxima-kirjastoa, ja jokainen derivaatta on neljännen kertaluvun differenssi ([skripti](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)). Taulukon luvut on laskettu pelkällä muodolla $J(CP_2)$ hilan keskipisteessä tiheydellä $N=97$. Virran arvot pysyvät viiden numeron tarkkuudella tiheyksillä $N=25$, $49$ ja $97$.
+
+| Pinta | Rakenne | Virran normi | Keskikaarevuus |
+|---|---|---|---|
+| $\xi^1=w/2$ | litteä | $0{,}081889$ | nolla hilan tarkkuudella |
+| $\xi^1=w^2$ | litteä | $0{,}239914$ | nolla hilan tarkkuudella |
+| $\xi^1=uw$ | litteä | $0{,}196629$ | nolla hilan tarkkuudella |
+| $\xi^1=u^2$ | litteä | $0$ | nolla hilan tarkkuudella |
+| $\xi^1=w$ | pallomainen | $0$ | nolla hilan tarkkuudella |
+| $\xi^1=\sqrt2\,w,\ \xi^2=w^2$ | pallomainen | $0$ | nolla hilan tarkkuudella |
+| $\xi^1=2w$ | pallomainen | $0{,}034074$ | nolla hilan tarkkuudella |
+| $\xi^1=w^2$ | pallomainen | $0{,}053447$ | nolla hilan tarkkuudella |
+
+Tulos on sama kuin symbolisessa laskussa. Pinnalla $\xi^1=w/2$ lasku on lyhyt. Tasossa $(x,y)$ metriikka on $-\Omega(dx^2+dy^2)$ ja Kähler-muodon komponentti on $J_{xy}=\omega$, joten virta on etumerkkiä vaille suhteen derivaatta,
+
+$$
+j^y=\frac1\Omega\,\partial_x\frac\omega\Omega,\qquad j^x=-\frac1\Omega\,\partial_y\frac\omega\Omega.
+$$
+
+Virta häviää täsmälleen, kun $\omega/\Omega$ on vakio, ja hila täsmää tähän kaavaan yhdeksän numeron tarkkuudella. Sen, miten tämä sopii hänen laskuunsa, arvioi Matti.
+
+Viestin Hamilton–Jacobi-rakennetta koskevat kohdat ovat [konventioissa](../konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
+
 ### Rajaukset
 
 Symmetriapäättely ja litteän rakenteen päättely ovat Clauden päättelyä, ja ne on tarkistettu kerran riippumattomasti. Testit kattavat symmetriapäättelystä kolme pintaa, kolme vaikutusta ja kenttäyhtälöiden Kähler-osat ja litteän rakenteen päättelystä neljä pintaa. Symmetriapäättely koskee kenttäyhtälöä pisteittäin, kun $r>0$, ja muoto $J(M^4)$ on pallon pintamuotona singulaarinen kohdassa $r=0$. Regge–Teitelboimin teoriassa ympäröivä avaruus on tasainen, kun taas tässä se on kaareva $H$, joten yhtäläisyys koskee vain yhtälön muotoa. Laskuissa ei myöskään ole aineen termiä $T^{\alpha\beta}$.
 
 ## Mitä jäi löytymättä
 
-Seuraavat asiat jäivät auki, ja ne on hyvä sanoa suoraan:
+Jatkohaku 1.11.2026 sulki osan aiemmista aukoista. Seuraavat asiat ovat nyt tiedossa tai jäivät auki:
 
-- Deserin, Piranin ja Robinsonin koko tekstiä en lukenut, vaan vain tiivistelmän ja toissijaiset kuvaukset. Tiivistelmän esimerkki jäi tuntemattomaksi.
-- ViXra palautti hauissa virheen 406, ja hakukoneet eivät löytäneet sieltä Pitkäsen tekstejä, joten viXraa ei ole tarkistettu.
-- ResearchGate palautti virheen 403, joten sen sisältöä ei tarkistettu. Pitkäsen sivustolta jäi 91 linkkiä tavoittamatta, mutta kirjat ovat mukana.
-- Blogin kommentit eivät kuuluneet hakuun, vain kirjoitukset.
-- Pitkäsen vuosien 1983–1986 artikkeleita ei ollut saatavilla, joten kaarevuusskalaarin varhaista muotoilua ei voi tarkistaa alkuperäisestä.
-- Lausetta kaikkien Einsteinin ratkaisujen upotettavuudesta avaruuteen $M^4\times CP_2$ tai kahdeksanulotteiseen avaruuteen en löytänyt suuntaan enkä toiseen.
-- Franken ja Tapian sekä Kuzeevin töitä en lukenut, vaan tukeuduin niistä tehtyihin viittauksiin.
+- Deserin, Piranin ja Robinsonin artikkelin luin kokonaan. Auki jäi, säilyykö tasoaaltoesimerkki ympäristössä, jossa on yksi aikasuunta.
+- ViXran 142 paperia on haettu uusimpien versioiden osalta ilman nimiosumia. Aiempi virhe 406 riippui asiakasohjelmasta. Kirjojen välissä olevista versioista haettiin vain 0908.0017v5.
+- ResearchGate palautti yhä virheen 403, ja sen sisältö jäi lukematta. Otsikoita saatiin muista rekistereistä. Kuolleita linkkejä oli uudessa haussa 257, ja niistä 135 jäi tavoittamatta. Kansiosta `pdfpool` jäi 366 tiedostoa hakematta.
+- Blogin kaikki 6717 kommenttia on haettu ilman nimiosumia. Kommentit antavat perusteita kaarevuusskalaaria vastaan, mutta niistä ei selviä, tunsiko Pitkänen nämä työt.
+- Vuoden 1983 artikkelin luin paikallisesta kopiosta, josta puuttuvat sivut 618–619, ja vuosien 1982–1984 preprintit ovat avoimia. Vuosien 1981, 1985–1986 ja 1988 kokotekstit ja vuoden 1982 väitöskirja jäivät lukematta.
+- Lausetta kaikkien Einsteinin ratkaisujen upotettavuudesta avaruuteen $M^4\times CP_2$ tai kahdeksanulotteiseen avaruuteen ei löytynyt kumpaankaan suuntaan. Analyyttiset lauseet pysähtyvät ulottuvuuteen 10 ja sileät ulottuvuuteen 14. Oman päätelmäni mukaan paikalliset upotukset avaruuteen $R^{1,5}$ siirtyvät avaruuteen $H$ litteän Cliffordin toruksen kautta, mutta Kerrin metriikalle tätä reittiä ei löytynyt.
+- Tapian preprintin luin. Franken ja Tapian artikkelista löytyi vain tiivistelmä. Kuzeevin työt tunnetaan viittauksista, ja ne koskevat Kerrin metriikan upotusta eivätkä upotusgravitaatiota.
+- Stephanin ja kirjoittajien kirjan upotuslukua en lukenut, koska löytyneet kopiot eivät näyttäneet luvallisilta.
 
 ## Ehdotukset jatkoon
 
 Aiempi ehdotus tarkistaa yhtälö $\mathrm{Tr}(GH^k)=0$ on tehty [osassa 3](#osa-3-laskut). Artikkelin aineksia on kaksi. Toinen on symmetriatulos, joka selittää yhdellä päättelyllä, miksi kenttäyhtälöt häviävät suoralla, kartioleikkauksella ja pinnalla $RP^2$. Toinen on litteän rakenteen tulos. Kirjallisuusvertailu pelkästään ei olisi artikkeli, mutta se on hyvä johdanto näille kahdelle tulokselle. Artikkelista päättää Marko, ja tulkinta kuuluu Matille.
 
-Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572) toiseksi kysymyssarjaksi. Vastausta odotetaan. Ensimmäinen koskee sitä, onko Kähler-virran toinen termi mukana hänen laskussaan. Toinen koskee sitä, sisältyvätkö termit $G^{rw}B^k_{rw}$ ja $D^wD^wR\,B^k_{ww}$ hänen arveluunsa, ja rajautuuko arvelu pintoihin, jotka eivät riipu koordinaatista $v$. Kolmas koskee symmetriapäättelyn pätevyyttä ja pinnan $S^2\to RP^2$ paikkaa tyhjiöekstremaaleissa. Neljäs on, miksi kaarevuusskalaari hylättiin perusvaikutuksena. Viides on, olivatko Reggen ja Teitelboimin sekä Deserin, Piranin ja Robinsonin työt hänelle tuttuja.
+Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572) toiseksi kysymyssarjaksi. Vastausta odotetaan. Ensimmäinen koskee sitä, onko Kähler-virran toinen termi mukana hänen laskussaan. Toinen koskee sitä, sisältyvätkö termit $G^{rw}B^k_{rw}$ ja $D^wD^wR\,B^k_{ww}$ hänen arveluunsa, ja rajautuuko arvelu pintoihin, jotka eivät riipu koordinaatista $v$. Kolmas koskee symmetriapäättelyn pätevyyttä ja pinnan $S^2\to RP^2$ paikkaa tyhjiöekstremaaleissa. Neljäs on, miksi kaarevuusskalaari hylättiin perusvaikutuksena. Viides on, olivatko Reggen ja Teitelboimin sekä Deserin, Piranin ja Robinsonin työt hänelle tuttuja. Jatkohaun jälkeen neljännelle kysymykselle on tausta [ristiviittauksissa](#a-ristiviittaukset), ja se tarkentuu koskemaan sanaa "non-physical", luvun 6.2.3 poistamista ja kaavan (C24) etumerkkiä.
 
 ## Lähteet
 
@@ -501,4 +555,5 @@ Pitkäsen aineisto on tässä:
 Deserin artikkelin tiedot ovat näissä:
 
 - [APS, Phys. Rev. D 14, 3301](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.14.3301)
+- [Caltechin tietue](https://resolver.caltech.edu/CaltechAUTHORS:20180417-153958450) ja [avoin PDF](https://authors.library.caltech.edu/records/6mkh2-1s908/files/PhysRevD.14.3301.pdf)
 - [INSPIRE, tietue 3408](https://inspirehep.net/literature/3408)

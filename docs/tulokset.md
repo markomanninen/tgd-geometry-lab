@@ -1,6 +1,6 @@
 # Tulokset
 
-<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 362 testiä ajetaan jokaisesta muutoksesta.</p>
+<p class="lead">Tälle sivulle on koottu, mitä on laskettu ja mitä siitä seuraa. Jokaista väitettä vastaa automaattinen testi, ja koko sarjan 366 testiä ajetaan jokaisesta muutoksesta.</p>
 
 Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on annettu säteellä $R^2=1$.
 
@@ -126,7 +126,7 @@ Pitkäsen muotoilussa pinta on juurijoukko $f_1=f_2=0$, jossa $f_i$ ovat analyyt
 
 Pitkäsen mukaan poikittaisen virran ei tarvitse hävitä, koska riittää, että Lorentz 4-voima häviää, ja H-H takaa tämän. Se laskettiin suoraan koko pintaluokalle $\xi^k=f^k(u,w)$. Virralla ei ole $u$-komponenttia, ja voimalle pätee $f_v=0$, $f_x=-j^yJ_{xy}$ ja $f_y=j^xJ_{xy}$. Voima häviää siis täsmälleen, kun poikittainen virta häviää. Sama ehto seuraa topologisoidusta virrasta ja virran valon kaltaisuudesta, koska instantonivirralla on tällä pintaluokalla vain $v$-komponentti ja $j^\alpha j_\alpha\propto(j^x)^2+(j^y)^2$.
 
-Poikittaisen virran häviäminen vaatii, että Fubini–Study-metriikan vetäisy on litteä, ja Calabin jäykkyyslauseen mukaan holomorfinen kuvaus kompleksiviivalta $CP_2$:een ei voi olla sellainen, ellei se ole vakio.
+Poikittaisen virran häviäminen vaatii, että Fubini–Study-metriikan vetäisy on litteä. Holomorfinen kuvaus kompleksiviivalta $CP_2$:een ei voi olla sellainen, ellei se ole vakio, ja [konventioissa](konventiot.md#kahler-osa-h-h-pinnoilla) on tälle suora rangilasku. Tulos tunnetaan Calabin jäykkyyslauseena, joka on eri lause kuin Calabi–Yau-lause, ja se koskee kuvan käyrää $CP_2$:ssa eikä nelipintaa. Claude toisti virran laskun hilalla ilman Maxima-kirjastoa, ja [arvot](sivututkimus/regge-teitelboim.md#matin-toinen-viesti-1112026) ovat samat kuin symbolisessa laskussa.
 
 **$M^4$:n Kähler-muoto.** Kun Kähler-muotoon lisätään poikittainen osa $\varepsilon\,dx\wedge dy$, kenttäyhtälöiden Kähler-osa pinnalla $\xi^1=w/2$ kertautuu täsmälleen tekijällä
 
@@ -160,7 +160,7 @@ Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta,
 
 Tulos on yleinen. Jos $u$:n ja $w$:n gradientit ovat keskenään valon kaltaisia, kaikki funktiot $F(u,w)$ ovat harmonisia täsmälleen, kun $\Box u=\Box w=0$. Bochnerin kaavan mukaan tasopinnat $u=$ vakio ovat silloin valon kaltaisia hypertasoja, ja ehto $\Box w=0$ pakottaa ne yhdensuuntaisiksi. Tällaisista rakenteista ainoa on siis litteä rakenne muunnoksia vaille.
 
-**Kuinka paljon H-J-rakenteita on.** Funktioille $F(w)$ rakenteita on paljon enemmän. Keskenään valon kaltaisilla gradienteilla ne saadaan valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta. Tilavuusosa häviää symbolisesti mielivaltaisella radalla. Kähler-osa on tiukempi, sillä se häviää suoralle ja kartioleikkaukselle levossa olevalla kärjellä ja niiden Lorentz-muunnoksille mutta ei testatulla kiihtyvällä kärjellä. Yksityiskohdat ovat [konventioissa](konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
+**Kuinka paljon H-J-rakenteita on.** Funktioille $F(w)$ rakenteita on paljon enemmän. Keskenään valon kaltaisilla gradienteilla ne saadaan valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta. Tilavuusosa häviää symbolisesti mielivaltaisella radalla. Kähler-osa on tiukempi, sillä se häviää suoralle ja kartioleikkaukselle levossa olevalla kärjellä ja niiden Lorentz-muunnoksille mutta ei testatulla kiihtyvällä kärjellä. Valon kaltaisen gradientin säteet ovat suoria, joten Pitkäsen pohtimat käyräviivaiset säteet jäävät tämän luokan ulkopuolelle. Yksityiskohdat ovat [konventioissa](konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).
 
 ## Kaarevuusskalaari ja indusoidun geometrian vaikutukset
 
