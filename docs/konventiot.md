@@ -427,7 +427,7 @@ $$
 f_v=0,\qquad f_x=-j^yJ_{xy},\qquad f_y=j^xJ_{xy}.
 $$
 
-Holomorfisella pinnalla $J_{xy}$ on nolla vain siellä, missä $\partial_wf^k=0$, joten $f_\beta=0$ vaatii ehdon $j^w=0$. Pitkäsen kaksi muuta mekanismia johtavat samaan (*Extremals of the Kähler Action*, luku 4.2). Instantonivirralla on tällä pintaluokalla vain $v$-komponentti, joten topologisoitu virta $j=\psi j_I$ on ilman poikittaista osaa. Valon kaltaisuus taas tarkoittaa samaa, koska
+Holomorfisella pinnalla $J_{xy}$ on nolla vain siellä, missä $\partial_wf^k=0$, joten $f_\beta=0$ vaatii ehdon $j^w=0$. Pitkäsen kaksi muuta mekanismia johtavat samaan ([*Basic Extremals of the Kähler Action*](http://web.archive.org/web/20161222094333/http://tgdtheory.fi/public_html/pdfpool/class.pdf), 2015, luku 4.2). Instantonivirralla on tällä pintaluokalla vain $v$-komponentti, joten topologisoitu virta $j=\psi j_I$ on ilman poikittaista osaa. Valon kaltaisuus taas tarkoittaa samaa, koska
 
 $$
 j^\alpha j_\alpha=-P\left((j^x)^2+(j^y)^2\right),\qquad P=-g_{xx}.
@@ -489,7 +489,7 @@ Toisessa viestissään samana päivänä Pitkänen pitää arvionsa ja pyytää 
 
 ### Mitkä Hamilton–Jacobi-rakenteet kantavat kaikki holomorfiset funktiot
 
-Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on (*Extremals of the Kähler Action*, kaava 4.22)
+Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on ([*Basic Extremals of the Kähler Action*](http://web.archive.org/web/20161222094333/http://tgdtheory.fi/public_html/pdfpool/class.pdf), 2015, kaava 4.22)
 
 $$
 \{k\,w\bar w\}=0,\qquad\{k\,{+-}\}=0.
@@ -505,7 +505,13 @@ $$
 
 Ehdoista seuraa $u_{\alpha\beta}u^{\alpha\beta}=0$, jolloin poikittainen Hessen matriisi häviää ja tasopinnat $u=$ vakio ovat valon kaltaisia hypertasoja $k(u)\cdot m=g(u)$. Tason poikittainen koordinaatti on $\zeta=e(u)\cdot m$, ja $\Box\zeta=2e'\cdot\nabla u$. Tämä häviää vain, jos $k'\propto k$, eli hypertasot ovat yhdensuuntaiset. Rakenne on silloin litteä rakenne Poincarén muunnosta ja uudelleenparametrisointia $(u,w)\to(g(u),F(u,w))$ vaille.
 
-Todistus on Clauden päättely oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Oletus on se, joka tarvitaan holomorfisen funktion supistuksen $g^{\alpha\beta}\partial_\alpha\xi^k\partial_\beta\xi^l=0$ häviämiseen. Pitkäsen yleinen muoto (kaava 4.19) sallii myös ristitermit, joita tämä tulos ei kata.
+Todistus on Clauden päättely oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Oletus on se, joka tarvitaan holomorfisen funktion supistuksen $g^{\alpha\beta}\partial_\alpha\xi^k\partial_\beta\xi^l=0$ häviämiseen. Saman luvun kohdassa 4.3.3 Pitkänen vaatii $(\nabla S_\pm)^2=0$ ja antaa viivaelementin yleisen muodon (kaava 4.19), joka sallii myös ristitermit,
+
+$$
+ds^2=g_{+-}\,dS^+dS^-+g_{w\bar w}\,dw\,d\bar w+g_{+w}\,dS^+dw+g_{+\bar w}\,dS^+d\bar w+g_{-w}\,dS^-dw+g_{-\bar w}\,dS^-d\bar w.
+$$
+
+Ristitermien kanssa $\nabla S_\pm\cdot\nabla w$ ei yleensä häviä, joten tämä tulos ei kata niitä. Lähteen tiedosto on poistunut Pitkäsen sivustolta, ja linkki vie Internet Archiven kopioon.
 
 Jos rajoitutaan funktioihin $F(w)$, luokka on paljon laajempi. Oletuksesta seuraa, että tasopinnat $u=$ vakio ovat täysin napaisia valon kaltaisia hyperpintoja. Minkowskin avaruudessa niitä ovat vain hypertasot ja valokartiot. Rakenne saadaan siis valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta, eli
 
