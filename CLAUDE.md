@@ -1,4 +1,4 @@
-# TGD Geometry Lab – ohjeet agentille
+# TGD Geometry Software Lab – ohjeet agentille
 
 Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issuet suomeksi, koodikommentit englanniksi.
 

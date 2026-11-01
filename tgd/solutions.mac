@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- tgd/solutions.mac
+   TGD Geometry Software Lab -- tgd/solutions.mac
    Solution generator (Steps 8.1, 8.2).
 
    A surface is given as a list h^k(xi).  extremal_report splits the field

@@ -1,4 +1,4 @@
-"""Small Python bridge for running TGD Geometry Lab (Maxima) from Jupyter/Colab.
+"""Small Python bridge for running TGD Geometry Software Lab (Maxima) from Jupyter/Colab.
 
 Every call starts a fresh Maxima process, loads the library and runs the
 given code.  Results are returned as text or rendered as LaTeX.

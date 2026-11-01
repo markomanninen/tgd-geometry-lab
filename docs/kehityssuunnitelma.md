@@ -1,4 +1,4 @@
-# TGD Geometry Lab – kehitys- ja toteutussuunnitelma Maximan päälle
+# TGD Geometry Software Lab – kehitys- ja toteutussuunnitelma Maximan päälle
 
 Versio 1.1, 30.10.2026.
 Tavoitteena on rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.

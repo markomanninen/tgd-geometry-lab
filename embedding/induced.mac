@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- embedding/induced.mac
+   TGD Geometry Software Lab -- embedding/induced.mac
    Induced geometry of an embedded surface (Steps 1.4, 6.3).
 
    An embedding is given as a list Xemb of expressions h^k(xi),

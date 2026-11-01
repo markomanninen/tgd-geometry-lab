@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- tgd/field-equations.mac
+   TGD Geometry Software Lab -- tgd/field-equations.mac
    Field equations of L = (c_K J.J + c_V) sqrt|g| in covariant form (Step 7.2).
 
    Dynamical variables are the embedding coordinates h^k.  With f = c_K J.J + c_V,

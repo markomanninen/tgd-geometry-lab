@@ -85,7 +85,7 @@ Sivututkimuspolut eivät kuulu milestoneihin. [Regge–Teitelboim ja TGD](sivutu
 
 Taulun voi luoda kerran käsin, koska issuet ja milestonet ovat jo valmiina:
 
-1. <https://github.com/markomanninen/tgd-geometry-lab> → **Projects** → **Link a project** → **New project** → pohja **Board** (tai **Roadmap**), nimeksi *TGD Geometry Lab*.
+1. <https://github.com/markomanninen/tgd-geometry-lab> → **Projects** → **Link a project** → **New project** → pohja **Board** (tai **Roadmap**), nimeksi *TGD Geometry Software Lab*.
 2. Lisää issuet valinnoilla **Add item** → `#` → valitse kaikki, tai lisää suodatin `repo:markomanninen/tgd-geometry-lab`.
 3. **Workflows** → ota käyttöön *Auto-add to project* (suodatin `is:issue`) sekä *Item closed → Done*.
 4. Ryhmittele näkymä kentällä **Milestone**, jolloin M1–M8 näkyvät omina kaistoinaan.

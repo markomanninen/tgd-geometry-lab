@@ -64,7 +64,7 @@ $\\gamma_a\\gamma_b+\\gamma_b\\gamma_a = 2\\eta_{ab}$ signatuurilla $(1,3)$.""")
 
 Tämä vaihe on valinnainen. Siinä ajetaan Lanyonin kuusi virtausfysiikan esimerkkiä (Burgers, matala vesi, Euler, Maxwell, MHD)
 samalla tavalla kuin alkuperäisessä kirjassa. Ne käyttävät samaa Maxima–Clifford-pohjaa,
-jonka päälle TGD Geometry Lab rakentaa differentiaaligeometrian."""),
+jonka päälle TGD Geometry Software Lab rakentaa differentiaaligeometrian."""),
 ("code", r'''RUN_LANYON = os.environ.get("RUN_LANYON", "1") == "1"   # aseta 0 ohittaaksesi
 if RUN_LANYON:
     import subprocess

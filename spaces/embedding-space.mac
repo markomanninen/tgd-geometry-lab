@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- spaces/minkowski + embedding-space
+   TGD Geometry Software Lab -- spaces/minkowski + embedding-space
    H = M^4 x CP_2 (Steps 1.3, 6.1, 6.2).
 
    Coordinates  H_X = [t, x, y, z, x1, y1, x2, y2].

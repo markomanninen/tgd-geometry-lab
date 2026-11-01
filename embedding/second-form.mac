@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- embedding/second-form.mac
+   TGD Geometry Software Lab -- embedding/second-form.mac
    Extrinsic geometry of an embedded surface (Steps 6.4, 6.5).
 
    emb_setup(HG, HX, Xemb, xi) collects the data of an embedding h^k(xi)

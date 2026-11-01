@@ -1,4 +1,4 @@
-# TGD Geometry Lab
+# TGD Geometry Software Lab
 
 <p class="lead">Symbolinen laskentaympäristö, jolla Topological Geometrodynamics -teorian geometria lasketaan ja tarkistetaan vaihe vaiheelta upotusavaruudesta kenttäyhtälöihin.</p>
 

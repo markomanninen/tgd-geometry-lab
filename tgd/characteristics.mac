@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- tgd/characteristics.mac
+   TGD Geometry Software Lab -- tgd/characteristics.mac
    Characteristic analysis of the field equations (Step 7.5), in the spirit
    of calcev in LanyonScripts: write the system as  d_t U + A d_x U = 0  and
    read the characteristic speeds from the eigenvalues of A.

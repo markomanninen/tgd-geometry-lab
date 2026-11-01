@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- tgd/noether.mac
+   TGD Geometry Software Lab -- tgd/noether.mac
    Isometries of H = M^4 x CP_2 and their Noether currents (Step 7.4).
 
    A vector field K^k(h) that preserves both h_kl and J_kl gives the current

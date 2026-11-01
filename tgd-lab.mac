@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- loader
+   TGD Geometry Software Lab -- loader
    Usage:
      tgd_root : "/path/to/tgd-geometry-lab"$
      load(sconcat(tgd_root, "/tgd-lab.mac"))$
@@ -38,4 +38,4 @@ tgd_load("tgd/characteristics.mac")$
 tgd_load("tgd/solutions.mac")$
 tgd_load("tgd/curvature-action.mac")$
 
-print("TGD Geometry Lab loaded from", tgd_root)$
+print("TGD Geometry Software Lab loaded from", tgd_root)$

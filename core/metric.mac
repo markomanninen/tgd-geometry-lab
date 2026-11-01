@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- core/metric.mac
+   TGD Geometry Software Lab -- core/metric.mac
    Manifolds, coordinates and metrics (Step 1.2).
 
    A manifold is stored in the hash table tgd_manifolds[name] as

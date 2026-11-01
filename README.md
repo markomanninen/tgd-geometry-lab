@@ -1,4 +1,4 @@
-# TGD Geometry Lab
+# TGD Geometry Software Lab
 
 [![tests](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml)
 

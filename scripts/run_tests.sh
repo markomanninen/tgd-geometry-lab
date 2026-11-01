@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run the TGD Geometry Lab test suite.
+# Run the TGD Geometry Software Lab test suite.
 #   ./scripts/run_tests.sh                 # without Clifford tests
 #   ./scripts/run_tests.sh /path/clifford  # with Prodanov's clifford package
 # Exit status is non-zero if any test fails.

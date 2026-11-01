@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- algebra/vielbein.mac
+   TGD Geometry Software Lab -- algebra/vielbein.mac
    Orthonormal frames (Step 4.3).
 
    A frame is the matrix E[a, m] = e^a_m (row = flat index a, column =

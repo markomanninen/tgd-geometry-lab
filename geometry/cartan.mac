@@ -1,5 +1,5 @@
 /* ================================================================
-   TGD Geometry Lab -- geometry/cartan.mac
+   TGD Geometry Software Lab -- geometry/cartan.mac
    Cartan structure equations (Steps 5.3, 4.4).
 
    Frame conventions as in algebra/vielbein.mac: E[a,m] = e^a_m, eta diagonal.

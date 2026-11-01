@@ -15,7 +15,7 @@ Jaksot on tarkoitettu katsottaviksi tässä järjestyksessä.
 
 | Jakso | Kysymys | Tila |
 |---|---|---|
-| E00 | Mikä TGD Geometry Lab on ja mihin se pyrkii? | [Esiversio](#e00) |
+| E00 | Mikä TGD Geometry Software Lab on ja mihin se pyrkii? | [Esiversio](#e00) |
 | EM | Miten kone laskee symboleilla? | Tulossa |
 | EL | Mitä Lanyonilta opitaan? | Tulossa |
 | E01 | Mitä tarkoittaa, että aika-avaruus on pinta? | [Esiversio](#e01) |
@@ -28,10 +28,10 @@ Jaksot on tarkoitettu katsottaviksi tässä järjestyksessä.
 | E08 | Miten yksi luku voi määrätä pinnan muodon? | Tulossa |
 | E09 | Mitä vielä puuttuu? | Tulossa |
 
-## E00 – Mikä TGD Geometry Lab on ja mihin se pyrkii? {#e00}
+## E00 – Mikä TGD Geometry Software Lab on ja mihin se pyrkii? {#e00}
 
 <div class="video">
-<iframe src="https://www.youtube-nocookie.com/embed/P6tdJDKIOzk" title="Mikä TGD Geometry Lab on ja mihin se pyrkii?" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://www.youtube-nocookie.com/embed/P6tdJDKIOzk" title="Mikä TGD Geometry Software Lab on ja mihin se pyrkii?" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ## E01 – Mitä tarkoittaa, että aika-avaruus on pinta? {#e01}
