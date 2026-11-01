@@ -62,7 +62,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 | Issue | Asia |
 |---|---|
-| #34 | Esseen (2024, s. 34) kerroin $\frac{1}{2\alpha_K}$ antaa arvon $S_K(CP_2)=\pi^2/\alpha_K$, kun Pitkäsen kerroin $\frac{1}{4g_K^2}=\frac{1}{16\pi\alpha_K}$ antaa arvon $\pi/(8\alpha_K)$. Suhde on $8\pi$. Muut esseen kaavat on testattu ([tulokset](tulokset.md#mannisen-esseen-kaavat-vertailutesteina)), ja esseen korjaamisesta päättää Marko. |
+| #34 | Esseen (2024, s. 33) kerroin $\frac{1}{2\alpha_K}$ antaa arvon $S_K(CP_2)=\pi^2/\alpha_K$, kun Pitkäsen kerroin $\frac{1}{4g_K^2}=\frac{1}{16\pi\alpha_K}$ antaa arvon $\pi/(8\alpha_K)$. Suhde on $8\pi$. Muut esseen kaavat on testattu ([tulokset](tulokset.md#mannisen-esseen-kaavat-vertailutesteina)), ja esseen korjaamisesta päättää Marko. |
 
 ## Sivututkimuspolut
 
