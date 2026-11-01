@@ -20,7 +20,7 @@ Laskenta ei todista TGD:tä fysikaalisesti oikeaksi. Se tarkistaa johdoksia ja t
 ## Laskentaketju
 
 $$
-\text{upotusavaruus}\to\text{geometria}\to\text{muodot}\to\text{yhteydet}\to\text{kaarevuus}\to\text{toiminta}\to\text{kenttäyhtälöt}\to\text{ratkaisut}
+\text{upotusavaruus}\to\text{geometria}\to\text{muodot}\to\text{yhteydet}\to\text{kaarevuus}\to\text{vaikutus}\to\text{kenttäyhtälöt}\to\text{ratkaisut}
 $$
 
 Ketju on laskettu ja testattu kenttäyhtälöihin asti, ja ensimmäiset tunnetut ratkaisut on tarkistettu. Ratkaisuanalyysi on seuraava vaihe.

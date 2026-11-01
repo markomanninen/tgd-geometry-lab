@@ -37,7 +37,7 @@ $$
 K=\log\left(1+|z^1|^2+|z^2|^2\right),\qquad g_{i\bar j}=\partial_i\partial_{\bar j}K .
 $$
 
-Metriikka, käänteismetriikka, Kähler-muoto, Christoffelin symbolit ja kaarevuus voidaan johtaa toisistaan ja tarkistaa tunnettuja identiteettejä vasten. Sen jälkeen lisätään differentiaalimuodot, yhteydet ja kaarevuuden Cartan-muotoilu. Vasta tämän jälkeen tuodaan mukaan aika-avaruuspinnan upotus ja Kähler-toiminnan variaatio.
+Metriikka, käänteismetriikka, Kähler-muoto, Christoffelin symbolit ja kaarevuus voidaan johtaa toisistaan ja tarkistaa tunnettuja identiteettejä vasten. Sen jälkeen lisätään differentiaalimuodot, yhteydet ja kaarevuuden Cartan-muotoilu. Vasta tämän jälkeen tuodaan mukaan aika-avaruuspinnan upotus ja Kähler-vaikutuksen variaatio.
 
 ---
 
@@ -51,7 +51,7 @@ Laskentaympäristön avulla voidaan:
 4. laskea yhteydet, kaarevuustensorit ja niihin liittyvät geometriset suureet,
 5. rakentaa Clifford-algebran laskenta kaarevalle monistolle,
 6. kuvata aika-avaruuspintojen upotuksia ja niistä indusoituvaa geometriaa,
-7. muodostaa TGD:n toimintaperiaatteista johdettavia kenttäyhtälöitä,
+7. muodostaa TGD:n vaikutusintegraalista johdettavia kenttäyhtälöitä,
 8. tutkia yhtälöiden ratkaisuja, symmetrioita ja karakteristisia ominaisuuksia.
 
 Lähtökohdat:
@@ -73,7 +73,7 @@ Tärkeä rajaus on, että Lanyonin nykyinen koodi ei muodosta TGD-laskentajärje
 | 2. Monistogeometria | Koordinaatit, metriikat, koordinaattimuunnokset | `core/metric.mac` |
 | 3. Differentiaaligeometria | Muodot, yhteydet, kaarevuus | `forms/`, `geometry/` |
 | 4. Upotusgeometria | $M^4\times CP_2$, indusoitu metriikka | `spaces/`, `embedding/` |
-| 5. TGD-dynamiikka | Kähler-toiminta, kenttäyhtälöt | `tgd/` |
+| 5. TGD-dynamiikka | Kähler-vaikutus, kenttäyhtälöt | `tgd/` |
 | 6. Analyysi | Ratkaisut, ominaisarvot, numeriikka | `notebooks/`, Python |
 
 Moduulit ovat erillisiä Maxima-tiedostoja, ja niiden tulee olla uudelleenkäytettäviä myös muiden geometria- ja fysiikkamallien yhteydessä.
@@ -293,7 +293,7 @@ Issue [#9](https://github.com/markomanninen/tgd-geometry-lab/issues/9).
 | Holomorfinen leikkauskaarevuus | vakio $4$ (yleisessä pisteessä) |
 | Totaalisesti reaalinen taso | $K=1$ (minimi) |
 | Tilavuus | $\pi^2/2$ |
-| CP₂-tyyppisen ekstremaalin toiminta | $S_K=\pi/(8\alpha_K)$ (Pitkäsen arvo) |
+| CP₂-tyyppisen ekstremaalin vaikutus | $S_K=\pi/(8\alpha_K)$ (Pitkäsen arvo) |
 | Karttasiirtymä | metriikka säilyy |
 
 Vaiheen V tuloksena $CP_2$:n metriikka, yhteydet ja kaarevuus johdetaan kokonaan symbolisesti.
@@ -335,9 +335,9 @@ Nämä ovat tärkeä tarkistus, koska aika-avaruuspinnan sisäinen geometria ei 
 
 ---
 
-## 9. Vaihe VII – TGD:n toimintaperiaatteet ja kenttäyhtälöt
+## 9. Vaihe VII – TGD:n vaikutusintegraali ja kenttäyhtälöt
 
-TGD:n toiminta (twistorinosto) on Kähler-toiminnan ja tilavuustermin summa
+TGD:n vaikutus (twistorinosto) on Kähler-vaikutuksen ja tilavuustermin summa
 
 $$
 S_{TGD}=S_K+S_V=\int\left(c_K\,J_{\alpha\beta}J^{\alpha\beta}+c_V\right)\sqrt{|g|}\;d^4\xi ,
@@ -345,7 +345,7 @@ $$
 
 jossa Pitkäsen määritelmän mukaan $c_K=1/(4g_K^2)$, $\alpha_K=g_K^2/4\pi$ (testattu arvolla $S_K(CP_2)=\pi/(8\alpha_K)$), ja $c_V$ on kosmologisen vakion analogi. $c_V$:n etumerkki ja normalisointi suhteessa Kähler-termiin on avoin kysymys Matille (#27). Lisäksi on topologinen instantonitermi $J\wedge J$, joka on kokonaisdivergenssi.
 
-### Step 7.1 – Kähler-toiminnan muodostaminen ✅
+### Step 7.1 – Kähler-vaikutuksen muodostaminen ✅
 
 Issue [#25](https://github.com/markomanninen/tgd-geometry-lab/issues/25).
 `kahler_invariant`, `kahler_density`, `volume_density`, `tgd_density`, `instanton_density`.
@@ -355,12 +355,12 @@ Issue [#25](https://github.com/markomanninen/tgd-geometry-lab/issues/25).
 Issuet [#27](https://github.com/markomanninen/tgd-geometry-lab/issues/27) ja [#28](https://github.com/markomanninen/tgd-geometry-lab/issues/28).
 Dynaamisia muuttujia ovat **upotuskoordinaatit** $h^k$. Variaatio $\delta S=0$ johdetaan niiden suhteen. Metriikkaa ja Kähler-muotoa ei oleteta toisistaan riippumattomiksi variaatiomuuttujiksi.
 
-Yhtälöt on muodostettu symbolisilla kertoimilla $c_K$, $c_V$ ja tarkistettu kovarianttia muotoa vasten (ks. [konventiot](konventiot.md)). Kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja kaikilla kertoimilla. Yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä. Matin linjaukset 31.10.2026 on kirjattu [konventioihin](konventiot.md), ja niiden mukaan toiminnalle $S_K+S_V$ ansatsin korvaa holografia = holomorfia.
+Yhtälöt on muodostettu symbolisilla kertoimilla $c_K$, $c_V$ ja tarkistettu kovarianttia muotoa vasten (ks. [konventiot](konventiot.md)). Kosminen säie ja ME $s^k(u)$ ovat ekstremaaleja kaikilla kertoimilla. Yleinen $s^k(u,x)$ on Kähler-ekstremaali, mutta tilavuustermi ei häviä. Matin linjaukset 31.10.2026 on kirjattu [konventioihin](konventiot.md), ja niiden mukaan vaikutukselle $S_K+S_V$ ansatsin korvaa holografia = holomorfia.
 
 ### Step 7.3 – Euler–Lagrange-yhtälöt ✅
 
 Issue [#26](https://github.com/markomanninen/tgd-geometry-lab/issues/26).
-Yleinen symbolinen variaatiomoottori `euler_lagrange(L, kentät, muuttujat)` on toteutettu ensimmäisen kertaluvun derivaattoja sisältäville tiheyksille. Testeissä se antaa aaltoyhtälön ja tilavuustoiminnasta minimipintayhtälön. Kovariantti muoto on `tgd_field_equations`, ja sitä verrataan suoraan määritelmästä laskettuun arvoon.
+Yleinen symbolinen variaatiomoottori `euler_lagrange(L, kentät, muuttujat)` on toteutettu ensimmäisen kertaluvun derivaattoja sisältäville tiheyksille. Testeissä se antaa aaltoyhtälön ja tilavuusvaikutuksesta minimipintayhtälön. Kovariantti muoto on `tgd_field_equations`, ja sitä verrataan suoraan määritelmästä laskettuun arvoon.
 
 ### Step 7.4 – Säilymislait ja Noether-rakenteet ✅
 
@@ -372,7 +372,7 @@ Issue [#29](https://github.com/markomanninen/tgd-geometry-lab/issues/29).
 Issue [#30](https://github.com/markomanninen/tgd-geometry-lab/issues/30).
 Tässä hyödynnetään Lanyonin lähestymistapaa, jossa muodostetaan yhtälöjärjestelmä, karakteristinen matriisi, ominaisarvot, ominaisvektorit ja karakteristiset rakenteet (vrt. LanyonScriptsin `calcev`). TGD:n kenttäyhtälöt ovat geometrisesti monimutkaisempia kuin Lanyonin virtausfysiikan esimerkit, esimerkiksi minimipintaehto $g^{\alpha\beta}D_\beta\partial_\alpha h^k=0$ yhdessä Kähler-termin kanssa.
 
-Moduuli `tgd/characteristics.mac` laskee pääosan suoraan $L$:n toisista derivaatoista ja muodostaa matriisin $A$ yhtälölle $\partial_tU+A\,\partial_xU=0$. Analysoidut taustat ovat $M^4$, kosminen säie ja massaton ekstremaali. Yhtälön tyyppi riippuu taustasta ja kertoimista (ks. [tulokset](tulokset.md)). Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut, joten hyperbolinen analyysi ei sovellu siihen.
+Moduuli `tgd/characteristics.mac` laskee pääosan suoraan $L$:n toisista derivaatoista ja muodostaa matriisin $A$ yhtälölle $\partial_tU+A\,\partial_xU=0$. Analysoidut taustat ovat $M^4$, kosminen säie ja massaton ekstremaali. Yhtälön tyyppi riippuu taustasta ja kertoimista (ks. [tulokset](tulokset.md)). Pelkkä Kähler-vaikutus on $M^4$:n ympärillä degeneroitunut, joten hyperbolinen analyysi ei sovellu siihen.
 
 ---
 
@@ -402,7 +402,7 @@ tgd-geometry-lab/
 ├── spaces/embedding-space.mac  M4, H = M4 x CP2
 ├── embedding/induced.mac     indusoitu metriikka ja Kähler-muoto
 ├── embedding/second-form.mac toinen perusmuoto, Gauss, Codazzi, Ricci
-├── tgd/action.mac            toimintatiheydet, Euler–Lagrange
+├── tgd/action.mac            vaikutustiheydet, Euler–Lagrange
 ├── tgd/field-equations.mac   kovariantit kenttäyhtälöt
 ├── tgd/noether.mac           isometriat ja Noether-virrat
 ├── tgd/characteristics.mac   karakteristinen analyysi
@@ -429,7 +429,7 @@ Alkuperäisen suunnitelman hienojakoisempi jako (`wedge.mac`, `hodge.mac`, `riem
 | Kaarevuus | Bianchin identiteetit | ✅ |
 | Clifford-algebra | Clifford-relaatiot | ✅ |
 | Upotusgeometria | Gauss–Codazzi | ✅ |
-| TGD-toiminta | variaatioyhtälöiden tarkistus | 🟡 |
+| TGD-vaikutus | variaatioyhtälöiden tarkistus | 🟡 |
 
 Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $S^2$, $\mathbb R^4$, Minkowski), jotta mahdolliset virheet voidaan erottaa TGD:n omista matemaattisista oletuksista.
 
@@ -445,7 +445,7 @@ Testit ajetaan myös yksinkertaisilla tunnetuilla geometrioilla (yksikköpallo $
 | [M4](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | Yhteydet ja kaarevuus | kaarevuus- ja Bianchi-testit läpäisty | ✅ |
 | [M5](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | Clifford-geometria | paikalliset kehykset ja spin-yhteys | ✅ |
 | [M6](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | Upotusgeometria | indusoitu geometria ja Gauss–Codazzi | ✅ |
-| [M7](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | TGD:n toimintaperiaate | variaatioyhtälöt muodostuvat | 🟡 |
+| [M7](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | TGD:n vaikutusintegraali | variaatioyhtälöt muodostuvat | 🟡 |
 | [M8](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | Ratkaisuanalyysi | ensimmäiset testattavat ratkaisut | 🟡 |
 
 Toteutusjärjestys on ensin M1–M4, sitten M5–M6 ja vasta sen jälkeen M7–M8. Näin TGD-fysiikan oletukset eivät sekoitu laskentakirjaston virheisiin.
@@ -475,7 +475,7 @@ Koska tehtävä on valmis, seuraavat askeleet ovat:
 Tavoitteena ei ole pelkästään TGD:n yhtälöiden syöttäminen Maximalle, vaan järjestelmä, jossa voidaan tehdä seuraava laskentaketju
 
 $$
-\text{Upotusavaruus}\to\text{Geometria}\to\text{Differentiaalimuodot}\to\text{Yhteydet}\to\text{Kaarevuus}\to\text{Toiminta}\to\text{Kenttäyhtälöt}\to\text{Ratkaisut}
+\text{Upotusavaruus}\to\text{Geometria}\to\text{Differentiaalimuodot}\to\text{Yhteydet}\to\text{Kaarevuus}\to\text{Vaikutus}\to\text{Kenttäyhtälöt}\to\text{Ratkaisut}
 $$
 
 Ympäristö tarjoaa systemaattisen tavan tutkia TGD:n matemaattista rakennetta ja testata sen geometrisia seurauksia symbolisesti. Se ei itsessään todista TGD:n fysikaalista oikeellisuutta, mutta se voi auttaa löytämään matemaattisia seurauksia, tarkistamaan johdoksia ja tutkimaan erikoistapauksia, joiden käsin laskeminen olisi työlästä.
@@ -484,7 +484,7 @@ Ympäristö tarjoaa systemaattisen tavan tutkia TGD:n matemaattista rakennetta j
 
 ## Lähteet ja taustamateriaali
 
-- M. T. Manninen, *Through the Wormhole on Spacetime Surface – Early History of Topological Geometrodynamics Theory* (2024). Erityisesti luvut TGD:n toiminnasta ($S_K+S_V$, indusoitu $g_{\alpha\beta}$ ja $J_{\alpha\beta}$, variaatio upotuskoordinaattien $h^k$ suhteen), kenttäyhtälöistä (minimipinnat) ja twistorinostosta.
+- M. T. Manninen, *Through the Wormhole on Spacetime Surface – Early History of Topological Geometrodynamics Theory* (2024). Erityisesti luvut TGD:n vaikutusintegraalista ($S_K+S_V$, indusoitu $g_{\alpha\beta}$ ja $J_{\alpha\beta}$, variaatio upotuskoordinaattien $h^k$ suhteen), kenttäyhtälöistä (minimipinnat) ja twistorinostosta.
 - M. Pitkänen, *Topological Geometrodynamics* ja tgdtheory.fi.
 - M. Pitkänen, *The Geometry of CP2 and its Relationship to Standard Model* (CP₂-normalisointi).
 - M. Pitkänen, *About the construction of p-adic QFT limit of TGD*, hep-ph/9510361 ($L_K$, $S_K(CP_2)=\pi/8\alpha_K$).

@@ -8,11 +8,11 @@ Merkinnät ja normalisoinnit ovat [konventioissa](konventiot.md). Lukuarvot on a
 
 Kolme tulosta kannattaa lukea ensin, koska ne tarkentavat aiempaa käsitystä tai lukitsevat normalisoinnin.
 
-**Massaton ekstremaali ei ole yleisessä muodossaan minimipinta.** Pitkäsen ansatsi on $s^k=f^k(u,v)$, ja lähteen mukaan massattomat ekstremaalit ovat minimipintoja "in their simplest form at least". Laskenta tarkentaa tätä. Yleinen $f^k(u,v)$ on Kähler-toiminnan ekstremaali, mutta kenttäyhtälöiden tilavuusosa ei häviä. Pitkäsen vastauksen mukaan ansatsi on johdettu puhtaalle Kähler-toiminnalle, ja toiminnalle $S_K+S_V$ sen korvaa holografia = holomorfia. Tulos on kohdassa [Ekstremaalit](#ekstremaalit).
+**Massaton ekstremaali ei ole yleisessä muodossaan minimipinta.** Pitkäsen ansatsi on $s^k=f^k(u,v)$, ja lähteen mukaan massattomat ekstremaalit ovat minimipintoja "in their simplest form at least". Laskenta tarkentaa tätä. Yleinen $f^k(u,v)$ on Kähler-vaikutuksen ekstremaali, mutta kenttäyhtälöiden tilavuusosa ei häviä. Pitkäsen vastauksen mukaan ansatsi on johdettu puhtaalle Kähler-vaikutukselle, ja vaikutukselle $S_K+S_V$ sen korvaa holografia = holomorfia. Tulos on kohdassa [Ekstremaalit](#ekstremaalit).
 
 **Kerroin $k=3$ tulee geometriasta.** Unitaarisessa kehyksessä $CP_2$:n spinoriyhteys on $S^+$-lohkossa täsmälleen $\mathrm{diag}(3iA,-3iA)$, kun $dA=J$. Leptonien kerroin $k=3$ kumoaa siis yhteyden kokonaan, ja yksi spinori on kovariantisti vakio. Tämä on TGD:n oikeakätinen neutriino.
 
-**Holomorfisen pinnan Kähler-osa riippuu siitä, mikä Kähler-muoto toiminnassa on.** Lagrangen vuoputken molemmat kenttäyhtälöiden osat häviävät, ja Pitkäsen vastauksen mukaan se on oma ratkaisutyyppinsä. Holomorfisilla pinnoilla tilavuusosa häviää aina, mutta litteässä Hamilton–Jacobi-rakenteessa Lorentz 4-voima ei häviä yhdelläkään pinnalla, jolla on $w$-riippuvuus. Yhdellä summamuodolla $J(CP_2)+J(M^4)$ Kähler-osa häviäisi, mutta Pitkäsen linjauksen mukaan muodot ovat erilliset termit. Pallomaisessa rakenteessa Kähler-osa häviää ilman $M^4$:n muotoa täsmälleen suoralle ja kartioleikkaukselle. Tulokset ovat kohdassa [Holografia = holomorfia](#holografia-holomorfia).
+**Holomorfisen pinnan Kähler-osa riippuu siitä, mikä Kähler-muoto vaikutuksessa on.** Lagrangen vuoputken molemmat kenttäyhtälöiden osat häviävät, ja Pitkäsen vastauksen mukaan se on oma ratkaisutyyppinsä. Holomorfisilla pinnoilla tilavuusosa häviää aina, mutta litteässä Hamilton–Jacobi-rakenteessa Lorentz 4-voima ei häviä yhdelläkään pinnalla, jolla on $w$-riippuvuus. Yhdellä summamuodolla $J(CP_2)+J(M^4)$ Kähler-osa häviäisi, mutta Pitkäsen linjauksen mukaan muodot ovat erilliset termit. Pallomaisessa rakenteessa Kähler-osa häviää ilman $M^4$:n muotoa täsmälleen suoralle ja kartioleikkaukselle. Tulokset ovat kohdassa [Holografia = holomorfia](#holografia-holomorfia).
 
 ## $CP_2$:n geometria
 
@@ -25,7 +25,7 @@ Fubini–Study-metriikka johdetaan Kähler-potentiaalista $K=\log(1+\lvert z\rve
 | Holomorfinen leikkauskaarevuus | $4$ |
 | Tilavuus | $\mathrm{Vol}(CP_2)=\pi^2/2$ |
 | Kähler-invariantti | $J_{kl}J^{kl}=4$ |
-| CP₂-tyyppisen ekstremaalin toiminta | $S_K=\pi/(8\alpha_K)$ |
+| CP₂-tyyppisen ekstremaalin vaikutus | $S_K=\pi/(8\alpha_K)$ |
 | Kähler-vuo | $\pi$ yli $CP_1$:n, $2\pi$ yli kartion $z^2=(z^1)^2$ |
 
 Vuo toimii homologisena testinä, koska kartion aste on 2 ja sen vuo on siksi kaksinkertainen. Kaikki kolme karttaa on testattu, ja metriikka ja Kähler-muoto säilyvät jokaisessa karttasiirtymässä.
@@ -78,7 +78,7 @@ Toisella rivillä $T^{\alpha\beta}\propto k^\alpha k^\beta$ ja Kähler-virta on 
 
 Kolmas rivi osoittaa, että $x$-riippuvuus on silti mahdollinen. Se on $CP_2$:n geodeesi, jonka suunta kääntyy $u$:n mukana, ja sillä $J_{ux}\ne0$ ja virta $j^v\ne0$.
 
-Taulukon nolla tarkoittaa, että kyseisen termin Euler–Lagrange-osa häviää. Toiminnan arvon ei tarvitse olla nolla, ja Pitkäsen vastauksen mukaan ekstremaalille riittää juuri tämä. Koska kenttäyhtälöt ovat lineaarisia kertoimissa, minimipinta on toiminnan $S_K+S_V$ ekstremaali täsmälleen silloin, kun myös Kähler-osa häviää.
+Taulukon nolla tarkoittaa, että kyseisen termin Euler–Lagrange-osa häviää. Vaikutuksen arvon ei tarvitse olla nolla, ja Pitkäsen vastauksen mukaan ekstremaalille riittää juuri tämä. Koska kenttäyhtälöt ovat lineaarisia kertoimissa, minimipinta on vaikutuksen $S_K+S_V$ ekstremaali täsmälleen silloin, kun myös Kähler-osa häviää.
 
 ## Ratkaisugeneraattori
 
@@ -122,7 +122,7 @@ Pinta on aika-akseli kertaa katenoidi avaruudessa $\mathbb R^3\times$ geodeesi, 
 
 Pitkäsen muotoilussa pinta on juurijoukko $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w$ ja valon kaltaisessa $u$:ssa. Generaattorin funktio `hh_sheets` ratkaisee juuret, ja jokainen juuri on yksi lehti. Esimerkiksi ehdot $(\xi^1)^2=w^2/4$ ja $\xi^2=(\xi^1)^2$ antavat kaksi lehteä, ja molemmat ovat minimipintoja. Täsmällinen muotoilu on [konventioissa](konventiot.md#holografia-holomorfia).
 
-**Litteä rakenne.** Pitkäsen mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan toiminnan ekstremaaleja. Minimipintaominaisuus toteutuu kaikilla testatuilla pinnoilla. Kähler-osa ei sen sijaan häviä pelkällä $CP_2$:n Kähler-muodolla yhdelläkään pinnalla, jolla on $w$-riippuvuus. Pinnalla $\xi^1=w/2$ tensorisupistus $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}$ on nolla, mutta virta on poikittainen, eikä Lorentz 4-voima häviä.
+**Litteä rakenne.** Pitkäsen mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan vaikutuksen ekstremaaleja. Minimipintaominaisuus toteutuu kaikilla testatuilla pinnoilla. Kähler-osa ei sen sijaan häviä pelkällä $CP_2$:n Kähler-muodolla yhdelläkään pinnalla, jolla on $w$-riippuvuus. Pinnalla $\xi^1=w/2$ tensorisupistus $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}$ on nolla, mutta virta on poikittainen, eikä Lorentz 4-voima häviä.
 
 Pitkäsen mukaan poikittaisen virran ei tarvitse hävitä, koska riittää, että Lorentz 4-voima häviää, ja H-H takaa tämän. Se laskettiin suoraan koko pintaluokalle $\xi^k=f^k(u,w)$. Virralla ei ole $u$-komponenttia, ja voimalle pätee $f_v=0$, $f_x=-j^yJ_{xy}$ ja $f_y=j^xJ_{xy}$. Voima häviää siis täsmälleen, kun poikittainen virta häviää. Sama ehto seuraa topologisoidusta virrasta ja virran valon kaltaisuudesta, koska instantonivirralla on tällä pintaluokalla vain $v$-komponentti ja $j^\alpha j_\alpha\propto(j^x)^2+(j^y)^2$.
 
@@ -134,7 +134,7 @@ $$
 (1-\varepsilon)^2.
 $$
 
-Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Pitkäsen linjaus on kuitenkin, että $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Julkaistuna ratkaisu on artikkelissa Martin2 partoniratojen Kähler–Chern–Simons-toiminnalle. Koska kummankin muodon Kähler-osa on testatuilla pinnoilla sama, kokonaisosa on kertoimien summa kerrottuna tällä osalla. Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä näillä pinnoilla. Tämä kuuluu [jatkokysymykseen Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Arvolla $\varepsilon=1$ Kähler-osa häviää kaikilla viidellä testatulla pinnalla, joiden joukossa on $u$-riippuvia. Silloin testatulla pinnalla $\xi^1=w/2$ virta on nolla ja $J_{\alpha\beta}J^{\alpha\beta}=2$ on vakio. Pitkäsen linjaus on kuitenkin, että $J(M^4)$ ja $J(CP_2)$ ovat vaikutuksessa erilliset termit. Julkaistuna ratkaisu on artikkelissa Martin2 partoniratojen Kähler–Chern–Simons-vaikutukselle. Koska kummankin muodon Kähler-osa on testatuilla pinnoilla sama, kokonaisosa on kertoimien summa kerrottuna tällä osalla. Molemmat kertoimet ovat etumerkkisääntöjen mukaan positiivisia, joten osa ei häviä näillä pinnoilla. Tämä kuuluu [jatkokysymykseen Matille](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
 **Pallomainen rakenne.** Koordinaateissa $t\pm r$ ja $w$ pallolla $S^2$ tilanne on toinen, koska poikittainen metriikka on nyt kaareva. Pelkällä $CP_2$:n Kähler-muodolla Kähler-osa häviää, kun vetäisy on verrannollinen pallon metriikkaan. Yksinkertaisin esimerkki on suora
 
@@ -174,21 +174,21 @@ Kaikki 18 virtaa säilyvät ratkaisuilla, joita ovat kanoninen $M^4$, kosminen s
 
 Linearisoidut kenttäyhtälöt on kirjoitettu LanyonScriptsin `calcev`-tyyliin muotoon $\partial_tU+A\,\partial_xU=0$, ja $A$:n ominaisarvot ovat häiriön rintaman nopeudet. Vertailutapauksena Nambu–Goto-pinnan nopeudet ovat indusoidun metriikan valokartio.
 
-| Tausta ja toiminta | Suunta | Nopeudet | Tyyppi |
+| Tausta ja vaikutus | Suunta | Nopeudet | Tyyppi |
 |---|---|---|---|
 | $M^4$, tilavuustermi mukana | mikä tahansa | $\pm1$ | hyperbolinen |
-| $M^4$, pelkkä Kähler-toiminta | mikä tahansa | pääosa on nolla | degeneroitunut |
+| $M^4$, pelkkä Kähler-vaikutus | mikä tahansa | pääosa on nolla | degeneroitunut |
 | kosminen säie | säikeen suuntaan | $\pm1$ | hyperbolinen, kun $c_V+2c_K\ne0$ |
 | kosminen säie | säikeen poikki | $s^2=\dfrac{c_V-2c_K}{c_V+2c_K}$ | riippuu kertoimista |
 | ME, pelkkä tilavuustermi | $k$:ta vastaan kohtisuoraan | indusoidun metriikan valokartio | hyperbolinen |
-| ME, pelkkä Kähler-toiminta | $k$:n suuntaan | $s=1$ seitsenkertaisena | heikosti hyperbolinen |
-| ME, pelkkä Kähler-toiminta | poikittain ($x$) | $s=0$ kuusinkertaisena | |
+| ME, pelkkä Kähler-vaikutus | $k$:n suuntaan | $s=1$ seitsenkertaisena | heikosti hyperbolinen |
+| ME, pelkkä Kähler-vaikutus | poikittain ($x$) | $s=0$ kuusinkertaisena | |
 
 Kaksi riviä kannattaa nostaa esiin.
 
-Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-toiminnalla $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin tällä taustalla. Pitkäsen etumerkkisäännöistä seuraa $c_K>0$ ja $c_V>0$ ([konventiot](konventiot.md#kertoimien-etumerkki)), joten nopeus jää valon nopeuden alle ja $0<s^2<1$, kun $c_V>2c_K$. Jos magneettinen osa on suurempi, eli $c_V<2c_K$, kaava antaa $s^2<0$, jolloin häiriö kasvaa säikeen poikki. Pitkäsen mukaan magneettinen osa on kosmisilla säikeillä suuri ja säikeet ovat epästabiileja $M^4$-projektion paksuuntumiselle. Tulos näyttää sopivan tähän, mutta se koskee vain yhtälön pääosaa.
+Kosmisen säikeen poikki nopeuden neliö voi olla negatiivinen. Pelkällä Kähler-vaikutuksella $s^2=-1$, ja yhtälön tyyppi on elliptinen. Kertoimien suhde ja etumerkki ratkaisevat siis yhtälön tyypin tällä taustalla. Pitkäsen etumerkkisäännöistä seuraa $c_K>0$ ja $c_V>0$ ([konventiot](konventiot.md#kertoimien-etumerkki)), joten nopeus jää valon nopeuden alle ja $0<s^2<1$, kun $c_V>2c_K$. Jos magneettinen osa on suurempi, eli $c_V<2c_K$, kaava antaa $s^2<0$, jolloin häiriö kasvaa säikeen poikki. Pitkäsen mukaan magneettinen osa on kosmisilla säikeillä suuri ja säikeet ovat epästabiileja $M^4$-projektion paksuuntumiselle. Tulos näyttää sopivan tähän, mutta se koskee vain yhtälön pääosaa.
 
-Pelkkä Kähler-toiminta on $M^4$:n ympärillä degeneroitunut ja ME-taustalla heikosti hyperbolinen. Tämä on sopusoinnussa tunnetun Kähler-toiminnan tyhjiödegeneraation kanssa, mutta tulkinta on Pitkäsen.
+Pelkkä Kähler-vaikutus on $M^4$:n ympärillä degeneroitunut ja ME-taustalla heikosti hyperbolinen. Tämä on sopusoinnussa tunnetun Kähler-vaikutuksen tyhjiödegeneraation kanssa, mutta tulkinta on Pitkäsen.
 
 Tulokset koskevat yhtälön pääosaa yhdessä pisteessä. Ne eivät vielä kerro ratkaisujen stabiiliudesta.
 

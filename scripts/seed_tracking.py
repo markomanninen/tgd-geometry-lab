@@ -41,7 +41,7 @@ LABELS = {
     "geometria": ("006b75", "Yhteydet, kaarevuus, Cartan"),
     "clifford": ("b60205", "Clifford-algebra, vielbein, spin-yhteys"),
     "upotus": ("fbca04", "M4 x CP2 -upotusgeometria"),
-    "tgd-dynamiikka": ("d93f0b", "Toiminta, variaatio, kenttäyhtälöt"),
+    "tgd-dynamiikka": ("d93f0b", "Vaikutus, variaatio, kenttäyhtälöt"),
     "analyysi": ("c5def5", "Ratkaisut, numeriikka, visualisointi"),
     "testit": ("bfd4f2", "Testit ja validointi"),
     "colab": ("f9d0c4", "Colab-kirjat"),
@@ -56,7 +56,7 @@ MILESTONES = [
     ("M4 Yhteydet ja kaarevuus", "Valmis kun: kaarevuus-, Bianchi- ja torsiotestit läpäisty. Vaiheet IV.1-2, V"),
     ("M5 Clifford-geometria", "Valmis kun: paikalliset kehykset ja spin-yhteys toimivat. Vaihe IV.3-5"),
     ("M6 Upotusgeometria", "Valmis kun: indusoitu geometria ja Gauss–Codazzi toimivat. Vaiheet I.3-4, VI"),
-    ("M7 TGD:n toimintaperiaate", "Valmis kun: variaatioyhtälöt muodostuvat upotuskoordinaattien suhteen. Vaihe VII"),
+    ("M7 TGD:n vaikutusintegraali", "Valmis kun: variaatioyhtälöt muodostuvat upotuskoordinaattien suhteen. Vaihe VII"),
     ("M8 Ratkaisuanalyysi", "Valmis kun: ensimmäiset testattavat ratkaisut saatu. Vaihe VIII"),
 ]
 
@@ -117,10 +117,10 @@ ISSUES = [
     (6, "Step 6.5: Gaussin, Codazzin ja Riccin yhtälöt", ["upotus", "geometria", "testit"], False,
      "- [ ] Gauss: sisäinen kaarevuus = ympäröivä + B·B -termit\n- [ ] Codazzi ja Ricci (normaalikimppu)\n- [ ] testit pallolla R³:ssa ja kosmisella säikeellä\n\nValmis kun identiteetit tarkistuvat symbolisesti."),
     # ---- M7
-    (7, "Step 7.1: toimintatiheydet L_K, L_V ja J∧J", ["tgd-dynamiikka"], True,
+    (7, "Step 7.1: vaikutustiheydet L_K, L_V ja J∧J", ["tgd-dynamiikka"], True,
      "`tgd/action.mac`; kertoimet c_K, c_V symbolisina."),
     (7, "Step 7.3: Euler–Lagrange-moottori", ["tgd-dynamiikka", "testit"], True,
-     "Testit: aaltoyhtälö, minimipintayhtälö tilavuustoiminnasta."),
+     "Testit: aaltoyhtälö, minimipintayhtälö tilavuusvaikutuksesta."),
     (7, "Step 7.2: L_TGD:n variaatio upotuskoordinaattien h^k suhteen", ["tgd-dynamiikka", "fysiikka"], False,
      "- [ ] kentät = upotuskoordinaatit (M4-projektio tai CP2-koordinaatit QFT-rajalla)\n- [ ] EL-yhtälöt L = (c_K J·J + c_V)√|g|:stä\n- [ ] vertailu Pitkäsen kovarianttiin muotoon D_α(T^{αβ}∂_β h^k) + J-termit = 0\n\nValmis kun yhtälöt muodostuvat ja täsmäävät kovarianttiin muotoon."),
     (7, "Tarkistus: kosminen säie ja ME ovat ekstremaaleja", ["tgd-dynamiikka", "fysiikka", "testit"], False,

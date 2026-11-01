@@ -19,7 +19,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M4 Kaarevuus | 3/3 ✅ | – |
 | M5 Clifford-geometria | 4/4 ✅ | – |
 | M6 Upotus | 4/4 ✅ | – |
-| M7 Toiminta | 6/6 ✅ | – |
+| M7 Vaikutus | 6/6 ✅ | – |
 | M8 Ratkaisut | 2/3 | #35:n kaksi jatkokysymystä Kähler-osasta ja $u$:n roolista |
 
 Kaikki 330 testiä menevät läpi.
@@ -35,7 +35,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | Kysymys | Vastaus | Lähde | Tila |
 |---|---|---|---|
 | CP₂:n normalisointi (#10) | $ds^2=R^2\partial\bar\partial K$, jossa $K=\log(1+r^2)$, sekä $\mathrm{Ric}=6g/R^2$ ja $S_K(CP_2)=\pi/(8\alpha_K)$ | Pitkänen, *The Geometry of CP2…* ja hep-ph/9510361 | ✅ toteutettu ja testattu |
-| Kähler-toiminnan kerroin (#27) | $L_K=\frac{1}{4g_K^2}J^{\mu\nu}J_{\mu\nu}\sqrt g$, $\alpha_K=g_K^2/4\pi$ | hep-ph/9510361 | ✅ konventioissa |
+| Kähler-vaikutuksen kerroin (#27) | $L_K=\frac{1}{4g_K^2}J^{\mu\nu}J_{\mu\nu}\sqrt g$, $\alpha_K=g_K^2/4\pi$ | hep-ph/9510361 | ✅ konventioissa |
 | M⁴:n Kähler-rakenne | Twistorinosto vaatii sen, mutta vaikutus ~10⁻¹⁷ → ohitetaan toistaiseksi | Pitkäsen blogi 2025 | ✅ päätetty |
 | Spinorikytkentä (#19) | Kähler-kytkentä $k=1$ kvarkeille, $k=3$ leptoneille | Pitkäsen blogi 2017 | ✅ toteutusohje |
 | ME-ansatsi (#28) | CP₂-koordinaatit funktioita $u=k\cdot m$, $v=\varepsilon\cdot m$ – vastaa omaamme. Lähde rajaa minimipintaväitteen sanoin "in their simplest form at least". Laskettu tulos on `docs/konventiot.md`:ssä | Pitkänen, *Extremals of the Kähler Action* (2024), luvut 6.2–6.3 | 🟡 ks. avoimet |
@@ -46,9 +46,9 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | Issue | Vastaus | Tila |
 |---|---|---|
 | #27 | Etumerkki ei näy H-H-pintojen eikä Lagrangen minimipintojen kenttäyhtälöissä. Se vaikuttaa kosmologiseen vakioon ja Kähler-funktion eksponenttiin, ja $1/\alpha_K$ on yhteinen kerroin | ✅ konventioissa |
-| #28 | Ansatsi $s^k(u,v)$ on johdettu puhtaalle Kähler-toiminnalle, ja toiminnalle $S_K+S_V$ sen korvaa H-H, josta minimipintaominaisuus seuraa | ✅ konventioissa |
+| #28 | Ansatsi $s^k(u,v)$ on johdettu puhtaalle Kähler-vaikutukselle, ja vaikutukselle $S_K+S_V$ sen korvaa H-H, josta minimipintaominaisuus seuraa | ✅ konventioissa |
 | #31 | $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w,u$. Lagrangen pinnat ovat oma ratkaisutyyppinsä | ✅ toteutettu ja testattu |
-| #35 | $J(M^4)$ ja $J(CP_2)$ ovat toiminnassa erilliset termit. Lorentz 4-voiman pitäisi hävitä H-H-pinnoilla ilman, että poikittainen virta häviää. Etumerkit seuraavat energian positiivisuudesta | 🟡 merkit laskettu ($c_K,c_V>0$), voima ei häviä litteässä rakenteessa |
+| #35 | $J(M^4)$ ja $J(CP_2)$ ovat vaikutuksessa erilliset termit. Lorentz 4-voiman pitäisi hävitä H-H-pinnoilla ilman, että poikittainen virta häviää. Etumerkit seuraavat energian positiivisuudesta | 🟡 merkit laskettu ($c_K,c_V>0$), voima ei häviä litteässä rakenteessa |
 
 ### Avoinna – kysytään Matilta
 

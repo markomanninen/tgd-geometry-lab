@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml)
 
-Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä Topological Geometrodynamics (TGD) -teorian geometrian tutkimiseen. Mukana ovat $CP_2$:n Fubini–Study-geometria, differentiaalimuodot, yhteydet ja kaarevuus, upotusavaruus $H=M^4\times CP_2$, indusoitu geometria ja TGD:n toimintaperiaate.
+Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä Topological Geometrodynamics (TGD) -teorian geometrian tutkimiseen. Mukana ovat $CP_2$:n Fubini–Study-geometria, differentiaalimuodot, yhteydet ja kaarevuus, upotusavaruus $H=M^4\times CP_2$, indusoitu geometria ja TGD:n vaikutusintegraali.
 
 **Tulokset voi lukea [sivustolta](https://markomanninen.github.io/tgd-geometry-lab/).**
 
@@ -18,7 +18,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 |---|---|---|
 | 01 · Ympäristö ja testit | asennus, koko testisarja, Clifford-relaatiot, LanyonScriptsin esimerkit vertailuna | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/01_ymparisto_ja_testit.ipynb) |
 | 02 · $CP_2$ ja Fubini–Study | Kähler-potentiaali → metriikka → $\omega$, $J$ → Christoffel → Riemann/Ricci → karttasiirtymät | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/02_cp2_fubini_study.ipynb) |
-| 03 · Upotus ja toiminta | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_toiminta.ipynb) |
+| 03 · Upotus ja vaikutus | $H=M^4\times CP_2$, kanoninen $M^4$, kosminen säie, massaton ekstremaali, Euler–Lagrange | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/03_upotus_ja_vaikutus.ipynb) |
 | 04 · Numeriikka ja kuvat | yhtälön tyyppi kertoimien funktiona, Kähler-vuo ja kentät ratkaisulla, ja numeriikka tarkistetaan analyyttisiä arvoja vasten | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/markomanninen/tgd-geometry-lab/blob/main/notebooks/04_numeriikka_ja_kuvat.ipynb) |
 
 ## Mitä on varmistettu (330 testiä)
@@ -33,7 +33,7 @@ Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/Lanyo
 | Kehykset ja Cartan | $g=e^T\eta e$, $T^a=0$ ja $\Omega$ = Riemann sekä spin-yhteys kahta reittiä ($CP_2$, $H$, FRW) |
 | Spinorit | $D_\mu\gamma^\nu=0$ ja $\tfrac12\gamma\gamma F=-R/4$. Kerroin $k=3$ antaa vakion $\nu_R$, ja vuo on kokonaisluku parittomilla $k$. |
 | Ekstrinsinen geometria | $B^k{}_{\alpha\beta}$ ja $H^k$ sekä Gauss, Codazzi ja Ricci kaarevassa ympäristössä |
-| Toiminta | Euler–Lagrange → aaltoyhtälö, tilavuustoiminta → minimipintayhtälö ja kovariantti kenttäyhtälö = määritelmästä laskettu $E_k$ |
+| Vaikutus | Euler–Lagrange → aaltoyhtälö, tilavuusvaikutus → minimipintayhtälö ja kovariantti kenttäyhtälö = määritelmästä laskettu $E_k$ |
 | Säilymislait | $H$:n 18 isometriaa, $su(3)$ ja $D_\alpha j^\alpha=2K^k\mathrm{Eq}_k$ myös ei-ratkaisuilla. Virrat säilyvät vertailuratkaisuilla. |
 | Holografia = holomorfia | Juuret $f_1=f_2=0$ lehdittäin, minimipintaominaisuus sekä Kähler-osa litteässä ja pallomaisessa rakenteessa, $M^4$:n Kähler-muodon vaikutus $(1-\varepsilon)^2$, Lorentz 4-voima, kertoimien etumerkit ja Hamilton–Jacobi-rakenteiden ehto |
 | Karakteristiikat | $\partial_tU+A\,\partial_xU=0$ sekä nopeudet $M^4$:n, kosmisen säikeen ja ME:n ympärillä. Yhtälön tyyppi riippuu kertoimista. |
@@ -100,7 +100,7 @@ Dokumentit on tarkoitettu luettaviksi [sivustolla](https://markomanninen.github.
 | [M4 Kaarevuus](https://github.com/markomanninen/tgd-geometry-lab/milestone/4) | 3/3 ✅ |
 | [M5 Clifford-geometria](https://github.com/markomanninen/tgd-geometry-lab/milestone/5) | 4/4 ✅ |
 | [M6 Upotus](https://github.com/markomanninen/tgd-geometry-lab/milestone/6) | 4/4 ✅ |
-| [M7 Toiminta](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 6/6 |
+| [M7 Vaikutus](https://github.com/markomanninen/tgd-geometry-lab/milestone/7) | 6/6 |
 | [M8 Ratkaisut](https://github.com/markomanninen/tgd-geometry-lab/milestone/8) | 2/3 |
 
 Ajantasainen tila on [milestone-sivulla](https://github.com/markomanninen/tgd-geometry-lab/milestones). Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis, ja Matti Pitkäsen linjaukset on kirjattu konventioihin. Avoimet jatkokysymykset Kähler-osasta ja $u$:n roolista ovat issuessa #35.
