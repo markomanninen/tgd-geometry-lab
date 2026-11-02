@@ -1,0 +1,94 @@
+/* Interior action with the curvature scalar: Pitkanen's comments of 2.11.2026.
+   The results here fix what R + volume does on the two Hamilton-Jacobi structures, and
+   the numbers of the energy and of the line element (4.19). */
+section("tgd/curvature-action: curvature scalar and volume in the interior")$
+ic_null(v) := every(lambda([e], is(e = 0)), flatten(if matrixp(v) then args(v) else v))$
+ic_HG : H_metric()$
+ic_SH : sj_H_metric()$
+ic_sph(z1, z2) := emb_setup(ic_SH, sj_H_X, sj_surface(z1, z2), sj_X)$
+ic_flat(z1, z2) := emb_setup(ic_HG, H_X, holo_surface(lc_m4, z1, z2), lc_chart)$
+ic_GB(em) := map(tgd_simp, second_form_trace(induced_einstein(em), second_fundamental_form(em)))$
+ic_H(em) := map(tgd_simp, mean_curvature(em, second_fundamental_form(em)))$
+ic_low(em) := block([g : emb_get(em, 'g), G : induced_einstein(em)], tgd_msimp(g . G . g))$
+/* ---------- spherical structure, every map xi(w): only G_rw survives ---------- */
+ic_Phi(em) := tgd_simp(-emb_get(em, 'g)[3,3])$
+ic_e2 : ic_sph(2*sj_w, 0)$
+ic_G2 : ic_low(ic_e2)$
+ic_P2 : ic_Phi(ic_e2)$
+check("spherical, xi1 = 2 w: the transverse block stays conformal, g_ab = -Phi delta_ab",
+      is(tgd_simp(emb_get(ic_e2,'g)[3,4]) = 0) and is(tgd_simp(emb_get(ic_e2,'g)[3,3] - emb_get(ic_e2,'g)[4,4]) = 0))$
+check("spherical, xi1 = 2 w: G_xx = G_yy and G_xy = 0, so G_ww = 0",
+      is(tgd_simp(ic_G2[3,3] - ic_G2[4,4]) = 0) and is(tgd_simp(ic_G2[3,4]) = 0))$
+check("spherical, xi1 = 2 w: G_ra = -(1/2) d_r d_a log Phi",
+      is(tgd_simp(ic_G2[2,3] + diff(diff(log(ic_P2), hr), sa)/2) = 0)
+      and is(tgd_simp(ic_G2[2,4] + diff(diff(log(ic_P2), hr), sb)/2) = 0))$
+ic_om(z) := tgd_simp(ic_Phi(ic_sph(z[1], z[2])) - hr^2*sj_rho)$
+check("the pullback is proportional to the sphere: line 1/4",
+      is(tgd_simp(ic_om([sj_w, 0])/sj_rho - 1/4) = 0))$
+check("the pullback is proportional to the sphere: conic 1/2",
+      is(tgd_simp(ic_om([sqrt(2)*sj_w, sj_w^2])/sj_rho - 1/2) = 0))$
+check("the pullback is proportional to the sphere: isometric image of the line 1/4",
+      is(tgd_simp(ic_om([(1 + sj_w)/(1 - sj_w), 0])/sj_rho - 1/4) = 0))$
+check("xi1 = 2 w: the ratio to the sphere depends on w",
+      is(diff(tgd_simp(ic_om([2*sj_w, 0])/sj_rho), sa) # 0))$
+check("spherical: the Einstein trace vanishes on the isometric image of the line",
+      ic_null(ic_GB(ic_sph((1 + sj_w)/(1 - sj_w), 0))))$
+check("spherical: H = 0 and the Einstein trace # 0 on xi1 = w^3",
+      block([e : ic_sph(sj_w^3, 0)], ic_null(ic_H(e)) and not ic_null(ic_GB(e))))$
+check("spherical: H = 0 and the Einstein trace # 0 on xi1 = w + w^2",
+      block([e : ic_sph(sj_w + sj_w^2, 0)], ic_null(ic_H(e)) and not ic_null(ic_GB(e))))$
+/* ---------- type of the Einstein tensor in (u, v, w, wbar) ---------- */
+ic_T : matrix([1,0,0,0],[0,1,0,0],[0,0,1,%i],[0,0,1,-%i])$
+ic_types(em) := tgd_msimp(ic_T . induced_einstein(em) . transpose(ic_T))$
+ic_Ft : ic_types(ic_flat(lc_w^2, 0))$
+check("flat, xi1 = w^2: only G^uv survives, the tensor is of type (1,1)",
+      block([m : copymatrix(ic_Ft)], m[1,2] : 0, m[2,1] : 0, ic_null(m)) and is(ic_Ft[1,2] # 0))$
+ic_Fu : ic_types(ic_flat(uu*lc_w, 0))$
+check("flat, xi1 = u w: G^vv and G^v wbar do not vanish, G^uu = G^ww = G^(w wbar) = 0",
+      is(ic_Fu[2,2] # 0) and is(ic_Fu[2,4] # 0)
+      and ic_null([ic_Fu[1,1], ic_Fu[1,3], ic_Fu[1,4], ic_Fu[3,3], ic_Fu[3,4], ic_Fu[4,4]]))$
+/* ---------- products M^1 x X^2 x S^1 and the energy ---------- */
+ic_D : 1 + xx^2 + yy^2$
+ic_n : [2*xx/ic_D, 2*yy/ic_D, (1 - xx^2 - yy^2)/ic_D]$
+ic_circle(q) := [(1 - q^2)/(1 + q^2), 2*q/(1 + q^2), 0, 0]$  /* the circle |xi1| = 1 of CP_1 */
+assume(ic_a > 0)$
+ic_pr : emb_setup(ic_HG, H_X, append([t], ic_a*ic_n, ic_circle(qq)), [t, xx, yy, qq])$
+check("M^1 x S^2(a) x S^1: the Einstein trace vanishes", ic_null(ic_GB(ic_pr)))$
+check("M^1 x S^2(a) x S^1: H # 0, so the volume term needs a minimal X^2", not ic_null(ic_H(ic_pr)))$
+check("M^1 x S^2(a) x S^1: R = -2/a^2 and G^tt = 1/a^2",
+      block([g : emb_get(ic_pr,'g), Ric : induced_ricci(ic_pr)],
+        is(tgd_simp(scalar_curvature(g, Ric) + 2/ic_a^2) = 0)
+        and is(tgd_simp(induced_einstein(ic_pr)[1,1] - 1/ic_a^2) = 0)))$
+check("the circle |xi1| = 1 has length pi", is(integrate(1/(1 + qq^2), qq, minf, inf) = %pi))$
+ic_st : emb_setup(ic_HG, H_X, append([t, 0, 0, zz], cp2_real(lc_w, 0)), [t, zz, xx, yy])$
+check("M^2 x CP_1: H = 0 and the Einstein trace vanishes", ic_null(ic_H(ic_st)) and ic_null(ic_GB(ic_st)))$
+check("M^2 x CP_1: R = -8 and G^tt = 4 when R = 1",
+      block([g : emb_get(ic_st,'g), Ric : induced_ricci(ic_st)],
+        is(tgd_simp(scalar_curvature(g, Ric) + 8) = 0)
+        and is(tgd_simp(induced_einstein(ic_st)[1,1] - 4) = 0)))$
+check("CP_1 has area pi when R = 1",
+      block([assume_pos : true], is(tgd_simp(-emb_get(ic_st,'g)[3,3]*(1 + xx^2 + yy^2)^2) = 1))
+      and is(integrate(2*%pi*p/(1 + p^2)^2, p, 0, inf) = %pi))$
+/* energy density c_V g^tt - 2 c_R G^tt with c_V = L/(8 pi G), c_R = 1/(16 pi G) */
+ic_T8 : (%pi*Lam/(8*%pi*GN) - 4*2/(16*%pi*GN)*%pi)*8*GN$
+check("string: 8 G T = Lambda R^2 - 4", is(ratsimp(ic_T8 - (Lam - 4)) = 0))$
+check("Kahler string: 2 pi c_K with c_K = 1/(16 pi aK) is 1/(8 aK)",
+      is(ratsimp(2*%pi/(16*%pi*aK) - 1/(8*aK)) = 0))$
+/* ---------- the line element (4.19) ---------- */
+ic_m : matrix([0,gA,gB,gBb],[gA,0,gD,gDb],[gB,gD,0,gC],[gBb,gDb,gC,0])/2$
+ic_adj : adjoint(ic_m)$
+check("(4.19): g^++ det g = C D Dbar/4, so (grad S^+)^2 = 0 forces D = 0 for real metrics",
+      is(ratsimp(ic_adj[1,1] - gC*gD*gDb/4) = 0))$
+check("(4.19): g^-- det g = C B Bbar/4, so (grad S^-)^2 = 0 forces B = 0 for real metrics",
+      is(ratsimp(ic_adj[2,2] - gC*gB*gBb/4) = 0))$
+check("(4.19): g^ww det g = 2 g_{+-} g_{+wb} g_{-wb} in matrix entries",
+      is(ratsimp(ic_adj[3,3] - 2*ic_m[1,2]*ic_m[1,4]*ic_m[2,4]) = 0))$
+/* ---------- (t +- rho) ---------- */
+assume(rh > 0)$
+ic_cyl : [t, rh, ph, zz]$
+ic_gi : matrix([1,0,0,0],[0,-1,0,0],[0,0,-1/rh^2,0],[0,0,0,-1])$
+ic_ip(f, h) := ratsimp(sum(ic_gi[i,i]*diff(f, ic_cyl[i])*diff(h, ic_cyl[i]), i, 1, 4))$
+check("(t +- rho): (grad w)^2 = (1 - rho^2)/rho^2 for w = z + i phi",
+      is(ratsimp(ic_ip(zz + %i*ph, zz + %i*ph) - (1 - rh^2)/rh^2) = 0))$
+check("(t +- rho): (u, v, log rho, phi) are not coordinates",
+      is(determinant(matrix([1,-1,0,0],[1,1,0,0],[0,1/rh,0,0],[0,0,1,0])) = 0))$

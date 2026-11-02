@@ -1,0 +1,46 @@
+/* Noether energy of the action c_V + c_R R of the induced metric, on a surface with h^t = t.
+   The density is sqrt|g| P^tt with P^ab = c_V g^ab - 2 c_R G^ab, and c_V = Lambda/(8 pi G),
+   c_R = 1/(16 pi G) give P^ab = (Lambda g^ab - G^ab)/(8 pi G). */
+ie_einstein_up(g, X) := block([gi : invert(g), Ric, Rs],
+  Ric : eff_ricci(g, X),
+  Rs : scalar_curvature(g, Ric),
+  map(ratsimp, gi . (Ric - Rs/2*g) . gi))$
+ie_zero(m) := is(trigsimp(ratsimp(m)) = zeromatrix(length(m), length(m)))$
+
+/* Einstein's vacuum: the current vanishes */
+assume(rEn > 0, thEn > 0, thEn < %pi)$
+XEn : [tEn, rEn, thEn, phEn]$
+ie_static(f, h) := matrix([f, 0, 0, 0], [0, -h, 0, 0], [0, 0, -rEn^2, 0], [0, 0, 0, -rEn^2*sin(thEn)^2])$
+fSc : 1 - 2*MEn/rEn$
+check("Schwarzschild: P^ab = 0 with Lambda = 0, so the Noether energy density vanishes",
+      ie_zero(ie_einstein_up(ie_static(fSc, 1/fSc), XEn)))$
+fSd : 1 - 2*MEn/rEn - LaEn*rEn^2/3$
+gSd : ie_static(fSd, 1/fSd)$
+check("Schwarzschild-de Sitter: G^ab = Lambda g^ab, so P^ab = 0",
+      ie_zero(ie_einstein_up(gSd, XEn) - LaEn*invert(gSd)))$
+
+/* A static star: the metric with mass function m(r) gives G^tt = 2 m'/(r^2 f) */
+depends([fEn, mEn], rEn)$
+gSt : ie_static(fEn, 1/(1 - 2*mEn/rEn))$
+GSt : ie_einstein_up(gSt, XEn)$
+check("static star: G^tt = 2 m'/(r^2 f), so the density of the R part is -rho/f with G^tt = 8 pi rho/f",
+      is(ratsimp(GSt[1,1] - 2*diff(mEn, rEn)/(rEn^2*fEn)) = 0))$
+
+/* sqrt|g| G^tt/(8 pi) = rho r^2 sin(th)/(sqrt f sqrt(1 - 2 m/r)), to first order for a uniform ball */
+assume(aEn > 0, MEn > 0)$
+ie_rho(r) := 3*MEn/(4*%pi*aEn^3)$
+ie_m(r) := MEn*r^3/aEn^3$
+ie_phi(r) := -MEn*(3*aEn^2 - r^2)/(2*aEn^3)$
+ie_weight(r) := 1 + eEn*(-ie_phi(r) + ie_m(r)/r)$
+EEn : integrate(4*%pi*r^2*ie_rho(r)*ie_weight(r), r, 0, aEn)$
+check("uniform ball: |E| = M + (9/5) M^2/a to the second order, the mass M to the first",
+      is(ratsimp(EEn - (MEn + eEn*9/5*MEn^2/aEn)) = 0))$
+check("uniform ball: the proper mass is M + (3/5) M^2/a, so |E| differs from it",
+      is(ratsimp(integrate(4*%pi*r^2*ie_rho(r)*(1 + eEn*ie_m(r)/r), r, 0, aEn) - (MEn + eEn*3/5*MEn^2/aEn)) = 0))$
+
+/* The sign: c_R > 0 is what gives the string its negative part, and it makes the R part of the
+   density minus Einstein's energy density rho = G^tt f/(8 pi) */
+check("c_R = 1/(16 pi): the density of the R part is -2 c_R G^tt, and with G^tt = 8 pi rho it is -rho",
+      is(ratsimp(-2*(1/(16*%pi))*(8*%pi*rhoEn) + rhoEn) = 0))$
+GTt : ie_einstein_up(matrix([1,0,0,0],[0,-1,0,0],[0,0,-1,0],[0,0,0,-sin(xEn)^2]), [tEn, yEn, xEn, phEn])[1,1]$
+check("M^2 x S^2 of radius 1: G^tt = 1 > 0, the same sign as the star", is(ratsimp(GTt) = 1))$
