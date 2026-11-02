@@ -1,0 +1,82 @@
+/* Strings, twistor sphere and orbit: what the interior action R + volume and pure volume give.
+   Signature (+,-,-,-).  The tension of M^2 x Y^2 is the Noether energy per unit length,
+   T = c_V S - 2 c_R int G^tt, with c_V = Lambda/(8 pi G) and c_R = 1/(16 pi G).
+   The same T comes from reducing S = -(1/16 pi G) int sqrt|g| (R + 2 Lambda), the Landau-Lifshitz
+   sign, to the Nambu-Goto form -T int sqrt|gamma|.  Positive volume energy fixes that overall sign
+   and de Sitter fixes the relative sign, so the negative part of T does not depend on a current
+   convention.  Everything below concerns products M^2 x Y^2 with a closed Y^2. */
+section("tgd/interior-string: strings, twistor sphere and orbit")$
+is_R(g, X) := scalar_curvature(g, eff_ricci(g, X))$
+is_einstein_low(g, X) := block([Ric : eff_ricci(g, X)], map(ratsimp, Ric - scalar_curvature(g, Ric)/2*g))$
+
+/* The sign of the twistor sphere: a time-like sphere has the opposite sign of g */
+assume(rIs > 0, thIs > 0, thIs < %pi)$
+is_S2(e) := matrix([e*rIs^2, 0], [0, e*rIs^2*sin(thIs)^2])$
+check("space-like sphere, g negative: R = -2/r^2, so the product model has Lambda = -1/r^2",
+      is(trigsimp(ratsimp(is_R(is_S2(-1), [thIs, phIs]) + 2/rIs^2)) = 0))$
+check("time-like sphere, g positive: R = +2/r^2, so the product model has Lambda = +1/r^2",
+      is(trigsimp(ratsimp(is_R(is_S2(1), [thIs, phIs]) - 2/rIs^2)) = 0))$
+
+/* CP_2 as a Euclidean region: g = -G gives G_ab = 6 g_ab, so P^ab = (Lambda - 6) g^ab/(8 pi G) */
+GIs : cp2_metric()$
+RicIs : ricci(riemann(christoffel(GIs, cp2_X), cp2_X))$
+check("Euclidean CP_2 with g = -G: R = -24", is(ratsimp(scalar_curvature(-GIs, RicIs) + 24) = 0))$
+check("Euclidean CP_2 with g = -G: G_ab = 6 g_ab, an Einstein space with k = 6/R^2",
+      zero_matrix_p(RicIs - scalar_curvature(-GIs, RicIs)/2*(-GIs) - 6*(-GIs)))$
+
+/* M^2 x Y^2: on any Y^2 the Y block of the Einstein tensor vanishes, and G^tt is the curvature K */
+depends(eIs, [xIs, yIs])$
+XIs : [tIs, zIs, xIs, yIs]$
+gIs : matrix([1,0,0,0], [0,-1,0,0], [0,0,-eIs,0], [0,0,0,-eIs])$
+EIs : is_einstein_low(gIs, XIs)$
+check("M^2 x Y^2: the Y block of G_ab vanishes, so G^ab B_ab = 0 and every minimal Y^2 solves R + volume",
+      is(ratsimp(EIs[3,3]) = 0) and is(ratsimp(EIs[4,4]) = 0) and is(ratsimp(EIs[3,4]) = 0))$
+KIs : -(diff(log(eIs), xIs, 2) + diff(log(eIs), yIs, 2))/(2*eIs)$
+check("M^2 x Y^2: G^tt = K, the Gaussian curvature of Y^2", is(ratsimp(EIs[1,1] - KIs) = 0))$
+check("M^2 x Y^2: R = -2 K, so -(1/16 pi G)(R + 2 Lambda) reduces to -T with T = (Lambda A - int K)/(8 pi G)",
+      is(ratsimp(is_R(gIs, XIs) + 2*KIs) = 0))$
+gRound : matrix([1,0,0,0], [0,-1,0,0], [0,0,-sin(thIs)^2/4,0], [0,0,0,-1/4])$
+check("M^2 x CP_1, radius 1/2: G^tt = 4, and with area pi the integral is 4 pi = 2 pi chi",
+      is(trigsimp(ratsimp(is_einstein_low(gRound, [tIs, zIs, phIs, thIs])[1,1] - 4)) = 0))$
+
+/* The tension: 8 G T = d Lambda R^2 - 2 chi for a curve of degree d, area d pi R^2 */
+is_chi(d) := 3*d - d^2$
+is_T8(d, L) := d*L - 2*is_chi(d)$
+check("line d = 1: 8 G T = Lambda R^2 - 4", is(ratsimp(is_T8(1, LIs) - (LIs - 4)) = 0))$
+check("degree d: 8 G T = d (Lambda R^2 + 2 d - 6)", is(ratsimp(is_T8(dIs, LIs) - dIs*(LIs + 2*dIs - 6)) = 0))$
+check("genus of a smooth curve: chi = 2 - 2 g with g = (d-1)(d-2)/2",
+      is(ratsimp(is_chi(dIs) - (2 - (dIs - 1)*(dIs - 2))) = 0))$
+check("only d = 3 has chi = 0 among d > 0, so only the cubic has a small tension at small Lambda",
+      is(sublist(makelist(d, d, 1, 40), lambda([d], is_chi(d) = 0)) = [3]))$
+check("Lambda -> 0: the unit flux string has T = -1/(2 G)", is(is_T8(1, 0)/8 = -1/2))$
+check("pure volume: 8 G T = d Lambda R^2 > 0 for every degree", is(ratsimp(is_T8(dIs, LIs) + 2*is_chi(dIs) - dIs*LIs) = 0))$
+
+/* The two sides of an orbit with a simple zero: the density has the same sign on both sides */
+assume(xPos > 0, yPos > 0)$
+check("Minkowskian side g_tt = x: R = -1/(2 x^2)",
+      is(ratsimp(is_R(matrix([xPos,0,0,0],[0,-1,0,0],[0,0,-1,0],[0,0,0,-1]), [tIs,xPos,yIs,zIs]) + 1/(2*xPos^2)) = 0))$
+check("Euclidean side g_tt = -y: R = -1/(2 y^2), so sqrt|g| R has the same sign",
+      is(ratsimp(is_R(matrix([-yPos,0,0,0],[0,-1,0,0],[0,0,-1,0],[0,0,0,-1]), [tIs,yPos,xIs,zIs]) + 1/(2*yPos^2)) = 0))$
+check("the antiderivative of 2 d^2 sqrt(x) is 1/sqrt(x), so each side gives -1/sqrt(eps) and they add",
+      is(ratsimp(2*diff(sqrt(xPos), xPos) - 1/sqrt(xPos)) = 0))$
+
+/* The orbit is light-like in H: M^2 = P_xi^2 for the generator of a surface xi = t + x^2/(2 b) */
+gXi : matrix([0, -xIs/bIs], [-xIs/bIs, -1 - xIs^2/bIs^2])$
+check("xi = t + x^2/(2 b): det g = -x^2/b^2, a double zero, so the signature does not change",
+      is(ratsimp(determinant(gXi) + xIs^2/bIs^2) = 0))$
+check("at x = 0 the kernel is d_t, and its image (1; 1) in M^1 x S^1 is light-like: M^2 = P_xi^2",
+      is(ratsimp(subst(xIs = 0, gXi)[1,1]) = 0) and is(ratsimp(subst(xIs = 0, gXi)[1,2]) = 0))$
+
+/* Spherical structure: the line has a round metric, and dependence on u = t - r breaks minimality */
+is_sph(z1, z2) := emb_setup(sj_H_metric(), sj_H_X, sj_surface(z1, z2), sj_X)$
+emL : is_sph(sj_w, 0)$
+PhL : tgd_simp(-emb_get(emL, 'g)[3,3])$
+check("spherical line: Phi = rho (r^2 + 1/4), so the metric is dt^2 - dr^2 - (r^2 + 1/4) dOmega^2",
+      is(tgd_simp(PhL - sj_rho*(hr^2 + 1/4)) = 0))$
+emU : is_sph(sj_w + cIs*(ht - hr), 0)$
+HU : map(tgd_simp, mean_curvature(emU, second_fundamental_form(emU)))$
+PhU : tgd_simp(-emb_get(emU, 'g)[3,3])$
+is_pts : [[sa=0, sb=0, hr=1, ht=1, cIs=1/2], [sa=1/3, sb=1/2, hr=2, ht=1, cIs=1]]$
+check("spherical, xi1 = w + c u: H^xi = 2 r rho xi_u/Phi, so a surface that depends on u is not minimal",
+      every(lambda([p], is(ratsimp(subst(p, HU[5] - 2*hr*sj_rho*cIs/PhU)) = 0)), is_pts))$
+check("spherical, xi1 = w + c u: H^xi is not zero", is(subst(is_pts[1], HU[5]) # 0))$

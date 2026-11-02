@@ -168,6 +168,8 @@ Claude laski 1.11.2026 tilavuuden, kaarevuusskalaarin ja vaikutuksen $\int R^2\s
 
 Pallomaisessa rakenteessa kaikkien kolmen kenttäyhtälöt toteutuvat suoralla, kartioleikkauksella ja kuvauksella $S^2\to RP^2$. Clauden päättelyn mukaan syy on symmetria, joten sama pätee jokaiselle indusoidusta geometriasta rakennetulle vaikutukselle. Litteässä rakenteessa kaarevuusskalaarin kenttäyhtälö toteutuu pinnoilla, jotka eivät riipu koordinaatista $v$, ja testatuilla holomorfisilla pinnoilla vaikutuksen $R^2$ kenttäyhtälö ei toteudu. Laskut, testit ja tulkintaa koskevat kysymykset ovat [sivututkimussivulla](sivututkimus/regge-teitelboim.md#osa-3-laskut).
 
+Claude vertasi 2.11.2026 ehdokkaita R + tilavuus ja pelkkä tilavuus. Tuotepinnalla $M^2\times Y^2$ jännitys on $8GT=d\,\Lambda R_C^2-2\chi$, joten yksikkövuon säikeellä $T\to-1/(2G)$, kun $\Lambda$ on pieni ja vaikutuksessa on kaarevuusskalaari. Tulos koskee vain tuotteita. Vertailu, rajat ja avoimet kohdat ovat sivulla [Sisäosan vaikutus](sivututkimus/sisaosan-vaikutus.md).
+
 ## Säilymislait
 
 Tarkistuksessa on mukana $H$:n kaikki 18 isometriaa eli neljä translaatiota, kuusi Lorentz-generaattoria ja kahdeksan värigeneraattoria. Ne säilyttävät sekä metriikan että Kähler-muodon, ja värigeneraattorit muodostavat $su(3)$-algebran.

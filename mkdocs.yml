@@ -17,6 +17,7 @@ nav:
   - Seuranta: seuranta.md
   - Sivututkimus:
       - Regge–Teitelboim ja TGD: sivututkimus/regge-teitelboim.md
+      - Sisäosan vaikutus: sivututkimus/sisaosan-vaikutus.md
   - Laskentakirjat:
       - Ympäristö ja testit: notebooks/01_ymparisto_ja_testit.ipynb
       - CP2 ja Fubini–Study: notebooks/02_cp2_fubini_study.ipynb
