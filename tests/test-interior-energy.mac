@@ -44,3 +44,16 @@ check("c_R = 1/(16 pi): the density of the R part is -2 c_R G^tt, and with G^tt 
       is(ratsimp(-2*(1/(16*%pi))*(8*%pi*rhoEn) + rhoEn) = 0))$
 GTt : ie_einstein_up(matrix([1,0,0,0],[0,-1,0,0],[0,0,-1,0],[0,0,0,-sin(xEn)^2]), [tEn, yEn, xEn, phEn])[1,1]$
 check("M^2 x S^2 of radius 1: G^tt = 1 > 0, the same sign as the star", is(ratsimp(GTt) = 1))$
+
+/* A light-like orbit in a model metric: g_tt has a simple zero at x = 0.  The density of R is a
+   total derivative that diverges at the orbit, and the boundary term 2 d_x sqrt(f) cancels it. */
+assume(xOb > 0)$
+gOb : matrix([xOb, 0, 0, 0], [0, -1, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1])$
+ROb : ratsimp(scalar_curvature(gOb, eff_ricci(gOb, [tOb, xOb, yOb, zOb])))$
+check("orbit model g_tt = x: R = -1/(2 x^2), so sqrt|g| R = -1/(2 x^(3/2)) is not integrable at x = 0",
+      is(ratsimp(ROb + 1/(2*xOb^2)) = 0))$
+check("orbit model g_tt = x: sqrt|g| R = 2 d_x^2 sqrt(x), a total derivative",
+      is(ratsimp(sqrt(xOb)*ROb - 2*diff(sqrt(xOb), xOb, 2)) = 0))$
+gOc : matrix([xOb^2, 0, 0, 0], [0, -1, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1])$
+check("orbit model g_tt = x^2: R = 0, so a double zero has no divergence",
+      is(ratsimp(scalar_curvature(gOc, eff_ricci(gOc, [tOb, xOb, yOb, zOb]))) = 0))$
