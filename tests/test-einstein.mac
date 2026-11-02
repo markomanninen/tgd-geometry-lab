@@ -1,0 +1,786 @@
+section("geometry/curvature (Einstein's geometry)")$
+/* The claims of the explainer episode on Einstein's geometry, each against a known identity.
+   Units G = c = 1, signature (+,-,-,-) as in the rest of the library. */
+rm_pos(a, b, c, d) := 64*(a-1) + 16*(b-1) + 4*(c-1) + d$
+rm_row(l) := block([v : makelist(0, i, 1, 256)],
+  for e in l do v[e[1]] : v[e[1]] + e[2], v)$
+
+/* Flat spacetime has a table that is the same everywhere. */
+XMk : [tMk, xMk, yMk, zMk]$
+gMk : diag_matrix(1, -1, -1, -1)$
+GamMk : christoffel(gMk, XMk)$
+check("Minkowski: Riemann = 0", nested_zero_p(riemann(GamMk, XMk)))$
+
+/* The flat plane in polar coordinates: the table varies, Riemann does not see it. */
+XPo : [rPo, phPo]$
+gPo : matrix([1, 0], [0, rPo^2])$
+GamPo : christoffel(gPo, XPo)$
+assume(rPo > 0)$
+check("polar plane: the metric varies from point to point", is(diff(gPo[2,2], rPo) # 0))$
+check("polar plane: Christoffel symbols are not zero",
+      is(tgd_simp(GamPo[1][2][2] + rPo) = 0) and is(tgd_simp(GamPo[2][1][2] - 1/rPo) = 0))$
+check("polar plane: Riemann = 0", nested_zero_p(riemann(GamPo, XPo)))$
+
+/* One arrow: the unit vector along x, written in polar components at every point. */
+vPo : [cos(phPo), -sin(phPo)/rPo]$
+check("polar plane: one arrow has changing components and length 1",
+      is(diff(vPo[1], phPo) # 0) and is(trigsimp(vPo . gPo . vPo) = 1))$
+check("polar plane: the arrow has zero covariant derivative",
+      zero_matrix_p(trigsimp(cov_deriv_vector(vPo, GamPo, XPo))))$
+
+/* The count of the Riemann components, one symmetry at a time. */
+rm_pair : []$
+rm_swap : []$
+rm_cycl : []$
+for a thru 4 do for b thru 4 do for c thru 4 do for d thru 4 do (
+  rm_pair : append([rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(b,a,c,d), 1]]),
+                    rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(a,b,d,c), 1]])], rm_pair),
+  rm_swap : cons(rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(c,d,a,b), -1]]), rm_swap),
+  rm_cycl : cons(rm_row([[rm_pos(a,b,c,d), 1], [rm_pos(a,c,d,b), 1], [rm_pos(a,d,b,c), 1]]), rm_cycl))$
+rm_left(rows) := 256 - rank(apply(matrix, rows))$
+check("Riemann: the turn in each index pair leaves 36 of 256", is(rm_left(rm_pair) = 36))$
+check("Riemann: swapping the two pairs leaves 21", is(rm_left(append(rm_pair, rm_swap)) = 21))$
+check("Riemann: the cyclic sum leaves 20", is(rm_left(append(rm_pair, rm_swap, rm_cycl)) = 20))$
+
+/* The commutator of two covariant derivatives on the sphere, for an arbitrary vector field. */
+depends([v1E, v2E], [thE, phE])$
+XSE : [thE, phE]$
+gSE : matrix([1, 0], [0, sin(thE)^2])$
+GamSE : christoffel(gSE, XSE)$
+RSE : riemann(GamSE, XSE)$
+vSE : [v1E, v2E]$
+dvSE : cov_deriv_vector(vSE, GamSE, XSE)$
+ddvSE : cov_deriv_11(dvSE, GamSE, XSE)$
+check("S^2: [nabla_m, nabla_n] v^r = R^r_smn v^s",
+      nested_zero_p(makelist(makelist(makelist(
+        trigsimp(ddvSE[m][r][n] - ddvSE[n][r][m] - sum(RSE[r][s][m][n]*vSE[s], s, 1, 2)),
+        n, 1, 2), m, 1, 2), r, 1, 2)))$
+
+/* The loop of the episode: from the equator to the pole, down to the equator and back along
+   it.  On a sphere in R^3 parallel transport means that the change of the vector is normal
+   to the sphere. */
+oct_comb(a, b, t) := cos(t)*a + sin(t)*b$
+oA : [1, 0, 0]$  oB : [0, 1, 0]$  oN : [0, 0, 1]$
+oct_legs : [[oct_comb(oA, oN, tO), oct_comb(oN, -oA, tO)],
+            [oct_comb(oN, oB, tO), -oA],
+            [oct_comb(oB, oA, tO), oct_comb(-oA, oB, tO)]]$
+oct_parallel(leg) := block([p : leg[1], w : leg[2], dw],
+  dw : diff(w, tO),
+  is(trigsimp(p . w) = 0) and every(lambda([e], is(trigsimp(e) = 0)), dw - (dw . p)*p))$
+check("S^2 octant loop: the vector stays tangent and is transported in parallel",
+      every(oct_parallel, oct_legs))$
+oct_end : subst(tO = %pi/2, oct_legs[3][2])$
+check("S^2 octant loop: the vector returns turned by pi/2",
+      is(subst(tO = 0, oct_legs[1][1]) = subst(tO = %pi/2, oct_legs[3][1]))
+      and is(oct_end = oB) and is(oct_end . subst(tO = 0, oct_legs[1][2]) = 0))$
+check("S^2 octant loop: the triangle has the area pi/2",
+      is(integrate(integrate(sin(thE), thE, 0, %pi/2), phE, 0, %pi/2) = %pi/2))$
+/* The same on a circle of latitude, through the library's Christoffel symbols.  In the frame of
+   unit vectors along th and ph this vector has the components (cos a, -sin a), a = cos(th) ph,
+   so it has turned by 2 pi cos(th) after one round. */
+latV : [cos(cos(thE)*phE), -sin(cos(thE)*phE)/sin(thE)]$
+check("S^2 latitude circle: this vector is transported in parallel",
+      every(lambda([r], is(trigsimp(diff(latV[r], phE)
+            + sum(GamSE[r][2][s]*latV[s], s, 1, 2)) = 0)), [1, 2]))$
+check("S^2 latitude circle: the turn plus the area of the cap is a full turn",
+      block([F : integrate(sin(tC), tC)],
+        is(tgd_simp(2*%pi*cos(thE) + 2*%pi*(subst(tC = thE, F) - subst(tC = 0, F)) - 2*%pi) = 0)))$
+
+/* A small region of the sphere: stereographic coordinates with g = delta at the origin. */
+XNo : [uNo, vNo]$
+gNo : ident(2)/(1 + (uNo^2 + vNo^2)/4)^2$
+GamNo : christoffel(gNo, XNo)$
+RNo : riemann(GamNo, XNo)$
+at0(e) := subst([uNo = 0, vNo = 0], e)$
+check("S^2 stereographic: g = delta and Christoffel = 0 at the origin",
+      is(at0(gNo) = ident(2)) and nested_zero_p(at0(GamNo)))$
+check("S^2 stereographic: Riemann is not zero at the origin", is(at0(RNo[1][2][1][2]) = 1))$
+RlNo : riemann_lower(gNo, RNo)$
+d2gNo(a, b, c, d) := at0(diff(gNo[a,b], XNo[c], 1, XNo[d], 1))$
+check("S^2 stereographic: Riemann at the origin is second derivatives of the metric",
+      nested_zero_p(makelist(makelist(makelist(makelist(
+        at0(RlNo[a][b][c][d]) - (d2gNo(a,d,b,c) + d2gNo(b,c,a,d) - d2gNo(a,c,b,d) - d2gNo(b,d,a,c))/2,
+        d, 1, 2), c, 1, 2), b, 1, 2), a, 1, 2)))$
+
+/* What a change of coordinates can do at one point.  x^a = y^a + A^a_b y^b + B^a_bc y^b y^c/2
+   + C^a_bcd y^b y^c y^d/6 with A, B, C small and indices lowered with the metric at the point.
+   The rank of each linear map is the number of values that coordinates can set freely. */
+sym_tuples(p, dim) := block([L : [[]]],
+  for i thru p do L : apply(append, map(lambda([t],
+    makelist(append(t, [k]), k, if t = [] then 1 else last(t), dim)), L)),
+  L)$
+pairs4 : sym_tuples(2, 4)$
+trips4 : sym_tuples(3, 4)$
+coords_rank(rows, cols, entry) := rank(genmatrix(
+  lambda([i, j], entry(rows[i], cols[j])), length(rows), length(cols)))$
+/* d_p d_q g_mn changes by C_mnpq + C_nmpq, with C_a,bcd symmetric in bcd. */
+hit(a, s, b, t) := if a = b and is(sort(s) = sort(t)) then 1 else 0$
+rows1 : create_list([m, p], m, pairs4, p, 1, 4)$
+cols1 : create_list([a, s], a, 1, 4, s, pairs4)$
+entry1(r, c) := block([m : r[1][1], n : r[1][2], p : r[2], a : c[1], s : c[2]],
+  hit(m, [n, p], a, s) + hit(n, [m, p], a, s))$
+rows2 : create_list([m, s], m, pairs4, s, pairs4)$
+cols2 : create_list([a, s], a, 1, 4, s, trips4)$
+entry2(r, c) := block([m : r[1][1], n : r[1][2], s : r[2]],
+  hit(m, cons(n, s), c[1], c[2]) + hit(n, cons(m, s), c[1], c[2]))$
+check("coordinates set the 10 values of the metric at a point",
+      is(rank(genmatrix(lambda([i, j],
+        block([m : pairs4[i][1], n : pairs4[i][2], a : 1 + floor((j-1)/4), b : 1 + mod(j-1, 4)],
+          (if [a, b] = [m, n] then 1 else 0) + (if [a, b] = [n, m] then 1 else 0))), 10, 16)) = 10))$
+check("coordinates remove all 40 first derivatives of the metric at a point",
+      is(length(rows1) = 40) and is(length(cols1) = 40) and is(coords_rank(rows1, cols1, entry1) = 40))$
+check("coordinates remove 80 of the 100 second derivatives of the metric at a point",
+      is(length(rows2) = 100) and is(length(cols2) = 80) and is(coords_rank(rows2, cols2, entry2) = 80))$
+
+/* Schwarzschild's solution: empty space that is curved. */
+XSc : [tSc, rSc, thSc, phSc]$
+fSc : 1 - 2*MSc/rSc$
+gSc : diag_matrix(fSc, -1/fSc, -rSc^2, -rSc^2*sin(thSc)^2)$
+GamSc : christoffel(gSc, XSc)$
+RSc : riemann(GamSc, XSc)$
+RicSc : ricci(RSc)$
+RlSc : riemann_lower(gSc, RSc)$
+check("the tables have 64 and 256 places in four dimensions",
+      is(length(flatten(GamSc)) = 64) and is(length(flatten(RSc)) = 256))$
+check("Schwarzschild: Ricci = 0", zero_matrix_p(trigsimp(RicSc)))$
+check("Schwarzschild: Riemann is not zero", is(tgd_simp(RSc[1][2][1][2]) # 0))$
+/* The metric is diagonal, so raising an index only divides by the diagonal entry. */
+giSc : mat_inverse(gSc)$
+kretsch : trigsimp(sum(sum(sum(sum(RlSc[a][b][c][d]^2*giSc[a,a]*giSc[b,b]*giSc[c,c]*giSc[d,d],
+                                   d, 1, 4), c, 1, 4), b, 1, 4), a, 1, 4))$
+check("Schwarzschild: Kretschmann scalar = 48 M^2/r^6", is(tgd_simp(kretsch - 48*MSc^2/rSc^6) = 0))$
+/* Geodesic deviation a^i = -R^i_b j d u^b u^d x^j, here for u along t.  The matrix is diagonal,
+   and its trace is Ricci(u,u), which vanishes. */
+tideSc(i) := tgd_simp(-RSc[i][1][i][1]/fSc)$
+check("Schwarzschild: tidal stretch 2M/r^3 along r, squeeze M/r^3 across, total 0",
+      is(tgd_simp(tideSc(2) - 2*MSc/rSc^3) = 0) and is(tgd_simp(tideSc(3) + MSc/rSc^3) = 0)
+      and is(tgd_simp(tideSc(4) + MSc/rSc^3) = 0)
+      and is(tgd_simp(tideSc(2) + tideSc(3) + tideSc(4)) = 0))$
+/* A freely falling observer, from rest at infinity, feels the same squeeze across. */
+uFa : [1/fSc, -sqrt(2*MSc/rSc), 0, 0]$
+check("Schwarzschild: a falling observer has the same squeeze M/r^3 across",
+      is(tgd_simp(sum(sum(RSc[3][b][3][d]*uFa[b]*uFa[d], d, 1, 4), b, 1, 4) - MSc/rSc^3) = 0))$
+/* A circular orbit is a geodesic: the radial geodesic equation in the plane th = pi/2. */
+geoSc : subst(thSc = %pi/2, GamSc[2][1][1] + GamSc[2][4][4]*OmSc^2)$
+check("Schwarzschild: a circular geodesic has Omega^2 = M/r^3",
+      is(tgd_simp(subst(OmSc^2 = MSc/rSc^3, geoSc)) = 0))$
+
+/* The divergence of the two curvature tensors in a metric with varying curvature. */
+depends([aEi, bEi], rEi)$
+XEi : [tEi, rEi, thEi, phEi]$
+gEi : diag_matrix(aEi, -bEi, -rEi^2, -rEi^2*sin(thEi)^2)$
+GamEi : christoffel(gEi, XEi)$
+RicEi : trigsimp(ricci(riemann(GamEi, XEi)))$
+RsEi : trigsimp(scalar_curvature(gEi, RicEi))$
+check("static metric: the scalar curvature varies from point to point", is(diff(RsEi, rEi) # 0))$
+check("static metric: the Einstein tensor has zero divergence",
+      every(lambda([e], is(trigsimp(e) = 0)), einstein_divergence(gEi, RicEi, GamEi, XEi)))$
+/* nabla^m T_mn for a symmetric T with lower indices. */
+divLower(g, T, Gam, X) := block([gi : mat_inverse(g), D : cov_deriv_02(T, Gam, X), n : length(X)],
+  makelist(sum(sum(gi[j,k]*D[j][k][i], k, 1, n), j, 1, n), i, 1, n))$
+divEi : divLower(gEi, RicEi, GamEi, XEi)$
+check("static metric: div Ricci = grad R / 2, which is not zero",
+      every(lambda([k], is(trigsimp(divEi[k] - diff(RsEi, XEi[k])/2) = 0)), [1, 2, 3, 4])
+      and is(trigsimp(divEi[2]) # 0))$
+check("the trace of the Einstein tensor is -R in dimension 4, so G = 0 gives R = 0 and Ricci = 0",
+      is(trigsimp(mat_trace(mat_inverse(gEi) . (RicEi - RsEi/2*gEi)) + RsEi) = 0))$
+
+/* The factor 8 pi G: a weak static field gives Newton's equation for the potential. */
+depends(PhiW, [xW, yW, zW])$
+XW : [tW, xW, yW, zW]$
+gW : diag_matrix(1 + 2*eW*PhiW, -(1 - 2*eW*PhiW), -(1 - 2*eW*PhiW), -(1 - 2*eW*PhiW))$
+RicW : ricci(riemann(christoffel(gW, XW), XW))$
+GttW : RicW[1,1] - gW[1,1]*scalar_curvature(gW, RicW)/2$
+check("weak field: G_tt = 2 Laplacian(Phi) to first order",
+      is(tgd_simp(subst(eW = 0, diff(GttW, eW))
+                  - 2*(diff(PhiW, xW, 2) + diff(PhiW, yW, 2) + diff(PhiW, zW, 2))) = 0))$
+
+/* What the equations say about a small ball of free particles at rest: its volume V starts to
+   change at the rate V''/V = -Ric(u,u).  A closed universe of dust at its largest size is a
+   ball at rest everywhere, and with G_mn = 8 pi rho u_m u_n it gives V''/V = -4 pi rho. */
+depends(aDu, tDu)$
+XDu : [tDu, cDu, thDu, phDu]$
+gDu : diag_matrix(1, -aDu^2, -aDu^2*sin(cDu)^2, -aDu^2*sin(cDu)^2*sin(thDu)^2)$
+RicDu : trigsimp(ricci(riemann(christoffel(gDu, XDu), XDu)))$
+RsDu : trigsimp(scalar_curvature(gDu, RicDu))$
+GDu : trigsimp(RicDu - RsDu/2*gDu)$
+restDu(e) := subst(diff(aDu, tDu) = 0, e)$
+rhoDu : restDu(GDu[1,1])/(8*%pi)$
+accDu : rhs(first(solve(restDu(GDu[2,2]) = 0, diff(aDu, tDu, 2))))$
+check("dust at rest: V''/V = -Ric(u,u) = -4 pi rho, so energy starts to shrink a ball",
+      is(tgd_simp(3*accDu/aDu + 4*%pi*rhoDu) = 0)
+      and is(tgd_simp(subst(diff(aDu, tDu, 2) = accDu, restDu(RicDu[1,1])) - 4*%pi*rhoDu) = 0))$
+
+/* The claims of the same episode in the order of its narration, beyond the known identities above. */
+/* The table of a surface is inherited from the space around it, and on the sphere its second number
+   is the square of the radius of the circle of latitude. */
+emSE : [sin(thE)*cos(phE), sin(thE)*sin(phE), cos(thE)]$
+gEmS2 : trigsimp(induced_metric(ident(3), [xEm, yEm, zEm], emSE, XSE))$
+check("S^2 table: g_phph is the square of the radius of the latitude circle",
+      zero_matrix_p(gEmS2 - gSE) and is(trigsimp(gEmS2[2,2] - (emSE[1]^2 + emSE[2]^2)) = 0))$
+
+/* One step in two coordinate systems of the plane, through the Jacobian of the change. */
+jPo : jacobian_matrix([rPo*cos(phPo), rPo*sin(phPo)], XPo)$
+polXY(w) := trigsimp(list_matrix_entries(jPo . w))$
+atPo(rv, pv, e) := ratsimp(subst([rPo = rv, phPo = pv], e))$
+stepPo : [3, 2]$
+check("polar plane: a step has the same length in both coordinates",
+      zero_matrix_p(trigsimp(transpose(jPo) . jPo) - gPo)
+      and is(atPo(2, 0, polXY(stepPo)) = [3, 4])
+      and is(stepPo . atPo(2, 0, gPo) . stepPo = 25) and is([3, 4] . [3, 4] = 25))$
+
+/* In an oblique grid the number off the diagonal is the cosine of the angle between the grid lines. */
+gOb : trigsimp(induced_metric(ident(2), [xEm, yEm], [uOb + vOb*cos(aOb), vOb*sin(aOb)], [uOb, vOb]))$
+check("oblique grid: g_12 = cos a, and g_12 = 0 for perpendicular directions",
+      is(gOb[1,1] = 1) and is(gOb[2,2] = 1) and is(gOb[1,2] = cos(aOb))
+      and is(subst(aOb = %pi/2, gOb[1,2]) = 0))$
+
+check("Minkowski: the steps (5, 3) and (3, 3) have intervals 16 and 0",
+      is([5, 3, 0, 0] . gMk . [5, 3, 0, 0] = 16) and is([3, 3, 0, 0] . gMk . [3, 3, 0, 0] = 0))$
+
+/* The radial unit arrow and the arrow along x, whose angle is phi. */
+uPo : [1, 0]$
+check("polar plane: the metric gives the dot product of two arrows",
+      is(trigsimp(uPo . gPo . vPo - cos(phPo)) = 0)
+      and is(trigsimp(polXY(uPo) . polXY(vPo) - cos(phPo)) = 0)
+      and is(atPo(2, %pi/6, uPo . gPo . vPo) = sqrt(3)/2))$
+
+check("polar plane at r = 2, phi = 30 deg: the change -1/2 and the correction +1/2 cancel",
+      is(atPo(2, %pi/6, diff(vPo[1], phPo)) = -1/2)
+      and is(atPo(2, %pi/6, GamPo[1][2][2]) = -2) and is(atPo(2, %pi/6, vPo[2]) = -1/4)
+      and is(atPo(2, %pi/6, GamPo[1][2][2]*vPo[2]) = 1/2)
+      and is(atPo(2, %pi/6, cov_deriv_vector(vPo, GamPo, XPo)[1,2]) = 0))$
+
+/* The two conditions on the transport rule.  With unknown symbols the library's nabla g is linear in
+   them, so the rank of its coefficients counts the independent conditions. */
+GamU : makelist(makelist(makelist(gamU[i,j,k], k, 1, 4), j, 1, 4), i, 1, 4)$
+coefU(eqs) := coefmatrix(eqs, flatten(GamU))$
+compatU : flatten(cov_deriv_02(gMk, GamU, XMk))$
+symmU : create_list(GamU[i][j][k] - GamU[i][k][j], i, 1, 4, j, 1, 4, k, 1, 4)$
+check("nabla g = 0 leaves 24 of the 64 symbols open, and the symmetry closes them",
+      is(length(flatten(GamU)) = 64) and is(rank(coefU(compatU)) = 40)
+      and is(rank(coefU(append(compatU, symmU))) = 64)
+      and christoffel_symmetric_p(GamSc) and nested_zero_p(cov_deriv_02(gSc, GamSc, XSc)))$
+
+check("polar plane: Gamma^r_phph = -1/2 d_r g_phph and Gamma^ph_rph = 1/2 g^phph d_r g_phph",
+      is(tgd_simp(GamPo[1][2][2] + diff(gPo[2,2], rPo)/2) = 0)
+      and is(tgd_simp(GamPo[2][1][2] - mat_inverse(gPo)[2,2]*diff(gPo[2,2], rPo)/2) = 0))$
+
+/* If nabla_m v = 0 in both directions then d_m v = A_m v, with A_m = -Gamma_m.  The two orders of the mixed
+   derivative then differ by a matrix times v, and that matrix is -R^r_s12, which can be inverted. */
+aSE(m) := genmatrix(lambda([i, j], -GamSE[i][m][j]), 2, 2)$
+mixSE : diff(aSE(2), thE) + aSE(2) . aSE(1) - diff(aSE(1), phE) - aSE(1) . aSE(2)$
+RmSE : trigsimp(genmatrix(lambda([i, j], RSE[i][j][1][2]), 2, 2))$
+check("S^2: nabla_m v^r = 0 in every direction has only the zero solution",
+      zero_matrix_p(trigsimp(mixSE + RmSE)) and is(trigsimp(determinant(RmSE) - sin(thE)^2) = 0)
+      and is(linsolve(list_matrix_entries(RmSE . [aVz, bVz]), [aVz, bVz]) = [aVz = 0, bVz = 0]))$
+
+/* Two straight pieces through a point at the height h above the middle of the straight path. */
+lenPl(p, q) := sqrt((q - p) . ident(2) . (q - p))$
+kinkPl(h) := lenPl([0, 0], [1, h]) + lenPl([1, h], [2, 0])$
+assume(hKi > 0)$
+check("plane: a kinked path between two points is longer than the straight one",
+      is(lenPl([0, 0], [2, 0]) = 2) and is(kinkPl(1/5) = 2*sqrt(1 + (1/5)^2)) and is(kinkPl(1/5) > 2)
+      and is(ratsimp(kinkPl(hKi)^2 - 2^2) > 0))$
+
+/* The loop of the episode with the apex angle a at the pole.  The vector starts north, keeps its
+   component across the second leg, and P and Q are the unit vectors along and across that meridian. */
+triP : [cos(aTr), sin(aTr), 0]$
+triQ : [-sin(aTr), cos(aTr), 0]$
+triLegs : [[oct_comb(oA, oN, tO), oct_comb(oN, -oA, tO)],
+           [oct_comb(oN, triP, tO), -cos(aTr)*oct_comb(triP, -oN, tO) + sin(aTr)*triQ],
+           [subst(aTr = aTr - tO, triP), cos(aTr)*oN + sin(aTr)*subst(aTr = aTr - tO, triQ)]]$
+triJoin(a, ta, b, tb) := is(trigsimp(subst(tO = ta, triLegs[a]) - subst(tO = tb, triLegs[b]))
+                            = [[0, 0, 0], [0, 0, 0]])$
+triEnd : subst(tO = aTr, triLegs[3][2])$
+triTurn(ang) := block([w : subst(aTr = ang, triEnd)], atan2(w . oB, w . oN))$
+check("S^2 triangle with apex angle a: the area is a and the turn is a",
+      every(oct_parallel, triLegs) and triJoin(1, %pi/2, 2, 0) and triJoin(2, %pi/2, 3, 0)
+      and is(subst(tO = aTr, triLegs[3][1]) = oA) and is(subst(tO = 0, triLegs[1]) = [oA, oN])
+      and is(triEnd - (cos(aTr)*oN + sin(aTr)*oB) = [0, 0, 0])
+      and is(triTurn(%pi/2) = %pi/2) and is(triTurn(%pi/4) = %pi/4)
+      and is(integrate(integrate(sin(thE), thE, 0, %pi/2), phE, 0, aTr) = aTr))$
+
+/* Transport of any arrow s along the two kinds of coordinate line of the plane, as a pair of a curve
+   in the parameter tP and the arrow on it.  polRay runs along the angle ph0 from the radius r0, polArc
+   around the radius r0 from the angle 0.  A leg is transport when it solves v' + Gamma x' v = 0. */
+polRay(s, r0, ph0) := [[tP, ph0], [s[1], s[2]*r0/tP]]$
+polArc(s, r0) := [[r0, tP], [s[1]*cos(tP) + s[2]*r0*sin(tP), s[2]*cos(tP) - s[1]*sin(tP)/r0]]$
+polEnd(leg, t) := subst(tP = t, leg[2])$
+polTransported(leg) := block([x : leg[1], v : leg[2], Gp, dx],
+  Gp : subst(map("=", XPo, x), GamPo),
+  dx : diff(x, tP),
+  every(lambda([i], is(trigsimp(diff(v[i], tP) + sum(sum(Gp[i][j][k]*dx[j]*v[k], k, 1, 2), j, 1, 2)) = 0)),
+        [1, 2]))$
+sPo : [c1Po, c2Po]$
+check("polar plane: the arrow returns unchanged around the circle",
+      polTransported(polArc(sPo, r1Po)) and is(trigsimp(polEnd(polArc(sPo, r1Po), 2*%pi) - sPo) = [0, 0])
+      and is(trigsimp(subst(phPo = phPo + 2*%pi, vPo) - vPo) = [0, 0]))$
+
+/* The small loop.  Along a coordinate line v' = -A v with A^r_s = Gamma^r_es, so to second order in the
+   step h the arrow becomes v - h A v + h^2/2 (A A - d_e A) v, with A taken at the start of the step.
+   loopSE travels first along n, then along m, then back along n and back along m. */
+stepSE(e, h, p, v) := block([A : genmatrix(lambda([i, j], GamSE[i][e][j]), 2, 2), dA, c],
+  dA : subst(map("=", XSE, p), diff(A, XSE[e])),
+  A : subst(map("=", XSE, p), A),
+  c : transpose(matrix(v)),
+  list_matrix_entries(c - h*A . c + h^2/2*(A . A - dA) . c))$
+vLo : [v1Lo, v2Lo]$
+loopSE(m, n) := block([p : copylist(XSE), v : vLo, st : [dmLo*eLo, dnLo*eLo]],
+  for leg in [[n, st[2]], [m, st[1]], [n, -st[2]], [m, -st[1]]] do (
+    v : stepSE(leg[1], leg[2], p, v),
+    p[leg[1]] : p[leg[1]] + leg[2]),
+  v)$
+loopOrder(v, k) := trigsimp(subst(eLo = 0, diff(v, eLo, k))/k!)$
+loopOK(m, n) := block([v : loopSE(m, n)],
+  is(loopOrder(v, 0) = vLo) and is(loopOrder(v, 1) = [0, 0])
+  and is(trigsimp(loopOrder(v, 2) - makelist(sum(RSE[i][j][m][n]*vLo[j], j, 1, 2)*dmLo*dnLo, i, 1, 2))
+         = [0, 0]))$
+check("S^2: a small loop changes v^r by R^r_smn v^s dx^m dx^n", loopOK(1, 2) and loopOK(2, 1))$
+
+/* The four parts of the Riemann tensor in R^x_yxy, on a surface with the metric diag(1, f(x)^2). */
+depends(fDi, xDi)$
+XDi : [xDi, yDi]$
+gDi : diag_matrix(1, fDi^2)$
+GamDi : christoffel(gDi, XDi)$
+RDi : riemann(GamDi, XDi)$
+partsDi : [diff(GamDi[1][2][2], xDi), -diff(GamDi[1][1][2], yDi),
+           sum(GamDi[1][1][k]*GamDi[k][2][2], k, 1, 2), -sum(GamDi[1][2][k]*GamDi[k][1][2], k, 1, 2)]$
+check("metric diag(1, f(x)^2): two of the four parts of Riemann vanish",
+      is(tgd_simp(partsDi[2]) = 0) and is(tgd_simp(partsDi[3]) = 0)
+      and is(tgd_simp(partsDi[1]) # 0) and is(tgd_simp(partsDi[4]) # 0)
+      and is(tgd_simp(RDi[1][2][1][2] - (diff(GamDi[1][2][2], xDi) - GamDi[1][2][2]*GamDi[2][1][2])) = 0))$
+
+/* The derivative and the product of that formula on the two tables. */
+check("polar plane at r = 2: d Gamma = -1, Gamma Gamma = -1, Riemann = 0",
+      is(atPo(2, 0, diff(GamPo[1][2][2], rPo)) = -1)
+      and is(atPo(2, 0, GamPo[1][2][2]*GamPo[2][1][2]) = -1)
+      and nested_zero_p(atPo(2, 0, riemann(GamPo, XPo))))$
+at60(e) := ratsimp(subst(thE = %pi/3, e))$
+check("S^2 at th = 60 deg: d Gamma = 1/2, Gamma Gamma = -1/4, Riemann = 3/4",
+      is(at60(diff(GamSE[1][2][2], thE)) = 1/2)
+      and is(at60(GamSE[1][2][2]*GamSE[2][1][2]) = -1/4)
+      and is(at60(RSE[1][2][1][2]) = 3/4))$
+check("S^2: R^th_ph th ph = sin^2 th, and K = 1",
+      is(trigsimp(RSE[1][2][1][2] - sin(thE)^2) = 0)
+      and is(trigsimp(RSE[1][2][1][2]/gSE[2,2]) = 1)
+      and is(trigsimp(sectional_curvature(gSE, riemann_lower(gSE, RSE), [1, 0], [0, 1])) = 1))$
+block([Gc : christoffel(ident(2), [xCa, yCa])],
+  check("Cartesian plane: Christoffel symbols and Riemann are zero",
+        is(length(flatten(Gc)) = 8) and nested_zero_p(Gc)
+        and nested_zero_p(riemann(Gc, [xCa, yCa]))))$
+
+/* An orthonormal frame of Schwarzschild's metric, with time first. */
+eSc : [[1/sqrt(fSc), 0, 0, 0], [0, sqrt(fSc), 0, 0], [0, 0, 1/rSc, 0], [0, 0, 0, 1/(rSc*sin(thSc))]]$
+gFrSc(a, b) := tgd_simp(eSc[a] . gSc . eSc[b])$
+planesSc : create_list([a, b], a, 1, 3, b, a + 1, 4)$
+rFrSc(p) := trigsimp(sum(sum(sum(sum(RlSc[a][b][c][d]*eSc[p[1]][a]*eSc[p[2]][b]*eSc[p[1]][c]*eSc[p[2]][d],
+                                     d, 1, 4), c, 1, 4), b, 1, 4), a, 1, 4))$
+kFrSc(p) := trigsimp(sectional_curvature(gSc, RlSc, eSc[p[1]], eSc[p[2]]))$
+/* The sign matters, because the three planes with the time direction have g_aa g_bb = -1. */
+inMoverR3(l) := trigsimp(l*rSc^3/MSc)$
+check("in orthonormal directions the diagonal of the 6 x 6 table is the plane curvature up to the sign of g_aa g_bb",
+      zero_matrix_p(genmatrix(lambda([a, b], gFrSc(a, b)), 4, 4) - gMk) and is(length(planesSc) = 6)
+      and is(map(lambda([p], gFrSc(p[1], p[1])*gFrSc(p[2], p[2])), planesSc) = [-1, -1, -1, 1, 1, 1])
+      and every(lambda([p], is(trigsimp(rFrSc(p) - kFrSc(p)*gFrSc(p[1], p[1])*gFrSc(p[2], p[2])) = 0)), planesSc)
+      and is(inMoverR3(map(rFrSc, planesSc)) = [2, -1, -1, 1, 1, -2])
+      and is(inMoverR3(map(kFrSc, planesSc)) = [-2, 1, 1, 1, 1, -2]))$
+
+check("S^2 stereographic: K = -(d_x^2 g_yy + d_y^2 g_xx)/2 = 1 at the origin",
+      is(at0(diff(gNo[2,2], uNo, 2)) = -1) and is(at0(diff(gNo[1,1], vNo, 2)) = -1)
+      and is(at0(sectional_curvature(gNo, RlNo, [1, 0], [0, 1])) = 1))$
+block([p : [uNo = 0, vNo = 1]],
+  check("S^2 stereographic: at y = 1 the metric number is 16/25 and its slope is -64/125",
+        is(ratsimp(subst(p, gNo[1,1])) = 16/25) and is(ratsimp(subst(p, diff(gNo[1,1], vNo))) = -64/125)))$
+
+/* The two maps at a point, computed by the library one basis element at a time around a constant
+   diagonal table.  coordsCol makes one C_a,bcd = 1 in the change of coordinates and reads the second
+   derivatives of the new metric.  riemCol gives the metric one second derivative and reads R_abcd. */
+at0Y(e, Y) := subst(map("=", Y, makelist(0, i, 1, length(Y))), e)$
+coordsCol(base, Y, prs, a, t) := block([x : copylist(Y), g],
+  x[a] : x[a] + base[a,a]*length(listify(permutations(t)))*apply("*", makelist(Y[k], k, t))/6,
+  g : transform_02(base, Y, Y, x),
+  at0Y(create_list(diff(g[m[1],m[2]], Y[s[1]], 1, Y[s[2]], 1), m, prs, s, prs), Y))$
+riemCol(base, Y, m, s) := block([g : copymatrix(base), n : length(Y), Rl,
+                                 y2 : Y[s[1]]*Y[s[2]]/(if s[1] = s[2] then 2 else 1)],
+  g[m[1],m[2]] : g[m[1],m[2]] + y2,
+  if m[1] # m[2] then g[m[2],m[1]] : g[m[2],m[1]] + y2,
+  Rl : riemann_lower(g, riemann(christoffel(g, Y), Y)),
+  at0Y(create_list(Rl[a][b][c][d], a, 1, n - 1, b, a + 1, n, c, 1, n - 1, d, c + 1, n), Y))$
+coordsMap(base, Y) := block([n : length(Y), prs : sym_tuples(2, length(Y))],
+  transpose(apply(matrix, create_list(coordsCol(base, Y, prs, a, t), a, 1, n, t, sym_tuples(3, n)))))$
+riemMap(base, Y) := block([prs : sym_tuples(2, length(Y))],
+  transpose(apply(matrix, create_list(riemCol(base, Y, m, s), m, prs, s, prs))))$
+Y4Rk : [y1Rk, y2Rk, y3Rk, y4Rk]$
+Y2Rk : [y1Rk, y2Rk]$
+coordsM4 : coordsMap(gMk, Y4Rk)$
+riemPhi4 : riemMap(gMk, Y4Rk)$
+check("the 20 numbers that coordinates leave are the Riemann tensor",
+      is(matrix_size(riemPhi4) = [36, 100]) and is(rank(riemPhi4) = 20) and is(rank(coordsM4) = 80)
+      and is(coordsM4 = genmatrix(lambda([i, j], entry2(rows2[i], cols2[j])), 100, 80))
+      and is(riemPhi4 . coordsM4 = zeromatrix(36, 80)))$
+block([M : coordsMap(ident(2), Y2Rk), Phi : riemMap(ident(2), Y2Rk)],
+  check("in dimension 2 coordinates remove 8 of the 9 second derivatives of the metric",
+        is(matrix_size(M) = [9, 8]) and is(rank(M) = 8) and is(rank(Phi) = 1)
+        and is(Phi . M = zeromatrix(1, 8))))$
+
+/* Which of the 256 places of a Riemann tensor are not zero. */
+placesRm : create_list([a, b, c, d], a, 1, 4, b, 1, 4, c, 1, 4, d, 1, 4)$
+nonzeroRm(Rm) := sublist(placesRm, lambda([p], is(trigsimp(Rm[p[1]][p[2]][p[3]][p[4]]) # 0)))$
+check("Schwarzschild: 24 of the 256 Riemann components are not zero",
+      block([nz : nonzeroRm(RSc)],
+        is(length(placesRm) = 256) and is(length(nz) = 24)
+        and is(nz = sublist(placesRm, lambda([p], is(p[1] # p[2]) and is({p[3], p[4]} = {p[1], p[2]}))))))$
+
+/* In the flat plane any arrow s ends the same whether it goes outward and then around, or around and
+   then outward.  The sphere's octant loop does the opposite. */
+routeA1 : polRay(sPo, r1Po, 0)$
+routeA2 : polArc(polEnd(routeA1, r2Po), r2Po)$
+routeB1 : polArc(sPo, r1Po)$
+routeB2 : polRay(polEnd(routeB1, aPo), r1Po, aPo)$
+check("polar plane: transport along two routes gives the same vector",
+      zero_matrix_p(trigsimp(cov_deriv_vector(vPo, GamPo, XPo)))
+      and every(polTransported, [routeA1, routeA2, routeB1, routeB2])
+      and is(trigsimp(polEnd(routeA2, aPo) - polEnd(routeB2, r2Po)) = [0, 0]))$
+/* The two transported directions are the unit vectors along x and y, and they commute, so they are
+   the coordinate directions of a grid in which the metric is the identity. */
+wPo : [sin(phPo), cos(phPo)/rPo]$
+frPo : transpose(matrix(vPo, wPo))$
+check("polar plane: the transported directions are the x, y grid, where the metric is constant",
+      zero_matrix_p(trigsimp(cov_deriv_vector(vPo, GamPo, XPo)))
+      and zero_matrix_p(trigsimp(cov_deriv_vector(wPo, GamPo, XPo)))
+      and is(polXY(vPo) = [1, 0]) and is(polXY(wPo) = [0, 1])
+      and is(trigsimp(vector_bracket(vPo, wPo, XPo)) = [0, 0])
+      and zero_matrix_p(trigsimp(transpose(frPo) . gPo . frPo) - ident(2)))$
+
+check("Schwarzschild: far from the mass Gamma^r_tt tends to M/r^2",
+      is(tgd_simp(GamSc[2][1][1] - MSc*(rSc - 2*MSc)/rSc^3) = 0)
+      and is(limit(rSc^2*GamSc[2][1][1]/MSc, rSc, inf) = 1))$
+
+/* Static spherical matter with free functions m(r) and Phi(r).  The tidal numbers come from the library's
+   Riemann tensor, the density and the two pressures from its Einstein tensor. */
+depends([PhBa, mBa], rBa)$
+XBa : [tBa, rBa, thBa, phBa]$
+gBa : diag_matrix(exp(2*PhBa), -1/(1 - 2*mBa/rBa), -rBa^2, -rBa^2*sin(thBa)^2)$
+RBa : riemann(christoffel(gBa, XBa), XBa)$
+RicBa : trigsimp(ricci(RBa))$
+RsBa : trigsimp(scalar_curvature(gBa, RicBa))$
+EiBa : trigsimp(RicBa - RsBa/2*gBa)$
+giBa : mat_inverse(gBa)$
+rhoBa : trigsimp(giBa[1,1]*EiBa[1,1]/(8*%pi))$
+prBa : trigsimp(-giBa[2,2]*EiBa[2,2]/(8*%pi))$
+ptBa : trigsimp(-giBa[3,3]*EiBa[3,3]/(8*%pi))$
+tideBa(i) := tgd_simp(-RBa[i][1][i][1]/gBa[1,1])$
+/* a_r and a_th for the mass m inside r, the density rho and the pressures pr and pt. */
+tideK2(m, rho, pr, pt, r) := [2*m/r^3 - 4*%pi*(rho - pr + 2*pt), -(m + 4*%pi*r^3*pr)/r^3]$
+/* The pressureless ball of mass MBa and radius rdBa, in the unit MBa/rdBa^3. */
+tideUnit(l) := ratsimp(l*rdBa^3/MBa)$
+inBa : tideK2(MBa*rBa^3/rdBa^3, 3*MBa/(4*%pi*rdBa^3), 0, 0, rBa)$
+outBa : tideK2(MBa, 0, 0, 0, rdBa)$
+check("uniform ball: the tidal numbers are -1, -1, -1 inside and +2, -1, -1 outside",
+      is(tgd_simp(diff(mBa, rBa) - 4*%pi*rBa^2*rhoBa) = 0)
+      and is(tgd_simp([tideBa(2), tideBa(3)] - tideK2(mBa, rhoBa, prBa, ptBa, rBa)) = [0, 0])
+      and is(trigsimp(tideBa(4) - tideBa(3)) = 0)
+      and is(ratsimp(diff(MBa*rBa^3/rdBa^3, rBa) - 4*%pi*rBa^2*3*MBa/(4*%pi*rdBa^3)) = 0)
+      and is(tideUnit(inBa) = [-1, -1]) and is(tideUnit(outBa) = [2, -1])
+      and is(tgd_simp(subst([rSc = rdBa, MSc = MBa], [tideSc(2), tideSc(3)]) - outBa) = [0, 0]))$
+
+/* The geodesic equation x'' + Gamma x' x' on a curve c(t), with the library's symbols. */
+geoAcc(Gam, X, c, t) := block([Gc : subst(map("=", X, c), Gam), dc : diff(c, t), n : length(X)],
+  makelist(trigsimp(diff(c[i], t, 2) + sum(sum(Gc[i][j][k]*dc[j]*dc[k], k, 1, n), j, 1, n)), i, 1, n))$
+gapMe : sin(sMe)$
+check("S^2: two meridians are geodesics, and their gap obeys gap'' = -gap",
+      is(geoAcc(GamSE, XSE, [sMe, 0], sMe) = [0, 0]) and is(geoAcc(GamSE, XSE, [sMe, dMe], sMe) = [0, 0])
+      and is(geoAcc(GamSE, XSE, [%pi/4, sMe], sMe) # [0, 0])
+      and is(trigsimp(gapMe^2 - subst(thE = sMe, gSE[2,2])) = 0)
+      and is(diff(gapMe, sMe, 2) = -gapMe))$
+check("metric dr^2 + f(r)^2 dph^2: the curvature is -f''/f",
+      is(tgd_simp(sectional_curvature(gDi, riemann_lower(gDi, RDi), [1, 0], [0, 1])
+                  + diff(fDi, xDi, 2)/fDi) = 0))$
+
+/* The planes through the time direction.  In Schwarzschild's metric Ric(u,u) is zero, so the closed dust
+   universe tests the sum where it is not zero. */
+kTimeSc : makelist(kFrSc([1, i]), i, 2, 4)$
+RlDuE : riemann_lower(gDu, riemann(christoffel(gDu, XDu), XDu))$
+eDu : [[1, 0, 0, 0], [0, 1/aDu, 0, 0], [0, 0, 1/(aDu*sin(cDu)), 0], [0, 0, 0, 1/(aDu*sin(cDu)*sin(thDu))]]$
+kTimeDu : makelist(trigsimp(sectional_curvature(gDu, RlDuE, eDu[1], eDu[i])), i, 2, 4)$
+check("Schwarzschild: Ricci(u,u) is the sum of the three time planes",
+      is(tgd_simp(kTimeSc - [-2*MSc/rSc^3, MSc/rSc^3, MSc/rSc^3]) = [0, 0, 0])
+      and is(trigsimp(apply("+", kTimeSc) - eSc[1] . RicSc . eSc[1]) = 0)
+      and is(tgd_simp(kTimeSc + makelist(tideSc(i), i, 2, 4)) = [0, 0, 0])
+      and is(trigsimp(apply("+", kTimeDu) - eDu[1] . RicDu . eDu[1]) = 0) and is(trigsimp(RicDu[1,1]) # 0))$
+
+/* CP_2 at the origin, where the coordinate directions are orthonormal. */
+gCp : cp2_metric()$
+RCp : riemann(christoffel(gCp, cp2_X), cp2_X)$
+atCp(e) := subst(map("=", cp2_X, [0, 0, 0, 0]), e)$
+eCp : [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]$
+check("CP_2: Ric(e,e) = 4 + 1 + 1 = 6 is the sum of the three plane curvatures through e",
+      is(atCp(gCp) = ident(4))
+      and is(atCp(makelist(sectional_curvature(gCp, riemann_lower(gCp, RCp), eCp[1], eCp[i]), i, 2, 4)) = [4, 1, 1])
+      and is(atCp(eCp[1] . ricci(RCp) . eCp[1]) = 6))$
+
+/* A weak field with two potentials, Phi in g_tt and Psi in the space part, to first order in eW. */
+depends([PhTw, PsTw], [xW, yW, zW])$
+gTw : diag_matrix(1 + 2*eW*PhTw, -(1 - 2*eW*PsTw), -(1 - 2*eW*PsTw), -(1 - 2*eW*PsTw))$
+GamTw : christoffel(gTw, XW)$
+RicTw : ricci(riemann(GamTw, XW))$
+EiTw : RicTw - scalar_curvature(gTw, RicTw)/2*gTw$
+foW(e) := tgd_simp(subst(eW = 0, diff(e, eW)))$
+lapW(f) := diff(f, xW, 2) + diff(f, yW, 2) + diff(f, zW, 2)$
+
+/* Slow matter has the density rho and a small rest of the same order as the field. */
+tuNm(i, j) := concat('tu, min(i, j), max(i, j))$
+depends(rhoTw, XW)$
+apply(depends, [create_list(tuNm(i, j), i, 1, 4, j, i, 4), XW])$
+TupTw : genmatrix(lambda([i, j], (if i + j = 2 then rhoTw else 0) + eW*tuNm(i, j)), 4, 4)$
+divTw : block([gi : mat_inverse(gTw), dl : divLower(gTw, gTw . TupTw . gTw, GamTw, XW)],
+  makelist(gi[i,i]*dl[i], i, 1, 4))$
+check("weak field: the momentum part of nabla T = 0 is Newton's force density",
+      is(tgd_simp(foW(GamTw[2][1][1]) - diff(PhTw, xW)) = 0)
+      and is(tgd_simp(subst(eW = 0, divTw[2])) = 0)
+      and is(tgd_simp(foW(divTw[2]) - (sum(diff(tuNm(j, 2), XW[j]), j, 1, 4) + rhoTw*diff(PhTw, xW))) = 0))$
+
+check("for R_mn = k T_mn the scalar curvature is k (rho - 3 p)",
+      is(tgd_simp(scalar_curvature(gMk, kFe*diag_matrix(rhoFe, pFe, pFe, pFe)) - kFe*(rhoFe - 3*pFe)) = 0))$
+
+/* The same two divergences outside the static family. */
+depends([a1Dt, a2Dt, a3Dt, a4Dt], [tDt, xDt])$
+XDt : [tDt, xDt, yDt, zDt]$
+gDt : diag_matrix(a1Dt, -a2Dt, -a3Dt, -a4Dt)$
+GamDt : christoffel(gDt, XDt)$
+RicDt : ricci(riemann(GamDt, XDt))$
+block([Rs : scalar_curvature(gDt, RicDt)],
+  check("a metric that depends on t and x: the Einstein tensor has zero divergence",
+        is(diff(Rs, tDt) # 0) and is(diff(Rs, xDt) # 0)
+        and every(lambda([e], is(ratsimp(e) = 0)), einstein_divergence(gDt, RicDt, GamDt, XDt))))$
+XQu : [tQu, xQu, yQu, zQu]$
+gQu : diag_matrix((1 + xQu^2)^2, -1, -1, -1)$
+GamQu : christoffel(gQu, XQu)$
+RicQu : ricci(riemann(GamQu, XQu))$
+RsQu : scalar_curvature(gQu, RicQu)$
+check("metric diag((1+x^2)^2, -1, -1, -1): R = 4/(1+x^2), and the Einstein tensor has zero divergence",
+      is(tgd_simp(RsQu - 4/(1 + xQu^2)) = 0)
+      and is(tgd_simp(divLower(gQu, RicQu, GamQu, XQu) - [0, diff(RsQu, xQu)/2, 0, 0]) = [0, 0, 0, 0])
+      and is(tgd_simp(diff(RsQu, xQu)/2 + 4*xQu/(1 + xQu^2)^2) = 0)
+      and every(lambda([e], is(tgd_simp(e) = 0)), einstein_divergence(gQu, RicQu, GamQu, XQu)))$
+
+/* The constant in four steps.  A slow body has x'' = -Gamma^x_tt = -d_x Phi, matter without pressure has
+   G_ij = 0, which makes Psi = Phi, and G_tt = kappa rho meets Poisson's equation Lap Phi = 4 pi GN rho. */
+kapTw : block([Gt : subst(PsTw = PhTw, foW(EiTw[1,1]))],
+  ratsimp(subst(diff(PhTw, xW, 2) = 4*%pi*GNw*rhoNw - diff(PhTw, yW, 2) - diff(PhTw, zW, 2), Gt))/rhoNw)$
+check("weak field with two potentials: the constant of the field equations is 8 pi G",
+      is(tgd_simp(foW(RicTw[1,1]) - lapW(PhTw)) = 0)
+      and is(tgd_simp(foW(EiTw[1,1]) - 2*lapW(PsTw)) = 0)
+      and is(tgd_simp(foW(EiTw[2,3]) - diff(PsTw - PhTw, xW, 1, yW, 1)) = 0)
+      and is(tgd_simp(foW(GamTw[2][1][1]) - diff(PhTw, xW)) = 0)
+      and every(lambda([p], is(tgd_simp(subst(PsTw = PhTw, foW(EiTw[p[1],p[2]]))) = 0)),
+                create_list([i, j], i, 2, 4, j, i, 4))
+      and is(kapTw = 8*%pi*GNw))$
+
+check("CP_2: 128 of the 256 Riemann components are not zero",
+      is(length(placesRm) = 256) and is(length(nonzeroRm(RCp)) = 128))$
+
+/* The sphere's second symbol, and the slope of the metric number at the point that the episode reads. */
+check("S^2 Christoffel Gamma^ph_{th ph} = cos/sin",
+      is(trigsimp(GamSE[2][1][2] - cos(thE)/sin(thE)) = 0))$
+check("S^2: at th = 60 deg the metric number is 3/4 and its slope is sqrt(3)/2",
+      is(at60(gSE[2,2]) = 3/4) and is(at60(diff(gSE[2,2], thE)) = sqrt(3)/2))$
+
+/* The same sphere with the point on the equator of the chosen pole. */
+atEq(e) := subst(thE = %pi/2, e)$
+check("S^2 equator: g = delta and Christoffel = 0",
+      is(atEq(gSE) = ident(2)) and nested_zero_p(atEq(GamSE)))$
+check("S^2 equator: sectional curvature equals -(d_th^2 g_phph)/2 = 1",
+      is(atEq(diff(gSE[2,2], thE)) = 0) and is(atEq(diff(gSE[2,2], thE, 2)) = -2)
+      and is(atEq(sectional_curvature(gSE, riemann_lower(gSE, RSE), [1, 0], [0, 1])) = 1)
+      and is(atEq(RSE[1][2][1][2]/gSE[2,2]) = 1))$
+
+/* The length of the kinked path, with e the height of the kink above the straight path. */
+check("plane: the length of a kinked path has zero slope at the straight path",
+      is(kinkPl(eKi) = 2*sqrt(1 + eKi^2)) and is(subst(eKi = 0, diff(kinkPl(eKi), eKi)) = 0))$
+
+/* A metric of six free functions, so nothing in R_abcd can cancel by a special form. */
+gmNm(i, j) := concat('gGm, min(i, j), max(i, j))$
+XGm : [x1Gm, x2Gm, x3Gm]$
+apply(depends, [create_list(gmNm(i, j), i, 1, 3, j, i, 3), XGm])$
+gGm : genmatrix(lambda([i, j], gmNm(i, j)), 3, 3)$
+RlGm : riemann_lower(gGm, riemann(christoffel(gGm, XGm), XGm))$
+check("general metric: R_abcd = -R_bacd and R_abcd = -R_abdc",
+      is(ratsimp(RlGm[1][2][1][2]) # 0)
+      and every(lambda([p], is(ratsimp(RlGm[p[1]][p[2]][p[3]][p[4]] + RlGm[p[2]][p[1]][p[3]][p[4]]) = 0)
+                            and is(ratsimp(RlGm[p[1]][p[2]][p[3]][p[4]] + RlGm[p[1]][p[2]][p[4]][p[3]]) = 0)),
+                create_list([a, b, c, d], a, 1, 3, b, 1, 3, c, 1, 3, d, 1, 3)))$
+
+/* The closed dust universe alone, where each time plane has the curvature -a''/a. */
+check("closed dust: Ricci(u,u) is the sum of the three time planes",
+      is(trigsimp(kTimeDu + diff(aDu, tDu, 2)/aDu) = [0, 0, 0])
+      and is(trigsimp(eDu[1] . RicDu . eDu[1] + 3*diff(aDu, tDu, 2)/aDu) = 0))$
+
+/* A metric whose first derivatives vanish at the origin, and a symmetric T with free values and slopes
+   there.  The two sides are compared at the origin, so the symbols must drop out of nabla^m T_mn. */
+XZs : [tZs, xZs, yZs, zZs]$
+at0Zs(e) := subst(map("=", XZs, [0, 0, 0, 0]), e)$
+gZs : diag_matrix(1 + xZs^2, -1 - yZs^2, -1 - zZs^2, -1 - tZs^2)$
+GamZs : christoffel(gZs, XZs)$
+TZs : genmatrix(lambda([i, j], cZs[min(i, j), max(i, j)]
+                               + sum(dZs[min(i, j), max(i, j), l]*XZs[l], l, 1, 4)), 4, 4)$
+plainZs : block([gi : mat_inverse(gZs)],
+  makelist(sum(sum(gi[j,k]*diff(TZs[j,i], XZs[k]), k, 1, 4), j, 1, 4), i, 1, 4))$
+check("where the symbols vanish, nabla^m T_mn is the plain divergence",
+      is(at0Zs(gZs) = gMk) and nested_zero_p(at0Zs(GamZs)) and is(at0Zs(plainZs[1]) # 0)
+      and is(ratsimp(at0Zs(divLower(gZs, TZs, GamZs, XZs) - plainZs)) = [0, 0, 0, 0]))$
+
+/* A plane wave in empty space, ds^2 = du dv + H du^2 - dx^2 - dy^2 with H = f(u)(x^2 - y^2). */
+depends(fPw, uPw)$
+XPw : [uPw, vPw, xPw, yPw]$
+HPw : fPw*(xPw^2 - yPw^2)$
+gPw : matrix([HPw, 1/2, 0, 0], [1/2, 0, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1])$
+RPw : riemann(christoffel(gPw, XPw), XPw)$
+check("plane wave: Ricci = 0 and Riemann is not zero",
+      zero_matrix_p(ratsimp(ricci(RPw))) and is(ratsimp(RPw[3][1][3][1] - fPw) = 0))$
+
+/* A surface with one parameter s is a curve.  The library's surface equation is then
+   G_ss H^k = h'' + Gamma h' h' - G^s_ss h', and a parameter with G^s_ss = 0 leaves the geodesic equation.
+   The latitude circle has a steady parameter and is not a geodesic, so the equation is not trivially zero. */
+depends([thCu, phCu], sCu)$
+cuEm(c) := emb_setup(gSE, XSE, c, [sCu])$
+cuEq(em) := block([H : mean_curvature(em, second_fundamental_form(em))],
+  trigsimp(emb_get(em, 'g)[1,1]*H))$
+cuGss(em) := emb_get(em, 'G)[1][1][1]$
+cuAny : [thCu, phCu]$
+cuLat : [%pi/4, sCu]$
+cuMer : [sCu, phCu0]$
+check("one parameter: the surface equation is the geodesic equation",
+      is(trigsimp(cuEq(cuEm(cuAny)) - geoAcc(GamSE, XSE, cuAny, sCu)
+                  + cuGss(cuEm(cuAny))*diff(cuAny, sCu)) = [0, 0])
+      and is(cuGss(cuEm(cuLat)) = 0) and is(cuEq(cuEm(cuLat)) = geoAcc(GamSE, XSE, cuLat, sCu))
+      and is(cuEq(cuEm(cuLat)) # [0, 0])
+      and is(cuGss(cuEm(cuMer)) = 0) and is(cuEq(cuEm(cuMer)) = [0, 0]))$
+
+section("names of coordinates and constants")$
+/* The name of a coordinate carries no meaning, so renaming it cannot change a result.  Maxima's sum
+   replaces its index symbol everywhere in the evaluated summand, and a definite integrate goes wrong
+   when its variable has a value.  A library index or local with an ordinary name would then give a
+   wrong result with no warning, so these checks use the ordinary names on purpose. */
+nmSc(Xn) := block([fn : 1 - 2*MSc/Xn[2]],
+  diag_matrix(fn, -1/fn, -Xn[2]^2, -Xn[2]^2*sin(Xn[3])^2))$
+nmScRicci(Xn) := trigsimp(ricci(riemann(christoffel(nmSc(Xn), Xn), Xn)))$
+for nm in [r, s, m, l, n, t, x, y, u, v] do
+  check(sconcat("Schwarzschild with the radial coordinate named ", nm, " has Ricci = 0"),
+        zero_matrix_p(nmScRicci([tSc, nm, thSc, phSc])))$
+check("Schwarzschild with the coordinates named t, r, s, m has Ricci = 0",
+      zero_matrix_p(nmScRicci([t, r, s, m])))$
+check("Schwarzschild with the coordinates named n, l, u, v has Ricci = 0",
+      zero_matrix_p(nmScRicci([n, l, u, v])))$
+
+/* A sphere whose radius and coordinates have the names of the summation indices. */
+XNm : [s, nn]$
+gNm : a^2*matrix([1, 0], [0, sin(s)^2])$
+RNm : riemann(christoffel(gNm, XNm), XNm)$
+check("a sphere of radius a has R = 2/a^2",
+      is(trigsimp(scalar_curvature(gNm, ricci(RNm)) - 2/a^2) = 0))$
+check("a sphere of radius a has K = 1/a^2",
+      is(trigsimp(sectional_curvature(gNm, riemann_lower(gNm, RNm), [1, 0], [0, 1]) - 1/a^2) = 0))$
+
+/* The polar plane again, with the coordinates named l and m. */
+XLm : [l, m]$
+gLm : matrix([1, 0], [0, l^2])$
+GLm : christoffel(gLm, XLm)$
+check("the polar arrow in l, m has zero covariant derivative",
+      zero_matrix_p(trigsimp(cov_deriv_vector([cos(m), -sin(m)/l], GLm, XLm))))$
+check("the polar metric in l, m has zero covariant derivative",
+      nested_zero_p(cov_deriv_02(gLm, GLm, XLm)))$
+check("the identity tensor in l, m has zero covariant derivative",
+      nested_zero_p(cov_deriv_11(ident(2), GLm, XLm)))$
+
+/* A static closed universe is not empty, so its Einstein tensor is not zero. */
+XEs : [t, r, m, nn]$
+gEs : diag_matrix(1, -1/(1 - r^2), -r^2, -r^2*sin(m)^2)$
+GEs : christoffel(gEs, XEs)$
+RicEs : trigsimp(ricci(riemann(GEs, XEs)))$
+check("the Einstein tensor of a closed universe in r, m has zero divergence",
+      is(trigsimp(RicEs[2,2]) # 0)
+      and every(lambda([e], is(trigsimp(e) = 0)), einstein_divergence(gEs, RicEs, GEs, XEs)))$
+
+/* The integral of x^2 + y^2 over the unit disk, with the radial coordinate under several names. */
+for nm in [r, q, A, xi] do
+  check(sconcat("the disk moment is pi/2 with the radial coordinate named ", nm),
+        is(ratsimp(form_integral([[xDk^2 + yDk^2, [1, 2]]], [xDk, yDk],
+                                 [nm*cos(phDk), nm*sin(phDk)],
+                                 [[nm, 0, 1], [phDk, 0, 2*%pi]])) = %pi/2))$
+
+/* CP_2 scales with cp2_R2, and a radius can have the name of an index as well. */
+nmCp2(fn, nmR) := block([cp2_R2 : nmR], fn())$
+for fn in [cp2_metric, cp2_kahler_matrix] do
+  check(sconcat(fn, " scales with a radius named i or j"),
+        zero_matrix_p(nmCp2(fn, i) - i*nmCp2(fn, 1)) and zero_matrix_p(nmCp2(fn, j) - j*nmCp2(fn, 1)))$
+
+/* The other modules on a small surface, by the identity f(renamed input) = renamed f(input).  The
+   renamings put each ordinary index name on a surface coordinate, a constant and an ambient coordinate. */
+nmFlat(e) := if listp(e) then apply(append, map(nmFlat, e))
+             else if matrixp(e) then nmFlat(args(e)) else [e]$
+nmSame(fn, inp, ren) := block([was, now],
+  was : nmFlat(psubst(ren, apply(fn, inp))),
+  now : errcatch(nmFlat(apply(fn, psubst(ren, inp)))),
+  is(now # []) and is(length(was) = length(now[1]))
+  and every(lambda([p, q], is(ratsimp(p - q) = 0)), was, now[1]))$
+nmRens : makelist(map("=", [uA, uB, pC, hA, hB, hC], c6),
+                  c6, [[r, s, m, l, a, b], [l, a, b, r, s, m], [c, d, k, i, j, nn], [i, j, nn, c, d, k],
+                       [s, m, r, a, b, l], [a, b, l, s, m, r], [d, k, c, j, nn, i], [j, nn, i, d, k, c],
+                       [m, r, s, b, l, a], [b, l, a, m, r, s], [k, c, d, nn, i, j], [nn, i, j, k, c, d]])$
+depends(nmF, append([uA, uB], flatten(map(rhs, flatten(nmRens)))))$
+nmXi : [uA, uB]$
+nmHX : [hA, hB, hC]$
+nmHG : matrix([1 + hC^2, 0, 0], [0, 1 + hA^2, 0], [0, 0, 1])$
+nmHJ : matrix([0, 1 + hC, hB], [-1 - hC, 0, hA], [-hB, -hA, 0])$
+nmXe : [uA, uB, pC*uA*uB]$
+nmEm : emb_setup(nmHG, nmHX, nmXe, nmXi)$
+nmB  : second_fundamental_form(nmEm)$
+nmRH : emb_on_surface(riemann(christoffel(nmHG, nmHX), nmHX), nmHX, nmXe)$
+nmPr : normal_projector(nmEm)$
+nmJi : induced_kahler_form(nmHJ, nmHX, nmXe, nmXi)$
+nmSt : tgd_stress(emb_get(nmEm, 'g), nmJi, pC, 1)$
+nmNv : [uB, uA, pC]$
+nmAn : [hC, 0, hA]$
+nmA2 : matrix([uA, pC*uB], [uB^2, uA*pC])$
+nmE2 : matrix([1 + pC*uB, uA], [0, 1 + uA^2])$
+nmG2 : christoffel(frame_metric(nmE2, ident(2)), nmXi)$
+nmSg : [matrix([0, 1], [1, 0]), matrix([1, 0], [0, -1])]$
+nmWm : [matrix([0, uA], [uA, 0]), matrix([0, pC*uB], [pC*uB, 0])]$
+nmSm : spinor_connection(nmWm, ident(2), nmSg)$
+for cs in [
+    [connection_forms, [nmE2, ident(2), nmXi]],
+    [spin_connection, [nmE2, nmG2, nmXi]],
+    [curvature_from_riemann, [nmE2, riemann(nmG2, nmXi)]],
+    [vielbein_cholesky, [matrix([1 + uA^2, pC], [pC, 2 + uB^2 + pC^2]), ident(2)]],
+    [spinor_connection, [nmWm, ident(2), nmSg]],
+    [gamma_curved, [nmE2, nmSg, ident(2)]],
+    [dirac_operator, [matrix([uA], [pC*uB]), nmE2, nmSg, ident(2), nmSm, [uA*uB, pC], pC, nmXi]],
+    [emb_cov_vector, [nmEm, nmNv, 1]],
+    [second_fundamental_form, [nmEm]],
+    [mean_curvature, [nmEm, nmB]],
+    [normal_projector, [nmEm]],
+    [emb_cov_B, [nmEm, nmB, 1, 2, 1]],
+    [emb_R_uab, [nmEm, nmRH, nmNv, 1, 2]],
+    [codazzi_defects, [nmEm, nmRH, nmB]],
+    [ricci_defect, [nmEm, nmRH, nmB, nmPr, nmNv, 1, 2]],
+    [kahler_invariant, [emb_get(nmEm, 'g), nmJi]],
+    [euler_lagrange, [pC*diff(nmF, uA)^2 - uB*diff(nmF, uB)^2 + uA*nmF^2, [nmF], nmXi]],
+    [kahler_current, [nmEm, nmJi]],
+    [tgd_T_divergence, [nmEm, nmSt, nmXi]],
+    [tgd_field_equations, [nmEm, nmHJ, pC, 1]],
+    [lie_derivative_02, [nmHG, nmAn, nmHX]],
+    [vector_bracket, [nmAn, [hB, hA, 0], nmHX]],
+    [noether_current, [nmEm, nmHJ, nmAn, pC, 1]],
+    [noether_divergence, [nmEm, [uA*uB, pC*uB]]],
+    [noether_defect, [nmEm, nmHJ, nmAn, pC, 1]],
+    [lagrangian_at, [[uA, uB, pC], matrix([1, 0], [0, 1], [pC, uA]), nmHG, nmHJ, nmHX, pC, 1, 1]],
+    [second_form_trace, [nmA2 + transpose(nmA2), nmB]],
+    [scalar_hessian, [nmEm, uA^2*uB + pC*uB]],
+    [mat_trace_with, [emb_get(nmEm, 'g), nmA2]],
+    [kahler_current_terms, [nmEm, nmHJ]],
+    [kahler_eight_force, [nmEm, nmHJ]],
+    [lorentz_force, [nmEm, nmJi]]] do
+  check(sconcat(cs[1], " does not depend on names"),
+        every(lambda([ren], nmSame(cs[1], cs[2], ren)), nmRens))$

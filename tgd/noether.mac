@@ -15,13 +15,13 @@
 
 /* Lie derivative of a (0,2) tensor */
 lie_derivative_02(T, K, X) := block([n:length(X)],
-  genmatrix(lambda([a,b], tgd_simp(sum(K[c]*diff(T[a,b], X[c])
-      + T[c,b]*diff(K[c], X[a]) + T[a,c]*diff(K[c], X[b]), c, 1, n))), n, n))$
+  genmatrix(lambda([%%a,%%b], tgd_simp(sum(K[%%c]*diff(T[%%a,%%b], X[%%c])
+      + T[%%c,%%b]*diff(K[%%c], X[%%a]) + T[%%a,%%c]*diff(K[%%c], X[%%b]), %%c, 1, n))), n, n))$
 
 /* Lie bracket of vector fields */
 vector_bracket(K1, K2, X) := block([n:length(X)],
-  makelist(tgd_simp(sum(K1[b]*diff(K2[a], X[b]) - K2[b]*diff(K1[a], X[b]), b, 1, n)),
-           a, 1, n))$
+  makelist(tgd_simp(sum(K1[%%b]*diff(K2[%%a], X[%%b]) - K2[%%b]*diff(K1[%%a], X[%%b]), %%b, 1, n)),
+           %%a, 1, n))$
 
 /* Gell-Mann matrices; su(3) generators are %i*lambda */
 gell_mann() := [matrix([0,1,0],[1,0,0],[0,0,0]), matrix([0,-%i,0],[%i,0,0],[0,0,0]),
@@ -62,18 +62,18 @@ noether_current(em, HJ, K, cK, cV) := block([g:emb_get(em,'g), gi:emb_get(em,'gi
   Ks : emb_on_surface(K, HX, h),
   T : tgd_stress(g, Jind, cK, cV),
   Ju : tgd_msimp(gi . Jind . gi),
-  P : makelist(sum(sum(Ks[k]*hh[k,l]*t[b][l], l, 1, N), k, 1, N), b, 1, n),
-  Q : makelist(sum(sum(Ks[k]*Js[k,l]*t[b][l], l, 1, N), k, 1, N), b, 1, n),
-  makelist(tgd_simp(sum(2*T[a,b]*P[b] + 4*cK*Ju[a,b]*Q[b], b, 1, n)), a, 1, n))$
+  P : makelist(sum(sum(Ks[%%k]*hh[%%k,%%l]*t[%%b][%%l], %%l, 1, N), %%k, 1, N), %%b, 1, n),
+  Q : makelist(sum(sum(Ks[%%k]*Js[%%k,%%l]*t[%%b][%%l], %%l, 1, N), %%k, 1, N), %%b, 1, n),
+  makelist(tgd_simp(sum(2*T[%%a,%%b]*P[%%b] + 4*cK*Ju[%%a,%%b]*Q[%%b], %%b, 1, n)), %%a, 1, n))$
 
 /* D_a j^a */
 noether_divergence(em, j) := block([xi:emb_get(em,'xi), G:emb_get(em,'G), n],
   n : length(xi),
-  tgd_simp(sum(diff(j[a], xi[a]) + sum(G[a][a][c]*j[c], c, 1, n), a, 1, n)))$
+  tgd_simp(sum(diff(j[%%a], xi[%%a]) + sum(G[%%a][%%a][%%c]*j[%%c], %%c, 1, n), %%a, 1, n)))$
 
 /* D_a j^a - 2 K^k Eq_k, zero for every surface */
 noether_defect(em, HJ, K, cK, cV) := block([Ks, E],
   Ks : emb_on_surface(K, emb_get(em,'X), emb_get(em,'h)),
   E : tgd_field_equations(em, HJ, cK, cV),
   tgd_simp(noether_divergence(em, noether_current(em, HJ, K, cK, cV))
-           - 2*sum(Ks[k]*E[k], k, 1, length(Ks))))$
+           - 2*sum(Ks[%%k]*E[%%k], %%k, 1, length(Ks))))$

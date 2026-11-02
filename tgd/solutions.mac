@@ -76,7 +76,7 @@ hh_sheets(f1, f2, w) := map(lambda([s], subst(hhw = w, subst(s, [xi1, xi2]))),
    CP_2 Kahler form alone, on a minimal surface with A = 0 and a 4-D M^4 projection, the
    Kahler part vanishes only where f_b does. */
 lorentz_force(em, Jind) := block([j : kahler_current(em, Jind), n : length(Jind)],
-  makelist(tgd_simp(sum(j[a]*Jind[a,b], a, 1, n)), b, 1, n))$
+  makelist(tgd_simp(sum(j[%%a]*Jind[%%a,%%b], %%a, 1, n)), %%b, 1, n))$
 
 /* transverse Kahler form dx ^ dy of M^4 on the flat H-J structure, as a form on H */
 H_kahler_m4t() := block([m : zeromatrix(8, 8)], m[2,3] : 1, m[3,2] : -1, m)$

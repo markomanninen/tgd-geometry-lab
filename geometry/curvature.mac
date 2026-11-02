@@ -17,10 +17,10 @@
 christoffel(g, X) := block([n:length(X), gi],
   gi : mat_inverse(g),
   makelist(makelist(makelist(
-     tgd_simp( 1/2 * sum( gi[r,s] * ( diff(g[s,nn], X[m])
-                                    + diff(g[s,m],  X[nn])
-                                    - diff(g[m,nn], X[s]) ), s, 1, n) ),
-     nn, 1, n), m, 1, n), r, 1, n))$
+     tgd_simp( 1/2 * sum( gi[%%r,%%s] * ( diff(g[%%s,%%n], X[%%m])
+                                        + diff(g[%%s,%%m],  X[%%n])
+                                        - diff(g[%%m,%%n], X[%%s]) ), %%s, 1, n) ),
+     %%n, 1, n), %%m, 1, n), %%r, 1, n))$
 
 /* symmetry Gamma^r_{mn} = Gamma^r_{nm}: returns true/false */
 christoffel_symmetric_p(Gam) := block([n:length(Gam), ok:true],
@@ -30,45 +30,45 @@ christoffel_symmetric_p(Gam) := block([n:length(Gam), ok:true],
 
 riemann(Gam, X) := block([n:length(X)],
   makelist(makelist(makelist(makelist(
-     tgd_simp( diff(Gam[r][nn][s], X[m]) - diff(Gam[r][m][s], X[nn])
-             + sum( Gam[r][m][l]*Gam[l][nn][s] - Gam[r][nn][l]*Gam[l][m][s],
-                    l, 1, n) ),
-     nn, 1, n), m, 1, n), s, 1, n), r, 1, n))$
+     tgd_simp( diff(Gam[%%r][%%n][%%s], X[%%m]) - diff(Gam[%%r][%%m][%%s], X[%%n])
+             + sum( Gam[%%r][%%m][%%l]*Gam[%%l][%%n][%%s] - Gam[%%r][%%n][%%l]*Gam[%%l][%%m][%%s],
+                    %%l, 1, n) ),
+     %%n, 1, n), %%m, 1, n), %%s, 1, n), %%r, 1, n))$
 
 /* fully covariant R_{a s m n} = g_{a r} R^r_{s m n} */
 riemann_lower(g, Riem) := block([n:length(g)],
   makelist(makelist(makelist(makelist(
-     tgd_simp( sum(g[a,r]*Riem[r][s][m][nn], r, 1, n) ),
-     nn, 1, n), m, 1, n), s, 1, n), a, 1, n))$
+     tgd_simp( sum(g[%%a,%%r]*Riem[%%r][%%s][%%m][%%n], %%r, 1, n) ),
+     %%n, 1, n), %%m, 1, n), %%s, 1, n), %%a, 1, n))$
 
 ricci(Riem) := block([n:length(Riem)],
-  genmatrix(lambda([s,nn], tgd_simp(sum(Riem[r][s][r][nn], r, 1, n))), n, n))$
+  genmatrix(lambda([%%s,%%n], tgd_simp(sum(Riem[%%r][%%s][%%r][%%n], %%r, 1, n))), n, n))$
 
 scalar_curvature(g, Ric) := block([gi:mat_inverse(g), n:length(g)],
-  tgd_simp(sum(sum(gi[s,nn]*Ric[s,nn], nn, 1, n), s, 1, n)))$
+  tgd_simp(sum(sum(gi[%%s,%%n]*Ric[%%s,%%n], %%n, 1, n), %%s, 1, n)))$
 
 /* ---------- covariant derivatives ---------- */
 
 /* nabla_m V^r  -> matrix [r, m] */
 cov_deriv_vector(V, Gam, X) := block([n:length(X)],
-  genmatrix(lambda([r,m], tgd_simp(diff(V[r], X[m])
-                          + sum(Gam[r][m][l]*V[l], l, 1, n))), n, n))$
+  genmatrix(lambda([%%r,%%m], tgd_simp(diff(V[%%r], X[%%m])
+                              + sum(Gam[%%r][%%m][%%l]*V[%%l], %%l, 1, n))), n, n))$
 
 /* nabla_r g_{mn} -- metric compatibility; returns nested list */
 cov_deriv_02(T, Gam, X) := block([n:length(X)],
   makelist(makelist(makelist(
-     tgd_simp( diff(T[m,nn], X[r])
-             - sum(Gam[l][r][m]*T[l,nn], l, 1, n)
-             - sum(Gam[l][r][nn]*T[m,l], l, 1, n) ),
-     nn, 1, n), m, 1, n), r, 1, n))$
+     tgd_simp( diff(T[%%m,%%n], X[%%r])
+             - sum(Gam[%%l][%%r][%%m]*T[%%l,%%n], %%l, 1, n)
+             - sum(Gam[%%l][%%r][%%n]*T[%%m,%%l], %%l, 1, n) ),
+     %%n, 1, n), %%m, 1, n), %%r, 1, n))$
 
 /* (1,1) tensor A^a_b given as matrix [a,b]: nabla_r A^a_b  */
 cov_deriv_11(A, Gam, X) := block([n:length(X)],
   makelist(makelist(makelist(
-     tgd_simp( diff(A[a,b], X[r])
-             + sum(Gam[a][r][l]*A[l,b], l, 1, n)
-             - sum(Gam[l][r][b]*A[a,l], l, 1, n) ),
-     b, 1, n), a, 1, n), r, 1, n))$
+     tgd_simp( diff(A[%%a,%%b], X[%%r])
+             + sum(Gam[%%a][%%r][%%l]*A[%%l,%%b], %%l, 1, n)
+             - sum(Gam[%%l][%%r][%%b]*A[%%a,%%l], %%l, 1, n) ),
+     %%b, 1, n), %%a, 1, n), %%r, 1, n))$
 
 /* ---------- identities used by the tests ---------- */
 
@@ -96,11 +96,11 @@ einstein_divergence(g, Ric, Gam, X) := block([n:length(X), gi, Rs, Gt, D],
   Rs : scalar_curvature(g, Ric),
   Gt : tgd_msimp(Ric - Rs/2*g),
   D  : cov_deriv_02(Gt, Gam, X),
-  makelist(tgd_simp(sum(sum(gi[r,m]*D[r][m][nn], m, 1, n), r, 1, n)), nn, 1, n))$
+  makelist(tgd_simp(sum(sum(gi[%%r,%%m]*D[%%r][%%m][%%n], %%m, 1, n), %%r, 1, n)), %%n, 1, n))$
 
 /* sectional curvature of the plane spanned by vectors U, V */
 sectional_curvature(g, Rl, U, V) := block([n:length(g), num, den],
-  num : sum(sum(sum(sum(Rl[a][b][c][d]*U[a]*V[b]*U[c]*V[d],
-            d,1,n),c,1,n),b,1,n),a,1,n),
+  num : sum(sum(sum(sum(Rl[%%a][%%b][%%c][%%d]*U[%%a]*V[%%b]*U[%%c]*V[%%d],
+            %%d,1,n),%%c,1,n),%%b,1,n),%%a,1,n),
   den : (U.g.U)*(V.g.V) - (U.g.V)^2,
   tgd_simp(num/den))$

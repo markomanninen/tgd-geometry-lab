@@ -35,17 +35,17 @@ assoc_eq(key, em) := first(sublist(em, lambda([q], lhs(q) = key)))$
 /* D_a V^k = d_a V^k + GH^k_{lm} t_a^l V^m for an ambient vector on the surface */
 emb_cov_vector(em, V, a) := block([xi:emb_get(em,'xi), t:emb_get(em,'t), GH:emb_get(em,'GH), N],
   N : length(V),
-  makelist(diff(V[k], xi[a])
-           + sum(sum(GH[k][l][m]*t[a][l]*V[m], m, 1, N), l, 1, N), k, 1, N))$
+  makelist(diff(V[%%k], xi[a])
+           + sum(sum(GH[%%k][%%l][%%m]*t[a][%%l]*V[%%m], %%m, 1, N), %%l, 1, N), %%k, 1, N))$
 
 second_fundamental_form(em) := block([xi:emb_get(em,'xi), t:emb_get(em,'t), G:emb_get(em,'G),
                                       N:length(emb_get(em,'X)), p:length(emb_get(em,'xi))],
   makelist(makelist(makelist(
-    tgd_simp(emb_cov_vector(em, t[b], a)[k] - sum(G[c][a][b]*t[c][k], c, 1, p)),
-    b, 1, p), a, 1, p), k, 1, N))$
+    tgd_simp(emb_cov_vector(em, t[%%b], %%a)[%%k] - sum(G[%%c][%%a][%%b]*t[%%c][%%k], %%c, 1, p)),
+    %%b, 1, p), %%a, 1, p), %%k, 1, N))$
 
 mean_curvature(em, B) := block([gi:emb_get(em,'gi), N:length(B), p:length(emb_get(em,'xi))],
-  makelist(tgd_simp(sum(sum(gi[a,b]*B[k][a][b], b, 1, p), a, 1, p)), k, 1, N))$
+  makelist(tgd_simp(sum(sum(gi[%%a,%%b]*B[%%k][%%a][%%b], %%b, 1, p), %%a, 1, p)), %%k, 1, N))$
 
 emb_inner(em, U, V) := block([hh:emb_get(em,'hh)],
   apply("+", makelist(apply("+", makelist(hh[k,l]*U[k]*V[l], l, 1, length(V))), k, 1, length(U))))$
@@ -54,8 +54,8 @@ emb_inner(em, U, V) := block([hh:emb_get(em,'hh)],
    P^k_l = delta^k_l - g^{ab} t_a^k t_b^m h_ml, as a matrix */
 normal_projector(em) := block([t:emb_get(em,'t), gi:emb_get(em,'gi), hh:emb_get(em,'hh),
                                N:length(emb_get(em,'X)), p:length(emb_get(em,'xi))],
-  genmatrix(lambda([k,l], tgd_simp((if k = l then 1 else 0)
-     - sum(sum(gi[a,b]*t[a][k]*sum(t[b][m]*hh[m,l], m, 1, N), b, 1, p), a, 1, p))), N, N))$
+  genmatrix(lambda([%%k,%%l], tgd_simp((if %%k = %%l then 1 else 0)
+     - sum(sum(gi[%%a,%%b]*t[%%a][%%k]*sum(t[%%b][%%m]*hh[%%m,%%l], %%m, 1, N), %%b, 1, p), %%a, 1, p))), N, N))$
 
 /* Gram-Schmidt normal frame from the projected coordinate basis.
    Returns [[n_1, eps_1], ...] with h(n_i, n_j) = eps_i delta_ij (eps = +-1);
@@ -78,17 +78,17 @@ normal_frame(em) := block([P:normal_projector(em), N:length(emb_get(em,'X)),
 /* total derivative D_a B^k_{bc}, with G on b, c and GH on k */
 emb_cov_B(em, B, a, b, c) := block([xi:emb_get(em,'xi), t:emb_get(em,'t), G:emb_get(em,'G),
                                     GH:emb_get(em,'GH), N:length(B), p:length(emb_get(em,'xi))],
-  makelist(diff(B[k][b][c], xi[a])
-     + sum(sum(GH[k][l][m]*t[a][l]*B[m][b][c], m, 1, N), l, 1, N)
-     - sum(G[d][a][b]*B[k][d][c] + G[d][a][c]*B[k][b][d], d, 1, p), k, 1, N))$
+  makelist(diff(B[%%k][b][c], xi[a])
+     + sum(sum(GH[%%k][%%l][%%m]*t[a][%%l]*B[%%m][b][c], %%m, 1, N), %%l, 1, N)
+     - sum(G[%%d][a][b]*B[%%k][%%d][c] + G[%%d][a][c]*B[%%k][b][%%d], %%d, 1, p), %%k, 1, N))$
 
 /* ambient Riemann R^k_{l m n} on the surface */
 emb_ambient_riemann(HG, HX, Xemb) := emb_on_surface(riemann(christoffel(HG, HX), HX), HX, Xemb)$
 
 /* R^k_{l m n} U^l t_a^m t_b^n */
 emb_R_uab(em, RH, U, a, b) := block([t:emb_get(em,'t), N:length(U)],
-  makelist(sum(sum(sum(RH[k][l][m][nn]*U[l]*t[a][m]*t[b][nn],
-                       nn, 1, N), m, 1, N), l, 1, N), k, 1, N))$
+  makelist(sum(sum(sum(RH[%%k][%%l][%%m][%%n]*U[%%l]*t[a][%%m]*t[b][%%n],
+                       %%n, 1, N), %%m, 1, N), %%l, 1, N), %%k, 1, N))$
 
 emb_B_vec(B, a, b) := makelist(B[k][a][b], k, 1, length(B))$
 
@@ -109,9 +109,9 @@ gauss_defects(em, RH, B) := block([p:length(emb_get(em,'xi)), Rl, t:emb_get(em,'
    is the Gauss equation.  Returns the defect vectors over all index values. */
 codazzi_defects(em, RH, B) := block([t:emb_get(em,'t), p:length(emb_get(em,'xi)), Ri, out:[], rhs_],
   Ri : riemann(emb_get(em,'G), emb_get(em,'xi)),
-  for a thru p do for b from a+1 thru p do for c thru p do (
-    rhs_ : emb_R_uab(em, RH, t[c], a, b) - sum(Ri[d][c][a][b]*t[d], d, 1, p),
-    out : endcons(map(tgd_simp, emb_cov_B(em, B, a, b, c) - emb_cov_B(em, B, b, a, c) - rhs_), out)),
+  for %%a thru p do for %%b from %%a+1 thru p do for %%c thru p do (
+    rhs_ : emb_R_uab(em, RH, t[%%c], %%a, %%b) - sum(Ri[%%d][%%c][%%a][%%b]*t[%%d], %%d, 1, p),
+    out : endcons(map(tgd_simp, emb_cov_B(em, B, %%a, %%b, %%c) - emb_cov_B(em, B, %%b, %%a, %%c) - rhs_), out)),
   out)$
 
 /* Codazzi proper: P (D_a B_bc - D_b B_ac) = P Rbar(t_c, t_a, t_b) */
@@ -132,6 +132,6 @@ ricci_defect(em, RH, B, P, Nv, a, b) := block([gi:emb_get(em,'gi), p:length(emb_
   comm : emb_cov_normal(em, P, emb_cov_normal(em, P, Nv, b), a)
        - emb_cov_normal(em, P, emb_cov_normal(em, P, Nv, a), b),
   curv : list_matrix_entries(P . transpose(matrix(emb_R_uab(em, RH, Nv, a, b)))),
-  ext : sum(sum(gi[c,d]*(emb_inner(em, Nv, emb_B_vec(B,b,c))*emb_B_vec(B,a,d)
-                       - emb_inner(em, Nv, emb_B_vec(B,a,c))*emb_B_vec(B,b,d)), d, 1, p), c, 1, p),
+  ext : sum(sum(gi[%%c,%%d]*(emb_inner(em, Nv, emb_B_vec(B,b,%%c))*emb_B_vec(B,a,%%d)
+                       - emb_inner(em, Nv, emb_B_vec(B,a,%%c))*emb_B_vec(B,b,%%d)), %%d, 1, p), %%c, 1, p),
   map(tgd_simp, comm - curv - ext))$

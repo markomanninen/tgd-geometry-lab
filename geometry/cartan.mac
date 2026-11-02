@@ -32,10 +32,10 @@ connection_forms(E, eta, X) := block([n:length(X), A, Cl, Wc],
   A : frame_anholonomy(E, X),
   Cl(a,b,c) := -eta[a,a]*A[a][b][c],
   makelist(makelist(block(
-    Wc : makelist(tgd_simp(-eta[a,a]/2*(Cl(a,b,c) + Cl(b,c,a) - Cl(c,a,b))), c, 1, n),
+    Wc : makelist(tgd_simp(-eta[%%a,%%a]/2*(Cl(%%a,%%b,%%c) + Cl(%%b,%%c,%%a) - Cl(%%c,%%a,%%b))), %%c, 1, n),
     form_simplify(makelist(
-      [tgd_simp(sum(Wc[c]*E[c,m], c, 1, n)), [m]], m, 1, n))),
-    b, 1, n), a, 1, n))$
+      [tgd_simp(sum(Wc[%%c]*E[%%c,%%m], %%c, 1, n)), [%%m]], %%m, 1, n))),
+    %%b, 1, n), %%a, 1, n))$
 
 torsion_forms(E, W, X) := block([n:length(X), e:coframe_forms(E)],
   makelist(block([T : dform(e[a], X)],
@@ -51,9 +51,9 @@ curvature_forms(W, X) := block([n:length(X)],
 curvature_from_riemann(E, Riem) := block([n:length(E), Ei : frame_inverse(E)],
   makelist(makelist(
     form_simplify(apply(append, makelist(makelist(
-      [sum(sum(E[a,r]*Riem[r][s][m][nn]*Ei[s,b], s, 1, n), r, 1, n), [m, nn]],
-      nn, m+1, n), m, 1, n))),
-    b, 1, n), a, 1, n))$
+      [sum(sum(E[%%a,%%r]*Riem[%%r][%%s][%%m][%%n]*Ei[%%s,%%b], %%s, 1, n), %%r, 1, n), [%%m, %%n]],
+      %%n, %%m+1, n), %%m, 1, n))),
+    %%b, 1, n), %%a, 1, n))$
 
 /* equality of two n x n tables of forms */
 forms_equal_p(A, B) := block([n:length(A), ok:true],
@@ -66,8 +66,8 @@ forms_equal_p(A, B) := block([n:length(A), ok:true],
        omega_m^a_b = e^a_r (d_m e_b^r + Gam^r_{m l} e_b^l).
    This is independent of connection_forms, which never uses Gam.          */
 spin_connection(E, Gam, X) := block([n:length(X), Ei : frame_inverse(E)],
-  makelist(genmatrix(lambda([a,b], tgd_simp(sum(E[a,r]*(diff(Ei[r,b], X[m])
-       + sum(Gam[r][m][l]*Ei[l,b], l, 1, n)), r, 1, n))), n, n), m, 1, n))$
+  makelist(genmatrix(lambda([%%a,%%b], tgd_simp(sum(E[%%a,%%r]*(diff(Ei[%%r,%%b], X[%%m])
+       + sum(Gam[%%r][%%m][%%l]*Ei[%%l,%%b], %%l, 1, n)), %%r, 1, n))), n, n), %%m, 1, n))$
 
 /* matrices per coordinate -> nested list of 1-forms */
 spin_connection_forms(Wm) := block([n:length(Wm)],

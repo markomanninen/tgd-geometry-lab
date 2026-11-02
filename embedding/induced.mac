@@ -15,7 +15,7 @@ embedding_jacobian(Xemb, xi) := jacobian_matrix(Xemb, xi)$
 pullback_02(T, HX, Xemb, xi) := block([Jm, Ts],
   Jm : embedding_jacobian(Xemb, xi),
   Ts : psubst(map("=", HX, Xemb), T),
-  tgd_msimp(transpose(Jm) . Ts . Jm))$
+  tgd_msimp(as_matrix(transpose(Jm) . Ts . Jm)))$
 
 induced_metric(G, HX, Xemb, xi)      := pullback_02(G, HX, Xemb, xi)$
 induced_kahler_form(J, HX, Xemb, xi) := pullback_02(J, HX, Xemb, xi)$

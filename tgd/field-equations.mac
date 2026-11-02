@@ -22,15 +22,15 @@ kahler_current(em, Jind) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), G:emb_g
                                    xi:emb_get(em,'xi), n, Ju],
   n : length(xi),
   Ju : tgd_msimp(gi . Jind . gi),
-  makelist(tgd_simp(sum(diff(Ju[a,b], xi[a]) + sum(G[a][a][c]*Ju[c,b], c, 1, n), a, 1, n)),
-           b, 1, n))$
+  makelist(tgd_simp(sum(diff(Ju[%%a,%%b], xi[%%a]) + sum(G[%%a][%%a][%%c]*Ju[%%c,%%b], %%c, 1, n), %%a, 1, n)),
+           %%b, 1, n))$
 
 /* D_a(T^{ab} d_b h^k) with H-Christoffels on k and induced ones on a */
 tgd_T_divergence(em, T, xi) := block([g:emb_get(em,'g), t:emb_get(em,'t), GH:emb_get(em,'GH),
                                       G:emb_get(em,'G), n:length(xi), N:length(emb_get(em,'X)), V],
-  V : makelist(makelist(sum(T[a,b]*t[b][k], b, 1, n), k, 1, N), a, 1, n),
-  makelist(tgd_simp(sum(diff(V[a][k], xi[a]) + sum(G[a][a][c]*V[c][k], c, 1, n)
-     + sum(sum(GH[k][l][m]*t[a][l]*V[a][m], m, 1, N), l, 1, N), a, 1, n)), k, 1, N))$
+  V : makelist(makelist(sum(T[%%a,%%b]*t[%%b][%%k], %%b, 1, n), %%k, 1, N), %%a, 1, n),
+  makelist(tgd_simp(sum(diff(V[%%a][%%k], xi[%%a]) + sum(G[%%a][%%a][%%c]*V[%%c][%%k], %%c, 1, n)
+     + sum(sum(GH[%%k][%%l][%%m]*t[%%a][%%l]*V[%%a][%%m], %%m, 1, N), %%l, 1, N), %%a, 1, n)), %%k, 1, N))$
 
 /* Lower-index covariant field equations E_k / (-2 sqrt|g|) */
 tgd_field_equations(em, HJ, cK, cV) := block([g:emb_get(em,'g), xi:emb_get(em,'xi), hh:emb_get(em,'hh),
@@ -41,5 +41,5 @@ tgd_field_equations(em, HJ, cK, cV) := block([g:emb_get(em,'g), xi:emb_get(em,'x
   T : tgd_stress(g, Jind, cK, cV),
   D : tgd_T_divergence(em, T, xi),
   j : kahler_current(em, Jind),
-  makelist(tgd_simp(sum(hh[k,l]*D[l], l, 1, N)
-     + 2*cK*sum(j[b]*sum(Js[k,l]*t[b][l], l, 1, N), b, 1, n)), k, 1, N))$
+  makelist(tgd_simp(sum(hh[%%k,%%l]*D[%%l], %%l, 1, N)
+     + 2*cK*sum(j[%%b]*sum(Js[%%k,%%l]*t[%%b][%%l], %%l, 1, N), %%b, 1, n)), %%k, 1, N))$

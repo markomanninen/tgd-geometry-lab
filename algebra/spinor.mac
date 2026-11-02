@@ -30,7 +30,7 @@ gamma_raise(gam, eta) := makelist(eta[a,a]*gam[a], a, 1, length(gam))$
 /* Wm from spin_connection (geometry/cartan.mac) -> list of matrices S_m */
 spinor_connection(Wm, eta, gam) := block([n:length(eta), gu : gamma_raise(gam, eta)],
   makelist(matrixmap(tgd_simp, 1/4*sum(sum(
-      eta[a,a]*w[a,b]*(gu[a] . gu[b]), b, 1, n), a, 1, n)), w, Wm))$
+      eta[%%a,%%a]*%%w[%%a,%%b]*(gu[%%a] . gu[%%b]), %%b, 1, n), %%a, 1, n)), %%w, Wm))$
 
 /* F_mn = d_m S_n - d_n S_m + [S_m, S_n] as a nested list [m][n] */
 spinor_curvature(S, X) := block([n:length(X)],
@@ -40,7 +40,7 @@ spinor_curvature(S, X) := block([n:length(X)],
 
 /* local gammas gamma^m = e_a^m gamma^a, {gamma^m, gamma^n} = 2 g^{mn} */
 gamma_curved(E, gam, eta) := block([n:length(E), Ei : frame_inverse(E), gu : gamma_raise(gam, eta)],
-  makelist(sum(Ei[m,a]*gu[a], a, 1, n), m, 1, n))$
+  makelist(sum(Ei[%%m,%%a]*gu[%%a], %%a, 1, n), %%m, 1, n))$
 
 /* Kahler potential of CP_2 as component list, dA = J:
    A = c R2 sum_k (x_k dy_k - y_k dx_k) / F in the chart Z_0 # 0 */
@@ -55,4 +55,4 @@ spinor_covariant(psi, S, A, k, X) := block([n:length(X)],
 dirac_operator(psi, E, gam, eta, S, A, k, X) := block([n:length(X), gc, Dp],
   gc : gamma_curved(E, gam, eta),
   Dp : spinor_covariant(psi, S, A, k, X),
-  matrixmap(tgd_simp, sum(gc[m] . Dp[m], m, 1, n)))$
+  matrixmap(tgd_simp, sum(gc[%%m] . Dp[%%m], %%m, 1, n)))$

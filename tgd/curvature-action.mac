@@ -24,7 +24,7 @@ induced_einstein(em) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), Ric, Rs],
 
 /* G^{ab} B^k_ab, or any symmetric P^{ab} traced with the second form */
 second_form_trace(P, B) := block([p:length(P)],
-  makelist(tgd_simp(sum(sum(P[a,b]*B[k][a][b], b, 1, p), a, 1, p)), k, 1, length(B)))$
+  makelist(tgd_simp(sum(sum(P[%%a,%%b]*B[%%k][%%a][%%b], %%b, 1, p), %%a, 1, p)), %%k, 1, length(B)))$
 
 einstein_trace(em) := second_form_trace(induced_einstein(em), second_fundamental_form(em))$
 
@@ -33,8 +33,8 @@ induced_action_equation(em, P) := tgd_T_divergence(em, P, emb_get(em, 'xi))$
 
 /* D_a d_b f = d_a d_b f - G^c_ab d_c f */
 scalar_hessian(em, f) := block([xi:emb_get(em,'xi), G:emb_get(em,'G), n:length(emb_get(em,'xi))],
-  genmatrix(lambda([a,b], tgd_simp(diff(f, xi[a], 1, xi[b], 1)
-     - sum(G[c][a][b]*diff(f, xi[c]), c, 1, n))), n, n))$
+  genmatrix(lambda([%%a,%%b], tgd_simp(diff(f, xi[%%a], 1, xi[%%b], 1)
+     - sum(G[%%c][%%a][%%b]*diff(f, xi[%%c]), %%c, 1, n))), n, n))$
 
 /* P^{ab} for L = R^2 sqrt|g| */
 r2_stress(em) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), Ric, Rs, Hs, box],
@@ -44,7 +44,7 @@ r2_stress(em) := block([g:emb_get(em,'g), gi:emb_get(em,'gi), Ric, Rs, Hs, box],
   box : tgd_simp(mat_trace_with(g, Hs)),
   tgd_msimp(2*Rs*(gi . Ric . gi) - Rs^2/2*gi + 2*(box*gi - Hs)))$
 
-mat_trace_with(g, U) := block([n:length(g)], sum(sum(g[a,b]*U[a,b], b, 1, n), a, 1, n))$
+mat_trace_with(g, U) := block([n:length(g)], sum(sum(g[%%a,%%b]*U[%%a,%%b], %%b, 1, n), %%a, 1, n))$
 
 /* D_a J^{ab} = J_kl H^k t^{l b} + J_kl t^k_a B^{l ab}: the first term is the trace of the
    second form, the second is not.  Returned with the index b lowered. */
@@ -54,9 +54,9 @@ kahler_current_terms(em, HJ) := block([gi:emb_get(em,'gi), t:emb_get(em,'t), xi:
   B : second_fundamental_form(em),
   Hk : mean_curvature(em, B),
   Js : emb_on_surface(HJ, emb_get(em,'X), emb_get(em,'h)),
-  [makelist(tgd_simp(sum(sum(Js[k,l]*Hk[k]*t[b][l], l, 1, N), k, 1, N)), b, 1, n),
-   makelist(tgd_simp(sum(sum(gi[a,c]*sum(sum(Js[k,l]*t[a][k]*B[l][c][b], l, 1, N), k, 1, N),
-                             c, 1, n), a, 1, n)), b, 1, n)])$
+  [makelist(tgd_simp(sum(sum(Js[%%k,%%l]*Hk[%%k]*t[%%b][%%l], %%l, 1, N), %%k, 1, N)), %%b, 1, n),
+   makelist(tgd_simp(sum(sum(gi[%%a,%%c]*sum(sum(Js[%%k,%%l]*t[%%a][%%k]*B[%%l][%%c][%%b], %%l, 1, N), %%k, 1, N),
+                             %%c, 1, n), %%a, 1, n)), %%b, 1, n)])$
 
 /* Pitkanen's eight-force on a minimal holomorphic surface: the Kahler part of the field
    equations is 2 j^a X_ka with X_ka = J_a^b t_bk + J_kl t^l_a (reply of 1.11.2026) */
@@ -66,5 +66,5 @@ kahler_eight_force(em, HJ) := block([gi:emb_get(em,'gi), hh:emb_get(em,'hh), t:e
   Jm : induced_kahler_form(HJ, HX, h, xi),
   Js : emb_on_surface(HJ, HX, h),
   j : kahler_current(em, Jm),
-  makelist(tgd_simp(sum(j[a]*(sum(sum(Jm[a,c]*gi[c,b]*sum(hh[k,l]*t[b][l], l, 1, N), c, 1, n), b, 1, n)
-                              + sum(Js[k,l]*t[a][l], l, 1, N)), a, 1, n)), k, 1, N))$
+  makelist(tgd_simp(sum(j[%%a]*(sum(sum(Jm[%%a,%%c]*gi[%%c,%%b]*sum(hh[%%k,%%l]*t[%%b][%%l], %%l, 1, N), %%c, 1, n), %%b, 1, n)
+                              + sum(Js[%%k,%%l]*t[%%a][%%l], %%l, 1, N)), %%a, 1, n)), %%k, 1, N))$

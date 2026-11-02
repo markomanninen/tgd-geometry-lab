@@ -115,8 +115,10 @@ form_pullback(A, HX, Xemb, xi) := block([p:form_degree(A), n:length(xi), out:[],
   form_simplify(out))$
 
 /* integral of a p-form over the p-dimensional surface Xemb; ranges is a list
-   [[xi1, lo, hi], ...] in the orientation order, innermost integral last */
-form_integral(A, HX, Xemb, ranges) := block([xi:map(first, ranges), r],
-  r : top_coef(form_pullback(A, HX, Xemb, xi)),
-  for q in reverse(ranges) do r : integrate(r, q[1], q[2], q[3]),
-  r)$
+   [[xi1, lo, hi], ...] in the orientation order, innermost integral last.
+   A definite integrate returns a wrong value when its variable has a value, so
+   no parameter, local or loop variable here may have the name of a coordinate. */
+form_integral(%%A, %%HX, %%Xemb, %%ranges) := block([%%xi:map(first, %%ranges), %%r],
+  %%r : top_coef(form_pullback(%%A, %%HX, %%Xemb, %%xi)),
+  for %%q in reverse(%%ranges) do %%r : integrate(%%r, %%q[1], %%q[2], %%q[3]),
+  %%r)$

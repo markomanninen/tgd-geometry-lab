@@ -18,12 +18,12 @@ frame_inverse(E)     := mat_inverse(E)$
    abs(sin(t)), so use an explicit frame when a sign is known. */
 vielbein_cholesky(g, eta) := block([n:length(g), E, d],
   E : zeromatrix(n, n),
-  for i thru n do (
-    d : tgd_simp(eta[i,i]*(g[i,i] - sum(eta[k,k]*E[k,i]^2, k, 1, i-1))),
-    E[i,i] : sqrt(d),
-    for j from i+1 thru n do
-      E[i,j] : tgd_simp((g[i,j] - sum(eta[k,k]*E[k,i]*E[k,j], k, 1, i-1))
-                        / (eta[i,i]*E[i,i]))),
+  for %%i thru n do (
+    d : tgd_simp(eta[%%i,%%i]*(g[%%i,%%i] - sum(eta[%%k,%%k]*E[%%k,%%i]^2, %%k, 1, %%i-1))),
+    E[%%i,%%i] : sqrt(d),
+    for %%j from %%i+1 thru n do
+      E[%%i,%%j] : tgd_simp((g[%%i,%%j] - sum(eta[%%k,%%k]*E[%%k,%%i]*E[%%k,%%j], %%k, 1, %%i-1))
+                            / (eta[%%i,%%i]*E[%%i,%%i]))),
   E)$
 
 /* Unitary frame of CP_2 in chart Z_0 # 0, smooth on the whole chart:

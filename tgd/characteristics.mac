@@ -20,7 +20,7 @@ lagrangian_at(hv, Jc, HG, HJ, HX, cK, cV, sg) := block(
   [G : psubst(map("=", HX, hv), HG), W : psubst(map("=", HX, hv), HJ), g, Ji, gi, n],
   n : length(Jc[1]),
   g : transpose(Jc) . G . Jc, Ji : transpose(Jc) . W . Jc, gi : invert(g),
-  (cK*sum(sum(sum(sum(gi[a,c]*gi[b,d]*Ji[a,b]*Ji[c,d], d,1,n), c,1,n), b,1,n), a,1,n) + cV)
+  (cK*sum(sum(sum(sum(gi[%%a,%%c]*gi[%%b,%%d]*Ji[%%a,%%b]*Ji[%%c,%%d], %%d,1,n), %%c,1,n), %%b,1,n), %%a,1,n) + cV)
     * sqrt(sg*determinant(g)))$
 
 /* P[a][b] = matrix P^{ab}_{ij}, symmetrised in (a,b); dirs lists coordinate

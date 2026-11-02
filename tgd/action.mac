@@ -17,8 +17,8 @@
 
 /* J_{ab} J^{ab} */
 kahler_invariant(g, Jind) := block([gi : mat_inverse(g), n : length(g)],
-  tgd_simp(sum(sum(sum(sum(gi[a,c]*gi[b,d]*Jind[a,b]*Jind[c,d],
-          d,1,n),c,1,n),b,1,n),a,1,n)))$
+  tgd_simp(sum(sum(sum(sum(gi[%%a,%%c]*gi[%%b,%%d]*Jind[%%a,%%b]*Jind[%%c,%%d],
+          %%d,1,n),%%c,1,n),%%b,1,n),%%a,1,n)))$
 
 sqrt_abs_det(g) := block([d : factor(tgd_simp(determinant(g)))],
   radcan(sqrt(if is(d < 0) then -d else if is(d > 0) then d else abs(d))))$
@@ -39,14 +39,14 @@ instanton_density(Jind) := top_coef(wedge(form_from_matrix(Jind), form_from_matr
      E_k = dL/df_k - sum_a D_a ( dL/d(d_a f_k) )                          */
 euler_lagrange(L, fields, xi) := block([nf:length(fields), nx:length(xi),
                                         P, subs, back, Ls, out:[], Ek],
-  P : makelist(makelist(concat('tgd_p_, k, '_, a), a, 1, nx), k, 1, nf),
-  subs : flatten(makelist(makelist(diff(fields[k], xi[a]) = P[k][a], a, 1, nx), k, 1, nf)),
-  back  : map(lambda([r], rhs(r) = lhs(r)), subs),
+  P : makelist(makelist(concat('tgd_p_, %%k, '_, %%a), %%a, 1, nx), %%k, 1, nf),
+  subs : flatten(makelist(makelist(diff(fields[%%k], xi[%%a]) = P[%%k][%%a], %%a, 1, nx), %%k, 1, nf)),
+  back  : map(lambda([%%r], rhs(%%r) = lhs(%%r)), subs),
   Ls : ratsubst_list(subs, L),
-  for k thru nf do (
-    Ek : diff(Ls, fields[k]),
+  for %%k thru nf do (
+    Ek : diff(Ls, fields[%%k]),
     Ek : subst(back, Ek),
-    Ek : Ek - sum(diff(subst(back, diff(Ls, P[k][a])), xi[a]), a, 1, nx),
+    Ek : Ek - sum(diff(subst(back, diff(Ls, P[%%k][%%a])), xi[%%a]), %%a, 1, nx),
     out : endcons(tgd_simp(Ek), out)),
   out)$
 

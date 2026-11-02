@@ -7,6 +7,12 @@
    but every operation is also available in a "functional" form that
    takes the metric matrix and coordinate list directly, so the
    modules can be used without the registry.
+
+   The library has one naming rule.  Every summation index, and every other loop
+   variable in a function with a sum, starts with %%.  Maxima's sum replaces
+   its index symbol everywhere in the evaluated summand, so an index named r
+   would turn a coordinate or a constant named r into a number with no warning.
+   makelist, for and lambda do not do this, but one rule is easier to keep.
    ================================================================ */
 
 tgd_simp(e) := ratsimp(e)$
@@ -40,7 +46,10 @@ metric_determinant(name) := tgd_simp(determinant(manifold_metric(name)))$
 
 /* ---------- matrix helpers ---------- */
 
-mat_inverse(g) := tgd_msimp(invert(g))$
+/* Maxima turns a 1 x 1 inverse or matrix product into a scalar, and a curve needs its matrix back. */
+as_matrix(M) := if matrixp(M) then M else matrix([M])$
+
+mat_inverse(g) := tgd_msimp(as_matrix(invert(g)))$
 
 /* signature as [n_plus, n_minus, n_zero] at a numeric point
    (point = list of equations, e.g. [x=0, y=1]) */
