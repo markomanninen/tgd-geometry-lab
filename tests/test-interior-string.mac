@@ -51,6 +51,17 @@ check("only d = 3 has chi = 0 among d > 0, so only the cubic has a small tension
 check("Lambda -> 0: the unit flux string has T = -1/(2 G)", is(is_T8(1, 0)/8 = -1/2))$
 check("pure volume: 8 G T = d Lambda R^2 > 0 for every degree", is(ratsimp(is_T8(dIs, LIs) + 2*is_chi(dIs) - dIs*LIs) = 0))$
 
+/* An open section: the graph xi = w/L in E^2 x CP_1 is a complete surface with the flux of CP_1.
+   Its metric is e |dw|^2 with e = 1 + (1/L^2)/(1 + r^2/L^2)^2. */
+assume(LIs2 > 0, rIs2 > 0)$
+eOp : 1 + (1/LIs2^2)/(1 + rIs2^2/LIs2^2)^2$
+check("open section: the area above the plane is pi, the area of CP_1, for every size L",
+      is(ratsimp(integrate(2*%pi*rIs2*(eOp - 1), rIs2, 0, inf) - %pi) = 0))$
+/* int K dA = -pi [r d_r log e] over the radius */
+dOp : rIs2*diff(log(eOp), rIs2)$
+check("open section: int K dA = 0, since r d_r log e vanishes at both ends, so T = Lambda R^2/(8 G)",
+      is(limit(dOp, rIs2, 0, plus) = 0) and is(limit(dOp, rIs2, inf) = 0))$
+
 /* The two sides of an orbit with a simple zero: the density has the same sign on both sides */
 assume(xPos > 0, yPos > 0)$
 check("Minkowskian side g_tt = x: R = -1/(2 x^2)",

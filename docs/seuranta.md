@@ -23,7 +23,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 | M9 Partonipinnat | 0/6 | #36 partoniradan metriikkaehdot |
 
-Kaikki 648 testiä menevät läpi.
+Kaikki 650 testiä menevät läpi.
 
 Vaihe X eli lehtien kokoaminen ja Einsteinin raja on työn alla ([kehityssuunnitelma](kehityssuunnitelma.md#102-vaihe-x-lehtien-kokoaminen-ja-einsteinin-raja)). Sille ei ole vielä välitavoitetta eikä issueita.
 
