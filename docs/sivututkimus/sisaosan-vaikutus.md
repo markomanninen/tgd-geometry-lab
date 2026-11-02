@@ -152,7 +152,7 @@ Holomorfinen $X^6$ ei ole yhden aika-avaruuspinnan esikuvakimppu. Esimerkissä $
 
 ## H-J-rakenne ja torukset
 
-Pitkäsen artikkelin *Holography= holomorphy vision: analogues of elliptic curves and partonic orbits* mukaan metriikka on hermiittinen ja tyyppiä $(1,1)$, ja konjugaatio vaihtaa koordinaatit $u$ ja $v$. Artikkelin mukaan partoniratoja ei ole ilman tätä konjugaatiota. Vanhempi yläindeksinen ehto $(\nabla u)^2=(\nabla v)^2=0$ yhdessä viivaelementin (2.4.19) kanssa poistaa ristitermit, jotka alaindeksisessä muodossa ovat mukana.
+Pitkäsen artikkelin *Holography= holomorphy vision: analogues of elliptic curves and partonic orbits* mukaan metriikka on hermiittinen ja tyyppiä $(1,1)$, ja konjugaatio vaihtaa koordinaatit $u$ ja $v$. Artikkelin mukaan partoniratoja ei ole ilman tätä konjugaatiota. Ristitermit $g_{u\bar w}$ ja $g_{vw}$ koskevat pinnan indusoitua metriikkaa, ja ne tulevat $CP_2$-osasta. Ehto $(\nabla u)^2=(\nabla v)^2=0$ koskee $M^4$:n metriikkaa, ja se poistaa ristitermit $M^4$:n viivaelementistä (2.4.19) kirjassa *Physics in Many-Sheeted Space-Time: Part I*. Määritelmät eivät siis ole ristiriidassa.
 
 Pelkkä gradienttiehto sallii minkä tahansa genuksen. Esimerkki on
 
