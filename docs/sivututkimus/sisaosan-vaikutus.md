@@ -1,6 +1,6 @@
 # Sisäosan vaikutus ja kaarevuusskalaari
 
-Tämä sivu vertaa ehdokkaita TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Sisäosan vaikutus on avoin tutkimuskohde, ja sivu kokoaa, mihin kukin vaihtoehto johtaa. Ehdokkaita on kolme. Pelkkä tilavuus on Matti Pitkäsen linjaus 1.11.2026. Kaarevuusskalaaria ja tilavuutta Pitkänen pohti 2.11.2026 kysymyksenä. Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa Laplacen yhtälön, hän ehdotti 3.11.2026. Laskut, lähteiden lukemisen ja päättelyn teki Claude 2.–3.11.2026. Tulokset koskevat mainittuja pintaluokkia, ja fysikaalisen tulkinnan tekee Pitkänen.
+Tämä sivu vertaa ehdokkaita TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Sisäosan vaikutus on avoin tutkimuskohde, ja sivu kokoaa, mihin kukin vaihtoehto johtaa. Ehdokkaita on kolme. Pelkkä tilavuus on Matti Pitkäsen linjaus 1.11.2026. Kaarevuusskalaaria ja tilavuutta Pitkänen pohti 2.11.2026 kysymyksenä. Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa Laplacen yhtälön, hän ehdotti 3.11.2026. Laskut, lähteiden lukemisen ja päättelyn teki NeuroPaja 2.–3.11.2026. Tulokset koskevat mainittuja pintaluokkia, ja fysikaalisen tulkinnan tekee Pitkänen.
 
 Merkinnät ovat projektin konventioiden mukaiset, ja signatuuri on $(+,-,-,-)$. Kirjain $R$ tarkoittaa pinnan kaarevuusskalaaria, ja $R_C$ on $CP_2$:n säde. Vaikutus on
 
@@ -192,15 +192,15 @@ $$
 
 Hänen mukaansa induusoidun Kähler-kentän poikittainen magneettikenttä häviää silloin, varaukset ja virrat ovat vain alempiulotteisissa singulariteeteissa, ja H-H toimii myös Kähler-vaikutukselle. Twistorinosto säilyy, ja induusoitu Kähler-kenttä määrää H-J-rakenteen.
 
-Clauden laskussa koordinaatit $\xi^1=f(w)$ ja $\xi^2=g(w)$ ovat holomorfisia muuttujan $w$ suhteen, ja $K=\log(1+\lvert\xi^1\rvert^2+\lvert\xi^2\rvert^2)$. Vedetyn Kähler-funktion Laplacen operaattori on silloin derivaatan $\partial_w\xi$ normin neliö Fubini–Studyn metriikassa.
+NeuroPajan laskussa koordinaatit $\xi^1=f(w)$ ja $\xi^2=g(w)$ ovat holomorfisia muuttujan $w$ suhteen, ja $K=\log(1+\lvert\xi^1\rvert^2+\lvert\xi^2\rvert^2)$. Vedetyn Kähler-funktion Laplacen operaattori on silloin derivaatan $\partial_w\xi$ normin neliö Fubini–Studyn metriikassa.
 
 $$
 \partial_w\partial_{\bar w}K=\frac{\lvert f'\rvert^2+\lvert g'\rvert^2+\lvert fg'-gf'\rvert^2}{(1+\lvert f\rvert^2+\lvert g\rvert^2)^2}.
 $$
 
-Lauseke on nolla vain, kun $f'=g'=0$. Clauden laskussa ehto ei siis salli riippuvuutta poikittaisesta koordinaatista $w$ niissä kohdissa, joissa pinta on säännöllinen, ja $CP_2$-koordinaatit riippuvat silloin vain pitkittäisistä koordinaateista. Sama tulos on [tulossivulla](../tulokset.md) poikittaisen virran ehtona, jossa Fubini–Study-metriikan vetäisyn pitää olla litteä. Laplacen ehto on saman ehdon toinen muoto.
+Lauseke on nolla vain, kun $f'=g'=0$. NeuroPajan laskussa ehto ei siis salli riippuvuutta poikittaisesta koordinaatista $w$ niissä kohdissa, joissa pinta on säännöllinen, ja $CP_2$-koordinaatit riippuvat silloin vain pitkittäisistä koordinaateista. Sama tulos on [tulossivulla](../tulokset.md) poikittaisen virran ehtona, jossa Fubini–Study-metriikan vetäisyn pitää olla litteä. Laplacen ehto on saman ehdon toinen muoto.
 
-Claude laski 3.11.2026 ehdon seuraukset viidestä suunnasta.
+NeuroPaja laski 3.11.2026 ehdon seuraukset viidestä suunnasta.
 
 **Kosminen säie.** Säikeellä $M^2\times CP_1$ poikittainen koordinaatti on $CP_1$:n koordinaatti, eli $\xi=w$. Silloin $\partial_w\partial_{\bar w}K=1/(1+\lvert w\rvert^2)^2$, joka ei ole missään nolla. Tämä Laplacen operaattori on säikeen monopolivuon tiheys. Ehto sulkee siis pois monopolivuoputket, ellei niitä lueta singulariteeteiksi.
 

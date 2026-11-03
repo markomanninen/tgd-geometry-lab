@@ -2,7 +2,7 @@
 
 Tämä sivu on sivututkimuspolku, joka ei kuulu milestoneihin. Marko Manninen kysyi 31.10.2026, kuinka lähellä muut upotusteoriat ovat TGD:tä ja mitä Regge–Teitelboim-gravitaatiosta on tutkittu nykyaikana. Regge–Teitelboim-gravitaatiossa aika-avaruus on neliulotteinen pinta tasaisessa korkeampiulotteisessa avaruudessa, joten sillä on sama lähtökuva kuin TGD:llä.
 
-Ensimmäinen selvitys perustui artikkelien abstrakteihin. Sen viisitoista väitettä tarkistettiin sen jälkeen koko teksteistä, ja selvitystä vietiin yksi taso syvemmälle. Tarkistuksen, lukemisen ja päättelyn teki Claude 1.11.2026. Sivu erottaa joka kohdassa sen, mitä lähteessä sanotaan, siitä, mikä on oma päätelmä. Oma päätelmä on aina merkitty sanoilla "oma päätelmäni". TGD:n fysikaalista tulkintaa sivu ei ratkaise, vaan vertailu rajataan rakenteeseen, ja avoimet kysymykset on kirjattu loppuun.
+Ensimmäinen selvitys perustui artikkelien abstrakteihin. Sen viisitoista väitettä tarkistettiin sen jälkeen koko teksteistä, ja selvitystä vietiin yksi taso syvemmälle. Tarkistuksen, lukemisen ja päättelyn teki NeuroPaja 1.11.2026. Sivu erottaa joka kohdassa sen, mitä lähteessä sanotaan, siitä, mikä on oma päätelmä. Oma päätelmä on aina merkitty sanoilla "oma päätelmäni". TGD:n fysikaalista tulkintaa sivu ei ratkaise, vaan vertailu rajataan rakenteeseen, ja avoimet kysymykset on kirjattu loppuun.
 
 ## Tiivistelmä
 
@@ -380,7 +380,7 @@ Vuoden 2026 aineistosta en löytänyt uutta havaintorajaa tai ratkaisua inflaati
 
 ## Osa 3. Laskut
 
-Laskut teki Claude 1.11.2026 projektin Maxima-kirjastolla. Laskutoimitukset ovat moduulissa `tgd/curvature-action.mac`, ja testit ovat tiedostossa `tests/test-curvature-action.mac`.
+Laskut teki NeuroPaja 1.11.2026 projektin Maxima-kirjastolla. Laskutoimitukset ovat moduulissa `tgd/curvature-action.mac`, ja testit ovat tiedostossa `tests/test-curvature-action.mac`.
 
 ### Mitä laskettiin
 
@@ -482,7 +482,7 @@ Matti Pitkänen käsitteli samaa asiaa sähköpostissaan 1.11.2026. Hän kysyy, 
 
 Litteässä rakenteessa laskut ja arvelu kertovat saman pinnoilla, jotka eivät riipu koordinaatista $v$. Pallomaisessa rakenteessa testattiin pinta $\xi^1=2w$. Sillä $B^k_{w\bar w}=0$, ja tensorin $G^{\alpha\beta}$ supistuksesta häviää se osa, jossa molemmat indeksit ovat $w$-suuntia, kuten tyyppipäättely sanoo. Nollasta poikkeava osa on termi $G^{rw}B^k_{rw}$, joka sekoittaa suunnat $r$ ja $w$. Litteällä pinnalla $\xi^1=w$ vaikutuksen $R^2$ yhtälöön jää termi $D^wD^wR\,B^k_{ww}$, koska $R$ riippuu muuttujasta $w$. Sen, sisältyvätkö nämä termit hänen päättelyynsä, arvioi Matti.
 
-Samassa viestissä Matti kysyy, häviääkö Kähler-virta minimipinnoilla. Hänen laskunsa mukaan toisia kovariantteja derivaattoja sisältävät termit ovat verrannollisia jälkiin, joten virta häviää singulariteetteja lukuun ottamatta. Claude kirjoitti virran kahtena terminä
+Samassa viestissä Matti kysyy, häviääkö Kähler-virta minimipinnoilla. Hänen laskunsa mukaan toisia kovariantteja derivaattoja sisältävät termit ovat verrannollisia jälkiin, joten virta häviää singulariteetteja lukuun ottamatta. NeuroPaja kirjoitti virran kahtena terminä
 
 $$
 j^b=J_{kl}H^kt^{l\,b}+J_{kl}\,t^k{}_a\,B^{l\,ab}.
@@ -494,7 +494,7 @@ Ensimmäinen termi on jäljen termi, ja se häviää minimipinnoilla. Toisessa t
 
 Matti Pitkänen lähetti samana aamuna toisen viestin, joka kommentoi 31.10. lähetettyjä kysymyksiä. Se ei käsittele viittä kysymystä, jotka on kuvattu [ehdotuksissa](#ehdotukset-jatkoon). Viestissä hän pitää arvionsa, että virta häviää yleisillä minimipinnoilla ilman holomorfiaa, ja pyytää osoittamaan tuloksen suoralla laskulla tai riittävän tiheällä hilalla.
 
-Claude laski virran ja keskikaarevuuden hilalla ilman Maxima-kirjastoa, ja jokainen derivaatta on neljännen kertaluvun differenssi ([skripti](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)). Taulukon luvut on laskettu pelkällä muodolla $J(CP_2)$ tiheydellä $N=97$. Virran normi on $\sqrt{\sum_a(j^a)^2}$ koordinaateissa, joten se ei ole invariantti. Litteässä rakenteessa koordinaatit ovat $(u,v,x,y)$ ja piste on $u=0{,}8$, $x=y=0{,}7$. Pallomaisessa rakenteessa koordinaatit ovat $(t,r,a,b)$, $w=a+ib$, ja piste on $r=1{,}5$, $a=b=0{,}6$. Arvo $0$ tarkoittaa, että kaikki komponentit häviävät. Virran arvot pysyvät viiden numeron tarkkuudella tiheyksillä $N=25$, $49$ ja $97$.
+NeuroPaja laski virran ja keskikaarevuuden hilalla ilman Maxima-kirjastoa, ja jokainen derivaatta on neljännen kertaluvun differenssi ([skripti](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)). Taulukon luvut on laskettu pelkällä muodolla $J(CP_2)$ tiheydellä $N=97$. Virran normi on $\sqrt{\sum_a(j^a)^2}$ koordinaateissa, joten se ei ole invariantti. Litteässä rakenteessa koordinaatit ovat $(u,v,x,y)$ ja piste on $u=0{,}8$, $x=y=0{,}7$. Pallomaisessa rakenteessa koordinaatit ovat $(t,r,a,b)$, $w=a+ib$, ja piste on $r=1{,}5$, $a=b=0{,}6$. Arvo $0$ tarkoittaa, että kaikki komponentit häviävät. Virran arvot pysyvät viiden numeron tarkkuudella tiheyksillä $N=25$, $49$ ja $97$.
 
 | Pinta | Rakenne | Virran normi | Keskikaarevuus |
 |---|---|---|---|
@@ -527,7 +527,7 @@ $$
 
 joissa $X^k_{\ \alpha}$ on suureiden $J_\alpha^{\ \beta}\partial_\beta h^k$ ja $J^k_{\ l}\partial_\alpha h^l$ yhdistelmä. Hän kysyy, takaako holomorfia nämä ehdot automaattisesti. Hänen mukaansa neljävoiman ei tarvitse hävitä, vaan häviävä suure on kahdeksanvoima, jossa ovat mukana Poincarén ja värin suunnat.
 
-Claude laski tämän. Laskujen Kähler-osa on koko Euler–Lagrange-lauseke, joten molemmat variaatiot ovat olleet siinä mukana. Testatuilla holomorfisilla minimipinnoilla se on täsmälleen
+NeuroPaja laski tämän. Laskujen Kähler-osa on koko Euler–Lagrange-lauseke, joten molemmat variaatiot ovat olleet siinä mukana. Testatuilla holomorfisilla minimipinnoilla se on täsmälleen
 
 $$
 E_k=2\,j^a\left(J_a^{\ b}t_{bk}+J_{kl}\,t^l_{\ a}\right),
@@ -545,7 +545,7 @@ Viidennessä kysymyksessä hän sanoo, ettei tiennyt näiden kirjoittajien työs
 
 ### Matin linjaus sisäosan vaikutuksesta
 
-Pitkänen kirjoitti samana päivänä, että H-H:n perusteella sisäosan vaikutus näyttäisi olevan tilavuustermi ja vähemmän todennäköisesti kaarevuusskalaari. Kähler–Chern–Simons-vaikutus on hänen mukaansa mukana vain valon kaltaisilla partonipinnoilla, ja partonipintojen ratoihin rajoitettu Diracin vaikutus antaa alkeishiukkasfysiikan. Hän kävi Kähler-virran laskun läpi alusta alkaen ja päätyi samaan tulokseen kuin Claude. Virran häviämisestä saadaan kahdeksan lisäehtoa, ja jos sisäosassa on vain tilavuustermi, H-H:ta ei menetetä.
+Pitkänen kirjoitti samana päivänä, että H-H:n perusteella sisäosan vaikutus näyttäisi olevan tilavuustermi ja vähemmän todennäköisesti kaarevuusskalaari. Kähler–Chern–Simons-vaikutus on hänen mukaansa mukana vain valon kaltaisilla partonipinnoilla, ja partonipintojen ratoihin rajoitettu Diracin vaikutus antaa alkeishiukkasfysiikan. Hän kävi Kähler-virran laskun läpi alusta alkaen ja päätyi samaan tulokseen kuin NeuroPaja. Virran häviämisestä saadaan kahdeksan lisäehtoa, ja jos sisäosassa on vain tilavuustermi, H-H:ta ei menetetä.
 
 Viestissä on myös Hamilton–Jacobi-rakennetta koskevia tarkennuksia, jotka on kirjattu [konventioihin](../konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot). Lagrangen kertojista hän sanoo, että ne ovat vaihtoehtoinen tapa pakottaa metriikka indusoiduksi eivätkä muuta sisältöä. Luvun 6.2.3 poistamisen syytä hän ei muista.
 
@@ -553,7 +553,7 @@ Pitkänen ratkaisi asian seuraavassa viestissään. Hän ei halua tuoda lisäeht
 
 ### Rajaukset
 
-Symmetriapäättely ja litteän rakenteen päättely ovat Clauden päättelyä, ja ne on tarkistettu kerran riippumattomasti. Testit kattavat symmetriapäättelystä kolme pintaa, kolme vaikutusta ja kenttäyhtälöiden Kähler-osat ja litteän rakenteen päättelystä neljä pintaa. Symmetriapäättely koskee kenttäyhtälöä pisteittäin, kun $r>0$, ja muoto $J(M^4)$ on pallon pintamuotona singulaarinen kohdassa $r=0$. Regge–Teitelboimin teoriassa ympäröivä avaruus on tasainen, kun taas tässä se on kaareva $H$, joten yhtäläisyys koskee vain yhtälön muotoa. Laskuissa ei myöskään ole aineen termiä $T^{\alpha\beta}$.
+Symmetriapäättely ja litteän rakenteen päättely ovat NeuroPajan päättelyä, ja ne on tarkistettu kerran riippumattomasti. Testit kattavat symmetriapäättelystä kolme pintaa, kolme vaikutusta ja kenttäyhtälöiden Kähler-osat ja litteän rakenteen päättelystä neljä pintaa. Symmetriapäättely koskee kenttäyhtälöä pisteittäin, kun $r>0$, ja muoto $J(M^4)$ on pallon pintamuotona singulaarinen kohdassa $r=0$. Regge–Teitelboimin teoriassa ympäröivä avaruus on tasainen, kun taas tässä se on kaareva $H$, joten yhtäläisyys koskee vain yhtälön muotoa. Laskuissa ei myöskään ole aineen termiä $T^{\alpha\beta}$.
 
 ## Mitä jäi löytymättä
 

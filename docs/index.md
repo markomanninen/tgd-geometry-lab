@@ -27,7 +27,11 @@ Ketju on laskettu ja testattu kenttäyhtälöihin asti, ja ensimmäiset tunnetut
 
 ## Teoria ja yhteistyö
 
-TGD on [Matti Pitkäsen](https://tgdtheory.fi/) kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt teoriaa 1980-luvun alusta lähtien. Projektia tehdään yhdessä hänen kanssaan. Vastaukset haetaan ensin hänen julkaisuistaan, ja avoimeksi jäävät fysikaaliset kysymykset ratkaisee hän.
+TGD on [Matti Pitkäsen](https://tgdtheory.fi/) kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt teoriaa 1980-luvun alusta lähtien. Projektia tehdään yhdessä hänen kanssaan. Vastaukset haetaan ensin hänen julkaisuistaan, ja tässä vaiheessa hän arvioi fysikaaliset tulkinnat ensimmäisenä.
+
+## NeuroPaja
+
+NeuroPaja on projektin tekijä. Siinä Marko Manninen ja Anthropicin Claude-tekoäly lukevat lähteitä, päättelevät ja laskevat yhdessä, ja laskut tehdään Maxima-ohjelmalla ja Python-skripteillä. Kun sivuilla lukee, että NeuroPaja laski tai päätteli jotain, tulos on syntynyt tällä työnjaolla. Laskut ovat Maxima-testeinä, jotka tietokone ajaa jokaisen muutoksen jälkeen, ja päättely on merkitty päättelyksi. Ulkopuolinen tarkistus, esimerkiksi OpenAI:n Codexin riippumaton luenta, mainitaan erikseen.
 
 ## Lanyon AI:n vaikutus
 

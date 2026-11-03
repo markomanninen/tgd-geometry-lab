@@ -418,7 +418,7 @@ Yhtälöä $T=\kappa G+\Lambda g$ ei voi tarkistaa pelkästä metriikasta, koska
 
 Luettu osa on tehty. Testihiukkanen on madonreikäkontakti, geodeesiliike on postulaatti, ja lähde ei anna reseptiä tensorille $T^{\mathrm{eff}}$. Tulokset ovat sivulla [tulokset](tulokset.md#lehtien-kokoaminen-ja-einsteinin-raja). Avoimeksi jää $T^{\mathrm{eff}}$:n määritelmä ja sen sovitus linjaukseen 1.11.2026.
 
-Claude lukee Pitkäsen johdon ja kirjaa sen konventioihin sanatarkasti. Luettavat kohdat ovat *Btgdclass1*:n luvut "Could Einstein's equations emerge dynamically?" ja "How Einstein's equations and General Relativity in long length scales emerges from TGD", luku 7.3.3 Reissner–Nordströmin metriikan upotuksesta sekä tekstit `HGT`, `fourmomentum`, `HJdireq` ja `dirprop`.
+NeuroPaja lukee Pitkäsen johdon ja kirjaa sen konventioihin sanatarkasti. Luettavat kohdat ovat *Btgdclass1*:n luvut "Could Einstein's equations emerge dynamically?" ja "How Einstein's equations and General Relativity in long length scales emerges from TGD", luku 7.3.3 Reissner–Nordströmin metriikan upotuksesta sekä tekstit `HGT`, `fourmomentum`, `HJdireq` ja `dirprop`.
 
 Vastattavia kysymyksiä on kolme:
 
@@ -426,7 +426,7 @@ Vastattavia kysymyksiä on kolme:
 - Miten kirjan muotoilu, jossa $T$ on Kählerin Maxwell-tensori, sopii sisäosan vaikutuksen vaihtoehtoihin, joita ovat pelkkä tilavuus, kaarevuusskalaari ja tilavuus sekä Kähler-vaikutus ja tilavuus Laplacen ehdolla?
 - Miten hiukkasen massa ja varaus jakautuvat lehdille madonreikäkontaktien välityksellä?
 
-Jos vastaus ei löydy lähteistä, $T$:n valinta on `päätös`. Silloin Claude tekee vertailulaskut ja pysähtyy.
+Jos vastaus ei löydy lähteistä, $T$:n valinta on `päätös`. Silloin NeuroPaja tekee vertailulaskut ja pysähtyy.
 
 ### Step 10.2 – Koottu metriikka kirjastoon ✅
 
@@ -458,7 +458,7 @@ $$
 \sum_i T^{(i)}_{\mu\nu}\approx\kappa\sum_i G^{(i)}_{\mu\nu}+\Lambda\Bigl(N\eta_{\mu\nu}+\sum_i h^{(i)}_{\mu\nu}\Bigr)
 $$
 
-Kootun metriikan yhtälössä tasainen osa on mukana kerran. Ero $(N-1)\Lambda\eta_{\mu\nu}$ on Clauden päättelyä, eikä sitä ole lähteessä. Askel selvittää, poistuuko ero $T$:n määritelmällä vai Pitkäsen mainitsemalla keskiarvoistuksella, jossa pieni $\Lambda$ syntyy euklidisten alueiden pienestä tilavuusosuudesta.
+Kootun metriikan yhtälössä tasainen osa on mukana kerran. Ero $(N-1)\Lambda\eta_{\mu\nu}$ on NeuroPajan päättelyä, eikä sitä ole lähteessä. Askel selvittää, poistuuko ero $T$:n määritelmällä vai Pitkäsen mainitsemalla keskiarvoistuksella, jossa pieni $\Lambda$ syntyy euklidisten alueiden pienestä tilavuusosuudesta.
 
 ### Step 10.6 – Heikko painovoima lehtien summana 🟡
 
@@ -468,7 +468,7 @@ $$
 h_{\mu\nu}=-2\phi\,\delta_{\mu\nu},\qquad \phi=\frac{GM}{r}.
 $$
 
-Kuvaajan poikkeama on samanmerkkinen, joten etenkin puoleensavetävä kenttä on tavoitettavissa. Hylkivää kenttää $\phi<0$ ei saa pelkistä $CP_2$-suunnan kuvaajista, mikä on Clauden päättelyä ja tarkistetaan laskulla. Yhdestä lehdestä tulee ajasta riippuvassa upotuksessa ristitermi $h_{tr}$. Kahden lehden summassa se voi kumoutua, jos lehdet ovat toistensa peilikuvia. Lasku etsii eksplisiittiset lehdet, joiden summa antaa kentän ensimmäisessä kertaluvussa, tai näyttää esteen. Vertailukohta on Pitkäsen yksilehtinen Reissner–Nordström-upotus.
+Kuvaajan poikkeama on samanmerkkinen, joten etenkin puoleensavetävä kenttä on tavoitettavissa. Hylkivää kenttää $\phi<0$ ei saa pelkistä $CP_2$-suunnan kuvaajista, mikä on NeuroPajan päättelyä ja tarkistetaan laskulla. Yhdestä lehdestä tulee ajasta riippuvassa upotuksessa ristitermi $h_{tr}$. Kahden lehden summassa se voi kumoutua, jos lehdet ovat toistensa peilikuvia. Lasku etsii eksplisiittiset lehdet, joiden summa antaa kentän ensimmäisessä kertaluvussa, tai näyttää esteen. Vertailukohta on Pitkäsen yksilehtinen Reissner–Nordström-upotus.
 
 ### Step 10.7 – Testihiukkanen kootussa metriikassa ✅
 

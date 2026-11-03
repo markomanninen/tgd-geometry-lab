@@ -451,7 +451,7 @@ Kahdella viimeisellä kaavalla ei ole oletuksia funktioista $f^k$, joten ne kosk
 
 Pitkäsen artikkelissa perustelu on, että Kähler-muodon variaatio antaa valon kaltaisen virran ja valon kaltaisen vektorin supistuksen, joka häviää ([Martin1](https://tgdtheory.fi/public_html/articles/Martin1.pdf)). Lasku tukee tätä askelta. Jos virta on muotoa $j\propto\partial_v$, supistukset häviävät, koska $J_{v\alpha}=0$ ja $\partial_vh^l=0$ kaikilla $CP_2$-koordinaateilla. Pinnoilla, joilla on $w$-riippuvuus, virralla on kuitenkin myös poikittainen osa, joten oletus ei toteudu niillä.
 
-Sama supistus on jo [vuoden 1981 artikkelin](https://doi.org/10.1007/BF00673694) fotoniratkaisussa (kaava 38), jossa $\Theta=f(k\cdot x)$ ja $\Phi=g(k\cdot x,x_T)$. Koska $\Theta$ riippuu vain muuttujasta $k\cdot x$, Kähler-muodolla ei ole komponenttia $J_{xy}$. Clauden päättelyn mukaan juuri tämä tekee oletuksesta toimivan, sillä silloin suure $C$ on nolla, eikä virralla ole poikittaista osaa.
+Sama supistus on jo [vuoden 1981 artikkelin](https://doi.org/10.1007/BF00673694) fotoniratkaisussa (kaava 38), jossa $\Theta=f(k\cdot x)$ ja $\Phi=g(k\cdot x,x_T)$. Koska $\Theta$ riippuu vain muuttujasta $k\cdot x$, Kähler-muodolla ei ole komponenttia $J_{xy}$. NeuroPajan päättelyn mukaan juuri tämä tekee oletuksesta toimivan, sillä silloin suure $C$ on nolla, eikä virralla ole poikittaista osaa.
 
 Vakio $\omega$ tarkoittaisi litteää holomorfista kuvausta kompleksiviivalta $CP_2$:een. Silloin
 
@@ -497,9 +497,9 @@ $$
 
 Testatuista pinnoista $\xi^1=u$, $\xi^1=u+w$ ja kierretty suora eivät siksi ole minimipintoja tässä rakenteessa, vaikka samat lausekkeet ovat minimipintoja litteässä rakenteessa. Pinnat, jotka eivät riipu $u$:sta, pysyvät minimipintoina.
 
-Matti Pitkänen arvioi sähköpostissaan 1.11.2026, että Kähler-virta häviää minimipinnoilla singulariteetteja lukuun ottamatta, koska toisia kovariantteja derivaattoja sisältävät termit ovat verrannollisia jälkiin. Clauden laskussa $j^b=J_{kl}H^kt^{l\,b}+J_{kl}t^k{}_aB^{l\,ab}$. Ensimmäinen termi on jäljen termi, ja toinen termi ei ole jälki. Tulos on [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-vastaus-1112026), ja kysymys on issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
+Matti Pitkänen arvioi sähköpostissaan 1.11.2026, että Kähler-virta häviää minimipinnoilla singulariteetteja lukuun ottamatta, koska toisia kovariantteja derivaattoja sisältävät termit ovat verrannollisia jälkiin. NeuroPajan laskussa $j^b=J_{kl}H^kt^{l\,b}+J_{kl}t^k{}_aB^{l\,ab}$. Ensimmäinen termi on jäljen termi, ja toinen termi ei ole jälki. Tulos on [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-vastaus-1112026), ja kysymys on issuessa [#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35).
 
-Toisessa viestissään samana päivänä Pitkänen pitää arvionsa ja pyytää osoittamaan tuloksen suoralla laskulla tai riittävän tiheällä hilalla. Claude laski virran hilalla ilman Maxima-kirjastoa ([`scripts/lattice_kahler_current.py`](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)), ja arvot ovat samat kuin symbolisessa laskussa. Luvut ovat [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-toinen-viesti-1112026).
+Toisessa viestissään samana päivänä Pitkänen pitää arvionsa ja pyytää osoittamaan tuloksen suoralla laskulla tai riittävän tiheällä hilalla. NeuroPaja laski virran hilalla ilman Maxima-kirjastoa ([`scripts/lattice_kahler_current.py`](https://github.com/markomanninen/tgd-geometry-lab/blob/main/scripts/lattice_kahler_current.py)), ja arvot ovat samat kuin symbolisessa laskussa. Luvut ovat [sivututkimussivulla](sivututkimus/regge-teitelboim.md#matin-toinen-viesti-1112026).
 
 Pitkänen vahvisti 1.11.2026, että virrassa on toinen termi, joka ei häviä, ja korosti, että ratkaisevaa on koko kenttäyhtälö. Testatuilla holomorfisilla minimipinnoilla kenttäyhtälön Kähler-osa on
 
@@ -527,7 +527,7 @@ $$
 
 Ehdoista seuraa $u_{\alpha\beta}u^{\alpha\beta}=0$, jolloin poikittainen Hessen matriisi häviää ja tasopinnat $u=$ vakio ovat valon kaltaisia hypertasoja $k(u)\cdot m=g(u)$. Tason poikittainen koordinaatti on $\zeta=e(u)\cdot m$, ja $\Box\zeta=2e'\cdot\nabla u$. Tämä häviää vain, jos $k'\propto k$, eli hypertasot ovat yhdensuuntaiset. Rakenne on silloin litteä rakenne Poincarén muunnosta ja uudelleenparametrisointia $(u,w)\to(g(u),F(u,w))$ vaille.
 
-Todistus on Clauden päättely oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Oletus on se, joka tarvitaan holomorfisen funktion supistuksen $g^{\alpha\beta}\partial_\alpha\xi^k\partial_\beta\xi^l=0$ häviämiseen. Saman luvun kohdassa 4.3.3 Pitkänen vaatii $(\nabla S_\pm)^2=0$ ja antaa viivaelementin yleisen muodon (kaava 4.19), joka sallii myös ristitermit,
+Todistus on NeuroPajan päättely oletuksella, että gradientit ovat keskenään valon kaltaisia, ja testit lukitsevat sen vaiheet. Oletus on se, joka tarvitaan holomorfisen funktion supistuksen $g^{\alpha\beta}\partial_\alpha\xi^k\partial_\beta\xi^l=0$ häviämiseen. Saman luvun kohdassa 4.3.3 Pitkänen vaatii $(\nabla S_\pm)^2=0$ ja antaa viivaelementin yleisen muodon (kaava 4.19), joka sallii myös ristitermit,
 
 $$
 ds^2=g_{+-}\,dS^+dS^-+g_{w\bar w}\,dw\,d\bar w+g_{+w}\,dS^+dw+g_{+\bar w}\,dS^+d\bar w+g_{-w}\,dS^-dw+g_{-\bar w}\,dS^-d\bar w.

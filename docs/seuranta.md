@@ -54,7 +54,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #35 | $J(M^4)$ ja $J(CP_2)$ ovat vaikutuksessa erilliset termit. Lorentz 4-voiman pitäisi hävitä H-H-pinnoilla ilman, että poikittainen virta häviää. Etumerkit seuraavat energian positiivisuudesta | 🟡 merkit laskettu ($c_K,c_V>0$), voima ei häviä litteässä rakenteessa |
 | #35 | Lisäehtoja ei tuoda. Sisäosan vaikutus on tilavuustermi, ja Kähler–Chern–Simons-vaikutus on partonipinnoilla. | ✅ kirjattu konventioihin |
 | #35 | Pitkänen pohti 2.11.2026 sisäosaan myös kaarevuusskalaaria ja tilavuutta. Hänen mukaansa 3.11.2026 pelkkä tilavuus on elegantein, ja kaarevuusskalaarista voidaan joutua luopumaan, jos minimipinnoista pidetään kiinni. | 🟡 [vertailu](sivututkimus/sisaosan-vaikutus.md) laskettu |
-| #35 | Pitkänen ehdotti 3.11.2026 Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa poikittaisen Laplacen yhtälön. Clauden laskussa ehto sallii holomorfisilla pinnoilla vain riippumattomuuden koordinaatista $w$. | 🟡 [vertailussa](sivututkimus/sisaosan-vaikutus.md#kahler-ja-tilavuus-laplacen-ehdolla), kysymys Pitkäselle |
+| #35 | Pitkänen ehdotti 3.11.2026 Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa poikittaisen Laplacen yhtälön. NeuroPajan laskussa ehto sallii holomorfisilla pinnoilla vain riippumattomuuden koordinaatista $w$. | 🟡 [vertailussa](sivututkimus/sisaosan-vaikutus.md#kahler-ja-tilavuus-laplacen-ehdolla), kysymys Pitkäselle |
 
 ### Avoinna – kysytään Matilta
 

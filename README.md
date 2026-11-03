@@ -10,6 +10,8 @@ Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä To
 
 TGD on Matti Pitkäsen kehittämä teoria. Pitkänen on teoreettisen fysiikan tohtori, ja hän on kehittänyt sitä 1980-luvun alusta lähtien.
 
+NeuroPaja on projektin tekijä. Siinä Marko Manninen ja Anthropicin Claude-tekoäly lukevat lähteitä, päättelevät ja laskevat yhdessä, ja laskut tehdään Maxima-ohjelmalla ja Python-skripteillä. Kun sivuilla lukee, että NeuroPaja laski tai päätteli jotain, tulos on syntynyt tällä työnjaolla. Laskut ovat Maxima-testeinä, jotka tietokone ajaa jokaisen muutoksen jälkeen, ja päättely on merkitty päättelyksi. Ulkopuolinen tarkistus, esimerkiksi OpenAI:n Codexin riippumaton luenta, mainitaan erikseen.
+
 Rakenne ja ajotapa seuraavat [LanyonScriptsin](https://github.com/lanyonai/LanyonScripts) Colab-esimerkkiä, ja työtapa on saanut vaikutteita Jonathan Gorardin johtaman [Lanyon AI](https://lanyon.ai/):n verifioidusta laskennasta. Clifford-algebra tulee Dimiter Prodanovin [`clifford`](https://github.com/dprodanov/clifford)-paketista.
 
 ## Colab-kirjat
