@@ -1,6 +1,6 @@
 # Sisäosan vaikutus ja kaarevuusskalaari
 
-Tämä sivu vertaa kahta ehdokasta TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Matti Pitkänen pohti 2.11.2026, voisiko sisäosassa olla kaarevuusskalaari ja tilavuus, ja hän muotoili ajatuksen kysymyksenä. Toinen ehdokas on pelkkä tilavuus, joka on hänen linjauksensa 1.11.2026. Laskut, lähteiden lukemisen ja päättelyn teki Claude 2.11.2026. Tulokset ovat ehdollisia, koska sisäosan vaikutus on avoin kysymys, ja fysikaalisen tulkinnan ratkaisee Pitkänen.
+Tämä sivu vertaa ehdokkaita TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Sisäosan vaikutus on avoin tutkimuskohde, ja sivu kokoaa, mihin kukin vaihtoehto johtaa. Ehdokkaita on kolme. Pelkkä tilavuus on Matti Pitkäsen linjaus 1.11.2026. Kaarevuusskalaaria ja tilavuutta Pitkänen pohti 2.11.2026 kysymyksenä. Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa Laplacen yhtälön, hän ehdotti 3.11.2026. Laskut, lähteiden lukemisen ja päättelyn teki Claude 2.–3.11.2026. Tulokset koskevat mainittuja pintaluokkia, ja fysikaalisen tulkinnan tekee Pitkänen.
 
 Merkinnät ovat projektin konventioiden mukaiset, ja signatuuri on $(+,-,-,-)$. Kirjain $R$ tarkoittaa pinnan kaarevuusskalaaria, ja $R_C$ on $CP_2$:n säde. Vaikutus on
 
@@ -20,15 +20,15 @@ Kertoimet on otettu Einsteinin rajasta. Ne ovat oletus, jota Pitkänen ei ole va
 
 Taulukko näyttää, mitä kukin testi antaa. Jokainen rivi koskee vain mainittua pintaluokkaa, joten taulukko ei ole yleinen konsistenssitodistus kummallekaan ehdokkaalle. Säikeet eivät erota ehdokkaita, jos avoin poikkileikkaus kelpaa säikeeksi. Ehdokkaat eroavat pallomaisen rakenteen holomorfisilla pinnoilla. Laskut eivät ratkaise, ovatko nämä pinnat sallittuja H-J-pintoja, joten tästä ei seuraa ristiriitaa Pitkäsen kanssa.
 
-| Testi | R + tilavuus | Pelkkä tilavuus |
-|---|---|---|
-| Litteän H-J-rakenteen holomorfiset pinnat | Ratkaisuja | Ratkaisuja |
-| Pallomainen rakenne, pinnat $\xi(w)$ | Vain suora ja kartioleikkaus | Kaikki holomorfiset pinnat |
-| Genuksen $g$ lehti $y^2=F(w)$ | Ei ratkaisu | Ratkaisu |
-| Yksikkövuon suljettu tuotesäie, $\Lambda R_C^2\ll 4$ | $T\approx-1/(2G)$ | $T>0$ |
-| Yksikkövuon avoin poikkileikkaus, jännitys tasoon verrattuna | $\Lambda R_C^2/8G$ | $\Lambda R_C^2/8G$ |
-| Translaatiovirta radalla | Riippuu mallista | Ei hajaannu |
-| $G$:n arvo | Yhteinen kerroin, ei johtoa | Ei vaikutuksessa, ei johtoa |
+| Testi | R + tilavuus | Pelkkä tilavuus | Kähler + tilavuus, Laplacen ehto |
+|---|---|---|---|
+| Litteän H-J-rakenteen holomorfiset pinnat | Ratkaisuja | Ratkaisuja | Vain pinnat, joilla $\partial_w\xi=0$, ja testatuista vain $\xi(u)$ |
+| Pallomainen rakenne, pinnat $\xi(w)$ | Vain suora ja kartioleikkaus | Kaikki holomorfiset pinnat | Ei laskettu |
+| Genuksen $g$ lehti $y^2=F(w)$ | Ei ratkaisu | Ratkaisu | Ei laskettu |
+| Yksikkövuon suljettu tuotesäie, $\Lambda R_C^2\ll 4$ | $T\approx-1/(2G)$ | $T>0$ | Säie rikkoo ehdon |
+| Yksikkövuon avoin poikkileikkaus, jännitys tasoon verrattuna | $\Lambda R_C^2/8G$ | $\Lambda R_C^2/8G$ | Ei laskettu |
+| Translaatiovirta radalla | Riippuu mallista | Ei hajaannu | Ei laskettu |
+| $G$:n arvo | Yhteinen kerroin, ei johtoa | Ei vaikutuksessa, ei johtoa | Ei laskettu |
 
 ## Säiejännitys
 
@@ -60,7 +60,19 @@ $$
 \omega^2-k^2=-\frac{l(l+1)\,\Lambda K}{K-\Lambda},
 $$
 
-joten arvolla $0<\Lambda<K$ jokaisella $l\ge1$ on takionimoodi. Suljetusta poikkileikkauksesta ei silti tule paksua. Jos $X^2$ on suljettu minimipinta avaruudessa $E^2\times CP_2$, sen $E^2$-projektio on harmoninen funktio suljetulla pinnalla, joten se on vakio. Lasketut suljetut kierrehaarat vievät energiaa negatiivisemmaksi.
+joten arvolla $0<\Lambda<K$ jokaisella $l\ge1$ on takionimoodi.
+
+Arvolla $\Lambda>K$ tuote on vakaa. Tuotteella $M^2\times CP_1$ toinen perusmuoto on nolla kaikissa suunnissa, koska $CP_1$ on $CP_2$:n totaaligeodeettinen pinta, joten kenttäyhtälön linearisointi on $P^{ab}\,\delta B^k_{ab}=0$, jossa $P^{ab}$ on taustan arvo. Sen $M^2$-lohko on verrannollinen kertoimeen $\Lambda-K$ ja $CP_1$-lohko kertoimeen $\Lambda$. Jacobin operaattori on minimipinnan alan toisen variaation operaattori. Jokaiselle normaalimoodille, jolla on Jacobin operaattorin ominaisarvo $\mu$, saadaan
+
+$$
+\omega^2-k^2=\frac{\mu\,\Lambda}{\Lambda-K}.
+$$
+
+$M^4$-suunnissa $\mu=l(l+1)K$, ja Maxima tarkistaa kaavan moodilla $\cos(\omega t-kz)\cos\theta$ suoraan kirjaston Einsteinin tensorista. $CP_2$-suunnissa $\mu\ge0$, koska kompleksikäyrä on kalibroitu ja siksi vakaa minimipinta. Näiden suuntien nollamoodit siirtävät suoraa $CP_2$:ssa. Kun $\Lambda>K$, kaikilla moodeilla $\omega^2-k^2\ge0$, joten mikään moodi ei kasva ajassa, ja jännitys $(\Lambda-K)\pi R_C^2/8\pi G$ on positiivinen. Säikeellä $CP_1$ on $K=4/R_C^2$, joten raja on $\Lambda R_C^2=4$. Arvolla $\Lambda=K$ jännitys on nolla, ja yhtälöstä katoaa $M^2$-osa.
+
+Pyöreällä pallolla $K$ on vakio, joten tiheys $(\Lambda-K)/8\pi G$ häviää jokaisessa pisteessä, kun $\Lambda=K$. Silloin myös jokaisen geodeesin rajaaman palan jännitys on nolla, ja esimerkiksi puolipallolla ehto on sama $\Lambda=1/r^2$, kun $r$ on pallon säde. Jos pinnalla on $g$ kädensijaa ja $n$ reikää, joiden reunat ovat geodeeseja, Eulerin luku on $\chi=2-2g-n$. Arvolla $\Lambda=0$ jännitys on silloin $T=(g-1+n/2)/2G$.
+
+Suljetusta poikkileikkauksesta ei silti tule paksua. Jos $X^2$ on suljettu minimipinta avaruudessa $E^2\times CP_2$, sen $E^2$-projektio on harmoninen funktio suljetulla pinnalla, joten se on vakio. Lasketut suljetut kierrehaarat vievät energiaa negatiivisemmaksi.
 
 Avoin poikkileikkaus on eri asia. Holomorfinen käyrä $\xi=w/\lambda$ avaruudessa $E^2\times CP_1$ kantaa yksikkövuon, sillä sen kompaktisointi on astetta yksi. Sen ala ylittää tason alan määrällä $\pi R_C^2$, ja $\int K\,dA=0$, joten tasoon verrattuna
 
@@ -170,6 +182,42 @@ Pelkän tilavuuden normaalivuo radalla on muotoa $\rho\,n_k$, jossa $n$ on valon
 
 Ehdokkaalla on kolme hintaa. Euklidisen alueen energia on negatiivinen tai imaginäärinen, kytkentävakiot katoavat klassisista yhtälöistä, ja pintojen välinen $U(1)$-voima puuttuu sisäosasta. Saman artikkelin väite, että pelkällä tilavuudella radat ovat mahdottomia, ei päde kirjaimellisesti, sillä pyörivä sauva kertaa $CP_1$ on paikallinen ekstremaali, jolla $E^2=2\pi TL$. Se ei kuitenkaan kuulu luokkaan $(f_1,f_2)=0$.
 
+## Kähler ja tilavuus Laplacen ehdolla
+
+Pitkänen ehdotti 3.11.2026, että Kähler-vaikutus pidetään sisäosassa, kun avaruusaikapinnoille lisätään yksi ehto. Ehdon mukaan $CP_2$:n Kähler-funktio $K$ pinnalle vedettynä toteuttaa poikittaisissa koordinaateissa Laplacen yhtälön
+
+$$
+\partial_w\partial_{\bar w}K=0.
+$$
+
+Hänen mukaansa induusoidun Kähler-kentän poikittainen magneettikenttä häviää silloin, varaukset ja virrat ovat vain alempiulotteisissa singulariteeteissa, ja H-H toimii myös Kähler-vaikutukselle. Twistorinosto säilyy, ja induusoitu Kähler-kenttä määrää H-J-rakenteen.
+
+Clauden laskussa koordinaatit $\xi^1=f(w)$ ja $\xi^2=g(w)$ ovat holomorfisia muuttujan $w$ suhteen, ja $K=\log(1+\lvert\xi^1\rvert^2+\lvert\xi^2\rvert^2)$. Vedetyn Kähler-funktion Laplacen operaattori on silloin derivaatan $\partial_w\xi$ normin neliö Fubini–Studyn metriikassa.
+
+$$
+\partial_w\partial_{\bar w}K=\frac{\lvert f'\rvert^2+\lvert g'\rvert^2+\lvert fg'-gf'\rvert^2}{(1+\lvert f\rvert^2+\lvert g\rvert^2)^2}.
+$$
+
+Lauseke on nolla vain, kun $f'=g'=0$. Clauden laskussa ehto ei siis salli riippuvuutta poikittaisesta koordinaatista $w$ niissä kohdissa, joissa pinta on säännöllinen, ja $CP_2$-koordinaatit riippuvat silloin vain pitkittäisistä koordinaateista. Sama tulos on [tulossivulla](../tulokset.md) poikittaisen virran ehtona, jossa Fubini–Study-metriikan vetäisyn pitää olla litteä. Laplacen ehto on saman ehdon toinen muoto.
+
+Claude laski 3.11.2026 ehdon seuraukset viidestä suunnasta.
+
+**Kosminen säie.** Säikeellä $M^2\times CP_1$ poikittainen koordinaatti on $CP_1$:n koordinaatti, eli $\xi=w$. Silloin $\partial_w\partial_{\bar w}K=1/(1+\lvert w\rvert^2)^2$, joka ei ole missään nolla. Tämä Laplacen operaattori on säikeen monopolivuon tiheys. Ehto sulkee siis pois monopolivuoputket, ellei niitä lueta singulariteeteiksi.
+
+**Singulariteetit.** Navalla $\xi=1/w$ Laplacen operaattori on navan ulkopuolella sama $1/(1+\lvert w\rvert^2)^2$. Poikittaisen tason pisteet vastaavat aika-avaruudessa fermionisäikeitä ja säiemaailmanpintoja. Pisteet eivät jaa tasoa osiin, joten säännöllinen alue on yhtenäinen, ja ehto tekee $\xi$:stä vakion koko alueessa. Poikittainen riippuvuus ei siis voi olla pelkästään pistemäisissä singulariteeteissa. Se voisi olla vain tason jakavissa viivoissa, jotka ovat aika-avaruudessa kolmiulotteisia seinämiä, ja niiden yli $\xi$ hyppäisi, jolloin pinta ei ole jatkuva.
+
+**Hyperkompleksinen luenta.** Jos $\xi$ riippuu koordinaateista $u$ ja $v$, poikittainen Kähler-kenttä häviää ja pitkittäinen komponentti $J_{uv}$ jää. Pinnalla $\xi=(u+iv)/2$ eivät häviä kenttäyhtälöiden Kähler-osa eikä tilavuusosa. Samoin käy pinnoilla $\xi=uv/3+iu/2$, $\xi=(t+iz)/3$ ja $\xi=v\,e^{iu}/4$. Pinnalla $\xi=e^{i(u-v)/2}/2$ Kähler-osa häviää, mutta tilavuusosa ei. Ainoa testattu ratkaisu on $\xi=u/2$, joka on massattoman ekstremaalin tyyppiä, ja sillä induusoitu Kähler-muoto on nolla. Laskut eivät osoita, ettei muita ratkaisuja ole.
+
+**Ei-holomorfinen luenta.** Jos $\xi$ saa riippua muuttujista $w$ ja $\bar w$, ehdolla on muitakin ratkaisuja. Esimerkiksi $\xi=\sqrt{e^{ax}-1}$ antaa lineaarisen funktion $K=ax$. Kähler-muoto on silloin nolla, koska $\xi$ riippuu vain yhdestä koordinaatista, mutta pinta ei ole minimipinta. Tällainen pinta ei myöskään kuulu H-J-rakenteen holomorfisiin pintoihin.
+
+**H-J-koordinaatit Kähler-funktiosta.** Pitkäsen ehdotuksessa H-J-koordinaatit rakennetaan induusoidusta Kähler-potentiaalista. Valon kaltaisen koordinaatin gradientti on valon kaltainen. Funktion $K$ gradientin neliö on $4K_uK_v$, joten se on valon kaltainen vain, jos $K$ riippuu yhdestä valon kaltaisesta koordinaatista. Pinnalla $\xi=(u+iv)/2$ näin ei ole, joten rakenne palauttaa valon kaltaisen koordinaatin vain massattoman ekstremaalin tyyppisillä pinnoilla.
+
+**Twistorinosto.** Aiempi tulos oli, että Yang–Millsin neliötermillä on kompleksikäyrillä sama ensimmäinen variaatio kuin Kähler-termillä. Laplacen ehdolla este häviää siis täsmälleen silloin, kun kenttäyhtälöiden Kähler-osa häviää. Testatuista pinnoista näin käy pinnalla $\xi=u/2$, jolla Kähler-muoto on nolla. Kysymys palautuu siksi hyperkompleksisen luennan ratkaisuihin.
+
+Kysymykset Pitkäselle ovat nämä. Koskeeko ehto vain osaa pinnoista, vai ovatko monopolivuoputket hänen tarkoittamiaan singulariteetteja? Tarkoittaako hän riippuvuutta pelkästä koordinaatista $u$ vai hyperkompleksisesta koordinaatista $t+ez$?
+
+Testit ovat tiedostossa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
+
 ## Tarkistus ja rajat
 
 Maxima-testit ovat tiedostoissa [test-interior-curvature.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-curvature.mac), [test-interior-energy.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-energy.mac) ja [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac). Erilliset Python-skriptit ovat kansiossa [scripts/sisaosa](https://github.com/markomanninen/tgd-geometry-lab/tree/main/scripts/sisaosa). OpenAI:n Codex tarkisti tulokset riippumattomasti kahdessa kierroksessa. Jännityksen kaava, avoin poikkileikkaus, tuotteen epävakaus, minimipintaperhe, genuksen $g$ lehti ja polynomiupotus vahvistuivat. Yleiset väitteet rajattiin tällä sivulla olevaan muotoon. Holomorfista $X^6$:ta koskevaa johtopäätöstä tarkistus ei vahvistanut, ja se on siksi kirjattu yhden esimerkin tulokseksi.
@@ -182,3 +230,4 @@ Auki ovat nämä kohdat:
 - Onko $J(M^4)$ poikittainen myös radalla.
 - Reunatermin johto yleisille upotuksille.
 - Holomorfisen $X^6$:n yleinen tapaus.
+- Mitkä pinnat Laplacen ehto sallii, kun $CP_2$-koordinaatit riippuvat hyperkompleksisesta koordinaatista, ja mihin Kähler- ja tilavuusvaikutus silloin johtaa säikeille ja radoille.

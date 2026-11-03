@@ -50,6 +50,58 @@ check("only d = 3 has chi = 0 among d > 0, so only the cubic has a small tension
       is(sublist(makelist(d, d, 1, 40), lambda([d], is_chi(d) = 0)) = [3]))$
 check("Lambda -> 0: the unit flux string has T = -1/(2 G)", is(is_T8(1, 0)/8 = -1/2))$
 check("pure volume: 8 G T = d Lambda R^2 > 0 for every degree", is(ratsimp(is_T8(dIs, LIs) + 2*is_chi(dIs) - dIs*LIs) = 0))$
+check("holes with geodesic boundaries: chi = 2 - 2 g - n gives -chi/(4 G) = (g - 1 + n/2)/(2 G) at Lambda = 0",
+      is(ratsimp(-(2 - 2*gH - nH)/4 - (gH - 1 + nH/2)/2) = 0))$
+assume(thH > 0, thH < %pi)$
+check("round sphere: Lambda = K = 1/r^2 makes the density zero everywhere, so the hemisphere needs Lambda = 1/r^2 too",
+      is(solve(integrate(integrate((LH - 1/rIs^2)*rIs^2*sin(thH), thH, 0, %pi/2), phH, 0, 2*%pi) = 0, LH)
+         = [LH = 1/rIs^2]))$
+
+/* Stability of M^2 x CP_1 (radius 1/2, K = 4).  P^ab = Lambda g^ab - G^ab has the M^2 block (Lambda - K) eta^ab
+   and the CP_1 block Lambda g^ab, and d_a(sqrt|g| P^ab d_b w) = 0 is exact for an M^4 coordinate w. */
+XR : [tIs, zIs, phIs, thIs]$
+gInR : invert(gRound)$
+PUpR : LIs*gInR - gInR . is_einstein_low(gRound, XR) . gInR$
+sqgR : sin(thIs)/4$
+wModeR : cos(omIs*tIs - kIs*zIs)*cos(thIs)$
+EModeR : trigsimp(ratsimp(sum(sum(diff(sqgR*PUpR[a,b]*diff(wModeR, XR[b]), XR[a]), b, 1, 4), a, 1, 4)/(sqgR*wModeR)))$
+check("M^2 x CP_1: the l = 1 mode cos(omega t - k z) cos(theta) obeys (Lambda - K)(k^2 - omega^2) + 2 Lambda K = 0",
+      is(ratsimp(EModeR - ((LIs - 4)*(kIs^2 - omIs^2) + 8*LIs)) = 0))$
+check("Lambda > K: omega^2 - k^2 = 2 Lambda K/(Lambda - K) > 0, so the mode oscillates; 0 < Lambda < K makes it grow",
+      is(ratsimp(subst(omIs = sqrt(kIs^2 + 8*LIs/(LIs - 4)), EModeR)) = 0)
+      and is(ev(8*LIs/(LIs - 4), LIs = 8) > 0) and is(ev(8*LIs/(LIs - 4), LIs = 2) < 0))$
+
+/* Kahler + volume with the Laplace condition d_w d_wb K = 0 (Pitkanen 3.11.2026).  For xi^k holomorphic in w
+   the pulled-back Laplacian of K = log(1 + |xi1|^2 + |xi2|^2) is the Fubini-Study norm of d_w xi. */
+depends([lpf, lpg], lpw)$ depends([lpF, lpG], lpwb)$
+lpK : log(1 + lpf*lpF + lpg*lpG)$
+check("Laplace condition: d_w d_wb K = (|f'|^2 + |g'|^2 + |f g' - g f'|^2)/(1 + |f|^2 + |g|^2)^2",
+      is(ratsimp(diff(lpK, lpw, 1, lpwb, 1)
+         - (diff(lpf,lpw)*diff(lpF,lpwb) + diff(lpg,lpw)*diff(lpG,lpwb)
+            + (lpf*diff(lpg,lpw) - lpg*diff(lpf,lpw))*(lpF*diff(lpG,lpwb) - lpG*diff(lpF,lpwb)))/(1 + lpf*lpF + lpg*lpG)^2) = 0))$
+check("Laplace condition: with f' = g' = 0 the Laplacian vanishes, so the condition leaves xi independent of w",
+      is(ratsimp(subst([diff(lpf,lpw) = 0, diff(lpg,lpw) = 0, diff(lpF,lpwb) = 0, diff(lpG,lpwb) = 0], diff(lpK, lpw, 1, lpwb, 1))) = 0))$
+remove([lpf, lpg, lpF, lpG], dependency)$
+check("Laplace condition: the cosmic string xi = w on CP_1 has d_w d_wb K = 1/(1 + |w|^2)^2, its monopole flux",
+      is(ratsimp(diff(log(1 + lpw*lpwb), lpw, 1, lpwb, 1) - 1/(1 + lpw*lpwb)^2) = 0))$
+check("Laplace condition: a pole xi = 1/w has the same positive Laplacian away from w = 0",
+      is(ratsimp(diff(log(1 + 1/(lpw*lpwb)), lpw, 1, lpwb, 1) - 1/(1 + lpw*lpwb)^2) = 0))$
+/* xi independent of w: the CP_2 coordinates depend on u and v only */
+lpHG : H_metric()$  lpHJ : H_kahler()$
+lp_nz(v) := not every(lambda([x], is(ratsimp(x) = 0)), flatten(args(v)))$
+lp_em(z) := emb_setup(lpHG, H_X, holo_surface(lc_m4, z, 0), lc_chart)$
+lpE : lp_em((uu + %i*vv)/2)$
+lpJ : induced_kahler_form(lpHJ, H_X, emb_get(lpE, 'h), lc_chart)$
+check("xi = (u + i v)/2: the transverse Kahler field vanishes and J_uv does not",
+      not lp_nz(submatrix(1, 2, lpJ)) and lp_nz(lpJ[1,2]))$
+check("xi = (u + i v)/2: neither the Kahler part nor the volume part of the field equations vanishes",
+      block([E : extremal_parts(lpE, lpHJ)], lp_nz(E[1]) and lp_nz(E[2])))$
+check("xi = u/2: J = 0 and both parts vanish, a Kahler vacuum",
+      block([em : lp_em(uu/2)],
+        not lp_nz(induced_kahler_form(lpHJ, H_X, emb_get(em, 'h), lc_chart))
+        and block([E : extremal_parts(em, lpHJ)], not lp_nz(E[1]) and not lp_nz(E[2]))))$
+check("H-J from K: grad K is light-like for K(u) but not for xi = (u + i v)/2, where (grad K)^2 = 4 K_u K_v # 0",
+      is(ratsimp(4*diff(log(1 + (uu^2 + vv^2)/4), uu)*diff(log(1 + (uu^2 + vv^2)/4), vv)) # 0))$
 
 /* An open section: the graph xi = w/L in E^2 x CP_1 is a complete surface with the flux of CP_1.
    Its metric is e |dw|^2 with e = 1 + (1/L^2)/(1 + r^2/L^2)^2. */

@@ -4,7 +4,7 @@ Versio 1.1, 30.10.2026.
 Tavoitteena on rakentaa avoimeen Maxima-ympäristöön perustuva symbolisen geometrian laskentajärjestelmä, jolla voidaan tutkia Topological Geometrodynamics (TGD) -teorian geometrisia rakenteita vaiheittain aina $CP_2$-avaruuden kaarevuuteen, differentiaalimuotoihin, yhteyksiin ja aika-avaruuspinnan kenttäyhtälöihin asti.
 
 > Toteutuksen tila on merkitty jokaiseen vaiheeseen. ✅ tarkoittaa toteutettua ja testattua, 🟡 osittain tehtyä ja ⬜ tekemätöntä.
-> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 650 testiä menevät läpi.
+> Testit ajetaan komennolla `./scripts/run_tests.sh`, ja nykyisin kaikki 662 testiä menevät läpi.
 > GitHubissa jokainen vaihe on issue, ja välitavoitteet M1–M8 ovat [milestoneja](https://github.com/markomanninen/tgd-geometry-lab/milestones). Tilanne on koottu [seurantaan](seuranta.md).
 
 ---
@@ -389,7 +389,7 @@ Issuet [#31](https://github.com/markomanninen/tgd-geometry-lab/issues/31), [#32]
 
 ## 10.1 Vaihe IX – Partonipinnat 🟡
 
-Pitkäsen linjauksen 1.11.2026 mukaan sisäosan vaikutus on tilavuustermi, ja Kähler–Chern–Simons-vaikutus ja Diracin vaikutus ovat valon kaltaisilla partonipinnoilla. Laskennan painopiste siirtyy siksi niihin. Kirjasto tarvitsee työkalut rappeutuneelle metriikalle, koska `emb_setup` kääntää metriikan.
+Pitkäsen linjauksen 1.11.2026 mukaan sisäosan vaikutus on tilavuustermi, ja Kähler–Chern–Simons-vaikutus ja Diracin vaikutus ovat valon kaltaisilla partonipinnoilla. Laskennan painopiste siirtyy siksi niihin. Sisäosan vaikutus on silti avoin tutkimuskohde, ja sen vaihtoehtoja verrataan [sivulla](sivututkimus/sisaosan-vaikutus.md). Kirjasto tarvitsee työkalut rappeutuneelle metriikalle, koska `emb_setup` kääntää metriikan.
 
 - **9.1 Partoniradan metriikkaehdot** – [#36](https://github.com/markomanninen/tgd-geometry-lab/issues/36).
 - **9.2 Kähler–Chern–Simons-vaikutus ja sen kenttäyhtälö** – [#37](https://github.com/markomanninen/tgd-geometry-lab/issues/37).
@@ -423,7 +423,7 @@ Claude lukee Pitkäsen johdon ja kirjaa sen konventioihin sanatarkasti. Luettava
 Vastattavia kysymyksiä on kolme:
 
 - Mikä on $T$ koottua metriikkaa varten, ja miten se saadaan lehtien tensoreista?
-- Miten kirjan muotoilu, jossa $T$ on Kählerin Maxwell-tensori, sopii Pitkäsen linjaukseen 1.11.2026, jonka mukaan sisäosan vaikutus on tilavuustermi?
+- Miten kirjan muotoilu, jossa $T$ on Kählerin Maxwell-tensori, sopii sisäosan vaikutuksen vaihtoehtoihin, joita ovat pelkkä tilavuus, kaarevuusskalaari ja tilavuus sekä Kähler-vaikutus ja tilavuus Laplacen ehdolla?
 - Miten hiukkasen massa ja varaus jakautuvat lehdille madonreikäkontaktien välityksellä?
 
 Jos vastaus ei löydy lähteistä, $T$:n valinta on `päätös`. Silloin Claude tekee vertailulaskut ja pysähtyy.
