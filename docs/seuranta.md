@@ -23,7 +23,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 | M9 Partonipinnat | 0/6 | #36 partoniradan metriikkaehdot |
 
-Kaikki 668 testiä menevät läpi.
+Kaikki 670 testiä menevät läpi.
 
 Vaihe X eli lehtien kokoaminen ja Einsteinin raja on työn alla ([kehityssuunnitelma](kehityssuunnitelma.md#102-vaihe-x-lehtien-kokoaminen-ja-einsteinin-raja)). Sille ei ole vielä välitavoitetta eikä issueita.
 
@@ -61,8 +61,8 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | Issue | Kysymys |
 |---|---|
 | – | Mikä on rakenteen $(t\pm\rho)$ kompleksikoordinaatti, ja mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? |
-| #35 | Koskeeko 4.11.2026 vaatimus, että jaon molemmat pinnat ovat minimaalipintoja, myös pallomaisen jaon palloja? Pallo ei ole minimaalipinta $M^4$:ssä, ja HJ-artikkelin (2024) kohta 2.3 hyväksyy tämän. |
-| #35 | Ovatko $CP_2$-koordinaatit singulariteettien ulkopuolella holomorfisia deformoidun H-J-rakenteen koordinaatin $w$ suhteen? Jos ovat, Laplacen ehto estää riippuvuuden $w$:stä, ja jos eivät ole, harmoninen Kähler-funktio ei yksin hävitä poikittaista kenttää. |
+| #35 | Tarkoittaako 4.11.2026 vaatimus, että jaon molemmat pinnat ovat minimaalipintoja, pinta-alan kriittisyyttä? Suljetun minimaalipinnan $M^4$-projektio on piste, joten pallomaisen jaon pallot eivät voi täyttää sitä. |
+| #35 | Ovatko alueet, joissa holomorfia rikkoutuu, reikiä, joiden reuna on partonipinta, ja mikä ehto $\xi$:lle niiden ulkopuolella jää? Holomorfisella $\xi$:llä Laplacen ehto tekee $\xi$:stä riippumattoman poikittaisesta koordinaatista missä tahansa konformisesti deformoidussa rakenteessa, ja navan pistevaraus on affiinin kartan tuote. |
 
 ### Markolle
 

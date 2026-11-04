@@ -119,12 +119,22 @@ check("xi = w sqrt(1 - 1/|w|^2): the Kahler part of the field equations does not
 check("xi = sqrt(|w|^2 - 1): the same harmonic K with J = 0, but the volume part does not vanish, so the surface is not minimal",
       block([em : lp_real(sqrt(xx^2 + yy^2 - 1), 0)],
         not lp_nz(induced_kahler_form(lpHJ, H_X, emb_get(em, 'h), lc_chart)) and lp_nz(extremal_parts(em, lpHJ)[2])))$
+/* The 2-D Laplacian is conformally invariant: with w = phi(z) holomorphic, d_z d_zb K = |phi'|^2 d_w d_wb K,
+   so a conformal deformation of the H-J structure keeps the positive Laplacian of a holomorphic xi */
+check("conformal invariance: xi = w with w = z^2 + z gives d_z d_zb K = |2 z + 1|^2/(1 + |w|^2)^2",
+      block([w : lpz^2 + lpz, wb : lpzb^2 + lpzb],
+        is(ratsimp(diff(log(1 + w*wb), lpz, 1, lpzb, 1) - (2*lpz + 1)*(2*lpzb + 1)/(1 + w*wb)^2) = 0)))$
 /* Spherical slicing (Pitkanen 4.11.2026): the leaves u, v = t -+ r constant are round spheres, the X^2 leaves are (t, r) planes */
 lpM4 : diag_matrix(1, -1, -1, -1)$
 check("spherical slicing: the sphere t = t0, r = r0 has mean curvature (2/r0) r-hat in M^4, so it is not a minimal surface",
       block([em : emb_setup(lpM4, [tt, xx, yy, zz], [lpt0, lpr0*sin(lpth)*cos(lpph), lpr0*sin(lpth)*sin(lpph), lpr0*cos(lpth)], [lpth, lpph])],
         is(map(trigsimp, mean_curvature(em, second_fundamental_form(em)))
            = [0, 2*sin(lpth)*cos(lpph)/lpr0, 2*sin(lpth)*sin(lpph)/lpr0, 2*cos(lpth)/lpr0])))$
+check("closed surface in H: the sphere r = r0 joined to CP_1 by xi = tan(theta/2) e^(i phi) still has a non-zero M^4 part of H",
+      block([em : emb_setup(lpHG, H_X, [lpt0, lpr0*sin(lpth)*cos(lpph), lpr0*sin(lpth)*sin(lpph), lpr0*cos(lpth),
+                                         tan(lpth/2)*cos(lpph), tan(lpth/2)*sin(lpph), 0, 0], [lpth, lpph]), Hm],
+        Hm : mean_curvature(em, second_fundamental_form(em)),
+        not every(lambda([e], is(trigsimp(e) = 0)), rest(Hm, -4))))$
 check("spherical slicing: the (t, r) plane is a minimal surface",
       block([em : emb_setup(lpM4, [tt, xx, yy, zz], [lpta, lpra, 0, 0], [lpta, lpra])],
         every(lambda([e], is(e = 0)), mean_curvature(em, second_fundamental_form(em)))))$

@@ -239,11 +239,19 @@ Pinta riippuu siitä, miten $\xi$:n vaihekulma valitaan, ja NeuroPaja laski kaks
 
 Ei-holomorfisella $\xi$:llä poikittainen kenttä ei ole $i\,\partial_w\partial_{\bar w}K$, joten harmoninen $K$ ei hävitä kenttää. Laskussa $M^4$-koordinaatit ovat litteän H-J-rakenteen koordinaatit. Pitkäsen kuvaama konformikuvauksen vastine muuttaa myös $M^4$:n puolta, eikä sitä ole vielä laskettu.
 
-Pitkäseltä voi kysyä, ovatko $CP_2$-koordinaatit singulariteettien ulkopuolella holomorfisia deformoidun rakenteen koordinaatin $w$ suhteen. Jos ovat, positiivinen Laplacen operaattori estää riippuvuuden $w$:stä säännöllisessä alueessa. Jos eivät ole, harmoninen $K$ ei yksin hävitä poikittaista kenttää.
+Holografia = holomorfia -periaatteessa pinta on analyyttisten funktioiden yhtälöiden $f_1=f_2=0$ ratkaisu, joten $CP_2$-koordinaatit ovat holomorfisia muuttujan $w$ suhteen. Konformikuvauksen vastine ei muuta tätä, koska kaksiulotteinen Laplacen operaattori on konformisti invariantti. Kun $w=\phi(z)$ on holomorfinen, pätee
+
+$$
+\partial_z\partial_{\bar z}K=\lvert\phi'\rvert^2\,\partial_w\partial_{\bar w}K,
+$$
+
+joten Laplacen lauseke on positiivinen missä tahansa holomorfisessa koordinaatissa, jossa $\xi$ riippuu poikittaisesta koordinaatista. Holomorfisilla pinnoilla Laplacen ehto tekee siis $\xi$:stä riippumattoman poikittaisesta koordinaatista deformaatiosta riippumatta.
+
+Navan kohdalla affiinissa kartassa laskettu $K$ käyttäytyy kuten $-\log\lvert w\rvert^2$, ja sen Laplacen operaattori antaa distribuutiona pistemäisen termin $-\pi\delta$. Termi syntyy kartan valinnasta, koska $K$ on vain paikallinen potentiaali. Meromorfinen $\xi$ on sileä kuvaus avaruuteen $CP_2$, joten vedetty Kähler-muoto on navassa sileä eikä sisällä pistevarausta. Pitkäsen mukaan singulariteetit merkitsevät holomorfian rikkoutumista, joten riippuvuus poikittaisesta koordinaatista voi olla vain alueissa, joissa holomorfia rikkoutuu. Pitkäseltä voi kysyä, ovatko nämä alueet reikiä, joiden reuna on partonipinta, kuten edellä olevassa monopoliesimerkissä, ja mikä ehto $\xi$:lle niiden ulkopuolella jää.
 
 ### Pallomainen jako
 
-Pitkäsen mukaan myös pallomainen jako tuottaa H-J-rakenteen. Siinä $u$ ja $v$ ovat $t\mp r$, säiemaailmanpinnat ovat $(t,r)$-tasoja ja partonipinnat ovat palloja, joilla $t$ ja $r$ ovat vakioita. NeuroPajan laskussa $(t,r)$-taso on $M^4$:ssä minimaalipinta. Pallon keskikaarevuus on sen sijaan $(2/r_0)\,\hat r$, joten pallo ei ole minimaalipinta $M^4$:ssä. Pallomainen jako täyttää siis vaatimuksen, että molemmat pinnat ovat minimaalipintoja, vain jos vaatimus koskee pintoja vasta $CP_2$-deformaation jälkeen. Artikkelin *Holography and Hamilton-Jacobi Structure as a 4-D generalization of 2-D complex structure* (2024) kohdassa 2.3 Pitkänen toteaa saman. Hänen mukaansa pallomaisissa koordinaateissa pallot eivät ole minimaalipintoja, mutta $M^2(x)$ integroituu tasoksi, joka on minimaalipinta. Viestissä 4.11.2026 molemmat pinnat ovat minimaalipintoja, joten kysymys on, koskeeko uusi vaatimus palloja.
+Pitkäsen mukaan myös pallomainen jako tuottaa H-J-rakenteen. Siinä $u$ ja $v$ ovat $t\mp r$, säiemaailmanpinnat ovat $(t,r)$-tasoja ja partonipinnat ovat palloja, joilla $t$ ja $r$ ovat vakioita. NeuroPajan laskussa $(t,r)$-taso on $M^4$:ssä minimaalipinta. Pallon keskikaarevuus on sen sijaan $(2/r_0)\,\hat r$, joten pallo ei ole minimaalipinta $M^4$:ssä. Pallomaisen jaon pallot eivät voi olla minimaalipintoja myöskään $CP_2$-deformaation jälkeen. Avaruudessa $H=M^4\times CP_2$ keskikaarevuuden $M^4$-komponentit ovat pinnan Laplacen operaattori sovellettuna $M^4$-koordinaatteihin, koska $M^4$ on litteä ja tulometriikalla ei ole sekatermejä. Avaruuden kaltaisen pinnan metriikka on definiitti, joten minimaalipinnalla jokainen $M^4$-koordinaatti on harmoninen funktio. Suljetulla pinnalla harmoninen funktio on vakio, joten suljetun minimaalipinnan $M^4$-projektio on piste. Testissä pallo $r=r_0$, joka yhdistetään $CP_1$:een kuvauksella $\xi=\tan(\theta/2)\,e^{i\phi}$, ei ole minimaalipinta. Päättely koskee pintoja, joilla ei ole reunaa ja joiden metriikka ei rappeudu, ja se koskee vain pinta-alafunktionaalin kriittisiä pintoja. Artikkelin *Holography and Hamilton-Jacobi Structure as a 4-D generalization of 2-D complex structure* (2024) kohdassa 2.3 Pitkänen toteaa saman. Hänen mukaansa pallomaisissa koordinaateissa pallot eivät ole minimaalipintoja, mutta $M^2(x)$ integroituu tasoksi, joka on minimaalipinta. Viestissä 4.11.2026 molemmat pinnat ovat minimaalipintoja. Suljetuilla partonipinnoilla vaatimus voi siis toteutua vain, jos partonipinta on $M^4$:ssä piste, kuten kosmisen säikeen $CP_2$-osa, tai jos minimaalisuus tarkoittaa jonkin muun funktionaalin kuin pinta-alan kriittisyyttä.
 
 ### Aiemmat kysymykset 4.11. linjauksen jälkeen
 
@@ -271,6 +279,6 @@ Auki ovat nämä kohdat:
 - Kelpaako avoin poikkileikkaus säikeeksi, ja onko tasoon verrattu jännitys oikea suure.
 - Reunatermin johto yleisille upotuksille.
 - Holomorfisen $X^6$:n yleinen tapaus.
-- Miten Laplacen ehto ja singulariteetit toteutuvat, kun H-J-rakenne deformoidaan konformikuvauksen vastineella, ja onko $\xi$ silloin holomorfinen.
+- Ovatko alueet, joissa holomorfia rikkoutuu, reikiä, joiden reuna on partonipinta, ja mikä ehto $\xi$:lle niiden ulkopuolella jää.
 - Miten säiemaailmanpintojen ja partonipintojen kohtisuoruusehto toteutetaan.
-- Koskeeko minimaalipintavaatimus pallomaisen jaon partonipintoja jo $M^4$:ssä vai vasta deformaation jälkeen.
+- Mitä minimaalisuus tarkoittaa suljetuille partonipinnoille, joiden $M^4$-projektio ei ole piste.
