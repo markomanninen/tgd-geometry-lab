@@ -255,19 +255,27 @@ Tästä seuraa, että singulariteetit eivät näy ulkopuolelle kenttänä. Silmu
 
 Pitkäsen mukaan myös pallomainen jako tuottaa H-J-rakenteen. Siinä $u$ ja $v$ ovat $t\mp r$, säiemaailmanpinnat ovat $(t,r)$-tasoja ja partonipinnat ovat palloja, joilla $t$ ja $r$ ovat vakioita. NeuroPajan laskussa $(t,r)$-taso on $M^4$:ssä minimaalipinta. Pallon keskikaarevuus on sen sijaan $(2/r_0)\,\hat r$, joten pallo ei ole minimaalipinta $M^4$:ssä. Pallomaisen jaon pallot eivät voi olla minimaalipintoja myöskään $CP_2$-deformaation jälkeen. Avaruudessa $H=M^4\times CP_2$ keskikaarevuuden $M^4$-komponentit ovat pinnan Laplacen operaattori sovellettuna $M^4$-koordinaatteihin, koska $M^4$ on litteä ja tulometriikalla ei ole sekatermejä. Avaruuden kaltaisen pinnan metriikka on definiitti, joten minimaalipinnalla jokainen $M^4$-koordinaatti on harmoninen funktio. Suljetulla pinnalla harmoninen funktio on vakio, joten suljetun minimaalipinnan $M^4$-projektio on piste. Testissä pallo $r=r_0$, joka yhdistetään $CP_1$:een kuvauksella $\xi=\tan(\theta/2)\,e^{i\phi}$, ei ole minimaalipinta. Päättely koskee pintoja, joilla ei ole reunaa ja joiden metriikka ei rappeudu, ja se koskee vain pinta-alafunktionaalin kriittisiä pintoja. Artikkelin *Holography and Hamilton-Jacobi Structure as a 4-D generalization of 2-D complex structure* (2024) kohdassa 2.3 Pitkänen toteaa saman. Hänen mukaansa pallomaisissa koordinaateissa pallot eivät ole minimaalipintoja, mutta $M^2(x)$ integroituu tasoksi, joka on minimaalipinta. Viestissä 4.11.2026 molemmat pinnat ovat minimaalipintoja. Suljetuilla partonipinnoilla vaatimus voi siis toteutua vain, jos partonipinnan $M^4$-projektio on piste, tai jos minimaalisuus tarkoittaa jonkin muun funktionaalin kuin pinta-alan kriittisyyttä. Pistemäinen $M^4$-projektio on $CP_2$-tyyppisen ekstremaalin partonipinnalla, jonka $M^4$-projektio on valon kaltainen käyrä ja jonka jokainen aikaviipale on $M^4$:ssä piste. Tiukassa mielessä vaatimus toteutuu siis litteässä jaossa ja $CP_2$-tyyppisillä partonipinnoilla mutta ei pallomaisen jaon palloilla, mikä on sama kuin artikkelin kohdassa 2.3.
 
-### Aiemmat kysymykset 4.11. linjauksen jälkeen
+### Pitkäsen vastaukset aiempiin kysymyksiin 4.11.2026
 
-Pitkänen jätti kysymykset 5–10 myöhemmäksi. NeuroPaja kävi ne läpi 4.11.2026 linjauksen pohjalta, koska kaarevuusskalaarista luopuminen ja sisäosan Kähler-vaikutuksen paluu muuttavat useimpien kohtien lähtöoletusta.
+Pitkänen vastasi 4.11.2026 toisessa viestissään viiteen kysymykseen, jotka NeuroPaja oli esittänyt 2.11.2026.
+
+Väite, että holografia = holomorfia pätee kaikille indusoidusta geometriasta määräytyville vaikutuksille, oli Pitkäsen mukaan spekulaatio. Kaarevuusskalaaria ei tarvita, jos twistorinosto toimii. Olennaista on, että H-J-rakenne on konsistentti ratkaisutyypin kanssa ja että Kähler-varaukset keskittyvät singulariteetteihin. H-J-rakenteen määrittelevät säierata ja kaksiulotteinen partonipinta minimaalipintoina, ja niiden täytyy hänen mukaansa olla kohtisuorassa, jotta metriikassa ei ole ristitermejä $g_{uw}$. Silloin metriikka on tyyppiä $(1,1)$, ja Pitkänen arvelee, että myös Einsteinin tensori on.
+
+Pitkänen kysyi, unohtuiko kaarevuusskalaarin laskuissa oletus, että $\xi$ riippuu pitkittäisistä koordinaateista vain $u$:n kautta. Johtopäätökset tehtiin pinnoilla $\xi(w)$ ja $\xi(u,w)$. Ainoa pinta, joka riippui sekä $u$:sta että $v$:stä, oli $\xi=uvw$, ja se oli testissä merkitty ratkaisuyritteen ulkopuoliseksi vertailuksi.
+
+Vuoputki ei Pitkäsen mukaan pääty tasaiseen $M^4$-lehteen. Sen poikkileikkaus on suljettu pinta, jota ei voi toteuttaa yhtenä lehtenä $M^4$:ssä. Kosmisen säikeen deformaationa vuoputken $M^4$-projektio on $E^3$:n äärellinen alue ilman reunaa, joten vuoputki on vähintään kaksilehtinen, kuten pallo, jonka yläpinta kääntyy alapinnaksi. Avoin poikkileikkaus $\xi=w/\lambda$ ei siis vastaa hänen kuvaansa. Jos suljetun poikkileikkauksen pitäisi olla minimaalipinta avaruudessa $H$, edellä johdettu tulos estäisi sen, koska poikkileikkauksen $M^4$-projektio on kiekko eikä piste.
+
+Kaava $\hbar G=pR_C^2\exp(-2aS_K)$ on Pitkäsen mukaan aiempi arvaus. Uskottavimpana hän pitää selitystä Planckin vakioiden hierarkiasta. Siinä $l_P^2(\hbar_0)=R^2$, ja kun $\hbar=7!^2\hbar_0$, Planckin pituuden neliö pienenee tekijällä $\hbar_0/\hbar$. Hänen mukaansa argumentti on hatara, koska TGD:ssä ei ole polkuintegraalia eikä sen häiriöteoriaa. Toisenlainen tulkinta on artikkelissa *About the relationship of electroweak and strong interactions in the TGD Universe: part III*.
+
+Partoniradalla Kähler-muodolla voisi periaatteessa olla sähköinen osa, mutta reunaehdot viittaavat Pitkäsen mukaan vahvasti siihen, että se häviää samoin kuin metriikan vastaava komponentti. Oletus on, että Kähler-muoto on puhtaasti magneettinen ja siksi poikittainen kaikkialla paitsi singulariteeteissa. Kvanttilukujen vaihto ympäristön kanssa tapahtuu singulariteeteissa, eli särmissä ja fermioniviivojen pisteissä, joissa fermionin liikemäärä voi muuttua.
+
+Partoniradan kysymykseen vastaa Pitkäsen artikkeli *About the relationship of electroweak and strong interactions in the TGD Universe: part I*. Sen kohdan 2.1.3 mukaan radan valon kaltaisuus tekee metriikasta ja Kähler-muodosta poikittaisia, ja kohdan 4.2 mukaan $J(M^4)$:llä on vain poikittainen osa $J_{w\bar w}$. Kohdan 2.1.1 reunaehdossa isometriavirran normaalikomponentin hyppy radalla on yhtä suuri kuin radalla kulkeva K-C-S-virta. Kohta 4.2 toteaa, että poikittaisella $B(M^4)$:llä K-C-S-tiheyden $M^4$-osa häviää, ja suosii vaihtoehtoa, jossa $B_t(M^4)$ on vakio. Värin vaihtoa sisäosan ja radan välillä artikkeli ei mainitse.
+
+Kosmisen säikeen gravitaatiomassan pitäisi Pitkäsen viimeisen arvion mukaan olla vastakkaismerkkinen, jolloin vain pallomainen poikkileikkaus antaisi negatiivisen energian. Kerroin $1/16\pi G$ tulee kaarevuusskalaarin kertoimesta, ja Pitkänen on valmis unohtamaan kaarevuusskalaarin.
 
 Vaikutuksen R + tilavuus Noether-tensori, partoniradan Gibbonsin–Hawkingin–Yorkin reunatermi ja kaarevuusosan virran hajaantuminen koskivat kaarevuusskalaaria, joten ne eivät enää koske Pitkäsen linjaamaa vaikutusta. Twistoripallon tilavuustermi tulee Pitkäsen mukaan twistoriavaruuden Kähler-vaikutuksesta eikä kaarevuusskalaarista. Yang–Millsin neliötermin este palautuu samaan kysymykseen kuin kenttäyhtälöiden Kähler-osa.
 
 H-J-määritelmän ehto $g^{uu}=g^{vv}=0$ antaa viivaelementin kertoimille $B=D=0$. Tämä on sama ehto kuin Pitkäsen 4.11. mainitsema kohtisuoruusehto, jonka mukaan säiemaailmanpinnat ja partonipinnat ovat toisiaan vastaan kohtisuorassa.
-
-Partoniradan kysymykseen vastaa Pitkäsen artikkeli *About the relationship of electroweak and strong interactions in the TGD Universe: part I*. Sen kohdan 2.1.3 mukaan radan valon kaltaisuus tekee metriikasta ja Kähler-muodosta poikittaisia, ja kohdan 4.2 mukaan $J(M^4)$:llä on vain poikittainen osa $J_{w\bar w}$. Kohdan 2.1.1 reunaehdossa isometriavirran normaalikomponentin hyppy radalla on yhtä suuri kuin radalla kulkeva K-C-S-virta. Kohta 4.2 toteaa, että poikittaisella $B(M^4)$:llä K-C-S-tiheyden $M^4$-osa häviää, ja suosii vaihtoehtoa, jossa $B_t(M^4)$ on vakio. Värin vaihtoa sisäosan ja radan välillä artikkeli ei mainitse.
-
-Pelkän tilavuuden seuraukset, eli euklidisen alueen negatiivinen tai imaginäärinen energia ja sisäosasta puuttuva $U(1)$-voima, poistuvat, kun sisäosan Kähler-vaikutus palaa. Samasta syystä kirjan arvot $T=1/(8\alpha_K R_C^2)$ ja $\hbar G=pR_C^2\exp(-2aS_K)$ ovat taas käytössä. Pitkäsen mukaan sisäosan gravitaatiovakio ei ole Newtonin vakio.
-
-Ristiriita, jossa pinnat $\xi^k=f^k(Y)$ ja $y^2=F(w)$ eivät ratkaise vaikutusta R + tilavuus, koski kaarevuusskalaaria. Kähler-vaikutuksella ja tilavuudella nämä pinnat ovat holomorfisia muuttujan $w$ suhteen, joten ne rikkovat Laplacen ehtoa samalla tavalla kuin edellä. Sama koskee poikkileikkausta $\xi=w/\lambda$. Puolipallon reunaehdot isolla ympyrällä ovat Pitkäsen mukaan avoimia. Säikeen gravitaatiomassan kerroin jää NeuroPajan laskuksi $(1-g)/2G$, koska Pitkänen ei takaa numerokertoimia.
 
 Testit ovat tiedostossa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
 
@@ -278,7 +286,7 @@ Maxima-testit ovat tiedostoissa [test-interior-curvature.mac](https://github.com
 Auki ovat nämä kohdat:
 
 - Ovatko pallomaiset pinnat ja genuksen $g$ lehti sallittuja H-J-pintoja.
-- Kelpaako avoin poikkileikkaus säikeeksi, ja onko tasoon verrattu jännitys oikea suure.
+- Miten kaksilehtinen vuoputki, jonka poikkileikkaus on suljettu, toteutuu Laplacen ehdon ja minimaalipintaehdon kanssa.
 - Reunatermin johto yleisille upotuksille.
 - Holomorfisen $X^6$:n yleinen tapaus.
 - Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla kaikki Kähler-kenttä on alueissa, joissa holomorfia rikkoutuu, ja että niiden ulkopuolella pinta on Kähler-tyhjiö.

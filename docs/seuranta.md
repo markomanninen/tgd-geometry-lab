@@ -55,6 +55,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #35 | Lisäehtoja ei tuoda. Sisäosan vaikutus on tilavuustermi, ja Kähler–Chern–Simons-vaikutus on partonipinnoilla. | ✅ kirjattu konventioihin |
 | #35 | Pitkänen pohti 2.11.2026 sisäosaan myös kaarevuusskalaaria ja tilavuutta. Hänen mukaansa 3.11.2026 pelkkä tilavuus on elegantein, ja kaarevuusskalaarista voidaan joutua luopumaan, jos minimipinnoista pidetään kiinni. | 🟡 [vertailu](sivututkimus/sisaosan-vaikutus.md) laskettu |
 | #35 | Pitkänen ehdotti 3.11.2026 Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa poikittaisen Laplacen yhtälön. NeuroPajan laskussa ehto sallii holomorfisilla pinnoilla vain riippumattomuuden koordinaatista $w$. Pitkäsen mukaan 4.11.2026 singulariteetit ovat ajatuksen ydin, riippuvuus on vain koordinaatista $u$, ja kosminen säie on rajatapaus. | 🟡 [vertailussa](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaus-4112026), ei-holomorfinen monopoli laskettu |
+| #35 | Pitkänen vastasi 4.11.2026 aiempiin viiteen kysymykseen. Vuoputki on kaksilehtinen ja sen poikkileikkaus suljettu, $G$ selittyy Planckin vakioiden hierarkialla, Kähler-muoto on magneettinen ja poikittainen kaikkialla paitsi singulariteeteissa, ja kerroin $1/16\pi G$ tulee kaarevuusskalaarista, josta hän on valmis luopumaan. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaukset-aiempiin-kysymyksiin-4112026) |
 
 ### Avoinna – kysytään Matilta
 
