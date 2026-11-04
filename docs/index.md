@@ -31,7 +31,7 @@ TGD on [Matti Pitkäsen](https://tgdtheory.fi/) kehittämä teoria. Pitkänen on
 
 ## NeuroPaja
 
-NeuroPaja on projektin tekijän kokeilunimi. Siinä Marko Manninen, Anthropicin Claude-tekoäly ja OpenAI:n GPT-mallit lukevat lähteitä, päättelevät ja laskevat yhdessä, ja laskut tehdään Maxima-ohjelmalla ja Python-skripteillä. Myös Matti Pitkäsen vastaukset muokkaavat kokonaisuutta. Päättely on siirretty symboliseen ja numeeriseen laskentaan kaikkialla, missä se on mahdollista, koska kielimalli tekee virheitä ja tarvitsee jatkuvaa ohjausta. Kun sivuilla lukee, että NeuroPaja laski tai päätteli jotain, tulos on syntynyt tällä työnjaolla. Laskut ovat Maxima-testeinä, jotka tietokone ajaa jokaisen muutoksen jälkeen, ja päättely on merkitty päättelyksi. Riippumaton tarkistus, jossa malli lukee tuloksen näkemättä aiempaa päättelyä, mainitaan erikseen.
+NeuroPaja on projektin tekijän kokeilunimi. Siinä Marko Manninen, Anthropicin Claude-tekoäly ja OpenAI:n GPT-malleja käyttävä Codex lukevat lähteitä, päättelevät ja laskevat yhdessä, ja laskut tehdään Maxima-ohjelmalla ja Python-skripteillä. Myös Matti Pitkäsen vastaukset muokkaavat kokonaisuutta. Päättely on siirretty symboliseen ja numeeriseen laskentaan kaikkialla, missä se on mahdollista, koska kielimalli tekee virheitä ja tarvitsee jatkuvaa ohjausta. Kun sivuilla lukee, että NeuroPaja laski tai päätteli jotain, tulos on syntynyt tällä työnjaolla. Laskut ovat Maxima-testeinä, jotka tietokone ajaa jokaisen muutoksen jälkeen, ja päättely on merkitty päättelyksi. Codex tekee myös riippumattomia tarkistuksia, joissa se lukee tuloksen näkemättä Clauden päättelyä, ja tällainen tarkistus mainitaan erikseen.
 
 ## Lanyon AI:n vaikutus
 
