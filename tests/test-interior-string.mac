@@ -139,6 +139,16 @@ check("closed surface in H: the sphere r = r0 joined to CP_1 by xi = tan(theta/2
                                          tan(lpth/2)*cos(lpph), tan(lpth/2)*sin(lpph), 0, 0], [lpth, lpph]), Hm],
         Hm : mean_curvature(em, second_fundamental_form(em)),
         not every(lambda([e], is(trigsimp(e) = 0)), rest(Hm, -4))))$
+/* Pitkanen 4.11.2026: in a CD the 3-space is the hyperboloid t^2 - r^2 = a^2, a copy of H^3 */
+check("H^3: the geodesic sphere rho = rho0 in d rho^2 + sinh(rho)^2 dOmega^2 has mean curvature 2 coth(rho0), so it is not minimal",
+      block([em : emb_setup(matrix([-1,0,0],[0,-sinh(lprho)^2,0],[0,0,-sinh(lprho)^2*sin(lpth)^2]), [lprho, lpth, lpph],
+                            [lpr0, lps1, lps2], [lps1, lps2]), Hm],
+        Hm : map(trigsimp, mean_curvature(em, second_fundamental_form(em))),
+        is(trigsimp(Hm[1] - 2*cosh(lpr0)/sinh(lpr0)) = 0) and is(Hm[2] = 0) and is(Hm[3] = 0)))$
+check("hyperboloid in M^4: the totally geodesic H^2 (t, x, y) = a (cosh s, sinh s cos p, sinh s sin p) is minimal in H^3 but has M^4 mean curvature -(2/a^2) (t, x, y, 0)",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz], [lpa*cosh(lps), lpa*sinh(lps)*cos(lpp), lpa*sinh(lps)*sin(lpp), 0], [lps, lpp]), Hm],
+        Hm : map(trigsimp, mean_curvature(em, second_fundamental_form(em))),
+        is(map(ratsimp, map(trigsimp, Hm + [2*cosh(lps)/lpa, 2*sinh(lps)*cos(lpp)/lpa, 2*sinh(lps)*sin(lpp)/lpa, 0])) = [0, 0, 0, 0])))$
 check("spherical slicing: the (t, r) plane is a minimal surface",
       block([em : emb_setup(lpM4, [tt, xx, yy, zz], [lpta, lpra, 0, 0], [lpta, lpra])],
         every(lambda([e], is(e = 0)), mean_curvature(em, second_fundamental_form(em)))))$

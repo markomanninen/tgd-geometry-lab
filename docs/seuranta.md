@@ -23,7 +23,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 | M9 Partonipinnat | 0/6 | #36 partoniradan metriikkaehdot |
 
-Kaikki 671 testiä menevät läpi.
+Kaikki 673 testiä menevät läpi.
 
 Vaihe X eli lehtien kokoaminen ja Einsteinin raja on työn alla ([kehityssuunnitelma](kehityssuunnitelma.md#102-vaihe-x-lehtien-kokoaminen-ja-einsteinin-raja)). Sille ei ole vielä välitavoitetta eikä issueita.
 
@@ -62,7 +62,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | Issue | Kysymys |
 |---|---|
 | – | Mikä on rakenteen $(t\pm\rho)$ kompleksikoordinaatti, ja mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? |
-| #35 | Hyväksyykö Pitkänen seurauksen, että suljettu minimaalinen partonipinta on $CP_2$-tyyppinen, koska sen $M^4$-projektio on piste, ja että pallomaisen jaon pallot eivät siksi ole minimaalipintoja? |
+| #35 | Pitkäsen mukaan 4.11.2026 partonipinnat ovat minimaalipintoja kolmiulotteisessa avaruudessa, $M^4$:ssä ei-kompakteja $E^3$:ssa ja CD:ssä mahdollisesti kompakteja $H^3$:ssa. Ovatko kompaktit partonipinnat minimaalipintoja äärellisen tilavuuden avaruudessa $H^3/\Gamma$, koska yksinkertaisesti yhtenäisessä $H^3$:ssa suljettuja minimaalipintoja ei ole? |
 | #35 | Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla singulariteettialueiden ulkopuolella pinta on Kähler-tyhjiö $\xi=\xi(u)$, jolloin singulariteetit eivät näy ulos Coulombin kenttänä eivätkä vuona? |
 
 ### Markolle
