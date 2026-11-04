@@ -1,6 +1,6 @@
 # Sisäosan vaikutus ja kaarevuusskalaari
 
-Tämä sivu vertaa ehdokkaita TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Sisäosan vaikutus on avoin tutkimuskohde, ja sivu kokoaa, mihin kukin vaihtoehto johtaa. Ehdokkaita on kolme. Pelkkä tilavuus on Matti Pitkäsen linjaus 1.11.2026. Kaarevuusskalaaria ja tilavuutta Pitkänen pohti 2.11.2026 kysymyksenä. Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa Laplacen yhtälön, hän ehdotti 3.11.2026. Laskut, lähteiden lukemisen ja päättelyn teki NeuroPaja 2.–3.11.2026. Tulokset koskevat mainittuja pintaluokkia, ja fysikaalisen tulkinnan tekee Pitkänen.
+Tämä sivu vertaa ehdokkaita TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Sisäosan vaikutus on avoin tutkimuskohde, ja sivu kokoaa, mihin kukin vaihtoehto johtaa. Ehdokkaita on kolme. Pelkkä tilavuus on Matti Pitkäsen linjaus 1.11.2026. Kaarevuusskalaaria ja tilavuutta Pitkänen pohti 2.11.2026 kysymyksenä. Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa Laplacen yhtälön, hän ehdotti 3.11.2026. Pitkäsen mukaan 4.11.2026 kuva pysyy alkuperäisenä twistorinosto mukaan lukien, ja kaarevuusskalaari on tarpeeton. Laskut, lähteiden lukemisen ja päättelyn teki NeuroPaja 2.–4.11.2026. Tulokset koskevat mainittuja pintaluokkia, ja fysikaalisen tulkinnan tekee Pitkänen.
 
 Merkinnät ovat projektin konventioiden mukaiset, ja signatuuri on $(+,-,-,-)$. Kirjain $R$ tarkoittaa pinnan kaarevuusskalaaria, ja $R_C$ on $CP_2$:n säde. Vaikutus on
 
@@ -25,7 +25,7 @@ Taulukko näyttää, mitä kukin testi antaa. Jokainen rivi koskee vain mainittu
 | Litteän H-J-rakenteen holomorfiset pinnat | Ratkaisuja | Ratkaisuja | Vain pinnat, joilla $\partial_w\xi=0$, ja testatuista vain $\xi(u)$ |
 | Pallomainen rakenne, pinnat $\xi(w)$ | Vain suora ja kartioleikkaus | Kaikki holomorfiset pinnat | Ei laskettu |
 | Genuksen $g$ lehti $y^2=F(w)$ | Ei ratkaisu | Ratkaisu | Ei laskettu |
-| Yksikkövuon suljettu tuotesäie, $\Lambda R_C^2\ll 4$ | $T\approx-1/(2G)$ | $T>0$ | Säie rikkoo ehdon |
+| Yksikkövuon suljettu tuotesäie, $\Lambda R_C^2\ll 4$ | $T\approx-1/(2G)$ | $T>0$ | Rajatapaus, joka ei kuulu ehdon pintoihin |
 | Yksikkövuon avoin poikkileikkaus, jännitys tasoon verrattuna | $\Lambda R_C^2/8G$ | $\Lambda R_C^2/8G$ | Ei laskettu |
 | Translaatiovirta radalla | Riippuu mallista | Ei hajaannu | Ei laskettu |
 | $G$:n arvo | Yhteinen kerroin, ei johtoa | Ei vaikutuksessa, ei johtoa | Ei laskettu |
@@ -214,7 +214,50 @@ NeuroPaja laski 3.11.2026 ehdon seuraukset viidestä suunnasta.
 
 **Twistorinosto.** Aiempi tulos oli, että Yang–Millsin neliötermillä on kompleksikäyrillä sama ensimmäinen variaatio kuin Kähler-termillä. Laplacen ehdolla este häviää siis täsmälleen silloin, kun kenttäyhtälöiden Kähler-osa häviää. Testatuista pinnoista näin käy pinnalla $\xi=u/2$, jolla Kähler-muoto on nolla. Kysymys palautuu siksi hyperkompleksisen luennan ratkaisuihin.
 
-Kysymykset Pitkäselle ovat nämä. Koskeeko ehto vain osaa pinnoista, vai ovatko monopolivuoputket hänen tarkoittamiaan singulariteetteja? Tarkoittaako hän riippuvuutta pelkästä koordinaatista $u$ vai hyperkompleksisesta koordinaatista $t+ez$?
+NeuroPaja kysyi Pitkäseltä, koskeeko ehto vain osaa pinnoista ja tarkoittaako hän riippuvuutta pelkästä koordinaatista $u$ vai hyperkompleksisesta koordinaatista $t+ez$.
+
+### Pitkäsen vastaus 4.11.2026
+
+Pitkäsen mukaan perus-H-J-rakenne syntyy, kun $M^4$ jaetaan säiemaailmanpinnoiksi $X^2$ ja niitä vastaan kohtisuoriksi partonipinnoiksi $Y^2$. Molemmat pinnat ovat minimaalipintoja. Kohtisuoruusehdon toteuttaminen on hänen mukaansa avoin matemaattinen ongelma. Litteä jako on erikoistapaus, ja jokainen jako määrää oman H-J-rakenteensa. Indusoitu Kähler-rakenne on tämän rakenteen deformaatio konformikuvauksen vastineella, ja deformaatioon liittyy singulariteetteja.
+
+Pitkäsen mukaan NeuroPajan päättely ei salli paikallisia singulariteetteja, vaikka ne ovat ajatuksen ydin. Hän vertaa tilannetta kaksiulotteiseen sähköstatiikkaan, jossa Laplacen yhtälön ratkaisuilla on varauksia, viivavarauksia ja dipoleja. Ne merkitsevät holomorfian rikkoutumista. Singulariteetin ympärillä on alue, jossa upotus rikkoutuu, ja sen tilalle tulee partonipinta, jonka sisällä on euklidinen alue.
+
+Kosminen säie on Pitkäsen mukaan rajatapaus, koska sen projektio $M^4$:ään on kaksiulotteinen. Säie kuuluu samaan luokkaan kuin $CP_2$-tyyppiset ekstremaalit. H-J-deformaatioiden projektio on neliulotteinen, ja niillä Kähler-virta häviää. Monopolivuoputken magneettikenttä ei tarvitse virtoja, mikä Pitkäsen mukaan ratkaisee pitkän kantaman magneettikenttien vakauden ongelman.
+
+Ratkaisuyritteen $\xi^k=f_k(u,w)$ perusoletus on Pitkäsen mukaan, että funktiot riippuvat pitkittäisistä koordinaateista vain koordinaatin $u$ kautta. Silloin $J_{uv}=0$. Testi vahvistaa tämän pinnalla $\xi=uw/3$.
+
+### Singulariteetit ei-holomorfisella $\xi$:llä
+
+Kun $\xi$ on holomorfinen muuttujan $w$ suhteen, poikittainen Kähler-kenttä on sama lauseke kuin vedetyn Kähler-funktion Laplacen operaattori, eli $J_{w\bar w}=i\,\partial_w\partial_{\bar w}K$. Lauseke on positiivinen kaikkialla, missä $\partial_w\xi\neq 0$. Navan $\xi=1/w$ kenttä ei siksi keskity napaan vaan levittäytyy koko tasoon.
+
+Kaksiulotteisen sähköstatiikan monopolia vastaa funktio $K=\log\lvert w\rvert^2$, joka on harmoninen kaikkialla paitsi origossa. NeuroPajan laskussa tällainen $K$ syntyy ehdosta $1+\lvert\xi\rvert^2=\lvert w\rvert^2$, joka on mahdollinen vain ei-holomorfisella $\xi$:llä. Ehto toteutuu vain, kun $\lvert w\rvert\ge 1$, joten pinnassa on singulariteetin ympärillä reikä, jossa upotusta ei ole. Tämä vastaa Pitkäsen kuvaa alueesta, jossa upotus rikkoutuu.
+
+Pinta riippuu siitä, miten $\xi$:n vaihekulma valitaan, ja NeuroPaja laski kaksi valintaa:
+
+- Kun $\xi=w\sqrt{1-1/\lvert w\rvert^2}$, funktio $K$ on harmoninen, mutta poikittainen Kähler-kenttä on $J_{xy}=1/\lvert w\rvert^4$. Kenttäyhtälöiden Kähler-osa ei häviä.
+- Kun $\xi=\sqrt{\lvert w\rvert^2-1}$ on reaalinen, Kähler-muoto on nolla, mutta tilavuusosa ei häviä, joten pinta ei ole minimipinta.
+
+Ei-holomorfisella $\xi$:llä poikittainen kenttä ei ole $i\,\partial_w\partial_{\bar w}K$, joten harmoninen $K$ ei hävitä kenttää. Laskussa $M^4$-koordinaatit ovat litteän H-J-rakenteen koordinaatit. Pitkäsen kuvaama konformikuvauksen vastine muuttaa myös $M^4$:n puolta, eikä sitä ole vielä laskettu.
+
+Pitkäseltä voi kysyä, ovatko $CP_2$-koordinaatit singulariteettien ulkopuolella holomorfisia deformoidun rakenteen koordinaatin $w$ suhteen. Jos ovat, positiivinen Laplacen operaattori estää riippuvuuden $w$:stä säännöllisessä alueessa. Jos eivät ole, harmoninen $K$ ei yksin hävitä poikittaista kenttää.
+
+### Pallomainen jako
+
+Pitkäsen mukaan myös pallomainen jako tuottaa H-J-rakenteen. Siinä $u$ ja $v$ ovat $t\mp r$, säiemaailmanpinnat ovat $(t,r)$-tasoja ja partonipinnat ovat palloja, joilla $t$ ja $r$ ovat vakioita. NeuroPajan laskussa $(t,r)$-taso on $M^4$:ssä minimaalipinta. Pallon keskikaarevuus on sen sijaan $(2/r_0)\,\hat r$, joten pallo ei ole minimaalipinta $M^4$:ssä. Pallomainen jako täyttää siis vaatimuksen, että molemmat pinnat ovat minimaalipintoja, vain jos vaatimus koskee pintoja vasta $CP_2$-deformaation jälkeen. Artikkelin *Holography and Hamilton-Jacobi Structure as a 4-D generalization of 2-D complex structure* (2024) kohdassa 2.3 Pitkänen toteaa saman. Hänen mukaansa pallomaisissa koordinaateissa pallot eivät ole minimaalipintoja, mutta $M^2(x)$ integroituu tasoksi, joka on minimaalipinta. Viestissä 4.11.2026 molemmat pinnat ovat minimaalipintoja, joten kysymys on, koskeeko uusi vaatimus palloja.
+
+### Aiemmat kysymykset 4.11. linjauksen jälkeen
+
+Pitkänen jätti kysymykset 5–10 myöhemmäksi. NeuroPaja kävi ne läpi 4.11.2026 linjauksen pohjalta, koska kaarevuusskalaarista luopuminen ja sisäosan Kähler-vaikutuksen paluu muuttavat useimpien kohtien lähtöoletusta.
+
+Vaikutuksen R + tilavuus Noether-tensori, partoniradan Gibbonsin–Hawkingin–Yorkin reunatermi ja kaarevuusosan virran hajaantuminen koskivat kaarevuusskalaaria, joten ne eivät enää koske Pitkäsen linjaamaa vaikutusta. Twistoripallon tilavuustermi tulee Pitkäsen mukaan twistoriavaruuden Kähler-vaikutuksesta eikä kaarevuusskalaarista. Yang–Millsin neliötermin este palautuu samaan kysymykseen kuin kenttäyhtälöiden Kähler-osa.
+
+H-J-määritelmän ehto $g^{uu}=g^{vv}=0$ antaa viivaelementin kertoimille $B=D=0$. Tämä on sama ehto kuin Pitkäsen 4.11. mainitsema kohtisuoruusehto, jonka mukaan säiemaailmanpinnat ja partonipinnat ovat toisiaan vastaan kohtisuorassa.
+
+Partoniradan kysymykseen vastaa Pitkäsen artikkeli *About the relationship of electroweak and strong interactions in the TGD Universe: part I*. Sen kohdan 2.1.3 mukaan radan valon kaltaisuus tekee metriikasta ja Kähler-muodosta poikittaisia, ja kohdan 4.2 mukaan $J(M^4)$:llä on vain poikittainen osa $J_{w\bar w}$. Kohdan 2.1.1 reunaehdossa isometriavirran normaalikomponentin hyppy radalla on yhtä suuri kuin radalla kulkeva K-C-S-virta. Kohta 4.2 toteaa, että poikittaisella $B(M^4)$:llä K-C-S-tiheyden $M^4$-osa häviää, ja suosii vaihtoehtoa, jossa $B_t(M^4)$ on vakio. Värin vaihtoa sisäosan ja radan välillä artikkeli ei mainitse.
+
+Pelkän tilavuuden seuraukset, eli euklidisen alueen negatiivinen tai imaginäärinen energia ja sisäosasta puuttuva $U(1)$-voima, poistuvat, kun sisäosan Kähler-vaikutus palaa. Samasta syystä kirjan arvot $T=1/(8\alpha_K R_C^2)$ ja $\hbar G=pR_C^2\exp(-2aS_K)$ ovat taas käytössä. Pitkäsen mukaan sisäosan gravitaatiovakio ei ole Newtonin vakio.
+
+Ristiriita, jossa pinnat $\xi^k=f^k(Y)$ ja $y^2=F(w)$ eivät ratkaise vaikutusta R + tilavuus, koski kaarevuusskalaaria. Kähler-vaikutuksella ja tilavuudella nämä pinnat ovat holomorfisia muuttujan $w$ suhteen, joten ne rikkovat Laplacen ehtoa samalla tavalla kuin edellä. Sama koskee poikkileikkausta $\xi=w/\lambda$. Puolipallon reunaehdot isolla ympyrällä ovat Pitkäsen mukaan avoimia. Säikeen gravitaatiomassan kerroin jää NeuroPajan laskuksi $(1-g)/2G$, koska Pitkänen ei takaa numerokertoimia.
 
 Testit ovat tiedostossa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
 
@@ -226,8 +269,8 @@ Auki ovat nämä kohdat:
 
 - Ovatko pallomaiset pinnat ja genuksen $g$ lehti sallittuja H-J-pintoja.
 - Kelpaako avoin poikkileikkaus säikeeksi, ja onko tasoon verrattu jännitys oikea suure.
-- Mistä $T$ ja $G$ saavat arvonsa ilman sisäosan Kähler-termiä.
-- Onko $J(M^4)$ poikittainen myös radalla.
 - Reunatermin johto yleisille upotuksille.
 - Holomorfisen $X^6$:n yleinen tapaus.
-- Mitkä pinnat Laplacen ehto sallii, kun $CP_2$-koordinaatit riippuvat hyperkompleksisesta koordinaatista, ja mihin Kähler- ja tilavuusvaikutus silloin johtaa säikeille ja radoille.
+- Miten Laplacen ehto ja singulariteetit toteutuvat, kun H-J-rakenne deformoidaan konformikuvauksen vastineella, ja onko $\xi$ silloin holomorfinen.
+- Miten säiemaailmanpintojen ja partonipintojen kohtisuoruusehto toteutetaan.
+- Koskeeko minimaalipintavaatimus pallomaisen jaon partonipintoja jo $M^4$:ssä vai vasta deformaation jälkeen.

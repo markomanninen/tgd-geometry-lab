@@ -102,6 +102,32 @@ check("xi = u/2: J = 0 and both parts vanish, a Kahler vacuum",
         and block([E : extremal_parts(em, lpHJ)], not lp_nz(E[1]) and not lp_nz(E[2]))))$
 check("H-J from K: grad K is light-like for K(u) but not for xi = (u + i v)/2, where (grad K)^2 = 4 K_u K_v # 0",
       is(ratsimp(4*diff(log(1 + (uu^2 + vv^2)/4), uu)*diff(log(1 + (uu^2 + vv^2)/4), vv)) # 0))$
+/* Pitkanen 4.11.2026: in the ansatz xi^k = f_k(u, w) the functions do not depend on v, so J_uv = 0 */
+check("xi = u w/3: no v dependence, so J_uv = 0",
+      is(ratsimp(induced_kahler_form(lpHJ, H_X, emb_get(lp_em(uu*lc_w/3), 'h), lc_chart)[1,2]) = 0))$
+/* A monopole of K needs xi that is not holomorphic in w.  With 1 + |xi|^2 = |w|^2 the pulled-back K = log|w|^2
+   is harmonic outside w = 0, and the surface exists only for |w| >= 1, so it has a hole around the singularity. */
+lpS : sqrt(1 - 1/(xx^2 + yy^2))$
+lp_real(x1, x2) := emb_setup(lpHG, H_X, append(lc_m4, [x1, x2, 0, 0]), lc_chart)$
+lpEA : lp_real(xx*lpS, yy*lpS)$
+lpJA : induced_kahler_form(lpHJ, H_X, emb_get(lpEA, 'h), lc_chart)$
+check("xi = w sqrt(1 - 1/|w|^2): K = log|w|^2 is harmonic, yet J_xy = 1/|w|^4, so a harmonic K does not remove the transverse field",
+      block([K : log(1 + (xx^2 + yy^2)*lpS^2)],
+        is(ratsimp(diff(K, xx, 2) + diff(K, yy, 2)) = 0) and is(ratsimp(lpJA[3,4] - 1/(xx^2 + yy^2)^2) = 0)))$
+check("xi = w sqrt(1 - 1/|w|^2): the Kahler part of the field equations does not vanish",
+      lp_nz(extremal_parts(lpEA, lpHJ)[1]))$
+check("xi = sqrt(|w|^2 - 1): the same harmonic K with J = 0, but the volume part does not vanish, so the surface is not minimal",
+      block([em : lp_real(sqrt(xx^2 + yy^2 - 1), 0)],
+        not lp_nz(induced_kahler_form(lpHJ, H_X, emb_get(em, 'h), lc_chart)) and lp_nz(extremal_parts(em, lpHJ)[2])))$
+/* Spherical slicing (Pitkanen 4.11.2026): the leaves u, v = t -+ r constant are round spheres, the X^2 leaves are (t, r) planes */
+lpM4 : diag_matrix(1, -1, -1, -1)$
+check("spherical slicing: the sphere t = t0, r = r0 has mean curvature (2/r0) r-hat in M^4, so it is not a minimal surface",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz], [lpt0, lpr0*sin(lpth)*cos(lpph), lpr0*sin(lpth)*sin(lpph), lpr0*cos(lpth)], [lpth, lpph])],
+        is(map(trigsimp, mean_curvature(em, second_fundamental_form(em)))
+           = [0, 2*sin(lpth)*cos(lpph)/lpr0, 2*sin(lpth)*sin(lpph)/lpr0, 2*cos(lpth)/lpr0])))$
+check("spherical slicing: the (t, r) plane is a minimal surface",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz], [lpta, lpra, 0, 0], [lpta, lpra])],
+        every(lambda([e], is(e = 0)), mean_curvature(em, second_fundamental_form(em)))))$
 
 /* An open section: the graph xi = w/L in E^2 x CP_1 is a complete surface with the flux of CP_1.
    Its metric is e |dw|^2 with e = 1 + (1/L^2)/(1 + r^2/L^2)^2. */
