@@ -23,7 +23,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 | M9 Partonipinnat | 0/6 | #36 partoniradan metriikkaehdot |
 
-Kaikki 670 testiä menevät läpi.
+Kaikki 671 testiä menevät läpi.
 
 Vaihe X eli lehtien kokoaminen ja Einsteinin raja on työn alla ([kehityssuunnitelma](kehityssuunnitelma.md#102-vaihe-x-lehtien-kokoaminen-ja-einsteinin-raja)). Sille ei ole vielä välitavoitetta eikä issueita.
 
@@ -61,8 +61,8 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | Issue | Kysymys |
 |---|---|
 | – | Mikä on rakenteen $(t\pm\rho)$ kompleksikoordinaatti, ja mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? |
-| #35 | Tarkoittaako 4.11.2026 vaatimus, että jaon molemmat pinnat ovat minimaalipintoja, pinta-alan kriittisyyttä? Suljetun minimaalipinnan $M^4$-projektio on piste, joten pallomaisen jaon pallot eivät voi täyttää sitä. |
-| #35 | Ovatko alueet, joissa holomorfia rikkoutuu, reikiä, joiden reuna on partonipinta, ja mikä ehto $\xi$:lle niiden ulkopuolella jää? Holomorfisella $\xi$:llä Laplacen ehto tekee $\xi$:stä riippumattoman poikittaisesta koordinaatista missä tahansa konformisesti deformoidussa rakenteessa, ja navan pistevaraus on affiinin kartan tuote. |
+| #35 | Hyväksyykö Pitkänen seurauksen, että suljettu minimaalinen partonipinta on $CP_2$-tyyppinen, koska sen $M^4$-projektio on piste, ja että pallomaisen jaon pallot eivät siksi ole minimaalipintoja? |
+| #35 | Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla singulariteettialueiden ulkopuolella pinta on Kähler-tyhjiö $\xi=\xi(u)$, jolloin singulariteetit eivät näy ulos Coulombin kenttänä eivätkä vuona? |
 
 ### Markolle
 

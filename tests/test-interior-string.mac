@@ -90,6 +90,7 @@ check("Laplace condition: a pole xi = 1/w has the same positive Laplacian away f
 lpHG : H_metric()$  lpHJ : H_kahler()$
 lp_nz(v) := not every(lambda([x], is(ratsimp(x) = 0)), flatten(args(v)))$
 lp_em(z) := emb_setup(lpHG, H_X, holo_surface(lc_m4, z, 0), lc_chart)$
+lp_em2(z1, z2) := emb_setup(lpHG, H_X, holo_surface(lc_m4, z1, z2), lc_chart)$
 lpE : lp_em((uu + %i*vv)/2)$
 lpJ : induced_kahler_form(lpHJ, H_X, emb_get(lpE, 'h), lc_chart)$
 check("xi = (u + i v)/2: the transverse Kahler field vanishes and J_uv does not",
@@ -119,6 +120,9 @@ check("xi = w sqrt(1 - 1/|w|^2): the Kahler part of the field equations does not
 check("xi = sqrt(|w|^2 - 1): the same harmonic K with J = 0, but the volume part does not vanish, so the surface is not minimal",
       block([em : lp_real(sqrt(xx^2 + yy^2 - 1), 0)],
         not lp_nz(induced_kahler_form(lpHJ, H_X, emb_get(em, 'h), lc_chart)) and lp_nz(extremal_parts(em, lpHJ)[2])))$
+/* Outside the singularities the condition leaves xi = xi(u): a whole transverse plane maps to one CP_2 point */
+check("xi1 = e^(i u)/2 + u^2/3, xi2 = sin(u)/4: J = 0 and both parts vanish, so the region outside the singularities is a Kahler vacuum",
+      report_is(extremal_report(lp_em2(exp(%i*uu)/2 + uu^2/3, sin(uu)/4), lpHJ, trigsimp), true, true, true))$
 /* The 2-D Laplacian is conformally invariant: with w = phi(z) holomorphic, d_z d_zb K = |phi'|^2 d_w d_wb K,
    so a conformal deformation of the H-J structure keeps the positive Laplacian of a holomorphic xi */
 check("conformal invariance: xi = w with w = z^2 + z gives d_z d_zb K = |2 z + 1|^2/(1 + |w|^2)^2",
