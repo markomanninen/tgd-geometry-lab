@@ -260,3 +260,65 @@ check("Riccati k' = 1 - k^2 holds for geodesic spheres (coth s), equidistants (t
       every(lambda([k], is(trigsimp(diff(k, lps) - (1 - k^2)) = 0)), [cosh(lps)/sinh(lps), sinh(lps)/cosh(lps), 1]))$
 check("parallel minimal leaves: k1 = -k2 with both obeying k' = 1 - k^2 forces k^2 = 1",
       is(solve(1 - ctk^2 = -(1 - ctk^2), ctk) = [ctk = -1, ctk = 1]))$
+/* Pitkanen 5.11.2026, afternoon: a 2-D Lorentzian sheet has null coordinates without minimality.  An H-J
+   structure needs more, one pair u, v constant on the leaves with g^uu = g^vv = 0 in all of M^4.  With leaves
+   inside the hyperboloids the sheet metric is da^2 - a^2 lambda^2 ds^2, so u(a, s) exists only if lambda is
+   constant along each leaf: parallel leaves, geodesic normals, minimal (Nambu-Goto) cones. */
+/* Planes of H^3 orthogonal to a geodesic: totally geodesic leaves, sheets are cones over equidistant curves */
+check("planes orthogonal to an H^3 geodesic: g = diag(1, -a^2 cosh(d)^2, -a^2, -a^2 sinh(d)^2), so g^ss depends on the leaf point d",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz],
+                            evA*[cosh(evd)*cosh(evs), cosh(evd)*sinh(evs), sinh(evd)*cos(evf), sinh(evd)*sin(evf)],
+                            [evA, evs, evd, evf]), gi],
+        gi : map(trigsimp, invert(emb_get(em, 'g))),
+        zero_matrix_p(map(trigsimp, emb_get(em, 'g) - diag_matrix(1, -evA^2*cosh(evd)^2, -evA^2, -evA^2*sinh(evd)^2)))
+        and is(trigsimp(diff(gi[2,2], evd)) # 0)))$
+check("planes orthogonal to a geodesic: each leaf lies in the hyperplane x = t tanh(s) through the origin, so it is totally geodesic in H^3",
+      is(trigsimp(evA*cosh(evd)*sinh(evs) - tanh(evs)*evA*cosh(evd)*cosh(evs)) = 0))$
+check("planes orthogonal to a geodesic: the sheet d, phi = const, a cone over an equidistant curve, is not minimal in M^4",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz],
+                            evA*[cosh(evd0)*cosh(evs), cosh(evd0)*sinh(evs), sinh(evd0), 0], [evA, evs])],
+        not every(lambda([e], is(trigsimp(e) = 0)), mean_curvature(em, second_fundamental_form(em)))))$
+/* Parallel leaves keep their conformal class only when umbilic: the metric scales by (cosh s - k_i sinh s)^2
+   in the two principal directions, and the ratio is constant in s only for k1 = k2 */
+check("parallel leaves in H^3: the ratio (cosh s - k1 sinh s)/(cosh s - k2 sinh s) is constant in s only for k1 = k2",
+      is(factor(trigsimp(diff((cosh(evs) - evk1*sinh(evs))/(cosh(evs) - evk2*sinh(evs)), evs)))
+         = factor(trigsimp((evk2 - evk1)/(cosh(evs) - evk2*sinh(evs))^2))))$
+/* Horospheres: the leaves are a = const, t - z = a e^s.  Sheet metric da^2 - a^2 ds^2, leaf metric conformally flat */
+check("horospheres: g = diag(1, -a^2, -a^2 e^(2s), -a^2 e^(2s)), t - z = a e^s, and u = a e^(-s) = a^2/(t - z) has g^uu = 0",
+      block([X : evA*[(exp(evs) + exp(-evs) + (evx^2 + evy^2)*exp(evs))/2, evx*exp(evs), evy*exp(evs),
+                      (exp(-evs) + (evx^2 + evy^2)*exp(evs) - exp(evs))/2], em, gi, du],
+        em : emb_setup(lpM4, [tt, xx, yy, zz], X, [evA, evs, evx, evy]),
+        gi : map(ratsimp, invert(emb_get(em, 'g))),
+        du : [exp(-evs), -evA*exp(-evs), 0, 0],
+        zero_matrix_p(map(ratsimp, emb_get(em, 'g) - diag_matrix(1, -evA^2, -evA^2*exp(2*evs), -evA^2*exp(2*evs))))
+        and is(ratsimp(X[1] - X[4] - evA*exp(evs)) = 0)
+        and is(ratsimp(du . gi . du) = 0)))$
+/* Equidistant surfaces of a plane: x = a sinh(s), tau = sqrt(t^2 - y^2 - z^2) = a cosh(s), sheets are flat (tau, x) planes */
+check("equidistant surfaces: g = diag(1, -a^2, -a^2 cosh(s)^2, -a^2 cosh(s)^2 sinh(p)^2), and u = tau - x = a e^(-s) has g^uu = 0",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz],
+                            evA*[cosh(evs)*cosh(evp), sinh(evs), cosh(evs)*sinh(evp)*cos(evf), cosh(evs)*sinh(evp)*sin(evf)],
+                            [evA, evs, evp, evf]), gi, du],
+        gi : map(trigsimp, invert(emb_get(em, 'g))),
+        du : [exp(-evs), -evA*exp(-evs), 0, 0],
+        zero_matrix_p(map(trigsimp, emb_get(em, 'g) - diag_matrix(1, -evA^2, -evA^2*cosh(evs)^2, -evA^2*cosh(evs)^2*sinh(evp)^2)))
+        and is(ratsimp(du . gi . du) = 0)))$
+/* The three structures with leaves on the hyperboloids are light cones whose vertex runs along a straight line
+   through the tip of the cone: time-like (spheres), light-like (horospheres) and space-like (equidistants).
+   With mutually null gradients, every f(u, w) is harmonic exactly when box u = box w = 0. */
+hj_dot(f, g) := ratsimp(diff(f, tt)*diff(g, tt) - diff(f, xx)*diff(g, xx) - diff(f, yy)*diff(g, yy) - diff(f, zz)*diff(g, zz))$
+hj_box(f) := ratsimp(diff(f, tt, 2) - diff(f, xx, 2) - diff(f, yy, 2) - diff(f, zz, 2))$
+check("horospheres: u = t - z, v = a^2/(t - z), w = (x + i y)/(t - z) have mutually null gradients, g(du, dv) = 2, and box u = box w = 0",
+      block([u : tt - zz, v : (tt^2 - xx^2 - yy^2 - zz^2)/(tt - zz), w : (xx + %i*yy)/(tt - zz), wb : (xx - %i*yy)/(tt - zz)],
+        every(lambda([e], is(ratsimp(e) = 0)),
+              [hj_dot(u, u), hj_dot(v, v), hj_dot(u, w), hj_dot(v, w), hj_dot(w, w), hj_dot(v, wb), hj_dot(u, v) - 2,
+               hj_box(u), hj_box(w)])))$
+check("horospheres: the level set v = c is the light cone with vertex (c/2, 0, 0, c/2) on the null line t = z",
+      is(ratsimp((tt^2 - xx^2 - yy^2 - zz^2) - evc*(tt - zz) - ((tt - evc/2)^2 - xx^2 - yy^2 - (zz - evc/2)^2)) = 0))$
+assume(tt^2 - yy^2 - zz^2 > 0, tt > 0)$
+check("equidistants: u = tau - x, w = (y + i z)/(t + tau) with tau^2 = t^2 - y^2 - z^2 are mutually null, box w = 0 but box u = 2/tau",
+      block([tau : sqrt(tt^2 - yy^2 - zz^2), u, w],
+        u : tau - xx, w : (yy + %i*zz)/(tt + tau),
+        every(lambda([e], is(radcan(e) = 0)), [hj_dot(u, u), hj_dot(u, w), hj_dot(w, w), hj_box(w), hj_box(u) - 2/tau])))$
+check("equidistants: the level set u = c is the light cone with vertex (0, -c, 0, 0) on the space-like x axis",
+      is(ratsimp((tt^2 - yy^2 - zz^2) - (xx + evc)^2 - (tt^2 - (xx + evc)^2 - yy^2 - zz^2)) = 0))$
+forget(tt^2 - yy^2 - zz^2 > 0, tt > 0)$

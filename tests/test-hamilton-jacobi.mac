@@ -187,6 +187,20 @@ check("cone with velocity 1/2: the boosted line xi1 = w/sqrt(3) has a vanishing 
       hj_null(cone_K([tau0, 0, 0, tau0/2], sj_w/sqrt(3), 0)))$
 check("cone with acceleration: the Kahler part of the line does not vanish",
       not hj_null(cone_K(accel, sj_w, 0)))$
+/* A vertex on a straight line through the origin: time-like (spherical), light-like (horospheric) and
+   space-like (equidistant).  The Kahler part vanishes on the line and the conic only for the time-like line.
+   For xi1 = c w a component at a sample point is a polynomial in c with no positive root. */
+declare(hkc, real)$
+hk_posroots(E) := block([e : first(sublist(map(tgd_simp, E), lambda([q], is(q # 0)))), p],
+  p : num(factor(subst([sa = 1/3, sb = 1/5, hr = 2], e))),
+  sublist(map(rhs, realroots(p, 1/10^8)), lambda([r], is(r > 0))))$
+check("light-like vertex line: the Kahler part of the line and of the conic does not vanish",
+      not hj_null(cone_K([tau0, 0, 0, tau0], sj_w, 0)) and not hj_null(cone_K([tau0, 0, 0, tau0], sqrt(2)*sj_w, sj_w^2)))$
+check("space-like vertex line: the Kahler part of the line and of the conic does not vanish",
+      not hj_null(cone_K([0, 0, 0, tau0], sj_w, 0)) and not hj_null(cone_K([0, 0, 0, tau0], sqrt(2)*sj_w, sj_w^2)))$
+check("light-like and space-like vertex lines: xi1 = c w has a non-vanishing Kahler part for every c > 0",
+      is(hk_posroots(cone_K([tau0, 0, 0, tau0], hkc*sj_w, 0)) = [])
+      and is(hk_posroots(cone_K([0, 0, 0, tau0], hkc*sj_w, 0)) = []))$
 /* ---------- the rays of a null gradient and the cylindrical structures ---------- */
 /* k_a = d_a q gives k^b d_b k_a = d_a (k.k)/2, so a null gradient has straight rays.
    A curved null ray needs a field that is not a gradient. */

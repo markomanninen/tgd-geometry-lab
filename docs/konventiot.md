@@ -580,3 +580,69 @@ $$
 $$
 
 ja pinta $\xi^1=(z+i\phi)/2$ ei ole minimipinta. Aaltorintama on siinä sylinteri, jonka pääkaarevuudet ovat $1/\rho$ ja $0$. Pitkänen tarkoitti tätä rakennetta, joten kompleksikoordinaatin valinta jää hänen kanssaan auki. Pitkäsen mukaan H-J-rakenteesta tuskin löytyy kirjallisuutta, ja edellä mainitut leikkauksettomat kongruenssit kattavat vain tapauksen, jossa gradientit ovat keskenään valon kaltaisia.
+
+### H-J-rakenteiden luokittelu
+
+NeuroPaja luokitteli 5.11.2026 kaikki $M^4$:n H-J-rakenteet paikallisesti. H-J-rakenne tarkoittaa tässä koordinaatteja $(u,v,w,\bar w)$, joissa Minkowskin metriikka on lohkodiagonaalinen,
+
+$$
+ds^2=2A\,du\,dv-2B\,dw\,d\bar w,
+$$
+
+ja kertoimet $A$ ja $B$ saavat riippua kaikista koordinaateista. Säieradat ovat pintoja $w=$ vakio ja partonipinnat pintoja $u,v=$ vakio. Muoto on sama kuin ehdot $g^{uu}=g^{vv}=g^{ww}=0$ ja $g^{uw}=g^{u\bar w}=g^{vw}=g^{v\bar w}=0$. Kokonaan napainen pinta tarkoittaa pintaa, jonka toinen perusmuoto on joka normaalin suunnassa verrannollinen pinnan metriikkaan.
+
+Ensimmäinen tulos on, että koordinaatit ovat H-J-rakenne täsmälleen silloin, kun säieradat ja partonipinnat muodostavat kaksi toisiaan vastaan kohtisuoraa lehditystä, joiden lehdet ovat kokonaan napaisia. Lohkodiagonaalisessa metriikassa säieradan toinen perusmuoto on
+
+$$
+B^n{}_{ab}=-\tfrac12\,g^{nm}\,\partial_m g_{ab},\qquad a,b\in\{u,v\},
+$$
+
+ja koska $g_{uu}=g_{vv}=0$ identtisesti, vain komponentti $B_{uv}$ voi poiketa nollasta. Sama pätee partonipinnoille, koska $g_{ww}=0$. Kääntäen napaisuus tekee lehden metriikan konformiluokasta riippumattoman toisen lehdityksen koordinaateista, joten yhteiset valokoordinaatit ja yhteinen kompleksikoordinaatti ovat olemassa. Ehdot ovat konformi-invariantteja, joten $M^4$:n konformikuvaus vie H-J-rakenteen H-J-rakenteeksi. Testissä litteän rakenteen inversio $m\to m/m^2$ säilyttää kaikki ehdot, ja sen säieradat ja partonipinnat ovat kaarevia.
+
+Toinen tulos koskee rakenteita, joiden säieradat ovat tasoja. Silloin säieradat ovat yhden partonipinnan $\Sigma$ normaalitasoja, ja muut partonipinnat ovat $\Sigma$:n yhdensuuntaisia pintoja, jotka saadaan yhdensuuntaisilla normaalikentillä. Pinta $\Sigma$ on napainen, ja $M^4$:n avaruussuuntaiset napaiset pinnat ovat tasoja, palloja avaruussuuntaisessa 3-tasossa, avaruuksia $H^2$ aikasuuntaisessa 3-tasossa ja paraboloideja valon kaltaisessa hypertasossa. Rakenteita on siksi Poincarén muunnosta vaille neljä:
+
+| Partonipinta | Rakenne | Säieradat sisältävät suoran |
+|---|---|---|
+| taso | litteä, $u,v=t\mp z$ | suora äärettömyydessä |
+| pallo | pallomainen, $u,v=t\mp r$ | aikasuuntainen $t$-akseli |
+| paraboloidi | horosfäärirakenne, $u=t-z$, $v=a^2/(t-z)$ | valon kaltainen suora $t=z$, $x=y=0$ |
+| $H^2$ | tasoetäisyysrakenne, $u,v=\tau\mp x$, $\tau^2=t^2-y^2-z^2$ | avaruussuuntainen $x$-akseli |
+
+Kolmessa jälkimmäisessä rakenteessa ainakin toisen valokoordinaatin tasopinnat ovat valokartioita, joiden kärki kulkee taulukon suoraa pitkin. Valokartion $t^2-r^2=a^2$ sisällä näiden rakenteiden partonipinnat ovat hyperboloidien $a=$ vakio geodeettisia palloja, horosfäärejä ja tasosta vakioetäisyydellä olevia pintoja.
+
+Kolmas tulos koskee rakenteita, joiden partonipinnat ovat tasoja. Aikasuuntaiset napaiset pinnat ovat tasoja ja de Sitter -pintoja $dS_2$, joten tällaisia rakenteita on kaksi, litteä rakenne ja dS-rakenne. dS-rakenteessa
+
+$$
+m=\bigl(\rho\sinh\eta,\ \rho\cosh\eta\cos\varphi,\ \rho\cosh\eta\sin\varphi,\ z\bigr),\qquad
+ds^2=\rho^2\bigl(d\eta^2-\cosh^2\!\eta\,d\varphi^2\bigr)-d\rho^2-dz^2 .
+$$
+
+Sen säieradat $\rho,z=$ vakio ovat de Sitter -pintoja, jotka eivät ole minimaalipintoja, ja partonipinnat ovat $(\rho,z)$-puolitasoja. Kompleksikoordinaatilla $w=\rho+iz$ pätee $(\nabla w)^2=0$ mutta $\Box w=-2/\rho$, joten pinnat $\xi=f(w)$ eivät ole minimaalipintoja. Rakenne on olemassa vain alueella $x^2+y^2>t^2$.
+
+Neljäs tulos ratkaisee yleisen tapauksen. Napaiset lehdet tekevät metriikasta konformisesti muotoa
+
+$$
+dx_1^2-dx_2^2-e^{2f(x,y)}\bigl(dy_1^2+dy_2^2\bigr).
+$$
+
+Tämän metriikan Weylin tensorin komponentit, joissa on kolme $x$-indeksiä ja yksi $y$-indeksi, ovat derivaattoja $\partial_{x_a}\partial_{y_i}f/2$, esimerkiksi $C_{x_1x_2x_1y_1}=\partial_{x_2}\partial_{y_1}f/2$. Minkowskin avaruus on konformisesti litteä, joten $f=f_1(x)+f_2(y)$, ja metriikka on konformisesti kahden kaksiulotteisen metriikan tulo. Tulo on konformisesti litteä täsmälleen, kun tekijöiden kaarevuudet ovat vakioita ja vastakkaismerkkisiä. Liouvillen lauseen mukaan saman tulon kaksi toteutusta $M^4$:ssä liittyvät toisiinsa konformikuvauksella. H-J-rakenteita on siis $M^4$:n konformiryhmää vaille kolme:
+
+| Tulo | Rakenteet | Metriikka |
+|---|---|---|
+| $E^{1,1}\times E^2$ | litteä, horosfäärirakenne | $du\,dv-v^2dw\,d\bar w=v^2\bigl(du\,dv/v^2-dw\,d\bar w\bigr)$ |
+| $AdS_2\times S^2$ | pallomainen | $dt^2-dr^2-r^2d\Omega^2=r^2\bigl((dt^2-dr^2)/r^2-d\Omega^2\bigr)$ |
+| $dS_2\times H^2$ | tasoetäisyys- ja dS-rakenne | $d\tau^2-dx^2-\tau^2dH^2=\tau^2\bigl((d\tau^2-dx^2)/\tau^2-dH^2\bigr)$ |
+
+Minimaalisuus ei ole konformi-invariantti, joten saman luokan rakenteet eroavat holomorfisten pintojen suhteen. Pinnat $\xi=f(u,w)$ ovat minimaalipintoja litteässä rakenteessa ja horosfäärirakenteessa, jonka koordinaatit $u=t-z$ ja $w=(x+iy)/(t-z)$ ovat litteän rakenteen koordinaatit uudelleenparametrisoituina. Pallomaisessa rakenteessa ja tasoetäisyysrakenteessa minimaalipintoja ovat pinnat $\xi=f(w)$, koska $\Box(t-r)=2/r$ ja $\Box(\tau-x)=2/\tau$. dS-rakenteessa kumpikaan ei ole minimaalinen.
+
+Kähler-osa erottaa pallomaisen rakenteen. Kun valokartioiden kärki kulkee aikasuuntaista suoraa pitkin, kenttäyhtälöiden Kähler-osa häviää viivalla $\xi^1=w$ ja kartioleikkauksella $\xi^1=\sqrt2\,w$, $\xi^2=w^2$, ja nopeudella $1/2$ liikkuvalla kärjellä viivalla $\xi^1=w/\sqrt3$. Valon kaltaisella ja avaruussuuntaisella suoralla Kähler-osa ei häviä viivalla eikä kartioleikkauksella, eikä viivalla $\xi^1=c\,w$ millään arvolla $c>0$. Ryhmäteoreettinen selitys on NeuroPajan arvio. Aikasuuntaisen suoran rakenteen poikittainen symmetriaryhmä on $SO(3)$, joka toimii $CP_1$:n isometrioina, kun taas valon kaltaisen ja avaruussuuntaisen suoran ryhmät eivät ole kompakteja.
+
+Kausaalisessa timantissa, jonka kärjet ovat origo ja $Q=(T,0)$, partonipinta voi olla sekä alemman kärjen hyperboloidilla $t^2-r^2=a^2$ että ylemmän kärjen hyperboloidilla $(T-t)^2-r^2=b^2$ vain, jos
+
+$$
+t=\frac{T^2+a^2-b^2}{2T}
+$$
+
+on vakio. Partonipinnat ovat silloin palloja, joilla $t$ ja $r$ ovat vakioita, ja rakenne on pallomainen. Pallomainen rakenne on siis ainoa rakenne, jonka jokainen partonipinta on timantin kummankin kärjen hyperboloidilla, ja se on myös ainoa, jossa Kähler-osa häviää $w$:stä riippuvilla pinnoilla.
+
+Luokittelu on paikallinen ja koskee säännöllisiä lehdityksiä. Codex tarkisti lauseet riippumattomasti 5.11.2026, ja Weylin tensorin askel on Codexin ehdotus, jonka NeuroPaja vahvisti laskulla. Testit ovat tiedostoissa `tests/test-hj-classification.mac`, `tests/test-interior-string.mac` ja `tests/test-hamilton-jacobi.mac`.

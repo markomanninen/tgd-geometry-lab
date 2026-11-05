@@ -1,0 +1,99 @@
+/* Hamilton-Jacobi structures of M^4 as orthogonal pairs of totally umbilic foliations.
+   An H-J structure is a chart (u, v, w, wbar) with ds^2 = 2 A du dv - 2 B dw dwbar.  Since g_uu = g_vv = 0
+   and g_ww = 0 identically, the leaves w = const (strings) and u, v = const (partons) are totally umbilic.
+   With planar strings the partons are parallel surfaces of one umbilic parton: a plane, a sphere, an H^2
+   or a paraboloid in a null hyperplane.  These give the flat, spherical, equidistant and horospheric
+   structures.  With planar partons the strings are planes or de Sitter sheets.  Signature (+,-,-,-). */
+section("tgd/hj-classification: H-J structures as umbilic foliations")$
+hcM4 : diag_matrix(1, -1, -1, -1)$
+hcX : [tt, xx, yy, zz]$
+/* B^k_ab minus (1/2) g_ab g^cd B^k_cd for a 2-surface */
+hc_traceless(em) := block([B : second_fundamental_form(em), g : emb_get(em, 'g), gi : emb_get(em, 'gi), N],
+  N : length(B),
+  flatten(makelist(makelist(makelist(
+    B[k][a][b] - g[a,b]/2*sum(sum(gi[c,d]*B[k][c][d], d, 1, 2), c, 1, 2), b, 1, 2), a, 1, 2), k, 1, N)))$
+hc_zero(l) := every(lambda([e], is(trigsimp(radcan(e)) = 0)), l)$
+hc_H(em) := map(lambda([e], trigsimp(radcan(e))), mean_curvature(em, second_fundamental_form(em)))$
+hc_norm(Hv) := trigsimp(radcan(Hv[1]^2 - Hv[2]^2 - Hv[3]^2 - Hv[4]^2))$
+assume(hca > 0, hcr > 0)$
+/* ---------- the umbilic partons of the planar-string structures ---------- */
+check("sphere t = 0, r = R: umbilic parton with a space-like mean curvature",
+      block([em : emb_setup(hcM4, hcX, [0, hcr*sin(hcth)*cos(hcph), hcr*sin(hcth)*sin(hcph), hcr*cos(hcth)], [hcth, hcph]), Hv],
+        Hv : hc_H(em),
+        hc_zero(hc_traceless(em)) and is(sign(hc_norm(Hv)) = neg)))$
+check("H^2 of radius a in (t, y, z) at x = 0: umbilic parton with a time-like mean curvature",
+      block([em : emb_setup(hcM4, hcX, hca*[cosh(hcp), 0, sinh(hcp)*cos(hcf), sinh(hcp)*sin(hcf)], [hcp, hcf]), Hv],
+        Hv : hc_H(em),
+        hc_zero(hc_traceless(em)) and is(sign(hc_norm(Hv)) = pos)))$
+check("horosphere a = 1, t - z = 1: umbilic parton with a null, non-zero mean curvature",
+      block([em : emb_setup(hcM4, hcX, [(2 + hcx^2 + hcy^2)/2, hcx, hcy, (hcx^2 + hcy^2)/2], [hcx, hcy]), Hv],
+        Hv : hc_H(em),
+        hc_zero(hc_traceless(em)) and is(hc_norm(Hv) = 0) and not every(lambda([e], is(e = 0)), Hv)))$
+check("a generic parton such as a cylinder is not umbilic",
+      not hc_zero(hc_traceless(emb_setup(hcM4, hcX, [0, hcr*cos(hcph), hcr*sin(hcph), hcz], [hcph, hcz]))))$
+/* ---------- the de Sitter structure: planar partons, umbilic strings that are not minimal ---------- */
+/* X = (rho sinh eta, rho cosh eta cos phi, rho cosh eta sin phi, z): the strings rho, z = const are de Sitter
+   sheets of M^3, the partons eta, phi = const are (rho, z) half-planes */
+hcdS : [hcrho*sinh(hceta), hcrho*cosh(hceta)*cos(hcphi), hcrho*cosh(hceta)*sin(hcphi), hcz]$
+assume(hcrho > 0)$
+check("de Sitter structure: g = diag(-1, -1, rho^2, -rho^2 cosh(eta)^2) in (rho, z, eta, phi), block diagonal",
+      block([em : emb_setup(hcM4, hcX, hcdS, [hcrho, hcz, hceta, hcphi])],
+        zero_matrix_p(map(trigsimp, emb_get(em, 'g) - diag_matrix(-1, -1, hcrho^2, -hcrho^2*cosh(hceta)^2)))))$
+check("de Sitter structure: u = gd(eta) - phi with gd' = 1/cosh is null, and w = rho + i z has (grad w)^2 = 0 but box w = -2/rho",
+      block([gi : diag_matrix(-1, -1, 1/hcrho^2, -1/(hcrho^2*cosh(hceta)^2)), du, dw, sq],
+        du : [0, 0, 1/cosh(hceta), -1],
+        dw : [1, %i, 0, 0],
+        sq : hcrho^2*cosh(hceta),
+        is(trigsimp(du . gi . du) = 0) and is(ratsimp(dw . gi . dw) = 0)
+        and is(ratsimp(diff(sq*gi[1,1], hcrho)/sq + 2/hcrho) = 0)))$
+check("de Sitter structure: the string rho = 1, z = 0 is umbilic but not minimal",
+      block([em : emb_setup(hcM4, hcX, subst([hcrho = 1, hcz = 0], hcdS), [hceta, hcphi])],
+        hc_zero(hc_traceless(em)) and not every(lambda([e], is(e = 0)), hc_H(em))))$
+check("de Sitter structure: the parton eta = phi = 0 is a plane, so it is minimal",
+      every(lambda([e], is(e = 0)), hc_H(emb_setup(hcM4, hcX, subst([hceta = 0, hcphi = 0], hcdS), [hcrho, hcz]))))$
+/* ---------- conformal invariance: the inversion of the flat structure ---------- */
+hc_dot(f, g) := ratsimp(diff(f, tt)*diff(g, tt) - diff(f, xx)*diff(g, xx) - diff(f, yy)*diff(g, yy) - diff(f, zz)*diff(g, zz))$
+check("inversion m -> m/m^2 of the flat structure keeps all H-J conditions",
+      block([q : tt^2 - xx^2 - yy^2 - zz^2, u, v, w, wb],
+        u : (tt - zz)/q, v : (tt + zz)/q, w : (xx + %i*yy)/q, wb : (xx - %i*yy)/q,
+        every(lambda([e], is(ratsimp(e) = 0)),
+              [hc_dot(u, u), hc_dot(v, v), hc_dot(w, w), hc_dot(u, w), hc_dot(u, wb), hc_dot(v, w), hc_dot(v, wb)])
+        and is(ratsimp(hc_dot(u, v)) # 0) and is(ratsimp(hc_dot(w, wb)) # 0)))$
+check("inversion of the flat structure: the image of the string x = 1, y = 0 is umbilic and not a plane",
+      block([q : hct^2 - 1 - hcz^2, em],
+        em : emb_setup(hcM4, hcX, [hct/q, 1/q, 0, hcz/q], [hct, hcz]),
+        hc_zero(hc_traceless(em)) and not every(lambda([e], is(e = 0)), hc_H(em))))$
+check("inversion of the flat structure: the image of the parton t = 1, z = 0 is umbilic and not a plane",
+      block([q : 1 - hcx^2 - hcy^2, em],
+        em : emb_setup(hcM4, hcX, [1/q, hcx/q, hcy/q, 0], [hcx, hcy]),
+        hc_zero(hc_traceless(em)) and not every(lambda([e], is(e = 0)), hc_H(em))))$
+/* ---------- conformal models: products of constant curvature 2-spaces ---------- */
+/* a 2-D metric e^(2 f) du dv has curvature proportional to e^(-2 f) d_u d_v f */
+check("horospheric: du dv - v^2 dw dwbar = v^2 (du dv/v^2 - dw dwbar), and du dv/v^2 is flat",
+      is(diff(-log(hcv), hcu, 1, hcv, 1) = 0))$
+check("spherical: dt^2 - dr^2 - r^2 dOmega^2 = r^2 (AdS_2 - S^2), the 2-D part (dt^2 - dr^2)/r^2 has constant curvature",
+      block([f : -log((hcv - hcu)/2)], is(ratsimp(exp(-2*f)*diff(f, hcu, 1, hcv, 1)) = -1/4)))$
+check("equidistant: d tau^2 - dx^2 - tau^2 dH^2 = tau^2 (dS_2 - H^2), the 2-D part (d tau^2 - dx^2)/tau^2 has constant curvature",
+      block([f : -log((hcu + hcv)/2)], is(ratsimp(exp(-2*f)*diff(f, hcu, 1, hcv, 1)) = 1/4)))$
+/* Umbilic leaves make g a doubly twisted product, conformal to dx1^2 - dx2^2 - e^(2 f) (dy1^2 + dy2^2).
+   Its mixed Weyl components are d_x d_y f, so a conformally flat one has f = f1(x) + f2(y): a product of two
+   2-D metrics, conformally flat only for opposite constant curvatures.  Up to the conformal group of M^4
+   (Liouville) the H-J structures are E^{1,1} x E^2, AdS_2 x S^2 and dS_2 x H^2. */
+depends(hcf2, [hx1, hx2, hy1, hy2])$
+block([X : [hx1, hx2, hy1, hy2], g, gi, Rl, Ric, Rs, C],
+  g : diag_matrix(1, -1, -exp(2*hcf2), -exp(2*hcf2)), gi : invert(g),
+  Rl : riemann_lower(g, riemann(christoffel(g, X), X)),
+  Ric : ricci(riemann(christoffel(g, X), X)),
+  Rs : scalar_curvature(g, Ric),
+  C : lambda([a, b, c, d], ratsimp(Rl[a][b][c][d]
+        - (g[a,c]*Ric[b,d] - g[a,d]*Ric[b,c] - g[b,c]*Ric[a,d] + g[b,d]*Ric[a,c])/2
+        + Rs*(g[a,c]*g[b,d] - g[a,d]*g[b,c])/6)),
+  hcWeyl : [C(1,2,1,3) - diff(hcf2, hx2, 1, hy1, 1)/2, C(1,2,2,3) - diff(hcf2, hx1, 1, hy1, 1)/2,
+            C(1,2,1,4) - diff(hcf2, hx2, 1, hy2, 1)/2, C(1,2,2,4) - diff(hcf2, hx1, 1, hy2, 1)/2])$
+check("twisted 2+2 product: the mixed Weyl components C_1213, C_1223, C_1214, C_1224 are d_x d_y f / 2",
+      every(lambda([e], is(ratsimp(e) = 0)), hcWeyl))$
+remove(hcf2, dependency)$
+/* ---------- the causal diamond with tips 0 and (T, 0) ---------- */
+check("CD: on t^2 - r^2 = a^2 and (T - t)^2 - r^2 = b^2 the time is t = (T^2 + a^2 - b^2)/(2 T), so partons on both are spheres",
+      is(ratsimp(((hcT - tt)^2 - hcr^2) - (tt^2 - hcr^2) - (hcT^2 - 2*hcT*tt)) = 0))$
+forget(hca > 0, hcr > 0, hcrho > 0)$

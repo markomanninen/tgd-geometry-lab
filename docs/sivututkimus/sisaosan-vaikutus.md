@@ -352,6 +352,28 @@ Ehdotuksella on täsmällinen topologinen seuraus. Jos suljettu pinta koostuu ke
 
 Testit ovat tiedostossa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
 
+#### Pitkäsen vastaukset 5.11.2026 iltapäivällä
+
+Pitkänen vahvisti, että Einsteinin tensorin tyypit tarkoittavat jakoa, jossa $u$ ja $w$ ovat holomorfisia ja $v$ ja $\bar w$ niiden konjugaatteja. Hänen mukaansa Einsteinin yhtälöt eivät yleensä päde minimaalipinnoille, ja vain erikoistapauksissa, kuten vakiokaarevuusavaruudessa, $G^{w\bar w}$ on verrannollinen metriikkaan. Silloin supistus toisen perusmuodon kanssa on minimaalipinnalla nolla, koska toisen perusmuodon jälki on nolla.
+
+Säieratojen minimaalisuus oli Pitkäsen mukaan puolitietoinen oletus. Hänen mukaansa hyperkompleksinen rakenne on kaksiulotteisen pinnan sisäinen ominaisuus, joka seuraa Minkowskin signatuurista, joten säieradan ei tarvitse olla minimaalipinta, eikä ehkä partonipinnankaan. Myöhemmissä viesteissään hän kertoi, että Googlen mukaan tessellaatioihin liittyvät säieradat ovat $H^3$:n tapauksessa $M^4$:n minimaalipintoja eli Nambu–Goto-säikeitä.
+
+Jokaisella kaksiulotteisella pinnalla, jonka metriikalla on Minkowskin signatuuri, on paikallisesti valokoordinaatit, joissa pinnan metriikka on muotoa $e^f\,du\,dv$. H-J-rakenteessa $u$ ja $v$ ovat kuitenkin koko avaruusajan koordinaatteja, jotka ovat vakioita partonipinnoilla. Jokaisen säieradan omista valokoordinaateista saadaan tällaiset koordinaatit vain, jos säieradan metriikka on konformitekijää vaille sama kaikissa partonipinnan pisteissä. Kun partonipinnat ovat hyperboloideilla, säieradan metriikka on
+
+$$
+da^2-a^2\lambda^2ds^2,
+$$
+
+missä $\lambda$ on vierekkäisten partonipintojen etäisyys $H^3$:ssa jaettuna parametrin $s$ muutoksella. Yhteinen koordinaatti $u(a,s)$ on olemassa vain, jos $\lambda$ ei riipu paikasta partonipinnalla. Silloin normaalikäyrät ovat $H^3$:n geodeesejä, ja säierata on origon kautta kulkevan tason osa. Kun partonipinnat ovat hyperboloideilla, H-J-ehto tekee siis säieradoista Nambu–Goto-pintoja ilman erillistä oletusta, mikä sopii Googlen vastaukseen. Ilman hyperboloidioletusta säieradat voivat olla myös de Sitter -pintoja, jotka eivät ole minimaalipintoja. Esimerkiksi geodeesiä vastaan kohtisuorat tasot ovat kokonaan geodeettisia, mutta niiden säieradan metriikka on $da^2-a^2\cosh^2\!d\,ds^2$, joten yhteistä koordinaattia ei ole, ja säieradan keskikaarevuus on verrannollinen lukuun $\tanh d/a$.
+
+Partonipintojen ehto koskee kompleksikoordinaattia $w$. Yhdensuuntaisen pinnan metriikka säilyy konformitekijää vaille samana vain, jos pinnan pääkaarevuudet ovat yhtä suuret. Hyperboloideilla jäljelle jäävät siksi geodeettiset pallot, horosfäärit ja tasosta vakioetäisyydellä olevat pinnat. Missään näistä perheistä kaikki partonipinnat eivät ole minimaalipintoja $H^3$:ssa, joten aiempi tulos pätee ilman oletusta säieratojen minimaalisuudesta. Yleinen luokittelu on konventioiden osiossa [H-J-rakenteiden luokittelu](../konventiot.md#h-j-rakenteiden-luokittelu).
+
+Pitkänen tulkitsi Andersonin tuloksen niin, että laajenevan säikeen muoto on mielivaltainen. Andersonin tuloksessa Jordanin käyrä on $H^3$:n äärettömyyspallolla, joka Milnen kuvassa vastaa valokartion valonsäteiden suuntia, ja käyrä on minimaalikiekon reuna. Mielivaltainen muoto koskee siis partonipinnan reunaa valokartiolla.
+
+Pitkäsen mukaan $H^3$:ssa ryhmä $\Gamma$ on ääretön ja korvaa siirtojen ryhmän. Selbergin lemma koskee kuitenkin alkioiden kertalukua eikä niiden määrää, sillä myös kolmitoruksen ryhmä $\mathbb Z^3$ on ääretön. Lemma takaa äärellisen indeksin aliryhmän, jonka epätriviaalit alkiot ovat kiintopisteettömiä. Pitkänen täydensi Poincarén–Hopfin kohtaa toteamalla, että kenttään syntyy sekä nollakohtia että napojen vastineita.
+
+Testit ovat tiedostoissa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac) ja [test-hj-classification.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-hj-classification.mac).
+
 ## Tarkistus ja rajat
 
 Maxima-testit ovat tiedostoissa [test-interior-curvature.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-curvature.mac), [test-interior-energy.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-energy.mac) ja [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac). Erilliset Python-skriptit ovat kansiossa [scripts/sisaosa](https://github.com/markomanninen/tgd-geometry-lab/tree/main/scripts/sisaosa). OpenAI:n Codex tarkisti tulokset riippumattomasti kahdessa kierroksessa. Jännityksen kaava, avoin poikkileikkaus, tuotteen epävakaus, minimipintaperhe, genuksen $g$ lehti ja polynomiupotus vahvistuivat. Yleiset väitteet rajattiin tällä sivulla olevaan muotoon. Holomorfista $X^6$:ta koskevaa johtopäätöstä tarkistus ei vahvistanut, ja se on siksi kirjattu yhden esimerkin tulokseksi.

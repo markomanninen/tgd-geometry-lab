@@ -63,8 +63,8 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | Issue | Kysymys |
 |---|---|
 | – | Mikä on rakenteen $(t\pm\rho)$ kompleksikoordinaatti, ja mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? |
-| #35 | Vaaditaanko myös säiemaailmanpinnoilta minimaalisuutta? Jos vaaditaan, $H^3$:ssa ei ole jakoa, jonka partonipinnat ovat minimaalipintoja hyperboloideilla. |
-| #35 | Viittaako Einsteinin tensorin tyyppijako samaan jakoon $\{u,w\}$ ja $\{v,\bar w\}$, jota NeuroPaja käytti, kun pallomaisessa rakenteessa myös toisella perusmuodolla on $(1,1)$-komponentteja? |
+| #35 | Riittääkö, että partonipinnat ovat yhdensuuntaisten napaisten pintojen perhe ilman minimaalisuutta $H^3$:ssa, vai onko partonipinnan minimaalisuus olennainen, jolloin partonipinnat eivät voi olla hyperboloideilla? |
+| #35 | Vastaako valokartioiden kärjen suoran laji, eli aikasuuntainen, valon kaltainen tai avaruussuuntainen, jotain fysikaalista? |
 | #35 | Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla singulariteettialueiden ulkopuolella pinta on Kähler-tyhjiö $\xi=\xi(u)$, jolloin singulariteetit eivät näy ulos Coulombin kenttänä eivätkä vuona? |
 
 ### Markolle
