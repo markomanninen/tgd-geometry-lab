@@ -193,3 +193,70 @@ is_pts : [[sa=0, sb=0, hr=1, ht=1, cIs=1/2], [sa=1/3, sb=1/2, hr=2, ht=1, cIs=1]
 check("spherical, xi1 = w + c u: H^xi = 2 r rho xi_u/Phi, so a surface that depends on u is not minimal",
       every(lambda([p], is(ratsimp(subst(p, HU[5] - 2*hr*sj_rho*cIs/PhU)) = 0)), is_pts))$
 check("spherical, xi1 = w + c u: H^xi is not zero", is(subst(is_pts[1], HU[5]) # 0))$
+
+/* Pitkanen 5.11.2026: the curvature scalar fails because the Einstein tensor has (2,0) and (0,2) parts
+   when the induced metric depends on u, w and on v, wb.  Complex components use (u, v, w, wb) with w = x + i y;
+   the "holomorphic" indices are u and w, their conjugates v and wb. */
+ctK : matrix([1,0,0,0],[0,1,0,0],[0,0,1,%i],[0,0,1,-%i])$
+ctJ : matrix([1,0,0,0],[0,1,0,0],[0,0,1/2,1/2],[0,0,1/(2*%i),-1/(2*%i)])$
+ct_num(p, e) := float(rectform(ratsimp(subst(p, e))))$
+/* the (1,1) part of an upper-index tensor P^ab, back in the real chart */
+ct_part11(P) := block([Pc : ctK . P . transpose(ctK)],
+  invert(ctK) . genmatrix(lambda([a, b], if is(member(a, [1,3]) # member(b, [1,3])) then Pc[a,b] else 0), 4, 4)
+              . transpose(invert(ctK)))$
+/* Planar structure, xi = u w/3: no v dependence */
+ctEm : lp_em(uu*lc_w/3)$
+ctB : second_fundamental_form(ctEm)$
+ctG : induced_einstein(ctEm)$
+ctP : [uu=1/3, vv=2/5, xx=1/2, yy=1/7]$
+check("planar, xi = u w/3: G^ab B^k_ab = 0 identically, so the surface also solves R + volume",
+      every(lambda([e], is(ratsimp(rectform(e)) = 0)), second_form_trace(ctG, ctB)))$
+check("planar, xi = u w/3: G^vv is not zero, but every B^k with a v index vanishes because nothing depends on v",
+      is(ct_num(ctP, ctG[2,2]) # 0.0)
+      and every(lambda([k], every(lambda([b], is(ratsimp(ctB[k][2][b]) = 0)), [1,2,3,4])), makelist(k, k, 1, 8)))$
+/* Spherical structure (u, v = t -+ r, w on the sphere), xi = 2 w: the metric depends on r = (v - u)/2 */
+ctS : emb_setup(sj_H_metric(), sj_H_X, sj_lc_surface(2*sj_w, 0), sj_chart)$
+ctSB : second_fundamental_form(ctS)$
+ctSG : induced_einstein(ctS)$
+ctSP : [uu=1/3, vv=7/5, sa=1/2, sb=1/7]$
+ctSt : map(lambda([e], ct_num(ctSP, e)), second_form_trace(ctSG, ctSB))$
+ctS11 : map(lambda([e], ct_num(ctSP, e)), second_form_trace(ct_part11(ctSG), ctSB))$
+check("spherical, xi = 2 w: the surface is minimal",
+      every(lambda([e], is(ct_num(ctSP, e) = 0.0)), mean_curvature(ctS, ctSB)))$
+check("spherical, xi = 2 w: G^ab B^k_ab is not zero, so the minimal surface does not solve R + volume",
+      some(lambda([e], is(abs(e) > 0.1)), ctSt))$
+check("spherical, xi = 2 w: B_vw is not zero, a (1,1) component, and the (1,1) part of G gives exactly half of the trace",
+      is(abs(ct_num(ctSP, (transpose(ctJ) . apply(matrix, ctSB[3]) . ctJ)[2,3])) > 0.1)
+      and every(lambda([e], is(abs(e) < 1.0e-12)), ctS11 - ctSt/2))$
+
+/* Pitkanen 5.11.2026, point 1: the slicing stays inside the light cone.  Milne coordinates t = a cosh(rho),
+   r = a sinh(rho) give an expanding Robertson-Walker form with scale factor a */
+check("Milne: inside the light cone ds^2 = da^2 - a^2 (d rho^2 + sinh(rho)^2 dOmega^2)",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz],
+                            [lpa*cosh(lprho), lpa*sinh(lprho)*sin(lpth)*cos(lpph), lpa*sinh(lprho)*sin(lpth)*sin(lpph), lpa*sinh(lprho)*cos(lpth)],
+                            [lpa, lprho, lpth, lpph])],
+        zero_matrix_p(map(trigsimp, emb_get(em, 'g) - diag_matrix(1, -lpa^2, -lpa^2*sinh(lprho)^2, -lpa^2*sinh(lprho)^2*sin(lpth)^2)))))$
+/* Point 2: in a CD with tips 0 and Q = (T, 0) the slice a = const is a geodesic ball of H^3 */
+assume(ctT > 0, lpa > 0)$
+check("CD: the slice a = const meets the past cone of Q = (T, 0) where a (cosh rho + sinh rho) = T, at rho = log(T/a), and sinh(rho) = (T^2 - a^2)/(2 T a)",
+      is(ratsimp(exponentialize(lpa*cosh(log(ctT/lpa)) + lpa*sinh(log(ctT/lpa))) - ctT) = 0)
+      and is(ratsimp(exponentialize(sinh(log(ctT/lpa))) - (ctT^2 - lpa^2)/(2*ctT*lpa)) = 0))$
+/* A string world sheet orthogonal to leaves inside the hyperboloids contains the radial direction, so it is a cone
+   a Y(s) over a curve Y in H^3.  Its mean curvature is the geodesic curvature of Y divided by a. */
+check("cone over an H^3 geodesic that misses the axis, Y = cosh(s) (cosh c, sinh c, 0, 0) + sinh(s) (0, 0, 1, 0): minimal in M^4",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz], lpa*[cosh(ctc)*cosh(lps), sinh(ctc)*cosh(lps), sinh(lps), 0], [lpa, lps])],
+        every(lambda([e], is(trigsimp(e) = 0)), mean_curvature(em, second_fundamental_form(em)))))$
+check("cone over a circle rho = rho0 of H^3, not a geodesic: not minimal in M^4",
+      block([em : emb_setup(lpM4, [tt, xx, yy, zz], lpa*[cosh(lpr0), sinh(lpr0)*cos(lps), sinh(lpr0)*sin(lps), 0], [lpa, lps])],
+        not every(lambda([e], is(trigsimp(e) = 0)), mean_curvature(em, second_fundamental_form(em)))))$
+/* Parallel surfaces in H^3: along a unit normal geodesic each principal curvature obeys k' = 1 - k^2.
+   Equidistant surfaces of a totally geodesic plane: k = tanh(s) for both, mean curvature 2 tanh(s). */
+check("H^3 in Fermi coordinates ds^2 + cosh(s)^2 (dx^2 + cosh(x)^2 dy^2): the equidistant surface s = s0 has mean curvature 2 tanh(s0)",
+      block([em : emb_setup(matrix([-1,0,0],[0,-cosh(lps)^2,0],[0,0,-cosh(lps)^2*cosh(lpx)^2]), [lps, lpx, lpy],
+                            [lps0, lpx, lpy], [lpx, lpy]), Hm],
+        Hm : map(trigsimp, mean_curvature(em, second_fundamental_form(em))),
+        is(trigsimp(abs(Hm[1]) - 2*abs(sinh(lps0)/cosh(lps0))) = 0) and is(Hm[2] = 0) and is(Hm[3] = 0)))$
+check("Riccati k' = 1 - k^2 holds for geodesic spheres (coth s), equidistants (tanh s) and horospheres (1)",
+      every(lambda([k], is(trigsimp(diff(k, lps) - (1 - k^2)) = 0)), [cosh(lps)/sinh(lps), sinh(lps)/cosh(lps), 1]))$
+check("parallel minimal leaves: k1 = -k2 with both obeying k' = 1 - k^2 forces k^2 = 1",
+      is(solve(1 - ctk^2 = -(1 - ctk^2), ctk) = [ctk = -1, ctk = 1]))$

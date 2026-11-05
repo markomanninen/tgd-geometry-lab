@@ -1,6 +1,6 @@
 # Sisäosan vaikutus ja kaarevuusskalaari
 
-Tämä sivu vertaa ehdokkaita TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Sisäosan vaikutus on avoin tutkimuskohde, ja sivu kokoaa, mihin kukin vaihtoehto johtaa. Ehdokkaita on kolme. Pelkkä tilavuus on Matti Pitkäsen linjaus 1.11.2026. Kaarevuusskalaaria ja tilavuutta Pitkänen pohti 2.11.2026 kysymyksenä. Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa Laplacen yhtälön, hän ehdotti 3.11.2026. Pitkäsen mukaan 4.11.2026 kuva pysyy alkuperäisenä twistorinosto mukaan lukien, ja kaarevuusskalaari on tarpeeton. Laskut, lähteiden lukemisen ja päättelyn teki NeuroPaja 2.–4.11.2026. Tulokset koskevat mainittuja pintaluokkia, ja fysikaalisen tulkinnan tekee Pitkänen.
+Tämä sivu vertaa ehdokkaita TGD:n aika-avaruuspinnan sisäosan vaikutukseksi. Sisäosan vaikutus on avoin tutkimuskohde, ja sivu kokoaa, mihin kukin vaihtoehto johtaa. Ehdokkaita on kolme. Pelkkä tilavuus on Matti Pitkäsen linjaus 1.11.2026. Kaarevuusskalaaria ja tilavuutta Pitkänen pohti 2.11.2026 kysymyksenä. Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa Laplacen yhtälön, hän ehdotti 3.11.2026. Pitkäsen mukaan 4.11.2026 kuva pysyy alkuperäisenä twistorinosto mukaan lukien, ja kaarevuusskalaari on tarpeeton. Hän perusteli 5.11.2026, miksi kaarevuusskalaari ei tuota minimaalipintoja. Laskut, lähteiden lukemisen ja päättelyn teki NeuroPaja 2.–5.11.2026. Tulokset koskevat mainittuja pintaluokkia, ja fysikaalisen tulkinnan tekee Pitkänen.
 
 Merkinnät ovat projektin konventioiden mukaiset, ja signatuuri on $(+,-,-,-)$. Kirjain $R$ tarkoittaa pinnan kaarevuusskalaaria, ja $R_C$ on $CP_2$:n säde. Vaikutus on
 
@@ -285,6 +285,71 @@ Vaikutuksen R + tilavuus Noether-tensori, partoniradan Gibbonsin–Hawkingin–Y
 
 H-J-määritelmän ehto $g^{uu}=g^{vv}=0$ antaa viivaelementin kertoimille $B=D=0$. Tämä on sama ehto kuin Pitkäsen 4.11. mainitsema kohtisuoruusehto, jonka mukaan säiemaailmanpinnat ja partonipinnat ovat toisiaan vastaan kohtisuorassa.
 
+### Pitkäsen vastaukset 5.11.2026
+
+Pitkänen vastasi 5.11.2026 neljällä kohdalla. Ne koskevat jakoja avaruuksissa $E^3$ ja $H^3$, tekijäavaruuksia $H^3/\Gamma$, kenttäviivojen synnyttämiä pintoja ja syytä siihen, että kaarevuusskalaari ei tuota minimaalipintoja. NeuroPaja arvioi kohdat laskulla ja lähteillä, ja OpenAI:n Codex tarkisti jakoja koskevan päättelyn riippumattomasti 5.11.2026.
+
+#### Einsteinin tensorin tyyppi
+
+Pitkäsen selityksen mukaan kaarevuustensori sisältää metriikan toisia derivaattoja, ja indusoitu metriikka riippuu sekä koordinaateista $u$ ja $w$ että niiden konjugaateista $v$ ja $\bar w$. Siksi Einsteinin tensorilla on tyypin $(1,1)$ komponenttien lisäksi tyyppien $(2,0)$ ja $(0,2)$ komponentteja, eikä sen supistus toisen perusmuodon kanssa häviä. Pitkänen päättelee, että twistorinoston Kähler-vaikutus ja tilavuus on ainoa vaihtoehto, jos halutaan kosmologinen vakio ja minimaalipinnat. Viestissä 4.11.2026 hän oli arvellut, että Einsteinin tensori on tyyppiä $(1,1)$.
+
+NeuroPaja laski Einsteinin tensorin $G^{ab}$ ja supistuksen $G^{ab}B^k{}_{ab}$ kompleksikoordinaateissa $(u,v,w,\bar w)$. Tyypin $(1,1)$ komponenteissa toinen indeksi on joukosta $\{u,w\}$ ja toinen joukosta $\{v,\bar w\}$. Tulokset riippuvat H-J-rakenteesta.
+
+Litteässä rakenteessa, jossa $u=t-z$, pinnalla $\xi=uw/3$ supistus on symbolisesti nolla kaikissa kahdeksassa komponentissa, joten pinta ratkaisee myös vaikutuksen R + tilavuus. NeuroPajan laskussa myös pinnalla $\xi^1=uw/3$, $\xi^2=w^2/5+\sin(u)/7$ supistus on nolla yhdessä kokeillussa pisteessä. Pitkäsen havainto pitää silti paikkansa, sillä komponentti $G^{vv}$ ei ole nolla. Se kohtaa kuitenkin vain toisen perusmuodon komponentteja, joissa on indeksi $v$, ja ne ovat nollia, koska pinta ei riipu koordinaatista $v$. Tämä vastaa vertailutaulukon riviä, jonka mukaan litteän rakenteen holomorfiset pinnat ratkaisevat vaikutuksen R + tilavuus.
+
+Pallomaisessa rakenteessa $u$ ja $v$ ovat $t\mp r$, ja metriikan pallo-osa $r^2d\Omega^2$ riippuu säteestä $r=(v-u)/2$, siis myös koordinaatista $v$. Pinta $\xi=2w$ on tässä rakenteessa minimaalipinta, mutta supistus ei ole nolla, joten pinta ei ratkaise vaikutusta R + tilavuus. Toisella perusmuodolla on tässä tapauksessa myös tyypin $(1,1)$ komponentteja $B_{vw}$ ja $B_{u\bar w}$, Pinta ei riipu ajasta, joten $B_{tw}=B_{uw}+B_{vw}=0$, ja komponentti $B_{rw}=B_{vw}-B_{uw}$ jakautuu yhtä suuriin osiin $B_{vw}$ ja $-B_{uw}$. Siksi Einsteinin tensorin $(1,1)$-osa antaa testipisteessä tarkalleen puolet supistuksesta ja $(2,0)$- ja $(0,2)$-osat toisen puolen. Pitkäsen mekanismi, eli riippuvuus koordinaatista $v$, toteutuu siis pallomaisessa rakenteessa, mutta laskussa supistusta ei aiheuta pelkästään Einsteinin tensorin $(2,0)$- ja $(0,2)$-osa.
+
+Laskun perusteella Pitkäsen johtopäätös pätee pallomaisessa rakenteessa, jonka hän katsoo kausaalisessa timantissa olennaiseksi. Litteässä rakenteessa myös vaikutus R + tilavuus sallii holomorfiset minimaalipinnat.
+
+Pitkäsen mukaan $CP_2$:n Kähler-funktion Laplacen yhtälö yleistyy triviaalisti d'Alembertin yhtälöksi $M^4$:ssä, koska $K$ riippuu vain koordinaatista $u$. Valokartiokoordinaateissa d'Alembertin operaattori on
+
+$$
+\Box=4\,\partial_u\partial_v-4\,\partial_w\partial_{\bar w}.
+$$
+
+Ratkaisuyritteessä $\xi(u,w)$ pätee $\partial_vK=0$, joten $\Box K=-4\,\partial_w\partial_{\bar w}K$. D'Alembertin yhtälö ja poikittainen Laplacen yhtälö ovat siis sama ehto, ja ehdon jälkeen $K$ riippuu vain koordinaatista $u$.
+
+#### Jaot avaruuksissa $E^3$ ja $H^3$
+
+Pitkäsen mukaan jakoja, joissa partonipinnat ovat minimaalipintoja ja kohtisuorassa säieratoja vastaan, on vähän, jos partonipinta on avaruudessa $E^3$, mutta todella paljon, jos se on avaruudessa $H^3$. Hyperbolinen jako rajoittuu valokartion sisälle, ja Pitkäsen mukaan se on syy laajenevaan kosmologiaan, kausaaliseen timanttiin ja nollaenergiaontologiaan.
+
+Valokartion sisällä Milnen koordinaatit $t=a\cosh\rho$, $r=a\sinh\rho$ antavat testissä metriikan
+
+$$
+ds^2=da^2-a^2\bigl(d\rho^2+\sinh^2\rho\,d\Omega^2\bigr).
+$$
+
+Tämä on Robertsonin–Walkerin metriikka, jonka avaruusosa on $H^3$ ja skaalatekijä $a$. Hyperboloidit $a=$ vakio täyttävät siis valokartion sisäosan laajenevina kopioina avaruudesta $H^3$, mikä on geometrinen pohja Pitkäsen kosmologiselle tulkinnalle.
+
+Arvio riippuu siitä, vaaditaanko myös säieradoilta minimaalisuutta. Viestissä 4.11.2026 molemmat pinnat olivat minimaalipintoja, ja viestissä 5.11.2026 minimaalisuus mainitaan partonipinnoista. NeuroPajan päättely etenee neljässä vaiheessa:
+
+1. Jos jokainen partonipinta on jollakin hyperboloidilla $a=$ vakio, säiemaailmanpinnan tangenttitaso sisältää säteittäisen suunnan $\partial_a$, koska $\partial_a$ on kohtisuorassa koko hyperboloidia vastaan. Säiemaailmanpinta on silloin kartio, jonka muodostavat origon kautta kulkevat suorat käyrän $\gamma\subset H^3$ yli. Testissä kartio on $M^4$:ssä minimaalipinta, kun $\gamma$ on $H^3$:n geodeesi, joka ei kulje akselin kautta, mutta ei, kun $\gamma$ on ympyrä. Kartion keskikaarevuus on käyrän $\gamma$ geodeettinen kaarevuus jaettuna luvulla $a$.
+2. Jos säiemaailmanpinnat ovat minimaalipintoja, partonipintojen normaalikäyrät $H^3$:ssa ovat geodeesejä. Partonipinnat ovat silloin toistensa yhdensuuntaisia pintoja, eli niiden etäisyys toisistaan on vakio normaaligeodeesiä pitkin.
+3. Yhdensuuntaisilla pinnoilla avaruudessa, jonka kaarevuus on $-1$, kumpikin pääkaarevuus noudattaa normaaligeodeesiä pitkin yhtälöä $k'=1-k^2$. Testi tarkistaa yhtälön geodeettisille palloille, ekvidistanttipinnoille ja horosfääreille. Jos jokainen partonipinta on minimaalipinta, pääkaarevuudet ovat $k$ ja $-k$, ja yhtälö pakottaa arvon $k^2=1$.
+4. Pinnalla, jonka pääkaarevuudet ovat vakiot $+1$ ja $-1$, Codazzin yhtälöt tekevät sisäisestä kaarevuudesta nollan. Gaussin yhtälö antaa kuitenkin $K=-1+k_1k_2=-2$, joten tällaista pintaa ei ole.
+
+Jos siis myös säiemaailmanpinnat ovat minimaalipintoja $M^4$:ssä, $H^3$:ssa ei ole yhtään tällaista jakoa edes paikallisesti. Avaruudessa $E^3$ sama päättely, jossa säiemaailmanpinnat ovat ajan ja käyrän tuloja, antaa yhtälön $k'=-k^2$, ja ainoa jako koostuu yhdensuuntaisista tasoista ja niitä vastaan kohtisuorista suorista. Codex vahvisti molemmat johtopäätökset.
+
+Jos minimaalisuutta vaaditaan vain partonipinnoilta, Pitkäsen väitteelle on tunnettu perusta. Minimaalipintojen lehdityksen lehdet ovat stabiileja, ja täydelliset stabiilit minimaalipinnat avaruudessa $\mathbb R^3$ ovat tasoja (do Carmo–Peng 1979, Fischer-Colbrie–Schoen 1980, Pogorelov 1981). Täydellisten lehtien jako avaruudessa $E^3$ koostuu siksi yhdensuuntaisista tasoista. Avaruudessa $H^3$ jokainen äärettömyyspallon Jordanin käyrä rajaa täydellisen pinta-alaltaan minimaalisen kiekon (Anderson 1982), joten stabiileja minimaalipintoja on paljon. Codexin varauksen mukaan tämä osoittaa yksittäisten pintojen runsauden mutta ei sitä, että pinnat muodostavat jaon.
+
+#### Tekijäavaruudet ja CD:n reuna
+
+Pitkänen vahvisti, että avaruudessa $H^3$ ei ole reunattomia minimaalipintoja. Kausaalisen timantin sisällä partonipinnan reuna tulee siitä, että timantin puolikas on äärellinen. Tämä vastaa NeuroPajan 4.11.2026 esittämään kysymykseen, ja vastaus on, että partonipinnalla on reuna timantin reunalla. Testissä timantin, jonka kärjet ovat origo ja $Q=(T,0)$, viipale $a=$ vakio on $H^3$:n geodeettinen kuula, jonka säde yksikkökaarevuuden metriikassa on
+
+$$
+\rho_{\max}=\log\frac{T}{a},\qquad \sinh\rho_{\max}=\frac{T^2-a^2}{2Ta}.
+$$
+
+Kuulan reunapallo on timantin menneisyyskartiolla, joten kuulan minimaalipinnan reuna on timantin reunalla.
+
+Pitkäsen mukaan $H^3$:sta saadaan tessellaatioiden avulla ääretön määrä kompakteja tekijäavaruuksia $H^3/\Gamma$, ja aika-avaruuspinta toteuttaa jaksollisuutta vastaavat reunaehdot. Hän vertaa tätä kuution samaistamiseen kolmitorukseksi. Kompakteja hyperbolisia 3-monistoja on todella äärettömän monta. Monisto syntyy kuitenkin vain, jos ryhmä $\Gamma$ toimii ilman kiintopisteitä. Tessellaation koko symmetriaryhmä sisältää peilauksia ja kiertoja, joilla on kiintopisteitä, ja sen tekijäavaruus on orbifoldi. Kolmitoruksen vertauksessa ryhmä koostuu pelkistä siirroista. Selbergin lemman (1960) mukaan jokaisella äärellisesti generoidulla matriisiryhmällä on äärellisen indeksin aliryhmä, jossa ei ole äärellisen kertaluvun alkioita. Diskreetissä ryhmässä kiintopiste on vain äärellisen kertaluvun alkioilla, joten tällainen aliryhmä toimii $H^3$:ssa ilman kiintopisteitä, ja jokaisesta kompaktista tessellaatiosta saadaan kompakti monisto, joka koostuu äärellisen monesta solusta. Myös kolmitoruksessa on suljettuja minimaalipintoja, esimerkiksi Schwarzin P-pinta, jonka genus on 3. Suljettujen minimaalipintojen olemassaolo ei siis erota avaruuksia $E^3$ ja $H^3$, kun jaksollisuus on mukana. Ikosatetraedrinen tessellaatio kvanttibiologiassa sekä tähtien ja galaksien tessellaatiot ovat Pitkäsen fysikaalisia tulkintoja, joita NeuroPaja ei arvioinut.
+
+#### Kenttäviivojen synnyttämät pinnat
+
+Pitkäsen spekulatiivisen ehdotuksen mukaan indusoitu metriikka ja Kähler-muoto synnyttävät kompakteja pintoja multipolikenttien kenttäviivoista. Tällaiset pinnat tuottaisivat monimutkaisemman jaon, jossa on singulariteetteja ja reikiä. Reikiin voi liittyä madonreikäkontakteja pienempiin tai suurempiin aika-avaruuslehtiin. Pinnoilla on genus, ja ne voitaisiin luokitella kompleksirakenteensa avulla.
+
+Ehdotuksella on täsmällinen topologinen seuraus. Jos suljettu pinta koostuu kenttäviivoista, kenttä on pinnan tangentti, ja Poincarén–Hopfin lauseen mukaan tangenttikentän nollakohtien indeksien summa on pinnan Eulerin karakteristika $2-2g$. Kenttä, jolla ei ole nollakohtia, synnyttää siksi vain toruksia. Pallo ja genuksen $g\ge2$ pinnat vaativat kentän nollakohtia tai singulariteetteja, joiden indeksien summa on $2-2g$, mikä sopii Pitkäsen arvioon, että singulariteetteja syntyy. Esimerkiksi dipolin kenttäviivat $r=L\sin^2\theta$ muodostavat pyörähdyspinnan, joka kulkee dipolin kautta. Genuksen $g$ pinnan kompleksirakenteiden avaruuden kompleksinen dimensio on $3g-3$, kun $g\ge2$, toruksella 1 ja pallolla 0. Ehdotusta ei laskettu tämän pidemmälle.
+
 Testit ovat tiedostossa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
 
 ## Tarkistus ja rajat
@@ -299,4 +364,5 @@ Auki ovat nämä kohdat:
 - Holomorfisen $X^6$:n yleinen tapaus.
 - Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla kaikki Kähler-kenttä on alueissa, joissa holomorfia rikkoutuu, ja että niiden ulkopuolella pinta on Kähler-tyhjiö.
 - Miten säiemaailmanpintojen ja partonipintojen kohtisuoruusehto toteutetaan.
-- Ovatko CD:n kompaktit partonipinnat minimaalipintoja äärellisen tilavuuden hyperbolisessa avaruudessa $H^3/\Gamma$, vai onko niillä reuna CD:n reunalla.
+- Vaaditaanko myös säiemaailmanpinnoilta minimaalisuutta. Jos vaaditaan, $H^3$:ssa ei ole jakoa, jonka partonipinnat ovat minimaalipintoja hyperboloideilla.
+- Viittaako Pitkäsen tyyppijako Einsteinin tensorille samaan jakoon $\{u,w\}$ ja $\{v,\bar w\}$, jota NeuroPajan lasku käyttää, kun pallomaisessa rakenteessa myös toisella perusmuodolla on $(1,1)$-komponentteja.

@@ -23,7 +23,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 | M9 Partonipinnat | 0/6 | #36 partoniradan metriikkaehdot |
 
-Kaikki 673 testiä menevät läpi.
+Kaikki 685 testiä menevät läpi.
 
 Vaihe X eli lehtien kokoaminen ja Einsteinin raja on työn alla ([kehityssuunnitelma](kehityssuunnitelma.md#102-vaihe-x-lehtien-kokoaminen-ja-einsteinin-raja)). Sille ei ole vielä välitavoitetta eikä issueita.
 
@@ -56,13 +56,15 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #35 | Pitkänen pohti 2.11.2026 sisäosaan myös kaarevuusskalaaria ja tilavuutta. Hänen mukaansa 3.11.2026 pelkkä tilavuus on elegantein, ja kaarevuusskalaarista voidaan joutua luopumaan, jos minimipinnoista pidetään kiinni. | 🟡 [vertailu](sivututkimus/sisaosan-vaikutus.md) laskettu |
 | #35 | Pitkänen ehdotti 3.11.2026 Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa poikittaisen Laplacen yhtälön. NeuroPajan laskussa ehto sallii holomorfisilla pinnoilla vain riippumattomuuden koordinaatista $w$. Pitkäsen mukaan 4.11.2026 singulariteetit ovat ajatuksen ydin, riippuvuus on vain koordinaatista $u$, ja kosminen säie on rajatapaus. | 🟡 [vertailussa](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaus-4112026), ei-holomorfinen monopoli laskettu |
 | #35 | Pitkänen vastasi 4.11.2026 aiempiin viiteen kysymykseen. Vuoputki on kaksilehtinen ja sen poikkileikkaus suljettu, $G$ selittyy Planckin vakioiden hierarkialla, Kähler-muoto on magneettinen ja poikittainen kaikkialla paitsi singulariteeteissa, ja kerroin $1/16\pi G$ tulee kaarevuusskalaarista, josta hän on valmis luopumaan. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaukset-aiempiin-kysymyksiin-4112026) |
+| #35 | Pitkänen vastasi 5.11.2026. CD:n partonipinnan reuna on timantin reunalla, tekijäavaruudet $H^3/\Gamma$ liittyvät tessellaatioihin, ja kaarevuusskalaari kaatuu Einsteinin tensorin $(2,0)$- ja $(0,2)$-osiin. NeuroPajan laskussa litteän rakenteen pinnat $\xi(u,w)$ ratkaisevat myös vaikutuksen R + tilavuus, ja pallomaisessa rakenteessa myös $(1,1)$-osa antaa puolet supistuksesta. Jos säiemaailmanpinnatkin ovat minimaalipintoja, $H^3$:ssa ei ole jakoa. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaukset-5112026) |
 
 ### Avoinna – kysytään Matilta
 
 | Issue | Kysymys |
 |---|---|
 | – | Mikä on rakenteen $(t\pm\rho)$ kompleksikoordinaatti, ja mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? |
-| #35 | Pitkäsen mukaan 4.11.2026 partonipinnat ovat minimaalipintoja kolmiulotteisessa avaruudessa, $M^4$:ssä ei-kompakteja $E^3$:ssa ja CD:ssä mahdollisesti kompakteja $H^3$:ssa. Ovatko kompaktit partonipinnat minimaalipintoja äärellisen tilavuuden avaruudessa $H^3/\Gamma$, koska yksinkertaisesti yhtenäisessä $H^3$:ssa suljettuja minimaalipintoja ei ole? |
+| #35 | Vaaditaanko myös säiemaailmanpinnoilta minimaalisuutta? Jos vaaditaan, $H^3$:ssa ei ole jakoa, jonka partonipinnat ovat minimaalipintoja hyperboloideilla. |
+| #35 | Viittaako Einsteinin tensorin tyyppijako samaan jakoon $\{u,w\}$ ja $\{v,\bar w\}$, jota NeuroPaja käytti, kun pallomaisessa rakenteessa myös toisella perusmuodolla on $(1,1)$-komponentteja? |
 | #35 | Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla singulariteettialueiden ulkopuolella pinta on Kähler-tyhjiö $\xi=\xi(u)$, jolloin singulariteetit eivät näy ulos Coulombin kenttänä eivätkä vuona? |
 
 ### Markolle
