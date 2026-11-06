@@ -53,6 +53,7 @@ check("de Sitter structure: the parton eta = phi = 0 is a plane, so it is minima
       every(lambda([e], is(e = 0)), hc_H(emb_setup(hcM4, hcX, subst([hceta = 0, hcphi = 0], hcdS), [hcrho, hcz]))))$
 /* ---------- conformal invariance: the inversion of the flat structure ---------- */
 hc_dot(f, g) := ratsimp(diff(f, tt)*diff(g, tt) - diff(f, xx)*diff(g, xx) - diff(f, yy)*diff(g, yy) - diff(f, zz)*diff(g, zz))$
+hc_box(f) := ratsimp(diff(f, tt, 2) - diff(f, xx, 2) - diff(f, yy, 2) - diff(f, zz, 2))$
 check("inversion m -> m/m^2 of the flat structure keeps all H-J conditions",
       block([q : tt^2 - xx^2 - yy^2 - zz^2, u, v, w, wb],
         u : (tt - zz)/q, v : (tt + zz)/q, w : (xx + %i*yy)/q, wb : (xx - %i*yy)/q,
@@ -96,4 +97,44 @@ remove(hcf2, dependency)$
 /* ---------- the causal diamond with tips 0 and (T, 0) ---------- */
 check("CD: on t^2 - r^2 = a^2 and (T - t)^2 - r^2 = b^2 the time is t = (T^2 + a^2 - b^2)/(2 T), so partons on both are spheres",
       is(ratsimp(((hcT - tt)^2 - hcr^2) - (tt^2 - hcr^2) - (hcT^2 - 2*hcT*tt)) = 0))$
+/* ---------- which light coordinate a holomorphic surface may depend on (Pitkanen 5.11.2026 evening) ---------- */
+/* With mutually null gradients box F(q, w) = F_q box q + F_w box w.  Spherical: box(t -+ r) = +-2/r, so neither
+   u nor v keeps F minimal.  Horospheric: u = t - z gives null hyperplanes with box u = 0, while the level sets of
+   v = a^2/(t - z) are light cones with vertices on the null line t = z and box v = 4/(t - z). */
+check("spherical: box(t - r) = 2/r and box(t + r) = -2/r, so only F(w) is minimal",
+      block([r : sqrt(xx^2 + yy^2 + zz^2)],
+        is(radcan(hc_box(tt - r) - 2/r) = 0) and is(radcan(hc_box(tt + r) + 2/r) = 0)))$
+check("horospheric: box u = 0 but box v = 4/(t - z), and v w is not harmonic while u w is",
+      block([u : tt - zz, v : (tt^2 - xx^2 - yy^2 - zz^2)/(tt - zz), w : (xx + %i*yy)/(tt - zz)],
+        is(ratsimp(hc_box(u)) = 0) and is(ratsimp(hc_box(v) - 4/(tt - zz)) = 0)
+        and is(ratsimp(hc_box(u*w)) = 0) and is(ratsimp(hc_box(v*w)) # 0)))$
+check("spherical in Milne coordinates: the null curves da = +- a d rho give a e^(-+rho) = t -+ r",
+      is(trigsimp(exponentialize(hca*cosh(hcrho) - hca*sinh(hcrho) - hca*exp(-hcrho))) = 0)
+      and is(trigsimp(exponentialize(hca*cosh(hcrho) + hca*sinh(hcrho) - hca*exp(hcrho))) = 0))$
+/* ---------- minimality in M^4 of partons on light cones and hyperboloids (Pitkanen 6.11.2026) ---------- */
+/* Every leaf of an H-J structure is totally umbilic, B^n_ab = lambda_n g_ab, so a minimal leaf has B = 0 and is a
+   plane.  A surface on the hyperboloid a = const has H(M^4) = H(H^3) + (2/a) N, since H^3 is umbilic in M^4. */
+hc_dot4(p, q) := p[1]*q[1] - p[2]*q[2] - p[3]*q[3] - p[4]*q[4]$
+assume(hct0 > hcr)$
+block([em, Hv, a0, rh, N, nu, l, n],
+  em : emb_setup(hcM4, hcX, [hct0, hcr*sin(hcth)*cos(hcph), hcr*sin(hcth)*sin(hcph), hcr*cos(hcth)], [hcth, hcph]),
+  Hv : hc_H(em),
+  a0 : sqrt(hct0^2 - hcr^2),
+  rh : [sin(hcth)*cos(hcph), sin(hcth)*sin(hcph), cos(hcth)],
+  N : append([hct0], hcr*rh)/a0, nu : append([hcr], hct0*rh)/a0,
+  l : append([1], rh), n : append([1], -rh),
+  hcSph : map(lambda([e], trigsimp(radcan(e))),
+              [hc_dot4(Hv, Hv) + 4/hcr^2, hc_dot4(Hv, l) + 2/hcr, hc_dot4(Hv, n) - 2/hcr,
+               hc_dot4(Hv, N) + 2/a0, hc_dot4(Hv, nu) + 2*(hct0/hcr)/a0]))$
+check("round sphere t = t0, r = r0: H.H = -4/r0^2 and the null components are -+2/r0, so no light cone through it makes it minimal",
+      every(lambda([e], is(e = 0)), rest(hcSph, -2)))$
+check("round sphere on t^2 - r^2 = a^2: H.N = -2/a and H.nu = -2 coth(rho)/a with coth(rho) = t0/r0, both diverge as a -> 0",
+      every(lambda([e], is(e = 0)), rest(hcSph, 3)))$
+check("totally geodesic H^2 of H^3(a): H = -(2/a) N, so a surface that is minimal in H^3 has mean curvature 2/a in M^4",
+      block([X : hca*[cosh(hcp), 0, sinh(hcp)*cos(hcf), sinh(hcp)*sin(hcf)], Hv],
+        Hv : hc_H(emb_setup(hcM4, hcX, X, [hcp, hcf])),
+        every(lambda([e], is(trigsimp(e) = 0)), Hv + 2*X/hca^2)))$
+check("spherical: box((t - r)^2) = 4 (t - r)/r, so a function of u alone is not harmonic there",
+      block([r : sqrt(xx^2 + yy^2 + zz^2)], is(radcan(hc_box((tt - r)^2) - 4*(tt - r)/r) = 0)))$
+forget(hct0 > hcr)$
 forget(hca > 0, hcr > 0, hcrho > 0)$

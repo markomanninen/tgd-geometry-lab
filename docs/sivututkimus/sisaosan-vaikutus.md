@@ -374,6 +374,64 @@ Pitkäsen mukaan $H^3$:ssa ryhmä $\Gamma$ on ääretön ja korvaa siirtojen ryh
 
 Testit ovat tiedostoissa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac) ja [test-hj-classification.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-hj-classification.mac).
 
+#### Pitkäsen kysymykset 5.11.2026 illalla
+
+Pitkänen kysyi, onko NeuroPaja vai Googlen Gemini väärässä, kun Gemini sanoo integroituvan 2+2-jaon olevan olemassa. Tulokset ovat sopusoinnussa keskenään. Integroituvia jakoja on, ja mahdotonta on vain se, että säieradat ovat Nambu–Goto-pintoja ja partonipinnat samalla minimaalipintoja hyperboloideilla $H^3$. Pallojaossa säieradat ovat Nambu–Goto-pintoja mutta pallot eivät ole minimaalipintoja. Kun partonipinnat ovat geodeesiä vastaan kohtisuoria tasoja, ne ovat minimaalipintoja $H^3$:ssa, mutta säieradat eivät ole Nambu–Goto-pintoja.
+
+Pitkänen arveli myös, että integroituvuus rikkoutuu koordinaatille $v$, koska sisäänpäin kulkevat valonsäteet suppenevat timantin kärkiä yhdistävälle aikajanalle, ja että tämä olisi syy siihen, että vain $u$-riippuvuus on mahdollinen. Milnen koordinaateissa $t=a\cosh\rho$, $r=a\sinh\rho$ valon kaltaiset käyrät antavat
+
+$$
+a\,e^{-\rho}=t-r,\qquad a\,e^{\rho}=t+r,
+$$
+
+joten molemmat koordinaatit integroituvat koko alueessa $r>0$. Pallomainen rakenne on singulaarinen aikajanalla $r=0$, jossa partonipallot kutistuvat pisteiksi. Kyse on koordinaatiston rajasta eikä integroituvuuden rikkoutumisesta. Pelkkä $u$-riippuvuus säilyttää minimaalisuuden horosfäärirakenteessa, jossa $\Box u=0$ ja $\Box v=4/(t-z)$, mutta ei pallomaisessa rakenteessa, jossa $\Box(t\mp r)=\pm2/r$.
+
+#### Valokartion reunan viipalointi ja minimaalisuus $M^4$:ssä
+
+Pitkäsen mukaan 6.11.2026 minimaalisuus ei ole välttämätöntä, ja H-J-rakenteeseen riittävät integroituva jako, kompleksinen ja hyperkompleksinen rakenne sekä kohtisuoruus. NeuroPajan luokittelun mukaan tarvitaan lisäksi, että lehdet ovat kokonaan napaisia, sillä muuten yhden partonipinnan kompleksikoordinaatti ei jatku naapuripinnan koordinaatiksi.
+
+Pitkänen kysyi, ovatko sekä säieradat että partonipinnat minimaalipintoja, kun valokartio viipaloidaan siirtämällä sen reunaa aikajanaa pitkin. Viipalointi on pallomainen rakenne. Säieradat ovat $(t,r)$-puolitasoja, mutta pallo $t=t_0$, $r=r_0$ ei ole minimaalipinta. Sen keskikaarevuusvektorin $H$ pituus on $2/r_0$, ja valon kaltaisissa normaalisuunnissa $l=\partial_t+\partial_r$ ja $n=\partial_t-\partial_r$ sen komponentit ovat
+
+$$
+H\cdot l=-\frac{2}{r_0},\qquad H\cdot n=\frac{2}{r_0}.
+$$
+
+Suunta $l$ on valokartion generaattori, ja pistetulo $H\cdot l$ on kartion laajeneminen eli pallon alan suhteellinen kasvunopeus $2/r$ generaattoria pitkin. Kartion indusoitu metriikka $-r^2d\Omega^2$ on degeneroitunut, joten minimaalisuus ratkeaa pallon toisesta perusmuodosta $M^4$:ssä, ja sen laajenemisosa ei ole nolla. Kun $r_0$ pidetään kiinteänä ja $t_0=\sqrt{r_0^2+a^2}$, pallo on hyperboloidilla $t^2-r^2=a^2$, ja keskikaarevuus jakautuu hyperboloidin aikasuuntaisen yksikkönormaalin $N$ suuntaiseen osaan ja $H^3$:n sisäiseen osaan,
+
+$$
+H\cdot N=-\frac{2}{a},\qquad H\cdot\nu=-\frac{2\coth\rho}{a},\qquad \coth\rho=\frac{t_0}{r_0},
+$$
+
+missä $\nu$ on pallon yksikkönormaali $H^3$:ssa. Rajalla $a\to0$ pallo lähestyy valokartion palloa, ja kumpikin osa kasvaa rajatta, mutta $H\cdot H=-4/r_0^2$ pysyy samana.
+
+Yleinen tulos seuraa napaisuudesta. Kokonaan napaisella pinnalla $B^n{}_{ab}=\lambda_n g_{ab}$, joten minimaalisuus antaa $\lambda_n=0$, ja pinta on taso. Jos H-J-rakenteen kaikki säieradat ja partonipinnat ovat $M^4$:n minimaalipintoja, ne ovat siis tasoja. Partonipinnan $P$ läpi kulkevat säieradat ovat silloin saman tason yhdensuuntaisia siirtoja, ja muut partonipinnat ovat $P$:n yhdensuuntaisia siirtoja. Rakenne on paikallisesti litteä tulo $M^2\times E^2$. Muissa rakenteissa vain toinen perhe voi koostua minimaalipinnoista.
+
+Hyperboloidilla oleva pinta ei ole koskaan $M^4$:n minimaalipinta. Hyperboloidin toinen perusmuoto on sen metriikka jaettuna $a$:lla, joten
+
+$$
+H_{M^4}=H_{H^3}+\frac{2}{a}\,N .
+$$
+
+Esimerkiksi $H^3$:n geodeettisella tasolla $H_{H^3}=0$, mutta $M^4$:ssä keskikaarevuusvektorin pituus on $2/a$. Sama koskee Jordanin käyrän rajaamia minimaalikiekkoja, jotka eivät myöskään ole napaisia.
+
+Pitkäsen mukaan suunnistusongelma poistuu, jos Jordanin käyrän rajaama alue on pallonpuoliskolla. Lasku tukee tätä. Tasossa $(t,z)$ koordinaatti $u=t-r$ on puolitasolla $z>0$ sama kuin $t-z$ ja puolitasolla $z<0$ sama kuin $t+z$, joten koko taso ei ole yksi säierata, jolla $u$ ja $v$ olisivat sileitä valokoordinaatteja. Kun aikajana poistetaan ja $w$ rajataan pallonpuoliskolle, mikään säierata ei jatku aikajanan yli. Aikajana ei kuitenkaan erota $u$:ta $v$:stä, sillä $U$-käyrät lähtevät siitä ja $V$-käyrät päättyvät siihen. Timantissa, jonka kärjet ovat $t=0$ ja $t=t_1$, peilaus $t\to t_1-t$ vie koordinaatin $u$ koordinaatiksi $t_1-v$. Pallomainen rakenne on siksi geometrisesti symmetrinen $u$:n ja $v$:n vaihdossa. Peilaus vaihtaa kuitenkin myös timantin tulevan ja menneen reunan, joten avoin kysymys on, tuleeko $u$-$v$-epäsymmetria nollaenergiaontologiasta.
+
+Pitkänen kysyi myös ryhmän $\Gamma$ äärellisestä aliryhmästä ja Platonin kappaleista. Oletetaan, että $\Gamma$ toimii vapaasti ja diskreetisti niin, että $H^3/\Gamma$ on hyperbolinen monisto. Cartanin kiintopistelauseen mukaan $H^3$:n isometrioiden äärellinen ryhmä kiinnittää aina pisteen, joten $\Gamma$:ssa ei ole epätriviaaleja äärellisiä aliryhmiä. Platonin kappaleiden kiertoryhmät ovat tessellaation koko symmetriaryhmän $G$ solujen keskipisteiden stabilisaattoreita, ja äärellinen ryhmä $G/\Gamma$ toimii $H^3/\Gamma$:n isometrioina, kun $\Gamma$ on $G$:n torsioton normaali aliryhmä. Monitahokkaan tahot ovat $H^3$:n geodeettisten tasojen paloja ja siten minimaalipintoja $H^3$:ssa. Saman H-J-rakenteen partonipinnat ovat jokaisessa $H^3$:ssa yhdensuuntaisia pintoja, joten yhden solun tahot eivät voi kaikki olla saman rakenteen partonipintoja.
+
+#### Artikkeliluonnos 6.11.2026
+
+Pitkänen lähetti 6.11.2026 artikkeliluonnoksen *Problems with Holography = Holomorphy Principle* ja pyysi tarkistamaan sen kaavat. NeuroPaja lähetti tarkistuksen hänelle. Tarkistuksessa syntyi kolme laskua, jotka täydentävät edellä olevaa säiejännityksen käsittelyä.
+
+Arvolla $\Lambda=1/r^2+k/L_p^2$ pallon, jonka säde on $r$, jännitys on
+
+$$
+T=\frac{\Lambda\,4\pi r^2-4\pi}{8\pi G}=\frac{k\,r^2}{2G\,L_p^2}.
+$$
+
+Tuotteella $M^1\times X^2\times S^1$, jossa $S^1$:n pituus on $L$, energia on $(\Lambda S-2\pi\chi)L/(8\pi G)$, joten se on positiivinen täsmälleen, kun $S>2\pi\chi/\Lambda$. Pallon topologialla raja on $S>4\pi/\Lambda$. Sijoitus $G_0=x^2G$, $\hbar_0=\hbar/x^2$ säilyttää tulon $\hbar G$ ja siten Planckin pituuden, kun taas sijoitus $G_0=R^2/\hbar$ arvolla $R=x\,l_P$ tekee Planckin pituudesta luvun $R$.
+
+Testit ovat tiedostoissa [test-hj-classification.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-hj-classification.mac) ja [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
+
 ## Tarkistus ja rajat
 
 Maxima-testit ovat tiedostoissa [test-interior-curvature.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-curvature.mac), [test-interior-energy.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-energy.mac) ja [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac). Erilliset Python-skriptit ovat kansiossa [scripts/sisaosa](https://github.com/markomanninen/tgd-geometry-lab/tree/main/scripts/sisaosa). OpenAI:n Codex tarkisti tulokset riippumattomasti kahdessa kierroksessa. Jännityksen kaava, avoin poikkileikkaus, tuotteen epävakaus, minimipintaperhe, genuksen $g$ lehti ja polynomiupotus vahvistuivat. Yleiset väitteet rajattiin tällä sivulla olevaan muotoon. Holomorfista $X^6$:ta koskevaa johtopäätöstä tarkistus ei vahvistanut, ja se on siksi kirjattu yhden esimerkin tulokseksi.
@@ -385,6 +443,6 @@ Auki ovat nämä kohdat:
 - Reunatermin johto yleisille upotuksille.
 - Holomorfisen $X^6$:n yleinen tapaus.
 - Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla kaikki Kähler-kenttä on alueissa, joissa holomorfia rikkoutuu, ja että niiden ulkopuolella pinta on Kähler-tyhjiö.
-- Miten säiemaailmanpintojen ja partonipintojen kohtisuoruusehto toteutetaan.
-- Vaaditaanko myös säiemaailmanpinnoilta minimaalisuutta. Jos vaaditaan, $H^3$:ssa ei ole jakoa, jonka partonipinnat ovat minimaalipintoja hyperboloideilla.
-- Viittaako Pitkäsen tyyppijako Einsteinin tensorille samaan jakoon $\{u,w\}$ ja $\{v,\bar w\}$, jota NeuroPajan lasku käyttää, kun pallomaisessa rakenteessa myös toisella perusmuodolla on $(1,1)$-komponentteja.
+- Mistä $u$:n ja $v$:n epäsymmetria tulee pallomaisessa rakenteessa, joka on kausaalisessa timantissa symmetrinen niiden vaihdossa.
+
+Pitkäsen vastaukset 5.11.2026 ja 6.11.2026 ratkaisivat kolme aiemmin tällä listalla ollutta kohtaa. Kohtisuoruusehto toteutuu H-J-rakenteessa, jonka lehdet ovat kokonaan napaisia. Säieradoilta ei vaadita minimaalisuutta. Einsteinin tensorin tyyppijako on sama $\{u,w\}$ ja $\{v,\bar w\}$, jota NeuroPajan lasku käyttää.

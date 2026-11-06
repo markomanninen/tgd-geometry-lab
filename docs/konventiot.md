@@ -579,7 +579,7 @@ $$
 (\nabla w)^2=\frac{1-\rho^2}{\rho^2},
 $$
 
-ja pinta $\xi^1=(z+i\phi)/2$ ei ole minimipinta. Aaltorintama on siinä sylinteri, jonka pääkaarevuudet ovat $1/\rho$ ja $0$. Pitkänen tarkoitti tätä rakennetta, joten kompleksikoordinaatin valinta jää hänen kanssaan auki. Pitkäsen mukaan H-J-rakenteesta tuskin löytyy kirjallisuutta, ja edellä mainitut leikkauksettomat kongruenssit kattavat vain tapauksen, jossa gradientit ovat keskenään valon kaltaisia.
+ja pinta $\xi^1=(z+i\phi)/2$ ei ole minimipinta. Aaltorintama on siinä sylinteri, jonka pääkaarevuudet ovat $1/\rho$ ja $0$. Pitkänen tarkoitti tätä rakennetta. Myöhempi [luokittelu](#h-j-rakenteiden-luokittelu) ratkaisee kysymyksen. Kun $u=t-\rho$ ja $v=t+\rho$, partonipinnat ovat pintoja $t,\rho=$ vakio eli sylintereitä, joiden pääkaarevuudet $1/\rho$ ja $0$ eroavat, joten ne eivät ole napaisia. Rakenteelle ei siis ole mitään kompleksikoordinaattia $w$, jolla H-J-ehdot toteutuvat. Pitkäsen mukaan H-J-rakenteesta tuskin löytyy kirjallisuutta, ja edellä mainitut leikkauksettomat kongruenssit kattavat vain tapauksen, jossa gradientit ovat keskenään valon kaltaisia.
 
 ### H-J-rakenteiden luokittelu
 
@@ -634,6 +634,14 @@ Tämän metriikan Weylin tensorin komponentit, joissa on kolme $x$-indeksiä ja 
 | $dS_2\times H^2$ | tasoetäisyys- ja dS-rakenne | $d\tau^2-dx^2-\tau^2dH^2=\tau^2\bigl((d\tau^2-dx^2)/\tau^2-dH^2\bigr)$ |
 
 Minimaalisuus ei ole konformi-invariantti, joten saman luokan rakenteet eroavat holomorfisten pintojen suhteen. Pinnat $\xi=f(u,w)$ ovat minimaalipintoja litteässä rakenteessa ja horosfäärirakenteessa, jonka koordinaatit $u=t-z$ ja $w=(x+iy)/(t-z)$ ovat litteän rakenteen koordinaatit uudelleenparametrisoituina. Pallomaisessa rakenteessa ja tasoetäisyysrakenteessa minimaalipintoja ovat pinnat $\xi=f(w)$, koska $\Box(t-r)=2/r$ ja $\Box(\tau-x)=2/\tau$. dS-rakenteessa kumpikaan ei ole minimaalinen.
+
+Myös lehtien omasta minimaalisuudesta saadaan yleinen tulos. Kokonaan napaisella lehdellä $B^n{}_{ab}=\lambda_n g_{ab}$, joten minimaalisuus antaa $\lambda_n=0$, ja lehti on taso. Rakenne, jonka kaikki säieradat ja partonipinnat ovat $M^4$:n minimaalipintoja, on siksi paikallisesti litteä tulo $M^2\times E^2$. Hyperboloidilla $a=$ vakio oleva partonipinta ei ole koskaan $M^4$:n minimaalipinta, sillä hyperboloidin toinen perusmuoto on sen metriikka jaettuna $a$:lla, ja
+
+$$
+H_{M^4}=H_{H^3}+\frac{2}{a}\,N,
+$$
+
+missä $N$ on hyperboloidin aikasuuntainen yksikkönormaali. Pallomaisen rakenteen pallo $t=t_0$, $r=r_0$ ei ole minimaalinen, vaikka sitä tarkasteltaisiin valokartion osana, sillä sen keskikaarevuusvektorin pituus on $2/r_0$ ja sen pistetulo kartion generaattorin kanssa on kartion laajeneminen $2/r_0$.
 
 Kähler-osa erottaa pallomaisen rakenteen. Kun valokartioiden kärki kulkee aikasuuntaista suoraa pitkin, kenttäyhtälöiden Kähler-osa häviää viivalla $\xi^1=w$ ja kartioleikkauksella $\xi^1=\sqrt2\,w$, $\xi^2=w^2$, ja nopeudella $1/2$ liikkuvalla kärjellä viivalla $\xi^1=w/\sqrt3$. Valon kaltaisella ja avaruussuuntaisella suoralla Kähler-osa ei häviä viivalla eikä kartioleikkauksella, eikä viivalla $\xi^1=c\,w$ millään arvolla $c>0$. Ryhmäteoreettinen selitys on NeuroPajan arvio. Aikasuuntaisen suoran rakenteen poikittainen symmetriaryhmä on $SO(3)$, joka toimii $CP_1$:n isometrioina, kun taas valon kaltaisen ja avaruussuuntaisen suoran ryhmät eivät ole kompakteja.
 

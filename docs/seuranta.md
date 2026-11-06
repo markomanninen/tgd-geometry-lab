@@ -9,7 +9,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | Testiajot | <https://github.com/markomanninen/tgd-geometry-lab/actions> |
 | Julkinen sivusto | <https://markomanninen.github.io/tgd-geometry-lab/> |
 
-## Tila 1.11.2026
+## Tila 6.11.2026
 
 | Välitavoite | Valmiina | Seuraavaksi |
 |---|---|---|
@@ -23,11 +23,11 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 | M9 Partonipinnat | 0/6 | #36 partoniradan metriikkaehdot |
 
-Kaikki 685 testiä menevät läpi.
+Kaikki 724 testiä menevät läpi.
 
 Vaihe X eli lehtien kokoaminen ja Einsteinin raja on työn alla ([kehityssuunnitelma](kehityssuunnitelma.md#102-vaihe-x-lehtien-kokoaminen-ja-einsteinin-raja)). Sille ei ole vielä välitavoitetta eikä issueita.
 
-Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Seuraavat kysymykset ovat valmiina, ja niitä ei ole vielä lähetetty.
+Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Keskustelu jatkui issuessa #35 6.11.2026 asti, ja vielä avoimet kysymykset ovat alla.
 
 ## Päätöspisteet (tunniste `päätös`)
 
@@ -57,13 +57,16 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #35 | Pitkänen ehdotti 3.11.2026 Kähler-vaikutusta ja tilavuutta lisäehdolla, jossa $CP_2$:n Kähler-funktio toteuttaa poikittaisen Laplacen yhtälön. NeuroPajan laskussa ehto sallii holomorfisilla pinnoilla vain riippumattomuuden koordinaatista $w$. Pitkäsen mukaan 4.11.2026 singulariteetit ovat ajatuksen ydin, riippuvuus on vain koordinaatista $u$, ja kosminen säie on rajatapaus. | 🟡 [vertailussa](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaus-4112026), ei-holomorfinen monopoli laskettu |
 | #35 | Pitkänen vastasi 4.11.2026 aiempiin viiteen kysymykseen. Vuoputki on kaksilehtinen ja sen poikkileikkaus suljettu, $G$ selittyy Planckin vakioiden hierarkialla, Kähler-muoto on magneettinen ja poikittainen kaikkialla paitsi singulariteeteissa, ja kerroin $1/16\pi G$ tulee kaarevuusskalaarista, josta hän on valmis luopumaan. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaukset-aiempiin-kysymyksiin-4112026) |
 | #35 | Pitkänen vastasi 5.11.2026. CD:n partonipinnan reuna on timantin reunalla, tekijäavaruudet $H^3/\Gamma$ liittyvät tessellaatioihin, ja kaarevuusskalaari kaatuu Einsteinin tensorin $(2,0)$- ja $(0,2)$-osiin. NeuroPajan laskussa litteän rakenteen pinnat $\xi(u,w)$ ratkaisevat myös vaikutuksen R + tilavuus, ja pallomaisessa rakenteessa myös $(1,1)$-osa antaa puolet supistuksesta. Jos säiemaailmanpinnatkin ovat minimaalipintoja, $H^3$:ssa ei ole jakoa. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaukset-5112026) |
+| #35 | Pitkänen hyväksyi 5.11.2026 iltapäivällä, että säieratojen ei tarvitse olla minimaalipintoja, koska hyperkompleksinen rakenne on pinnan sisäinen ominaisuus. NeuroPaja luokitteli H-J-rakenteet, ja niitä on konformiryhmää vaille kolme. | ✅ [luokittelu](konventiot.md#h-j-rakenteiden-luokittelu) |
+| #35 | Pitkänen kysyi 5.11.2026 illalla, onko NeuroPaja vai Gemini väärässä. Tulokset ovat sopusoinnussa, sillä integroituvia jakoja on, mutta säieradat ja partonipinnat eivät ole yhtä aikaa minimaalisia. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-kysymykset-5112026-illalla) |
+| #35 | Pitkäsen mukaan 6.11.2026 minimaalisuus ei ole välttämätöntä. Valokartion reunan viipaloinnissa pallot eivät ole minimaalipintoja, ja molemmat perheet ovat minimaalisia vain litteässä rakenteessa. Hän lähetti myös artikkeliluonnoksen, jonka tarkistus lähti hänelle. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#valokartion-reunan-viipalointi-ja-minimaalisuus-m4ssa) |
 
 ### Avoinna – kysytään Matilta
 
 | Issue | Kysymys |
 |---|---|
-| – | Mikä on rakenteen $(t\pm\rho)$ kompleksikoordinaatti, ja mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? |
-| #35 | Riittääkö, että partonipinnat ovat yhdensuuntaisten napaisten pintojen perhe ilman minimaalisuutta $H^3$:ssa, vai onko partonipinnan minimaalisuus olennainen, jolloin partonipinnat eivät voi olla hyperboloideilla? |
+| – | Mikä määrää monopoliputken paksuuden, kun sisäosassa on pelkkä tilavuustermi? Rakenteella $(t\pm\rho)$ ei luokittelun mukaan ole kompleksikoordinaattia. |
+| #35 | Pallomainen rakenne on kausaalisessa timantissa symmetrinen $u$:n ja $v$:n vaihdossa, kun timantti peilataan keskikohtansa yli. Mistä H-H-ansatsin $u$-$v$-epäsymmetria silloin tulee, esimerkiksi timantin aktiivisesta reunasta nollaenergiaontologiassa? |
 | #35 | Vastaako valokartioiden kärjen suoran laji, eli aikasuuntainen, valon kaltainen tai avaruussuuntainen, jotain fysikaalista? |
 | #35 | Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla singulariteettialueiden ulkopuolella pinta on Kähler-tyhjiö $\xi=\xi(u)$, jolloin singulariteetit eivät näy ulos Coulombin kenttänä eivätkä vuona? |
 
@@ -75,7 +78,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 
 ## Sivututkimuspolut
 
-Sivututkimuspolut eivät kuulu milestoneihin. [Regge–Teitelboim ja TGD](sivututkimus/regge-teitelboim.md) kokoaa nykytutkimuksen upotusgravitaatiosta ja sen yhtymäkohdat TGD:hen. Tilanne 1.11.2026 on, että selvitys on tarkistettu ja laskut ovat testeissä. Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572), ja vastausta odotetaan. Sivu päivitettiin 1.11.2026 lähdehaun tuloksilla ja Matin toisella viestillä, joka ei vielä käsittele viittä kysymystä.
+Sivututkimuspolut eivät kuulu milestoneihin. [Regge–Teitelboim ja TGD](sivututkimus/regge-teitelboim.md) kokoaa nykytutkimuksen upotusgravitaatiosta ja sen yhtymäkohdat TGD:hen. Tilanne 1.11.2026 on, että selvitys on tarkistettu ja laskut ovat testeissä. Matille lähetettiin 1.11.2026 viisi kysymystä, jotka on kirjattu [issueen 35](https://github.com/markomanninen/tgd-geometry-lab/issues/35#issuecomment-6552829572). Hän vastasi niihin samana päivänä, ja vastaukset on kirjattu sivulle.
 
 ## Tunnisteet
 

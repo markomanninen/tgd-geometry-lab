@@ -586,7 +586,7 @@ Toteutusjärjestys on ensin M1–M4, sitten M5–M6, sen jälkeen M7–M8 ja lop
 Koska tehtävä on valmis, seuraavat askeleet ovat:
 
 1. **Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus.** Nämä ovat vaiheen 8.4 laskematta olevat osat.
-2. **Rakenteen $(t\pm\rho)$ kompleksikoordinaatti.** Pitkänen tarkoitti tätä sylinterirakennetta, ja koordinaatti $z+i\phi$ ei ole siinä kompleksinen.
+2. ✅ **Rakenteen $(t\pm\rho)$ kompleksikoordinaatti.** Pitkänen tarkoitti tätä sylinterirakennetta. H-J-rakenteiden luokittelun mukaan kompleksikoordinaattia ei ole, koska rakenteen partonipinnat ovat sylintereitä, jotka eivät ole napaisia.
 3. **Partonipinnat.** Pitkäsen linjauksen mukaan Kähler–Chern–Simons-vaikutus ja Diracin vaikutus ovat partonipinnoilla, joten laskennan painopiste siirtyy niihin.
 ---
 

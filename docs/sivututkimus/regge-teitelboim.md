@@ -573,7 +573,7 @@ Jatkohaku 1.11.2026 sulki osan aiemmista aukoista. Seuraavat asiat ovat nyt tied
 
 Aiempi ehdotus tarkistaa yhtälö $\mathrm{Tr}(GH^k)=0$ on tehty [osassa 3](#osa-3-laskut). Artikkelin aineksia on kaksi. Toinen on symmetriatulos, joka selittää yhdellä päättelyllä, miksi kenttäyhtälöt häviävät suoralla, kartioleikkauksella ja pinnalla $RP^2$. Toinen on litteän rakenteen tulos. Kirjallisuusvertailu pelkästään ei olisi artikkeli, mutta se on hyvä johdanto näille kahdelle tulokselle. Artikkelista päättää Marko, ja tulkinta kuuluu Matille.
 
-Matille lähetettiin 1.11.2026 viisi kysymystä, ja hän vastasi niihin samana päivänä. Vastaukset on kirjattu [edellä](#matin-vastaus-viiteen-kysymykseen). Auki on, millä kompleksikoordinaatilla rakenne $(t\pm\rho)$ toteutuu.
+Matille lähetettiin 1.11.2026 viisi kysymystä, ja hän vastasi niihin samana päivänä. Vastaukset on kirjattu [edellä](#matin-vastaus-viiteen-kysymykseen). Kysymys siitä, millä kompleksikoordinaatilla rakenne $(t\pm\rho)$ toteutuu, ratkesi 6.11.2026 H-J-rakenteiden [luokittelusta](../konventiot.md#h-j-rakenteiden-luokittelu). Rakenteen partonipinnat ovat sylintereitä, jotka eivät ole napaisia, joten kompleksikoordinaattia ei ole.
 
 ## Lähteet
 
