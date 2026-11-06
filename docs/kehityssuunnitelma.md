@@ -87,7 +87,7 @@ Moduulit ovat erillisiä Maxima-tiedostoja, ja niiden tulee olla uudelleenkäyte
 Issuet [#1](https://github.com/markomanninen/tgd-geometry-lab/issues/1), [#2](https://github.com/markomanninen/tgd-geometry-lab/issues/2) ja [#3](https://github.com/markomanninen/tgd-geometry-lab/issues/3).
 - Maxima ja Clifford-paketit asennetaan ja ladataan (`tgd-lab.mac`, `tgd_load_clifford`).
 - Yhteiset konventiot kirjataan [konventioihin](konventiot.md).
-- Testiympäristö on Google Colabissa kirjassa `notebooks/01_ymparisto_ja_testit.ipynb`, ja GitHub Actions ajaa testit jokaisesta muutoksesta.
+- Testiympäristö on Google Colabissa kirjassa `notebooks/01_ymparisto_ja_testit.ipynb`, ja testit ajetaan omalla koneella komennolla `./scripts/run_tests.sh ../clifford` ennen jokaista pushia.
 
 ### Step 1.2 – Koordinaattien ja metriikan perusrakenne ✅
 

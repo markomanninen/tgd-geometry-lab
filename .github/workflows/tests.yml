@@ -1,40 +1,25 @@
 name: tests
+# The Maxima tests run on the local machine before each push (scripts/run_tests.sh).
+# This workflow starts only by hand from the Actions tab, so no push or pull request runs it.
 on:
-  push:
-    branches: [main]
-    paths:
-      - "algebra/**"
-      - "core/**"
-      - "embedding/**"
-      - "forms/**"
-      - "geometry/**"
-      - "spaces/**"
-      - "tgd/**"
-      - "tests/**"
-      - "tgd-lab.mac"
-      - "scripts/run_tests.sh"
-      - ".github/workflows/tests.yml"
-  pull_request:
-    paths:
-      - "algebra/**"
-      - "core/**"
-      - "embedding/**"
-      - "forms/**"
-      - "geometry/**"
-      - "spaces/**"
-      - "tgd/**"
-      - "tests/**"
-      - "tgd-lab.mac"
-      - "scripts/run_tests.sh"
-      - ".github/workflows/tests.yml"
+  workflow_dispatch:
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   maxima:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
       - name: Install Maxima
+        timeout-minutes: 5
         run: sudo apt-get -qq update && sudo apt-get -qq install -y maxima
       - name: Fetch Prodanov clifford package
-        run: git clone -q --depth 1 https://github.com/dprodanov/clifford.git ../clifford
+        # Pinned to one commit, so the result changes only when this repository changes
+        run: |
+          git init -q ../clifford
+          git -C ../clifford fetch -q --depth 1 https://github.com/dprodanov/clifford.git e3f9a63a70b71cf74b83675f50fc0f9d2bcf932c
+          git -C ../clifford checkout -q FETCH_HEAD
       - name: Run test suite
         run: ./scripts/run_tests.sh ../clifford

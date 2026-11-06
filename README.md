@@ -1,7 +1,5 @@
 # TGD Geometry Software Lab
 
-[![tests](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/markomanninen/tgd-geometry-lab/actions/workflows/tests.yml)
-
 Symbolinen differentiaaligeometrian laskentaympäristö **Maximan** päällä Topological Geometrodynamics (TGD) -teorian geometrian tutkimiseen. Mukana ovat $CP_2$:n Fubini–Study-geometria, differentiaalimuodot, yhteydet ja kaarevuus, upotusavaruus $H=M^4\times CP_2$, indusoitu geometria ja TGD:n vaikutusintegraali.
 
 **Tulokset voi lukea [sivustolta](https://markomanninen.github.io/tgd-geometry-lab/).**
