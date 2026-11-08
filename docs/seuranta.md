@@ -9,7 +9,7 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | Testiajot | <https://github.com/markomanninen/tgd-geometry-lab/actions> |
 | Julkinen sivusto | <https://markomanninen.github.io/tgd-geometry-lab/> |
 
-## Tila 6.11.2026
+## Tila 8.11.2026
 
 | Välitavoite | Valmiina | Seuraavaksi |
 |---|---|---|
@@ -23,11 +23,11 @@ Kehityssuunnitelman ([kehityssuunnitelma.md](kehityssuunnitelma.md)) jokainen va
 | M8 Ratkaisut | 3/3 ✅ | Ratkaisuverkot, alku- ja reunaehdot ja stabiilisuus |
 | M9 Partonipinnat | 0/6 | #36 partoniradan metriikkaehdot |
 
-Kaikki 724 testiä menevät läpi.
+Kaikki 728 testiä menevät läpi.
 
 Vaihe X eli lehtien kokoaminen ja Einsteinin raja on työn alla ([kehityssuunnitelma](kehityssuunnitelma.md#102-vaihe-x-lehtien-kokoaminen-ja-einsteinin-raja)). Sille ei ole vielä välitavoitetta eikä issueita.
 
-Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Keskustelu jatkui issuessa #35 6.11.2026 asti, ja vielä avoimet kysymykset ovat alla.
+Kriittinen polku #18 → #16/#19 → #23 → #27 → #28 on valmis. Ketju upotusavaruudesta kenttäyhtälöihin on laskettu ja testattu symbolisilla kertoimilla $c_K$, $c_V$. Matti Pitkänen vastasi kysymyksiin 31.10.2026, ja vastaukset on kirjattu [konventioihin](konventiot.md) ja issueihin #27, #28 ja #31. Laskenta nosti esiin jatkokysymyksiä, jotka ovat issuessa #35. Matti vastasi niihin 31.10.2026, ja vastaukset ja niiden laskut on kirjattu samaan issueen. Keskustelu jatkui issuessa #35 7.11.2026 asti, ja vielä avoimet kysymykset ovat alla.
 
 ## Päätöspisteet (tunniste `päätös`)
 
@@ -60,6 +60,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #35 | Pitkänen hyväksyi 5.11.2026 iltapäivällä, että säieratojen ei tarvitse olla minimaalipintoja, koska hyperkompleksinen rakenne on pinnan sisäinen ominaisuus. NeuroPaja luokitteli H-J-rakenteet, ja niitä on konformiryhmää vaille kolme. | ✅ [luokittelu](konventiot.md#h-j-rakenteiden-luokittelu) |
 | #35 | Pitkänen kysyi 5.11.2026 illalla, onko NeuroPaja vai Gemini väärässä. Tulokset ovat sopusoinnussa, sillä integroituvia jakoja on, mutta säieradat ja partonipinnat eivät ole yhtä aikaa minimaalisia. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-kysymykset-5112026-illalla) |
 | #35 | Pitkäsen mukaan 6.11.2026 minimaalisuus ei ole välttämätöntä. Valokartion reunan viipaloinnissa pallot eivät ole minimaalipintoja, ja molemmat perheet ovat minimaalisia vain litteässä rakenteessa. Hän lähetti myös artikkeliluonnoksen, jonka tarkistus lähti hänelle. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#valokartion-reunan-viipalointi-ja-minimaalisuus-m4ssa) |
+| #35 | Pitkäsen mukaan 6.11.2026 pallo on minimaalipinta valokartion reunan pintana, koska valokartio on metrisesti pallo. NeuroPajan 7.11.2026 lähettämän laskun mukaan jokainen leikkaus on konformisesti pyöreä, mutta sen ala riippuu säteestä, ja pallo on alan minimi kiinteällä keskisäteellä. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#valokartion-reunan-viipalointi-ja-minimaalisuus-m4ssa) |
 
 ### Avoinna – kysytään Matilta
 

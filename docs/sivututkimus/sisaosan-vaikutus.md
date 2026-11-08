@@ -404,6 +404,14 @@ $$
 
 missä $\nu$ on pallon yksikkönormaali $H^3$:ssa. Rajalla $a\to0$ pallo lähestyy valokartion palloa, ja kumpikin osa kasvaa rajatta, mutta $H\cdot H=-4/r_0^2$ pysyy samana.
 
+Pitkänen vastasi 6.11.2026 aamulla, että pallo on minimaalipinta valokartion reunan pintana, koska valokartio on metrisesti pallo ja radiaaliset deformaatiot eivät muuta alaa. Valokartion $t=r$ leikkauksen $r=R(\theta,\phi)$ indusoitu metriikka on
+
+$$
+ds^2=-R(\theta,\phi)^2\,d\Omega^2,
+$$
+
+koska termit $dt^2-dr^2$ kumoavat toisensa. Jokainen leikkaus on siis konformisesti pyöreä pallo, mikä sopii Pitkäsen konformi-invarianssiin. Ala $\int R^2\,d\Omega$ kuitenkin riippuu $R$:stä, ja generaattorin $l$ suuntainen toinen perusmuoto on $R\,d\Omega^2$, joten laajeneminen $2/R$ ei häviä millään leikkauksella. Pallo on alan minimi niiden leikkausten joukossa, joilla on sama keskisäde $\int R\,d\Omega$, sillä Cauchyn ja Schwarzin epäyhtälö antaa $\int R^2\,d\Omega\ge(\int R\,d\Omega)^2/4\pi$. Tasainen siirto ulospäin kasvattaa alaa. Hyperboloidin koordinaateissa $(r,\theta,\phi)$ pätee $g_{rr}=a^2/(a^2+r^2)\to0$, mutta $g^{rr}=(a^2+r^2)/a^2$ ja $\Gamma^r{}_{\theta\theta}=-r(a^2+r^2)/a^2$ kasvavat rajatta, kun $a\to0$. Alaindeksillä kirjoitettu komponentti $g_{rr}\Gamma^r{}_{\theta\theta}=-r$ pysyy äärellisenä, joten radiaalisen osan raja riippuu siitä, mikä komponentti on kyseessä. Valokartion oma toinen perusmuoto on nolla, kun toinen sen suunnista on generaattori, koska generaattorit ovat valon kaltaisia geodeeseja. Kulmasuuntien jälki $2/R$ ei häviä. NeuroPaja lähetti nämä laskut Pitkäselle 7.11.2026.
+
 Yleinen tulos seuraa napaisuudesta. Kokonaan napaisella pinnalla $B^n{}_{ab}=\lambda_n g_{ab}$, joten minimaalisuus antaa $\lambda_n=0$, ja pinta on taso. Jos H-J-rakenteen kaikki säieradat ja partonipinnat ovat $M^4$:n minimaalipintoja, ne ovat siis tasoja. Partonipinnan $P$ läpi kulkevat säieradat ovat silloin saman tason yhdensuuntaisia siirtoja, ja muut partonipinnat ovat $P$:n yhdensuuntaisia siirtoja. Rakenne on paikallisesti litteä tulo $M^2\times E^2$. Muissa rakenteissa vain toinen perhe voi koostua minimaalipinnoista.
 
 Hyperboloidilla oleva pinta ei ole koskaan $M^4$:n minimaalipinta. Hyperboloidin toinen perusmuoto on sen metriikka jaettuna $a$:lla, joten

@@ -137,4 +137,34 @@ check("totally geodesic H^2 of H^3(a): H = -(2/a) N, so a surface that is minima
 check("spherical: box((t - r)^2) = 4 (t - r)/r, so a function of u alone is not harmonic there",
       block([r : sqrt(xx^2 + yy^2 + zz^2)], is(radcan(hc_box((tt - r)^2) - 4*(tt - r)/r) = 0)))$
 forget(hct0 > hcr)$
+/* ---------- cuts of the light cone (Pitkanen 6.11.2026 morning) ---------- */
+/* On the cone t = r a cut r = R(theta, phi) has the degenerate-free metric -R^2 dOmega^2: every cut is conformally
+   a round sphere, but its area int R^2 dOmega depends on R, and the generator l = (1, n) is a normal along which
+   the second fundamental form is R dOmega^2, so the expansion 2/R never vanishes. */
+depends(hcRc, [hcth, hcph])$
+block([nh, X, em, g, l, Bl],
+  nh : [sin(hcth)*cos(hcph), sin(hcth)*sin(hcph), cos(hcth)],
+  X : hcRc*append([1], nh), l : append([1], nh),
+  em : emb_setup(hcM4, hcX, X, [hcth, hcph]), g : emb_get(em, 'g),
+  Bl : genmatrix(lambda([a, b], hc_dot4(diff(diff(X, [hcth, hcph][a]), [hcth, hcph][b]), l)), 2, 2),
+  hcCut : [zero_matrix_p(map(trigsimp, g + hcRc^2*matrix([1, 0], [0, sin(hcth)^2]))),
+           every(lambda([e], is(trigsimp(e) = 0)), [hc_dot4(diff(X, hcth), l), hc_dot4(diff(X, hcph), l), hc_dot4(l, l)]),
+           is(trigsimp(ratsimp(sum(sum(invert(g)[a, b]*Bl[a, b], a, 1, 2), b, 1, 2) + 2/hcRc)) = 0)])$
+remove(hcRc, dependency)$
+check("light-cone cut r = R(theta, phi): the induced metric is -R^2 dOmega^2 for every R, so all cuts are conformally round",
+      hcCut[1])$
+check("light-cone cut: the generator l is a null normal and g^ab l.B_ab = -2/R, so the expansion never vanishes",
+      hcCut[2] and hcCut[3])$
+check("cone area int R^2 dOmega: dR = 1 gives dA/de = 8 pi r0, dR = cos(theta) gives 0 and A = 4 pi r0^2 + 4 pi e^2/3",
+      block([A : lambda([f], ratsimp(integrate(integrate(f^2*sin(hcth), hcth, 0, %pi), hcph, 0, 2*%pi)))],
+        is(ratsimp(subst(hce = 0, diff(A(hcr + hce), hce)) - 8*%pi*hcr) = 0)
+        and is(ratsimp(subst(hce = 0, diff(A(hcr + hce*cos(hcth)), hce))) = 0)
+        and is(ratsimp(A(hcr + hce*cos(hcth)) - 4*%pi*hcr^2 - 4*%pi*hce^2/3) = 0)))$
+check("hyperboloid a in (r, theta, phi): g^rr and Gamma^r_thth = -r (a^2 + r^2)/a^2 diverge as a -> 0, g_rr Gamma^r_thth = -r stays",
+      block([gH : matrix([hca^2/(hca^2 + hcr^2), 0, 0], [0, hcr^2, 0], [0, 0, hcr^2*sin(hcth)^2]), Gm],
+        Gm : christoffel(gH, [hcr, hcth, hcph]),
+        is(ratsimp(invert(gH)[1,1] - (hca^2 + hcr^2)/hca^2) = 0)
+        and is(ratsimp(Gm[1][2][2] + hcr*(hca^2 + hcr^2)/hca^2) = 0)
+        and is(ratsimp(gH[1,1]*Gm[1][2][2] + hcr) = 0)
+        and is(limit(invert(gH)[1,1], hca, 0, plus) = inf)))$
 forget(hca > 0, hcr > 0, hcrho > 0)$
