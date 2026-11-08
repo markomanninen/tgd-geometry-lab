@@ -56,6 +56,9 @@ assume(thH > 0, thH < %pi)$
 check("round sphere: Lambda = K = 1/r^2 makes the density zero everywhere, so the hemisphere needs Lambda = 1/r^2 too",
       is(solve(integrate(integrate((LH - 1/rIs^2)*rIs^2*sin(thH), thH, 0, %pi/2), phH, 0, 2*%pi) = 0, LH)
          = [LH = 1/rIs^2]))$
+check("hemisphere with a geodesic boundary: T = (Lambda 2 pi r^2 - 2 pi)/(8 pi G) >= 0 iff Lambda >= 1/r^2, while 1/(2 r^2) mixes in the volume term of the whole sphere",
+      is(solve((LH*2*%pi*rIs^2 - 2*%pi)/(8*%pi*GnIs) = 0, LH) = [LH = 1/rIs^2])
+      and is(solve(LH*rIs^2/(2*GnIs) - 1/(4*GnIs) = 0, LH) = [LH = 1/(2*rIs^2)]))$
 /* Formulas of Pitkanen's draft "Problems with Holography = Holomorphy Principle", section 4 (6.11.2026) */
 check("Lambda = 1/r^2 + k/L^2 on a round sphere of radius r: T = (Lambda 4 pi r^2 - 4 pi)/(8 pi G) = k r^2/(2 G L^2)",
       is(ratsimp(((1/rIs^2 + kcIs/LpIs^2)*4*%pi*rIs^2 - 4*%pi)/(8*%pi*GnIs) - kcIs*rIs^2/(2*GnIs*LpIs^2)) = 0))$

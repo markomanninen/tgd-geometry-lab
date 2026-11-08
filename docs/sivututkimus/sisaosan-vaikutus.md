@@ -440,6 +440,50 @@ Tuotteella $M^1\times X^2\times S^1$, jossa $S^1$:n pituus on $L$, energia on $(
 
 Testit ovat tiedostoissa [test-hj-classification.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-hj-classification.mac) ja [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
 
+### Pitkäsen vastaukset 8.11.2026
+
+Pitkänen vastasi 8.11.2026, että valokartion reunan isometriaryhmä on ääretön ja vastaa poikkileikkauksen konformimuunnoksia. Hän arveli, että paikallinen radiaalinen deformaatio voidaan aina muuntaa isometriaksi, ja lisäsi artikkeliin perustelun, jonka mukaan pallo on minimaalipinta, kun degeneroituneen metriikan käänteiskomponentiksi valitaan $g^{rr}=0$. Pallon kompleksikoordinaatissa $z$ valokartion reunan $t=r$ metriikka on
+
+$$
+ds^2=-r^2\,\frac{4\,dz\,d\bar z}{(1+\lvert z\rvert^2)^2}.
+$$
+
+Jokaisella holomorfisella funktiolla $f$, jonka derivaatta ei häviä, kuvaus
+
+$$
+z\mapsto f(z),\qquad r\mapsto r\,\frac{1+\lvert f\rvert^2}{(1+\lvert z\rvert^2)\,\lvert f'(z)\rvert}
+$$
+
+säilyttää tämän metriikan. Jos $f$ riippuu myös $r$:stä, metriikkaan tulee $dr$:n sisältäviä termejä, joten isometriassa $f$ ei riipu $r$:stä. Leikkaus $r=R(\theta,\phi)$ on pallon $r=r_0$ kuva tällaisessa isometriassa täsmälleen silloin, kun sen Gaussin kaarevuus
+
+$$
+K=\frac{1-\Delta\log R}{R^2}
+$$
+
+on $1/r_0^2$. Tässä $\Delta$ on yksikköpallon Laplacen operaattori. Koko pallolla nämä leikkaukset ovat boostattuja palloja $R=r_0/(\cosh\beta-\sinh\beta\cos\theta)$. Ne ovat hypertasojen $t\cosh\beta-z\sinh\beta=r_0$ leikkauksia, ja niiden ala on $4\pi r_0^2$. Pienellä deformaatiolla $R=r_0(1+\epsilon h)$ pätee ensimmäisessä kertaluvussa $r_0^2K=1-\epsilon(\Delta h+2h)$, joten isometrisiä ovat vain pallofunktiot, joilla $l=1$. Vakioskaalaus $r\mapsto\lambda r$ muuttaa kaarevuuden arvoon $1/(\lambda r_0)^2$, joten mikään konformikuvaus ei kompensoi sitä, kun $\lambda\ne1$.
+
+Valokartion reunan metriikka $q=r^2\,d\Omega^2$ muuttuu generaattorin $l=\partial_r$ suunnassa, sillä
+
+$$
+\mathcal L_l\,q=\frac{2}{r}\,q.
+$$
+
+Degeneroituneella metriikalla on vääntymätön konnektio, joka säilyttää metriikan, vain jos $\mathcal L_l q=0$. Jos nimittäin $\nabla q=0$ ja $q(l,\cdot)=0$, niin $q(\nabla_X l,Y)=0$, ja vääntymättömyyden avulla $(\mathcal L_l q)(X,Y)=q(\nabla_X l,Y)+q(X,\nabla_Y l)=0$. Kupeli kutsuu ehtoa $\mathcal L_l q=0$ stationaarisuudeksi. Valinnalla $g^{rr}=0$ lasketut Christoffelin symbolit eivät siksi säilytä metriikkaa $q$, ja esimerkiksi $\nabla_\theta q_{r\theta}=-r$. Alan ensimmäinen variaatio $\delta A=\int(2/R)\,\delta R\,R^2\,d\Omega$ ei riipu tästä valinnasta. Uudelleenskaalatulle metriikalle $d\Omega^2$ pätee $\mathcal L_l\,d\Omega^2=0$, ja siinä jokaisen leikkauksen ala on $4\pi$. Pitkäsen tulos pätee siis täsmälleen tässä konformisessa mitassa.
+
+Inversio, jonka keskipiste on valokartiolla, vie valokartion valon kaltaiseksi hypertasoksi, ja kuvan metriikka ei riipu säteestä. Valon kaltaisen hypertason $t-z=u_0$ leikkauksen $t+z=V(x,y)$ metriikka on $-(dx^2+dy^2)$ jokaisella funktiolla $V$, joten siirrot generaattoreiden suuntaan ovat isometrioita. Leikkauksen keskikaarevuusvektori on valon kaltainen ja verrannollinen vektoriin $(\Delta V)\,l$, joten leikkaus on $M^4$:n minimaalipinta täsmälleen, kun $V$ on harmoninen. Horosfäärirakenteen partonipinnat ovat tällaisia leikkauksia, sillä niillä $t+z=(u_0v_0+x^2+y^2)/u_0$. Horosfäärirakenteessa partonipinnan ala ei siis muutu generaattoreiden suuntaisissa deformaatioissa.
+
+Pitkänen huomasi, että hänen lisäehtonsa sanoo Kähler-virran olevan valon kaltainen. Pinnoilla $\xi^k=f^k(u,w)$ virralla ei ole yläindeksistä komponenttia $j^u$ missään H-J-rakenteessa, jonka indusoidulla metriikalla $g_{vv}=g_{vw}=0$, ja
+
+$$
+j\cdot j=-P\big((j^x)^2+(j^y)^2\big),
+$$
+
+missä $P$ on poikittainen metriikka. Virta on siis valon kaltainen täsmälleen silloin, kun sen poikittainen osa häviää, ja silloin koko Lorentzin 4-voima häviää. Pinnoilla $\xi^k=f^k(w)$ poikittainen virta häviää täsmälleen, kun $J_{w\bar w}/g_{w\bar w}$ ei riipu koordinaatista $w$. Pallomaisen rakenteen suoralla ja kartioleikkauksella koko virta häviää, vaikka $J_{w\bar w}\ne0$. Laplacen ehto $J_{w\bar w}=0$ on siis riittävä mutta ei välttämätön, ja valon kaltaisuus sallii pallomaisessa rakenteessa myös suoran ja kartioleikkauksen.
+
+Puolipallolla, jonka reuna on geodeesi, sekä Gauss–Bonnet-termi että tilavuustermi ovat puolet pallon arvoista. Jännitys $(\Lambda R^2-1)/4G$ on siksi ei-negatiivinen täsmälleen, kun $\Lambda\ge1/R^2$, kuten pallolla. Arvo $1/(2R^2)$ syntyy, jos puolipallon Gauss–Bonnet-termi yhdistetään koko pallon tilavuustermiin.
+
+NeuroPaja lähetti nämä laskut Pitkäselle 8.11.2026.
+
 ## Tarkistus ja rajat
 
 Maxima-testit ovat tiedostoissa [test-interior-curvature.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-curvature.mac), [test-interior-energy.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-energy.mac) ja [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac). Erilliset Python-skriptit ovat kansiossa [scripts/sisaosa](https://github.com/markomanninen/tgd-geometry-lab/tree/main/scripts/sisaosa). OpenAI:n Codex tarkisti tulokset riippumattomasti kahdessa kierroksessa. Jännityksen kaava, avoin poikkileikkaus, tuotteen epävakaus, minimipintaperhe, genuksen $g$ lehti ja polynomiupotus vahvistuivat. Yleiset väitteet rajattiin tällä sivulla olevaan muotoon. Holomorfista $X^6$:ta koskevaa johtopäätöstä tarkistus ei vahvistanut, ja se on siksi kirjattu yhden esimerkin tulokseksi.
@@ -450,7 +494,7 @@ Auki ovat nämä kohdat:
 - Miten kaksilehtinen vuoputki, jonka poikkileikkaus on suljettu, toteutuu Laplacen ehdon ja minimaalipintaehdon kanssa.
 - Reunatermin johto yleisille upotuksille.
 - Holomorfisen $X^6$:n yleinen tapaus.
-- Hyväksyykö Pitkänen seurauksen, että Laplacen ehdolla kaikki Kähler-kenttä on alueissa, joissa holomorfia rikkoutuu, ja että niiden ulkopuolella pinta on Kähler-tyhjiö.
+- Riittääkö Pitkäselle virran valon kaltaisuus, joka pallomaisessa rakenteessa sallii suoran ja kartioleikkauksen mutta litteässä rakenteessa vain Kähler-tyhjiön $\xi(u)$.
 - Mistä $u$:n ja $v$:n epäsymmetria tulee pallomaisessa rakenteessa, joka on kausaalisessa timantissa symmetrinen niiden vaihdossa.
 
 Pitkäsen vastaukset 5.11.2026 ja 6.11.2026 ratkaisivat kolme aiemmin tällä listalla ollutta kohtaa. Kohtisuoruusehto toteutuu H-J-rakenteessa, jonka lehdet ovat kokonaan napaisia. Säieradoilta ei vaadita minimaalisuutta. Einsteinin tensorin tyyppijako on sama $\{u,w\}$ ja $\{v,\bar w\}$, jota NeuroPajan lasku käyttää.

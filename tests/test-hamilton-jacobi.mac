@@ -161,6 +161,43 @@ check("spherical H-J, line: J_ab/g_ab = 1/(4 r^2 + 1), a field that falls like 1
 check("spherical H-J, line: dt^2 - dr^2 - (r^2 + 1/4) dOmega^2, smooth at r = 0",
       is(tgd_simp(emb_get(emL2, 'g)
          - diag_matrix(1, -1, -(hr^2 + 1/4)*sj_rho, -(hr^2 + 1/4)*sj_rho)) = zeromatrix(4, 4)))$
+/* ---------- light-like Kahler current (Pitkanen 8.11.2026) ---------- */
+/* The same chart with every function depending also on v, as on the spherical structure where the transverse
+   metric contains r^2.  Still j^u = 0 and j.j = -P ((j^x)^2 + (j^y)^2), so j is light-like exactly when its
+   transverse part vanishes, and then j = j^v d_v and the whole Lorentz 4-force j^a J_ab vanishes. */
+depends([kG, kA, kB, kP, kQ, kp, kq, kN], [uu, vv, xx, yy])$
+block([g, J, gi, s, Ju, j, f],
+  g : matrix([kG, kN, kA, kB], [kN, 0, 0, 0], [kA, 0, -kP, 0], [kB, 0, 0, -kP]),
+  J : matrix([0, 0, kp, kq], [0, 0, 0, 0], [-kp, 0, 0, kQ], [-kq, 0, -kQ, 0]),
+  gi : ratsimp(invert(g)), s : kN*kP, Ju : ratsimp(gi . J . gi),
+  j : makelist(ratsimp(sum(diff(s*Ju[a,b], lc_chart[a]), a, 1, 4)/s), b, 1, 4),
+  f : makelist(ratsimp(sum(j[a]*J[a,b], a, 1, 4)), b, 1, 4),
+  hkCur : [is(ratsimp(determinant(g) + s^2) = 0), is(j[1] = 0),
+           is(ratsimp(sum(sum(g[a,b]*j[a]*j[b], b, 1, 4), a, 1, 4) + kP*(j[3]^2 + j[4]^2)) = 0),
+           is(f[2] = 0),
+           is(ratsimp(subst([j[3] = 0, j[4] = 0], makelist(sum([0, j[2], 0, 0][a]*J[a,b], a, 1, 4), b, 1, 4))) = [0, 0, 0, 0])])$
+remove([kG, kA, kB, kP, kQ, kp, kq, kN], dependency)$
+check("H-J ansatz with v-dependent metric: j^u = 0 and j.j = -P ((j^x)^2 + (j^y)^2), light-like iff no transverse part",
+      hkCur[1] and hkCur[2] and hkCur[3])$
+check("H-J ansatz with v-dependent metric: f_v = 0, and a light-like j = j^v d_v has a vanishing Lorentz 4-force",
+      hkCur[4] and hkCur[5])$
+/* surfaces f^k(w) have no du in the pullback, so J_u. = g_ux = g_uy = 0, and g_uv depends only on (u, v) */
+depends([kP, kQ], [uu, vv, xx, yy], kN, [uu, vv])$
+check("H-J surfaces f^k(w): j^x = -d_y(J_xy/P)/P and j^y = d_x(J_xy/P)/P, so j is light-like iff J_xy/P is transversally constant",
+      block([g : matrix([0, kN, 0, 0], [kN, 0, 0, 0], [0, 0, -kP, 0], [0, 0, 0, -kP]),
+             J : matrix([0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, kQ], [0, 0, -kQ, 0]), s : kN*kP, Ju, j],
+        Ju : ratsimp(invert(g) . J . invert(g)),
+        j : makelist(ratsimp(sum(diff(s*Ju[a,b], lc_chart[a]), a, 1, 4)/s), b, 1, 4),
+        is(ratsimp(j[3] + diff(kQ/kP, yy)/kP) = 0) and is(ratsimp(j[4] - diff(kQ/kP, xx)/kP) = 0)
+        and is(j[1] = 0) and is(j[2] = 0)))$
+remove([kP, kQ, kN], dependency)$
+hk_cur(z1, z2) := block([em : sj2_em(z1, z2), J],
+  J : induced_kahler_form(HJh, sj_H_X, emb_get(em, 'h), sj_X),
+  map(tgd_simp, kahler_current(em, J)))$
+check("spherical H-J: the whole Kahler current vanishes on the line and the conic although J_ww # 0 there",
+      is(hk_cur(sj_w, 0) = [0, 0, 0, 0]) and is(hk_cur(sqrt(2)*sj_w, sj_w^2) = [0, 0, 0, 0]))$
+check("spherical H-J, xi1 = w^2: j^t = j^r = 0 and the transverse part does not vanish, so j is space-like",
+      block([j : hk_cur(sj_w^2, 0)], is(j[1] = 0) and is(j[2] = 0) and is(j[3] # 0)))$
 /* ---------- the H-J structures of the functions F(w): a vertex on any curve ---------- */
 /* Level sets of u are the light cones of the points z(tau), hr is the distance along the
    ray and w the direction of the ray.  A totally umbilic null hypersurface of M^4 is a cone

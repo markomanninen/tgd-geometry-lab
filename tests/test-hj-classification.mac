@@ -167,4 +167,84 @@ check("hyperboloid a in (r, theta, phi): g^rr and Gamma^r_thth = -r (a^2 + r^2)/
         and is(ratsimp(Gm[1][2][2] + hcr*(hca^2 + hcr^2)/hca^2) = 0)
         and is(ratsimp(gH[1,1]*Gm[1][2][2] + hcr) = 0)
         and is(limit(invert(gH)[1,1], hca, 0, plus) = inf)))$
+/* ---------- isometries of the light-cone boundary (Pitkanen 8.11.2026) ---------- */
+/* With z = rho e^(i phi) the boundary t = r has the metric -r^2 4 dz dzbar/(1 + |z|^2)^2.  For holomorphic f the map
+   z -> f(z), r -> r (1 + |f|^2)/((1 + |z|^2) |f'|) preserves it, while an f that depends on r adds dr terms.  A cut
+   r = R is the image of the sphere r = r0 exactly when its Gaussian curvature (1 - Lap log R)/R^2 equals 1/r0^2.
+   On the whole sphere these cuts are the boosted spheres r0/(cosh b - sinh b cos th), which lie on hyperplanes. */
+hc_nst(p, f) := [2*p*cos(f), 2*p*sin(f), p^2 - 1]/(1 + p^2)$
+hc_met3(X, q) := block([J : genmatrix(lambda([i, j], diff(X[i], q[j])), 4, 3)],
+  map(lambda([e], radcan(trigsimp(ratsimp(e)))), transpose(J) . hcM4 . J))$
+hc_Kcut(R) := block([q : [hcth, hcph], g, G], g : R^2*matrix([1, 0], [0, sin(hcth)^2]), G : christoffel(g, q),
+  trigsimp(ratsimp(scalar_curvature(g, ricci(riemann(G, q)))/2)))$
+assume(hcsr > 0, hclam > 0, hcb > 0)$
+block([q : [hcr, hcsr, hcsp], g0, zk],
+  g0 : hc_met3(hcr*append([1], hc_nst(hcsr, hcsp)), q),
+  zk : lambda([k], hcr*(1 + hcsr^(2*k))/((1 + hcsr^2)*k*hcsr^(k - 1))*append([1], hc_nst(hcsr^k, k*hcsp))),
+  hcIso : [zero_matrix_p(hc_met3(zk(2), q) - g0), zero_matrix_p(hc_met3(zk(3), q) - g0),
+           zero_matrix_p(hc_met3(hcr*(1 + hclam^2*hcsr^2)/((1 + hcsr^2)*hclam)*append([1], hc_nst(hclam*hcsr, hcsp)), q) - g0),
+           not zero_matrix_p(hc_met3(hcr*append([1], hc_nst(hcsr, hcsp + hcc*hcr)), q) - g0)])$
+check("light-cone boundary: z -> f(z), r -> r (1 + |f|^2)/((1 + |z|^2) |f'|) is an isometry for f = z^2, z^3 and lam z",
+      hcIso[1] and hcIso[2] and hcIso[3])$
+check("light-cone boundary: the r-dependent rotation z -> exp(i c r) z adds dr terms, so an isometry has f independent of r",
+      hcIso[4])$
+check("the boost f = lam z maps the sphere r = r0 onto the cut of the hyperplane t cosh b - z sinh b = r0, lam = e^b",
+      block([X : hcr*(1 + hclam^2*hcsr^2)/((1 + hcsr^2)*hclam)*append([1], hc_nst(hclam*hcsr, hcsp))],
+        is(radcan((hclam + 1/hclam)/2*X[1] - (hclam - 1/hclam)/2*X[4] - hcr) = 0)))$
+depends(hcRc, [hcth, hcph])$
+check("cut r = R(theta, phi): the Gaussian curvature of R^2 dOmega^2 is (1 - Lap log R)/R^2",
+      block([lap : lambda([f], diff(sin(hcth)*diff(f, hcth), hcth)/sin(hcth) + diff(f, hcph, 2)/sin(hcth)^2)],
+        is(trigsimp(ratsimp(hc_Kcut(hcRc) - (1 - lap(log(hcRc)))/hcRc^2)) = 0)))$
+remove(hcRc, dependency)$
+check("boosted cut r0/(cosh b - sinh b cos th): curvature 1/r0^2 and area 4 pi r0^2, the same as the round sphere",
+      block([Rb : hcr/(cosh(hcb) - sinh(hcb)*cos(hcth))],
+        is(trigsimp(ratsimp(hc_Kcut(Rb)*hcr^2)) = 1)
+        and is(trigsimp(ratsimp(integrate(2*%pi*Rb^2*sin(hcth), hcth, 0, %pi) - 4*%pi*hcr^2)) = 0)))$
+check("cut r0 (1 + e h): r0^2 K = 1 - e (Lap h + 2 h) to first order, so h = 1 gives -2, l = 1 gives 0, P_2 gives 4 P_2",
+      block([lin : lambda([h], ratsimp(trigsimp(subst(hce = 0, diff(hc_Kcut(hcr*(1 + hce*h))*hcr^2, hce)))))],
+        is(lin(1) = -2) and is(lin(cos(hcth)) = 0) and is(lin(sin(hcth)*cos(hcph)) = 0)
+        and is(ratsimp(lin((3*cos(hcth)^2 - 1)/2) - 2*(3*cos(hcth)^2 - 1)) = 0)))$
+forget(hcsr > 0, hclam > 0, hcb > 0)$
+/* ---------- the convention g^rr = 0 and null hyperplanes (Pitkanen 8.11.2026) ---------- */
+/* A degenerate metric q with radical l has a torsion-free q-compatible connection only if L_l q = 0 (Kupeli's
+   stationarity).  On the cone q = r^2 dOmega^2 has L_l q = (2/r) q, so the Christoffel symbols built with the
+   pseudo-inverse g^rr = 0 do not preserve q, while the rescaled q~ = dOmega^2 is stationary and they do.  An
+   inversion centred on the cone maps it onto a null hyperplane with an r-independent metric, and every cut
+   t + z = V(x, y) of a null hyperplane t - z = u0 is flat with the null mean curvature (Lap V) l. */
+hc_nabla(gq, gpi, q) := block([G],
+  G : makelist(makelist(makelist(sum(gpi[a,d]*(diff(gq[d,c], q[b]) + diff(gq[b,d], q[c]) - diff(gq[b,c], q[d])), d, 1, 3)/2,
+       c, 1, 3), b, 1, 3), a, 1, 3),
+  makelist(makelist(makelist(trigsimp(diff(gq[b,c], q[a]) - sum(G[d][a][b]*gq[d,c] + G[d][a][c]*gq[b,d], d, 1, 3)),
+       c, 1, 3), b, 1, 3), a, 1, 3))$
+check("light-cone boundary q = r^2 dOmega^2: L_l q = (2/r) q, and g^rr = 0 Christoffels give nabla_th q_r,th = -r",
+      block([gq : matrix([0, 0, 0], [0, hcr^2, 0], [0, 0, hcr^2*sin(hcth)^2]), D],
+        D : hc_nabla(gq, matrix([0, 0, 0], [0, 1/hcr^2, 0], [0, 0, 1/(hcr^2*sin(hcth)^2)]), [hcr, hcth, hcph]),
+        zero_matrix_p(diff(gq, hcr) - 2/hcr*gq) and is(D[2][1][2] = -hcr)))$
+check("rescaled dOmega^2: its Lie derivative along l vanishes and the g^rr = 0 Christoffels preserve it",
+      block([gq : matrix([0, 0, 0], [0, 1, 0], [0, 0, sin(hcth)^2])],
+        zero_matrix_p(diff(gq, hcr)) and
+        every(lambda([e], is(e = 0)), flatten(hc_nabla(gq, matrix([0, 0, 0], [0, 1, 0], [0, 0, 1/sin(hcth)^2]), [hcr, hcth, hcph])))))$
+check("inversion centred at p = (1,0,0,1) on the cone: image on the null hyperplane y.p = -1/2, metric -dOmega^2/(4 (1 - cos th)^2)",
+      block([X : hcr*[1, sin(hcth)*cos(hcph), sin(hcth)*sin(hcph), cos(hcth)], p : [1, 0, 0, 1], Y, J3, gY],
+        Y : (X - p)/hc_dot4(X - p, X - p),
+        J3 : genmatrix(lambda([i, j], diff(Y[i], [hcr, hcth, hcph][j])), 4, 3),
+        gY : map(lambda([e], trigsimp(ratsimp(e*4*(1 - cos(hcth))^2))), transpose(J3) . hcM4 . J3),
+        is(trigsimp(ratsimp(hc_dot4(Y, p))) = -1/2)
+        and every(lambda([e], is(trigsimp(e) = 0)), flatten(args(gY - matrix([0, 0, 0], [0, -1, 0], [0, 0, -sin(hcth)^2]))))))$
+depends(hcV, [hcx, hcy])$
+block([X : [(hcV + hcu0)/2, hcx, hcy, (hcV - hcu0)/2], em, Hv],
+  em : emb_setup(hcM4, hcX, X, [hcx, hcy]),
+  Hv : map(ratsimp, mean_curvature(em, second_fundamental_form(em))),
+  hcNull : [zero_matrix_p(emb_get(em, 'g) + ident(2)),
+            every(lambda([e], is(e = 0)), ratsimp(Hv - Hv[1]*[1, 0, 0, 1])),
+            is(ratsimp(hc_dot4(Hv, Hv)) = 0), is(ratsimp(hc_dot4(Hv, [1, 0, 0, 1])) = 0),
+            is(ratsimp(Hv[1]^2 - (diff(hcV, hcx, 2) + diff(hcV, hcy, 2))^2/4) = 0)])$
+remove(hcV, dependency)$
+check("null hyperplane t - z = u0, cut t + z = V(x, y): metric -(dx^2 + dy^2) for every V, so moving along l keeps the area",
+      hcNull[1])$
+check("null hyperplane cut: H is null and along l with |H^t| = |Lap V|/2, H.l = 0, so the cut is minimal iff V is harmonic",
+      hcNull[2] and hcNull[3] and hcNull[4] and hcNull[5])$
+check("horospheric parton u = u0, v = v0: t + z = (u0 v0 + x^2 + y^2)/u0, a cut of the null hyperplane t - z = u0",
+      block([t : ((hcu0*hcv0 + hcx^2 + hcy^2)/hcu0 + hcu0)/2, z : ((hcu0*hcv0 + hcx^2 + hcy^2)/hcu0 - hcu0)/2],
+        is(ratsimp(t - z - hcu0) = 0) and is(ratsimp((t^2 - hcx^2 - hcy^2 - z^2)/(t - z) - hcv0) = 0)))$
 forget(hca > 0, hcr > 0, hcrho > 0)$
