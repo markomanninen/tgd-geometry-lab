@@ -299,6 +299,153 @@ $$
 
 Tämä on esimerkki Pitkäsen lauseesta, että globaalit säilymislait eivät päde tarkasti kootulle aika-avaruudelle, vaikka lehtien varaukset säilyvät. Energian siirtymisen mekanismi lehdeltä toiselle vaatii kosketuksen mallin.
 
+## Mustien aukkojen metriikat indusoituna metriikkana
+
+Jakson kysymys on, mitä Einsteinin teorian ratkaisuja TGD rajaa pois ja kuvaavatko pois rajautuvat ratkaisut tunnettua fysiikkaa. TGD:n pinnan metriikka peritään kahdeksalta upotusfunktiolta, joten vain osa Einsteinin teorian metriikoista on yhden pinnan indusoituja metriikoita.
+
+| Einsteinin teorian ratkaisu | Tunnettua fysiikkaa | TGD:n yhdellä pinnalla |
+|---|---|---|
+| Aikakoneratkaisut, kuten Gödelin universumi | Ei | Rajautuvat pois |
+| Schwarzschildin metriikka eli pyörimätön massa | Kyllä, planeettojen radat ja valon taipuminen | Upottuu |
+| Avaruuden kiertyminen pyörivän massan mukana, kertaluku $a^1$ | Kyllä, Gravity Probe B ja LAGEOS-satelliitit | Upottuu likimäärin, poikkeama noin $R^2/m^2$ |
+| Kerrin metriikan $a^2$-termit eli nopeasti pyörivä musta aukko | Kyllä, gravitaatioaallot ja röntgenhavainnot | Ei upotu tarkasti testatulla yritteellä |
+| Ikuisesti kriittinen tai ylikriittinen kosmologia | Osittain, havaittu maailmankaikkeus on lähes laakea | Pitkäsen mukaan upottuu vain äärellisen ajan |
+
+Aikakoneratkaisut rajautuvat pois, koska pinnalla ajankaltaisen käyrän $M^4$-projektio on ajankaltainen ja $M^4$:n aika kasvaa sillä koko ajan. Kosmologian rivi on Pitkäsen teksteistä (*Btgdclass1*, PDF s. 333 ja 415), eikä sitä ole laskettu tässä.
+
+Pyörivän mustan aukon rivin vakavuus riippuu kolmesta asiasta:
+
+- Metriikan pienintä mahdollista poikkeamaa ei ole laskettu. Välttämättömän ehdon suhteellinen jäännös on pieni, noin $4\cdot10^{-5}$ arvolla $a/m=0{,}9$.
+- Pitkäsen monilehtisessä kuvassa havaittava metriikka on usean lehden poikkeamien summa, jota kahdeksan ulottuvuuden raja ei sido. Silloin tarkkaa upotusta yhdelle pinnalle ei tarvita.
+- Este koskee vain symmetriaa noudattavaa yritettä, eikä yleistä todistusta ole.
+
+Tämä jakso koskee vain indusoitua metriikkaa. Kenttäyhtälöitä näillä pinnoilla ei ole testattu ([#42](https://github.com/markomanninen/tgd-geometry-lab/issues/42)).
+
+**Schwarzschildin metriikka upottuu.** Pitkäsen pallosymmetrisessä yritteessä (*Btgdclass1*, luku 7.3.3) $M^4$:n aika on $m^0=\lambda t+h(r)$, $M^4$:n paikka annetaan pallokoordinaateissa $(r,\theta,\varphi)$ ja $CP_2$-koordinaatit ovat
+
+$$
+\xi^1=s(r)\,e^{i(\omega t+f(r))},\qquad \xi^2=0 .
+$$
+
+Indusoidun metriikan kulmaosa on laakean avaruuden kulmaosa. Muut nollasta poikkeavat komponentit ovat
+
+$$
+g_{tt}=\lambda^2-\omega^2R^2H(s),\qquad g_{tr}=\lambda h'-\omega R^2H(s)\,f',\qquad g_{rr}=h'^2-1-R^2\,\frac{s'^2+s^2f'^2}{(1+s^2)^2},
+$$
+
+jossa $H(s)=s^2/(1+s^2)^2$. Kolme ehtoa antaa Schwarzschildin metriikan. Ehto $g_{tt}=1-2m/r$ määrää funktion $s(r)$. Ehto $g_{tr}=0$ määrää derivaatan $f'$. Ehto $g_{rr}=-1/(1-2m/r)$ määrää derivaatan $h'$. Testi `tests/test-schwarzschild.mac` vahvistaa tämän symbolisesti arvolla $R=1$.
+
+Funktion $H$ suurin arvo on $1/4$, joten upotus on olemassa vain, kun
+
+$$
+\tfrac14\,\omega^2R^2\ \ge\ \lambda^2-1+\frac{2m}{r}.
+$$
+
+Arvolla $\lambda=1$ ehto on $r\ge 8m/(\omega R)^2$. Tämä vastaa Pitkäsen toteamusta, että upotus katkeaa kriittisellä säteellä. Testin pallo $\xi^2=0$ on homologisesti epätriviaali, kun taas Pitkäsen tyhjiöekstremaali käyttää homologisesti triviaalia geodeettista palloa.
+
+**Kerrin metriikka ei upotu ensimmäisessä kertaluvussa testatulla yritteellä.** Pitkäsen mukaan Kerrin metriikka luultavasti ei upotu (*Btgdclass1*, PDF s. 415), eikä hänen teksteissään ole tästä laskua. NeuroPaja testasi yritteen, joka noudattaa metriikan kahta symmetriaa. Ajan $t$ siirto on $M^4$:n ajan siirto ja $CP_2$:n kierto. Kulman $\varphi$ siirto on $M^4$:n kierto akselin ympäri ja $CP_2$:n kierto, jonka kierrosluku on kokonaisluku $n$. Kahdeksan upotusfunktiota riippuu koordinaateista $r$ ja $\theta$. Kerrin metriikka kehitettiin pyörimisparametrin $a$ ensimmäiseen kertalukuun, jolloin Schwarzschildin metriikkaan tulee yksi uusi termi
+
+$$
+g_{t\varphi}=\frac{2ma}{r}\,\sin^2\theta .
+$$
+
+Lasku antaa neljä tulosta:
+
+- Metriikan kymmenen komponenttia antavat kymmenen yhtälöä kahdeksalle funktiolle. Kolme funktiota ratkeaa algebrallisesti, ja jäljelle jää seitsemän yhtälöä viidelle funktiolle, joten yhtälöitä on kaksi liikaa.
+- Akselilla $g_{\varphi\varphi}=0$, joten kulmaan $\varphi$ liitetty $CP_2$:n kierto pitää Schwarzschildin upotuksen pallon $\xi^2=0$ paikallaan ja kiertää vain koordinaattia $\xi^2$. Silloin $\xi^2=\sqrt a\,q(r)\sin\theta\,e^{i(n\varphi+\omega_2t+f_2(r))}$.
+- Komponentit $g_{\theta\theta}$ ja $g_{r\theta}$ vaativat, että $n^2=1$. Muilla arvoilla komponenttiin $g_{r\theta}$ jää termi, joka on verrannollinen lausekkeeseen $(n^2-1)\cot\theta$.
+- Arvolla $n=1$ kaikki yhtälöt ratkeavat yhtä lukuun ottamatta. Komponenttiin $g_{rr}$ jää poikkeama $a\sin^2\theta\,\varrho(r)$, joka poikkeaa nollasta kaikilla testatuilla vakioilla.
+
+Poikkeama on verrannollinen $CP_2$:n säteeseen $R$, kun tulo $\omega R$ pidetään vakiona. Esimerkiksi arvoilla $m=1$, $\lambda=1$, $\omega_1R=1{,}5$ ja $\omega_2/\omega_1=0{,}02$ säteellä $r=7{,}48$ saadaan $\varrho=-0{,}0107\,R$.
+
+Poikkeama pienenee myös, kun vakio $\lambda$ kasvaa. Arvoilla $m=1$, $\omega_1R=3\lambda$ ja $\omega_2/\omega_1=0{,}02$ säteellä $r=6$ saadaan suurilla $\lambda$:n arvoilla
+
+$$
+\varrho\approx-0{,}065\,\frac{R}{\lambda}.
+$$
+
+Vakioiden numeerinen haku ei löytänyt äärellisiä arvoja, joilla poikkeama häviäisi kaikilla säteillä. Poikkeama oli samanmerkkinen koko hakualueella, ja se lähestyi nollaa vain, kun vakiot kasvoivat rajatta. Ensimmäisen kertaluvun upotus on siis tällä yritteellä mielivaltaisen tarkka mutta ei tarkka. Haku on numeerinen eikä todistus.
+
+Kierrosluku rajoittaa myös pyörimisen suuruutta. Cauchyn–Schwarzin epäyhtälöstä seuraa täsmällinen raja
+
+$$
+g_{t\varphi}^2\ \le\ \tfrac14\,(\lambda^2-g_{tt})\,R^2n^2 .
+$$
+
+Arvolla $\lambda=1$ raja on $a\sin^2\theta\le nR\sqrt{r/8m}$, joten $n=1$ sallii silloin vain pyörimisen, jonka $a$ on $CP_2$:n säteen suuruusluokkaa. Auringon massaisen mustan aukon $a$ on kilometrin luokkaa. Se vaatisi joko kierrosluvun $n\sim10^{34}$, jonka ehto $n^2=1$ kieltää, tai vakion $\lambda\sim10^{34}$. Jälkimmäisessä tapauksessa komponentin $g_{rr}$ poikkeama on suuruusluokkaa $R^2/m^2$ eli noin $10^{-70}$, ja $M^4$:n aika $m^0=\lambda t$ kulkee pinnan aikaan nähden tekijän $\lambda$ verran nopeammin. Tämän tulkinta kuuluu Pitkäselle.
+
+**Toisessa kertaluvussa upotus kaatuu myös likimääräisenä.** Ensimmäisen kertaluvun poikkeama häviää rajalla, jossa $R$ lähestyy nollaa ja tulo $\lambda R$ pysyy äärellisenä. Tällä rajalla upotusyhtälöt supistuvat yhdeksi yhtälöksi
+
+$$
+\frac{\Sigma}{\Delta}\,dr^2+\Sigma\,d\theta^2=d\rho^2+dz^2+\frac{N^2}{k^2}\,d\Gamma^2+c(g_{t\varphi})\,dg_{t\varphi}^2,\qquad N^2=\frac{\Delta\Sigma}{A}.
+$$
+
+Vasen puoli on Kerrin metriikan $(r,\theta)$-osa, ja $\rho^2=-g_{\varphi\varphi}$. Vapaita ovat funktio $z(r,\theta)$ ja kaksi yhden muuttujan funktiota. Funktio $\Gamma$ riippuu vain kulmanopeudesta $\omega_K=-g_{t\varphi}/g_{\varphi\varphi}$, ja funktio $c\ge0$ riippuu vain komponentista $g_{t\varphi}$. Kertaluvuissa $a^0$ ja $a^1$ yhtälö ratkeaa. Kertaluvussa $a^2$ se vaatii, että
+
+$$
+c_2=\frac{5r^2p_0+r\tilde G(r)}{3\,(3rp_0-4m)^2},\qquad p_0=\frac{2m\sin^2\theta}{r},
+$$
+
+on pelkän $p_0$:n funktio jollakin vapaalla funktiolla $\tilde G(r)$. Tämä on mahdotonta jokaisella avoimella alueella, koska ehto antaa $r\tilde G=C$ ja $-40m-6C/r=0$ kaikilla $r$. Toisen kertaluvun poikkeama ei siis pienene $R$:n mukana, vaan on suuruusluokkaa $a^2/m^2$.
+
+Supistetun yhtälön johto on tehty käsin, ja se on aineiston tiedostossa `johto-toinen-kertaluku.md`. Riippumaton tarkistus Codexilla vahvisti tarkat yhtälöt, kertoimen $N^2/k^2$, lausekkeen $c_2$ ja esteen tämän kehitelmän sisällä. Tarkistuksen mukaan supistus pätee vain säännöllisellä haaralla, jolla $CP_2$-kuvauksen derivaatat pysyvät rajoitettuina. Tulos olettaa kierrosluvun $n=1$, potenssisarjan parametrin $a$ suhteen ja lähtökohdaksi pallosymmetrisen Schwarzschildin upotuksen.
+
+Supistettu yhtälö testattiin myös äärellisellä $a$:lla ilman kehitelmää. Yhtälön vasemman ja oikean puolen erotuksen determinantin on hävittävä, ja tästä seuraa ehto $\gamma'=\alpha+\beta\gamma+\delta\gamma^2$, jossa $\gamma=\Gamma'^2/k^2$ ja kertoimet lasketaan Kerrin metriikasta. Lukujen $\gamma$ ja $\gamma'$ on oltava samat kaikissa pisteissä, joissa $\omega_K$ on sama. Ehto jäi toteutumatta kaikilla testatuilla arvoilla $a/m=0{,}05\dots0{,}9$. Suhteellinen jäännös on noin $4\cdot10^{-5}$ arvolla $a/m=0{,}9$ ja pienenee otosalueella kuten $a^4$. Testi ei oleta potenssisarjaa, Schwarzschildin lähtökohtaa eikä $CP_2$-käyrän haaraa. Codex vahvisti ehdon johdon ja toisti jäännökset. Metriikan pienintä mahdollista poikkeamaa ei ole vielä laskettu, joten jäännöksen pienuudesta ei voi vielä päätellä, kuinka tarkka likimääräinen upotus on.
+
+**Puskutyyppinen upotus kattaa horisontin mutta ei pyöri.** Toisessa yritteessä ajan siirto on $M^4$:n Lorentz-pusku tasossa $(m^0,z)$. Fronsdalin upotus vuodelta 1959 on tätä tyyppiä, ja se siirtyy $H$:hon $CP_2$:n laakean Cliffordin toruksen $\lvert\xi^1\rvert=\lvert\xi^2\rvert=1$ kautta. Upotus on
+
+$$
+m^0=\sigma\sinh\frac{t}{4m},\qquad z=\sigma\cosh\frac{t}{4m},\qquad \sigma=4m\sqrt{1-\frac{2m}{r}},
+$$
+
+ja koordinaatit $x$ ja $y$ ovat $r\sin\theta\cos\varphi$ ja $r\sin\theta\sin\varphi$. Toruksen kaksi laakeaa koordinaattia ovat $r\cos\theta$ ja funktio $Z(r)$, jolle
+
+$$
+Z'^2=\frac{2m}{r}\Bigl(1+\frac{2m}{r}+\frac{4m^2}{r^2}\Bigr).
+$$
+
+Indusoitu metriikka on Schwarzschildin metriikka, ja $Z'$ on äärellinen horisontilla. Testi vahvistaa tämän. Toruksen kulmat kiertyvät monta kertaa, joten kuvaus on immersio eikä yksi yhteen.
+
+Tätä upotusta ei saa pyörimään symmetriaa noudattavalla yritteellä. Molemmissa yritteissä pätee
+
+$$
+g_{t\varphi}=-\Omega\rho^2-R^2\,s(K_\omega,K_n),
+$$
+
+jossa $\rho$ on etäisyys $M^4$:n akselista, $\Omega$ on jäykän kierron kulmanopeus ja $K_\omega$ ja $K_n$ ovat ajan ja kulman siirtoihin liitetyt $CP_2$:n kierrot. Akselilla $g_{\varphi\varphi}=0$, joten $K_n$ häviää akselin $CP_2$-kuvalla. $CP_2$:n kierron nollakohdat ovat joko yksi kompleksinen suora ja yksi piste tai kolme pistettä. Kompleksinen suora leikkaa Cliffordin toruksen pisteissä tai ympyrässä, joka on toruksen laakeissa koordinaateissa suora. Akselin kuva on toruksella käyrä $(Z(r),\pm r)$, joka ei ole suora. Siksi $K_n=0$, ja jäljelle jää jäykkä kierto $g_{t\varphi}=-\Omega\rho^2$, joka ei ole Kerrin termi. Tämä päättely on tehty käsin, eikä se ole testinä.
+
+Tulos koskee vain näitä yritteitä, ja sillä on kolme rajaa:
+
+- Puskutyyppisistä upotuksista on tutkittu vain Cliffordin toruksen kautta kulkeva. Muut puskutyyppiset Schwarzschildin upotukset ovat luokittelematta.
+- Upotus, joka ei noudata metriikan symmetrioita, on testaamatta.
+- Laskut ovat kehitelmiä parametrin $a$ suhteen Schwarzschildin upotuksen ympärillä, joten ne eivät sulje pois upotusta, joka ei lähesty Schwarzschildin upotusta, kun $a$ lähestyy nollaa.
+
+Kerrin ensimmäisen kertaluvun lasku on tehty SymPy-skripteillä, jotka ovat aineiston kansiossa `laskut-2026-11-10-kerr`. Labin testinä ovat Schwarzschildin kaksi upotusta.
+
+**Tutkimuksen tila 10.11.2026.** Työ on toistaiseksi pysäytetty tähän ([#42](https://github.com/markomanninen/tgd-geometry-lab/issues/42)). Tähän asti on tutkittu seuraavat asiat:
+
+| Kysymys | Tulos | Varmuus |
+|---|---|---|
+| Schwarzschild Pitkäsen yritteellä | Upottuu kriittisen säteen ulkopuolella | Labin testi |
+| Schwarzschild puskutyyppisellä yritteellä | Upottuu Cliffordin toruksen kautta myös horisontilla | Labin testi |
+| Kerr, kertaluku $a^1$, symmetriaa noudattava yrite | Upottuu likimäärin, poikkeama on verrannollinen suureeseen $R/\lambda$ | SymPy-lasku, numeerinen |
+| Kerr, kertaluku $a^2$, raja $R\to0$ | Ei upotu | Käsin tehty johto, Codexin tarkistama |
+| Kerr, äärellinen $a$, raja $R\to0$ | Välttämätön ehto ei toteudu testatuissa pisteissä | Numeerinen, Codexin toistama |
+| Puskutyyppinen upotus pyörivänä | Cliffordin toruksen upotus ei pyöri | Käsin tehty päättely |
+| Yleinen todistus kirjallisuudessa | Ei löytynyt avaruudelle $H$ eikä kahdeksalle laakealle ulottuvuudelle | Kaksi hakua, ei kattava |
+
+Mahdolliset jatkosuunnat ovat nämä:
+
+- Metriikan pienin mahdollinen poikkeama supistetussa yhtälössä äärellisellä $a$:lla. Se kertoisi, kuinka tarkka likimääräinen upotus on nopeasti pyörivälle mustalle aukolle.
+- Toinen $R$:n skaalaus, jossa $CP_2$-koordinaatit vaihtelevat $CP_2$:n pituusskaalassa. Silloin termi $R^2G_{AB}$ ei häviä rajalla, ja yhtälössä on enemmän vapautta.
+- Muut puskutyyppiset Schwarzschildin upotukset ja niiden pyörivät versiot.
+- Symmetriaa noudattamattomat upotukset Gaussin, Codazzin ja Riccin yhtälöiden kautta. Tämä on sama kuin yleinen todistus.
+- Kerrin ensimmäisen ja toisen kertaluvun laskujen vienti labin Maxima-testeiksi.
+- Kirjallisuuden varmistus. Luettavana ovat Stephanin ja muiden kirjan luku 37 ja Van den Bergh (1996), ja Sheykiniltä ja Pastonilta voi kysyä, onko Kerrin upotus seitsemään tai kahdeksaan laakeaan ulottuvuuteen ratkaistu.
+- Pitkäsen monilehtinen kuva. Havaittava metriikka on siinä usean lehden poikkeamien summa, jota kahdeksan ulottuvuuden raja ei sido. Auki on, saadaanko Kerrin metriikka näin.
+
+Pitkäselle kuuluvat kysymykset ovat, vaatiiko TGD tarkan upotuksen, mitä vakio $\lambda\sim10^{34}$ tarkoittaisi ja miten pyörivä musta aukko kuvataan, jos Kerrin metriikka ei upotu yhdelle pinnalle.
+
 ## Avoimet kysymykset
 
 Pitkäsen vastaukset 31.10.–8.11.2026 ratkaisivat massattoman ekstremaalin aseman, H-H:n muodon, tilavuustermin merkityksen kenttäyhtälöille, $J(M^4)$:n paikan erillisenä terminä, kertoimien etumerkit ja kaarevuusskalaarin aseman. Pitkänen hyväksyy, että H-H ei toteuta Kähler-vaikutuksen kenttäyhtälöitä ilman lisäoletusta, ja jättää kaarevuusskalaarin pois vaikutuksesta. Säieradoilta ja partonipinnoilta hän ei vaadi minimaalisuutta. Laskennan perusteella auki on kolme kysymystä ([#35](https://github.com/markomanninen/tgd-geometry-lab/issues/35)):

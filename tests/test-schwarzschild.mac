@@ -1,0 +1,75 @@
+/* Schwarzschild metric as an induced metric (issue #42).
+   Pitkanen's spherically symmetric ansatz (Btgdclass1, section 7.3.3) in the lab chart:
+     m^0 = lam t + h(r),  M^4 point in spherical coordinates (r, th, ph),
+     xi^1 = s1(r) exp(i (om t + f(r))),  xi^2 = 0.
+   The CP_2 projection lies on the sphere xi^2 = 0, on which
+     ds^2 = (ds1^2 + s1^2 dPhi^2)/(1 + s1^2)^2   with cp2_R2 = 1. */
+section("tgd/schwarzschild: Schwarzschild metric as an induced metric")$
+depends([sws_h, sws_f, sws_s], sws_r)$
+declare([sws_t, sws_r, sws_th, sws_ph, sws_lam, sws_om, sws_m], real)$
+sws_xi : [sws_t, sws_r, sws_th, sws_ph]$
+sws_emb : [sws_lam*sws_t + sws_h,
+           sws_r*sin(sws_th)*cos(sws_ph), sws_r*sin(sws_th)*sin(sws_ph), sws_r*cos(sws_th),
+           sws_s*cos(sws_om*sws_t + sws_f), sws_s*sin(sws_om*sws_t + sws_f), 0, 0]$
+sws_g : trigsimp(induced_metric(H_metric(), H_X, sws_emb, sws_xi))$
+sws_H : sws_s^2/(1 + sws_s^2)^2$
+sws_dh : 'diff(sws_h, sws_r)$
+sws_df : 'diff(sws_f, sws_r)$
+sws_ds : 'diff(sws_s, sws_r)$
+check("ansatz: g_tt = lam^2 - om^2 s1^2/(1+s1^2)^2",
+      is(tgd_simp(sws_g[1,1] - (sws_lam^2 - sws_om^2*sws_H)) = 0))$
+check("ansatz: g_tr = lam h' - om f' s1^2/(1+s1^2)^2",
+      is(tgd_simp(sws_g[1,2] - (sws_lam*sws_dh - sws_om*sws_H*sws_df)) = 0))$
+check("ansatz: g_rr = h'^2 - 1 - (s1'^2 + s1^2 f'^2)/(1+s1^2)^2",
+      is(tgd_simp(sws_g[2,2] - (sws_dh^2 - 1 - (sws_ds^2 + sws_s^2*sws_df^2)/(1 + sws_s^2)^2)) = 0))$
+check("ansatz: the angular part is that of flat space and the other components vanish",
+      is(tgd_simp(sws_g[3,3] + sws_r^2) = 0) and is(trigsimp(sws_g[4,4] + sws_r^2*sin(sws_th)^2) = 0)
+      and is(sws_g[1,3] = 0) and is(sws_g[1,4] = 0) and is(sws_g[2,3] = 0)
+      and is(sws_g[2,4] = 0) and is(sws_g[3,4] = 0))$
+/* three conditions: g_tt = 1 - 2m/r fixes s1(r), g_tr = 0 fixes f', g_rr = -1/(1 - 2m/r) fixes h'^2 */
+sws_gt : sws_lam^2 - sws_om^2*sws_H$
+sws_mval : sws_r*(1 - sws_gt)/2$                       /* 2m/r = 1 - g_tt */
+sws_dHds : diff(sws_H, sws_s)$
+sws_dsval : -2*sws_mval/(sws_r^2*sws_om^2*sws_dHds)$   /* r-derivative of om^2 H(s1) = lam^2 - 1 + 2m/r */
+sws_dfval : sws_lam*sws_dh/(sws_om*sws_H)$
+sws_dh2val : (sws_om^2*sws_H/sws_gt)*((1 - sws_gt)/sws_gt - sws_dsval^2/(1 + sws_s^2)^2)$
+sws_grr : subst(sws_dfval, sws_df, sws_g[2,2])$
+sws_grr : ratsubst(sws_dh2val, sws_dh^2, sws_grr)$
+sws_grr : subst(sws_dsval, sws_ds, sws_grr)$
+check("with the three conditions g_tr = 0",
+      is(tgd_simp(subst(sws_dfval, sws_df, sws_g[1,2])) = 0))$
+check("with the three conditions g_rr = -1/(1 - 2m/r)",
+      is(tgd_simp(sws_grr + 1/sws_gt) = 0))$
+/* range: H(s1) <= 1/4, so om^2/4 >= lam^2 - 1 + 2m/r, and h'^2 >= 0 */
+check("range: H(s1) has its maximum 1/4 at s1 = 1",
+      is(subst(sws_s = 1, sws_H) = 1/4) and is(subst(sws_s = 1, sws_dHds) = 0))$
+check("range: for lam = 1 the embedding stops at r = 8m/om^2",
+      is(tgd_simp(subst([sws_s = 1, sws_lam = 1], sws_mval) - sws_r*sws_om^2/8) = 0))$
+sws_num : [sws_lam = 1, sws_om = 2, sws_r = 10]$
+sws_sv : find_root(subst(sws_num, sws_mval) - 1, sws_s, 0.01, 0.99)$
+check("example lam = 1, om = 2, m = 1, r = 10: h'^2 > 0",
+      is(float(subst(sws_s = sws_sv, subst(sws_num, sws_dh2val))) > 0))$
+/* Boost-type embedding (Fronsdal 1959) carried to H through the flat Clifford torus
+   |xi^1| = |xi^2| = 1 of CP_2.  The time translation of the surface is a Lorentz boost
+   of the (m^0, z) plane.  On the torus ds^2 = (2 dP1^2 - 2 dP1 dP2 + 2 dP2^2)/9, and
+   P1 = A Y1 + B Y2, P2 = -A Y1 + B Y2 with A = sqrt(3/2), B = 3/sqrt(2) gives dY1^2 + dY2^2. */
+depends(swf_Z, sws_r)$
+assume(sws_m > 0, sws_r > 2*sws_m)$
+swf_sig : 4*sws_m*sqrt(1 - 2*sws_m/sws_r)$
+swf_A : sqrt(3/2)$
+swf_B : 3/sqrt(2)$
+swf_P1 : swf_A*swf_Z + swf_B*sws_r*cos(sws_th)$
+swf_P2 : -swf_A*swf_Z + swf_B*sws_r*cos(sws_th)$
+swf_emb : [swf_sig*sinh(sws_t/(4*sws_m)), sws_r*sin(sws_th)*cos(sws_ph), sws_r*sin(sws_th)*sin(sws_ph),
+           swf_sig*cosh(sws_t/(4*sws_m)), cos(swf_P1), sin(swf_P1), cos(swf_P2), sin(swf_P2)]$
+swf_g : trigsimp(induced_metric(H_metric(), H_X, swf_emb, sws_xi))$
+swf_dZ2 : (2*sws_m/sws_r)*(1 + 2*sws_m/sws_r + 4*sws_m^2/sws_r^2)$
+check("boost type: g_tt = 1 - 2m/r", is(tgd_simp(swf_g[1,1] - (1 - 2*sws_m/sws_r)) = 0))$
+check("boost type: g_rr = -1/(1 - 2m/r) when Z'^2 = (2m/r)(1 + 2m/r + 4m^2/r^2)",
+      is(tgd_simp(ratsubst(swf_dZ2, 'diff(swf_Z, sws_r)^2, swf_g[2,2]) + 1/(1 - 2*sws_m/sws_r)) = 0))$
+check("boost type: the angular part is that of Schwarzschild and the metric is diagonal",
+      is(tgd_simp(swf_g[3,3] + sws_r^2) = 0) and is(trigsimp(swf_g[4,4] + sws_r^2*sin(sws_th)^2) = 0)
+      and is(tgd_simp(swf_g[1,2]) = 0) and is(swf_g[1,3] = 0) and is(swf_g[1,4] = 0)
+      and is(tgd_simp(swf_g[2,3]) = 0) and is(swf_g[2,4] = 0) and is(swf_g[3,4] = 0))$
+check("boost type: Z'^2 stays positive and finite at the horizon r = 2m",
+      is(subst(sws_r = 2*sws_m, swf_dZ2) = 3))$
