@@ -1,43 +1,43 @@
 # TGD Geometry Software Lab – ohjeet agentille
 
-Symbolinen differentiaaligeometria Maximalla TGD:lle. Kieli: dokumentit ja issuet suomeksi, koodikommentit englanniksi.
+Projekti tekee symbolista differentiaaligeometriaa Maximalla TGD:lle. Dokumentit ja issuet kirjoitetaan suomeksi ja koodikommentit englanniksi.
 
 ## Ennen muutoksia
-- Lue `docs/konventiot.md` (etumerkit, normalisoinnit, indeksijärjestys). Älä muuta konventioita ilman, että päivität testit ja dokumentin samassa muutoksessa.
+- Lue `docs/konventiot.md` (etumerkit, normalisoinnit, indeksijärjestys). Kun muutat konventiota, päivitä testit ja dokumentti samassa muutoksessa.
 - Tehtävät ovat GitHub-issueita ja milestoneja M1–M8 (`docs/seuranta.md`). Työskentele issuen "Valmis kun" -ehtoa vastaan.
 
 ## Paikallinen ympäristö (macOS)
-- `brew install maxima` (5.50), Prodanovin clifford kloonattuna repon viereen: `../clifford`.
-- Homebrew-polku: `export PATH=/opt/homebrew/bin:$PATH`.
-- Maxima 5.50 käyttää hakupolkumalleissa `###`, vanhemmat `$$$` – lataa paketit täydellä polulla (`tgd_load_clifford`).
+- Asenna Maxima komennolla `brew install maxima` (5.50) ja kloonaa Prodanovin clifford repon viereen hakemistoon `../clifford`.
+- Lisää Homebrew polkuun komennolla `export PATH=/opt/homebrew/bin:$PATH`.
+- Maxima 5.50 käyttää hakupolkumalleissa merkkejä `###` ja vanhemmat versiot merkkejä `$$$`, joten lataa paketit täydellä polulla (`tgd_load_clifford`).
 
 ## Testit
-- `./scripts/run_tests.sh ../clifford` (Prodanovin clifford-checkout valinnainen). Kaikkien testien on mentävä läpi ennen committia.
-- Uusi ominaisuus → ensin testi tunnetulla identiteetillä tai vertailuarvolla (`tests/test-*.mac`, `check(nimi, ehto)`), lisää tiedosto `tests/run-all.mac`:n listaan.
-- Maxima 5.46: `getenv` puuttuu – polut annetaan muuttujina (`tgd_root`, `clifford_path`). `rules` on varattu nimi.
-- Funktioiden yhdistelmäargumentit (`f(t-z)`) eivät derivoidu ketjusäännöllä luotettavasti → käytä `depends` + sopivia parametreja (vrt. valokartiokoordinaatit testissä).
+- Aja testit komennolla `./scripts/run_tests.sh ../clifford`, jossa Prodanovin clifford-checkout on valinnainen. Kaikkien testien on mentävä läpi ennen committia.
+- Kirjoita uudelle ominaisuudelle ensin testi tunnetulla identiteetillä tai vertailuarvolla (`tests/test-*.mac`, `check(nimi, ehto)`) ja lisää tiedosto `tests/run-all.mac`:n listaan.
+- Maxima 5.46:sta puuttuu `getenv`, joten anna polut muuttujina (`tgd_root`, `clifford_path`). Nimi `rules` on varattu, joten käytä muuttujille muita nimiä.
+- Yhdistelmäargumentit kuten `f(t-z)` derivoituvat ketjusäännöllä epäluotettavasti, joten käytä `depends`-määrittelyä ja sopivia parametreja (vrt. valokartiokoordinaatit testissä).
 
 ## Rakenne
 - Moduulit ladataan `tgd-lab.mac`:ssa, ja uusi moduuli lisätään sinne.
-- Colab-kirjat generoidaan: `python3 scripts/build_notebooks.py`, sitten aja ne (`jupyter nbconvert --execute --inplace`, `TGD_ROOT`, `CLIFFORD_PATH`, `RUN_LANYON=0`) ja tarkista, ettei tulosteisiin jää paikallisia polkuja.
+- Generoi Colab-kirjat komennolla `python3 scripts/build_notebooks.py` ja aja ne sitten (`jupyter nbconvert --execute --inplace`, `TGD_ROOT`, `CLIFFORD_PATH`, `RUN_LANYON=0`). Tarkista lopuksi, että tulosteissa on vain yleisiä polkuja.
 
 ## Sivusto
-- Julkinen sivusto: <https://markomanninen.github.io/tgd-geometry-lab/> (MkDocs Material, MathJax). `docs/` on sen sisältö, ja `.github/workflows/pages.yml` julkaisee sen `main`-haarasta.
-- Paikallinen rakennus: `pip install -r docs/requirements.txt`, sitten `./scripts/build_site.sh --strict`. Rakennuksen on mentävä läpi virheittä.
-- Kirjoita dokumentit sivustolle. Jokainen määritelmä saa oman lauseensa, ja tärkeä kaava saa oman rivinsä (`$$`). Älä ahda kaavoja luettelokohtiin.
-- Kirjoita kokonaisia, sujuvia virkkeitä. Puolipistettä ei käytetä proosassa lainkaan. Kaksoispiste kuuluu vain listalohkon edelle, ei proosaan, otsikkoon, taulukon soluun eikä lihavoidun aloituksen jälkeen. Suomen taivutuskaksoispiste (`CP2:n`) on eri asia. Sääntö koskee myös explainerien tekstejä, sähköposteja ja issueita. Älä käytä taulukon kaavoissa `|`-merkkiä, vaan `\lvert`/`\rvert`.
+- Julkinen sivusto on osoitteessa <https://markomanninen.github.io/tgd-geometry-lab/> (MkDocs Material, MathJax). `docs/` on sen sisältö, ja `.github/workflows/pages.yml` julkaisee sen `main`-haarasta.
+- Rakenna sivusto paikallisesti komennoilla `pip install -r docs/requirements.txt` ja `./scripts/build_site.sh --strict`. Rakennuksen on mentävä läpi virheittä.
+- Kirjoita dokumentit sivustolle. Jokainen määritelmä saa oman lauseensa, ja tärkeä kaava saa oman rivinsä (`$$`). Kirjoita kaavat tekstiin tai omille riveilleen, ja pidä luettelokohdat lyhyinä sanallisina kohtina.
+- Kirjoita kokonaisia, sujuvia virkkeitä. Kun ajatus vaatisi puolipisteen, jaa se kahdeksi virkkeeksi tai yhdistä se konjunktiolla. Käytä kaksoispistettä vain listalohkon edellä, ja kirjoita otsikot, taulukon solut ja lihavoidut aloitukset ilman sitä. Suomen taivutuskaksoispiste (`CP2:n`) on eri asia. Sääntö koskee myös explainerien tekstejä, sähköposteja ja issueita. Kirjoita taulukon kaavoissa itseisarvon viivat merkinnöillä `\lvert` ja `\rvert`.
 - Merkittävät tulokset kootaan `docs/tulokset.md`:hen.
-- **Explainerit:** julkaistava sisältö tulee hakemistoon `docs/explainerit/` (`index.md` ensin). Sivusto lisää Explainerit-osion navigaatioon automaattisesti, joten `mkdocs.yml`:ää ei tarvitse muuttaa.
-- **Videot:** YouTube, kanava Marko T. Manninen (`@markotmanninen`), soittolista *TGD Geometry Lab – explainerit* (`PLXsgqiwlSYA8`). Uusi video ladataan yksityisenä, ja Marko päättää julkisuusasetuksen. Tekstitys ladataan YouTube Studiossa (*Kielet* → *Muokkaa tekstityksiä* → *Lähetä tiedosto*), koska latausskriptin tunnuksella ei ole tekstitysoikeutta. Isoja videotiedostoja ei tallenneta repoon. Sivustolle video upotetaan YouTube-linkillä, mikä vaatii vähintään asetuksen *unlisted*.
+- Julkaistavat explainerit tulevat hakemistoon `docs/explainerit/`, ja `index.md` on niistä ensimmäinen. Sivusto lisää Explainerit-osion navigaatioon automaattisesti, joten `mkdocs.yml` pysyy ennallaan.
+- Videot julkaistaan YouTubessa kanavalla Marko T. Manninen (`@markotmanninen`) soittolistalla *TGD Geometry Lab – explainerit* (`PLXsgqiwlSYA8`). Uusi video ladataan yksityisenä, ja Marko päättää julkisuusasetuksen. Tekstitys ladataan YouTube Studiossa (*Kielet* → *Muokkaa tekstityksiä* → *Lähetä tiedosto*), koska latausskriptin tunnuksella ei ole tekstitysoikeutta. Isot videotiedostot säilytetään repon ulkopuolella. Sivustolle video upotetaan YouTube-linkillä, mikä vaatii vähintään asetuksen *unlisted*.
 
 ## Seuranta
-- Commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
+- Kirjoita commit-viestiin `Closes #N`. Päivitä tilamerkintä (✅/🟡/⬜) `docs/kehityssuunnitelma.md`:hen ja `docs/seuranta.md`:n tilataulukkoon.
 
 ## Yhteistyö
-- Projekti tehdään yhdessä Matti Pitkäsen kanssa. Hän on teoreettisen fysiikan tohtori ja on kehittänyt TGD:tä 1980-luvun alusta lähtien. **Ensin tutkitaan itse:** etsi vastaus Pitkäsen julkaisuista (arXiv, tgdtheory.fi, ResearchGate, matpitka.blogspot.com) ja vahvista se mahdollisuuksien mukaan testillä (esim. tunnettu numeroarvo). Matille kysytään vain se, mikä jää tutkimuksen jälkeen avoimeksi – Claude ei ratkaise TGD:n fysikaalista tulkintaa itse.
+- Projekti tehdään yhdessä Matti Pitkäsen kanssa. Hän on teoreettisen fysiikan tohtori ja on kehittänyt TGD:tä 1980-luvun alusta lähtien. Tutki ensin itse. Etsi vastaus Pitkäsen julkaisuista (arXiv, tgdtheory.fi, ResearchGate, matpitka.blogspot.com) ja vahvista se mahdollisuuksien mukaan testillä, esimerkiksi tunnetulla numeroarvolla. Matilta kysytään vain se, mikä jää tutkimuksen jälkeen avoimeksi, ja TGD:n fysikaalisen tulkinnan ratkaisevat Matti ja Marko.
 - Kun `päätös`-issue tarvitsee Matin linjausta, muotoile kysymys issueen niin, että Marko voi välittää sen sähköpostilla. Kun vastaus tulee, kirjaa se issueen ja `docs/konventiot.md`:hen ja lisää vastaava testi.
 
 ## Itsenäinen eteneminen ja päätöspisteet
-- Etene milestone-järjestyksessä kriittistä polkua pitkin (`docs/seuranta.md`). Puhtaasti matemaattiset issuet (tunnettu identiteetti testinä) saa tehdä itsenäisesti.
-- Issue, jolla on tunniste **`päätös`**, vaatii Markon valinnan tai materiaalin: tee esityö (vaihtoehdot, vertailulaskut), kirjaa ne issueen kommenttina ja **pysähdy** – älä valitse konventiota tai fysikaalista tulkintaa itse.
-- Jos symbolinen lasku ei valmistu kohtuuajassa (> 10 min) tai vaatii arkkitehtuurimuutoksen, kirjaa havainto issueen ja kysy ennen suurta refaktorointia.
+- Etene milestone-järjestyksessä kriittistä polkua pitkin (`docs/seuranta.md`). Puhtaasti matemaattiset issuet, joissa tunnettu identiteetti toimii testinä, saa tehdä itsenäisesti.
+- Issue, jolla on tunniste **`päätös`**, vaatii Markon valinnan tai materiaalin. Tee esityö (vaihtoehdot, vertailulaskut), kirjaa se issueen kommenttina ja pysähdy, jotta Marko valitsee konvention tai fysikaalisen tulkinnan.
+- Jos symbolinen lasku kestää yli 10 minuuttia tai vaatii arkkitehtuurimuutoksen, kirjaa havainto issueen ja kysy ennen suurta refaktorointia.
