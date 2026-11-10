@@ -308,7 +308,7 @@ Jakson kysymys on, mitä Einsteinin teorian ratkaisuja TGD rajaa pois ja kuvaava
 | Aikakoneratkaisut, kuten Gödelin universumi | Ei | Rajautuvat pois |
 | Schwarzschildin metriikka eli pyörimätön massa | Kyllä, planeettojen radat ja valon taipuminen | Upottuu |
 | Avaruuden kiertyminen pyörivän massan mukana, kertaluku $a^1$ | Kyllä, Gravity Probe B ja LAGEOS-satelliitit | Upottuu likimäärin, poikkeama noin $R^2/m^2$ |
-| Kerrin metriikan $a^2$-termit eli nopeasti pyörivä musta aukko | Kyllä, gravitaatioaallot ja röntgenhavainnot | Ei upotu tarkasti testatulla yritteellä |
+| Kerrin metriikan $a^2$-termit eli nopeasti pyörivä musta aukko | Kyllä, gravitaatioaallot ja röntgenhavainnot | Ei upotu tarkasti testatulla yritteellä. Saadaan viiden lehden koottuna metriikkana |
 | Ikuisesti kriittinen tai ylikriittinen kosmologia | Osittain, havaittu maailmankaikkeus on lähes laakea | Pitkäsen mukaan upottuu vain äärellisen ajan |
 
 Aikakoneratkaisut rajautuvat pois, koska pinnalla ajankaltaisen käyrän $M^4$-projektio on ajankaltainen ja $M^4$:n aika kasvaa sillä koko ajan. Kosmologian rivi on Pitkäsen teksteistä (*Btgdclass1*, PDF s. 333 ja 415), eikä sitä ole laskettu tässä.
@@ -422,6 +422,33 @@ Tulos koskee vain näitä yritteitä, ja sillä on kolme rajaa:
 
 Kerrin ensimmäisen kertaluvun lasku on tehty SymPy-skripteillä, jotka ovat aineiston kansiossa `laskut-2026-11-10-kerr`. Labin testinä ovat Schwarzschildin kaksi upotusta.
 
+**Kerrin metriikka saadaan viiden lehden koottuna metriikkana.** Pitkäsen mukaan Einsteinin teorian rajan ei tarvitse upota yhdelle pinnalle, vaan havaittava metriikka on lehtien poikkeamien summa (*Btgdclass1*, PDF s. 334 ja 337, ja yleiskatsaus *TGD2024I*, luku 2). Lehden poikkeama on $CP_2$:n metriikan vetäisy miinusmerkillä, joten erotuksen $P=\eta-g$ on oltava positiivisesti semidefiniittien vetäisyjen summa. Kun Boyerin–Lindquistin koordinaatit $(t,r,\theta,\varphi)$ samastetaan $M^4$:n pallokoordinaatteihin, Kerrin metriikalle pätee täsmälleen
+
+$$
+\eta-g=p_t\,dt^2+p_5\,(dt-a\,d\varphi)^2+p_r\,dr^2+p_\theta\,d\theta^2+p_\varphi\,d\varphi^2,
+$$
+
+$$
+p_t=\frac{2mr\cos^2\theta}{\Sigma},\quad p_5=\frac{2mr\sin^2\theta}{\Sigma},\quad p_r=\frac{2mr-a^2\sin^2\theta}{\Delta},\quad p_\theta=a^2\cos^2\theta,\quad p_\varphi=\frac{a^2\sin^2\theta\,(r^2\sin^2\theta+\Delta\cos^2\theta)}{\Sigma}.
+$$
+
+Kaikki viisi kerrointa ovat ei-negatiivisia horisontin ulkopuolella, kun $a\le m$. Jokainen termi $p\,dq^2$ saadaan lehdestä, jonka $CP_2$-koordinaatit kiertävät ympyrää,
+
+$$
+\xi=\frac{\sqrt p}{k}\,e^{ikq},
+$$
+
+sillä tämän lehden vetäisy on $(p\,dq^2+(d\sqrt p)^2/k^2)/(1+p/k^2)^2$. Viiden lehden koottu metriikka on $CP_2$:n origon lähellä Kerrin metriikka vähennettynä termillä $\sum_j(d\sqrt{p_j})^2/k^2$, joka häviää, kun $k$ kasvaa. Sama rakenne antoi aiemmin Newtonin kentän kahdesta lehdestä. Testit ovat tiedostossa `tests/test-kerr-sheets.mac`.
+
+Rakenteella on neljä rajaa:
+
+- Kulma $\varphi$ on jaksollinen, joten lehdet ovat yksikäsitteisiä vain, kun termin $d\varphi^2$ aaltoluku $k$ ja termin $(dt-a\,d\varphi)^2$ tulo $ka$ ovat kokonaislukuja.
+- Kerroin $p_r$ kasvaa rajatta horisontilla, koska Boyerin–Lindquistin koordinaatit ovat siellä singulaariset. Rakenne kattaa vain horisontin ulkopuolen.
+- Lehdiltä ei ole vaadittu kenttäyhtälöitä. Ympyrärakenteen lehti ei ole minimaalipinta, kuten Newtonin kentän testi jo totesi.
+- Summasääntö on Pitkäsen postulaatti, jota ei ole johdettu kenttäyhtälöistä.
+
+Yhden pinnan upotus ja lehtien summa ovat siis eri kysymyksiä. Yhden pinnan upotuksena Kerrin metriikka kaatuu testatulla yritteellä toisessa kertaluvussa. Lehtien summana se saadaan mielivaltaisen tarkasti.
+
 **Tutkimuksen tila 10.11.2026.** Työ on toistaiseksi pysäytetty tähän ([#42](https://github.com/markomanninen/tgd-geometry-lab/issues/42)). Tähän asti on tutkittu seuraavat asiat:
 
 | Kysymys | Tulos | Varmuus |
@@ -432,6 +459,7 @@ Kerrin ensimmäisen kertaluvun lasku on tehty SymPy-skripteillä, jotka ovat ain
 | Kerr, kertaluku $a^2$, raja $R\to0$ | Ei upotu | Käsin tehty johto, Codexin tarkistama |
 | Kerr, äärellinen $a$, raja $R\to0$ | Välttämätön ehto ei toteudu testatuissa pisteissä | Numeerinen, Codexin toistama |
 | Puskutyyppinen upotus pyörivänä | Cliffordin toruksen upotus ei pyöri | Käsin tehty päättely |
+| Kerr lehtien koottuna metriikkana | Saadaan viidestä lehdestä virheellä, joka on verrannollinen lukuun $1/k^2$ | Labin testi |
 | Yleinen todistus kirjallisuudessa | Ei löytynyt avaruudelle $H$ eikä kahdeksalle laakealle ulottuvuudelle | Kaksi hakua, ei kattava |
 
 Mahdolliset jatkosuunnat ovat nämä:
@@ -442,7 +470,7 @@ Mahdolliset jatkosuunnat ovat nämä:
 - Symmetriaa noudattamattomat upotukset Gaussin, Codazzin ja Riccin yhtälöiden kautta. Tämä on sama kuin yleinen todistus.
 - Kerrin ensimmäisen ja toisen kertaluvun laskujen vienti labin Maxima-testeiksi.
 - Kirjallisuuden varmistus. Luettavana ovat Stephanin ja muiden kirjan luku 37 ja Van den Bergh (1996), ja Sheykiniltä ja Pastonilta voi kysyä, onko Kerrin upotus seitsemään tai kahdeksaan laakeaan ulottuvuuteen ratkaistu.
-- Pitkäsen monilehtinen kuva. Havaittava metriikka on siinä usean lehden poikkeamien summa, jota kahdeksan ulottuvuuden raja ei sido. Auki on, saadaanko Kerrin metriikka näin.
+- Pitkäsen monilehtinen kuva. Kerrin metriikka saadaan viidestä ympyrälehdestä, jotka eivät toteuta kenttäyhtälöitä. Auki on, saadaanko se lehdistä, jotka ovat kenttäyhtälöiden ratkaisuja, ja miten horisontti kuvataan.
 
 Pitkäselle kuuluvat kysymykset ovat, vaatiiko TGD tarkan upotuksen, mitä vakio $\lambda\sim10^{34}$ tarkoittaisi ja miten pyörivä musta aukko kuvataan, jos Kerrin metriikka ei upotu yhdelle pinnalle.
 

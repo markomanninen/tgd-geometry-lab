@@ -1,0 +1,63 @@
+/* Kerr exterior as a lump of space-time sheets (issue #42).
+   Pitkanen's recipe: g_eff = eta + sum of the deviations of the sheets, and the deviation of a
+   graph over M^4 is minus the pullback of the CP_2 metric, so P = eta - g_eff must be a sum of
+   positive semidefinite pullbacks.  The Boyer-Lindquist coordinates (t, r, th, ph) are identified
+   with spherical coordinates of M^4.  Then
+     P = p_t dt^2 + p_5 (dt - a dph)^2 + p_r dr^2 + p_th dth^2 + p_ph dph^2
+   with five non-negative functions outside the horizon, and each term p dq^2 is the pullback of
+   the circle pair (sqrt(p)/k) (cos k q, sin k q) up to (d sqrt p)^2/k^2. */
+section("tgd/kerr-sheets: Kerr exterior as a lump of sheets")$
+ks_null(v) := every(lambda([q], is(ratsimp(trigsimp(q)) = 0)), flatten(if matrixp(v) then args(v) else [v]))$
+declare([ks_m, ks_a, ks_k], real)$
+assume(ks_k > 0)$
+ks_X : sph_X$
+ks_eta : matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -r^2, 0], [0, 0, 0, -r^2*sin(th)^2])$
+ks_Sig : r^2 + ks_a^2*cos(th)^2$
+ks_Del : r^2 - 2*ks_m*r + ks_a^2$
+ks_gtp : 2*ks_m*ks_a*r*sin(th)^2/ks_Sig$
+ks_g : matrix([1 - 2*ks_m*r/ks_Sig, 0, 0, ks_gtp],
+              [0, -ks_Sig/ks_Del, 0, 0],
+              [0, 0, -ks_Sig, 0],
+              [ks_gtp, 0, 0, -(r^2 + ks_a^2 + 2*ks_m*ks_a^2*r*sin(th)^2/ks_Sig)*sin(th)^2])$
+ks_P : ks_eta - ks_g$
+ks_q : [t, t - ks_a*ph, r, th, ph]$
+ks_p : [2*ks_m*r*cos(th)^2/ks_Sig,
+        2*ks_m*r*sin(th)^2/ks_Sig,
+        (2*ks_m*r - ks_a^2*sin(th)^2)/ks_Del,
+        ks_a^2*cos(th)^2,
+        ks_a^2*sin(th)^2*(r^2*sin(th)^2 + ks_Del*cos(th)^2)/ks_Sig]$
+ks_grad(f) := makelist(diff(f, x), x, ks_X)$
+ks_sq(v) := genmatrix(lambda([i, j], v[i]*v[j]), 4, 4)$
+check("Kerr: eta - g = p_t dt^2 + p_5 (dt - a dph)^2 + p_r dr^2 + p_th dth^2 + p_ph dph^2",
+      ks_null(ks_P - sum(ks_p[j]*ks_sq(ks_grad(ks_q[j])), j, 1, 5)))$
+check("Kerr: p_t + p_5 = 1 - g_tt and p_r = Sigma/Delta - 1",
+      ks_null([ks_p[1] + ks_p[2] - (1 - ks_g[1,1]), ks_p[3] - (ks_Sig/ks_Del - 1)]))$
+/* signs: p_t, p_5, p_th are manifestly >= 0; p_r >= 0 since 2 m r >= 2 m^2 >= a^2 for r >= m >= a;
+   p_ph >= 0 since Delta >= 0 outside the horizon */
+check("Kerr: the numerator of p_r at r = m and sin(th) = 1 is m^2 + (m^2 - a^2), and it grows with r",
+      is(ratsimp(subst([r = ks_m, th = %pi/2], 2*ks_m*r - ks_a^2*sin(th)^2) - (ks_m^2 + (ks_m^2 - ks_a^2))) = 0)
+      and is(diff(2*ks_m*r - ks_a^2*sin(th)^2, r) = 2*ks_m))$
+ks_pts : [[r = 1.45, th = 0.3], [r = 1.45, th = 1.5], [r = 3, th = 0.9], [r = 30, th = 1.2]]$
+check("Kerr: all five coefficients are non-negative at sample points, a/m = 0.9",
+      every(lambda([pt], every(lambda([e], is(float(subst(pt, subst([ks_m = 1, ks_a = 0.9], e))) >= 0)), ks_p)),
+            ks_pts))$
+/* one circle pair, exact CP_2 metric */
+depends([ks_A, ks_Q], [t, r, th, ph])$
+ks_pair(A, q) := [A/ks_k*cos(ks_k*q), A/ks_k*sin(ks_k*q), 0, 0]$
+ks_pull(s) := block([J : jacobian(s, ks_X), S : subst(map("=", cp2_X, s), cp2_metric())],
+  matrixmap(lambda([e], ratsimp(trigsimp(e))), transpose(J) . S . J))$
+check("pair: the pullback is (A^2 dq^2 + dA^2/k^2)/(1 + A^2/k^2)^2",
+      ks_null(ks_pull(ks_pair(ks_A, ks_Q))*(1 + ks_A^2/ks_k^2)^2
+              - ks_A^2*ks_sq(ks_grad(ks_Q)) - ks_sq(ks_grad(ks_A))/ks_k^2))$
+/* five sheets, one pair each, in the flat approximation of CP_2 near its origin */
+ks_Fl : subst([x1 = 0, y1 = 0, x2 = 0, y2 = 0], cp2_metric())$
+ks_flat(s) := block([J : jacobian(s, ks_X)],
+  matrixmap(lambda([e], ratsimp(trigsimp(e))), transpose(J) . ks_Fl . J))$
+assume(ks_m > 0, ks_a > 0, r > 2*ks_m, cos(th) > 0, sin(th) > 0, ks_a < ks_m)$
+ks_amp : map(sqrt, ks_p)$
+ks_lump : eff_metric(ks_eta, makelist(ks_eta + cp2_sign*ks_flat(ks_pair(ks_amp[j], ks_q[j])), j, 1, 5))$
+check("five sheets: the lump is Kerr minus the sum of (d sqrt p)^2/k^2",
+      ks_null(ks_lump - ks_g + sum(ks_sq(ks_grad(ks_amp[j])), j, 1, 5)/ks_k^2))$
+check("five sheets: the lump tends to the Kerr metric when k grows",
+      ks_null(matrixmap(lambda([e], limit(ratsimp(trigsimp(e)), ks_k, inf)), ks_lump - ks_g)))$
+forget(ks_m > 0, ks_a > 0, r > 2*ks_m, cos(th) > 0, sin(th) > 0, ks_a < ks_m)$
