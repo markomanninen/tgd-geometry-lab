@@ -247,4 +247,33 @@ check("null hyperplane cut: H is null and along l with |H^t| = |Lap V|/2, H.l = 
 check("horospheric parton u = u0, v = v0: t + z = (u0 v0 + x^2 + y^2)/u0, a cut of the null hyperplane t - z = u0",
       block([t : ((hcu0*hcv0 + hcx^2 + hcy^2)/hcu0 + hcu0)/2, z : ((hcu0*hcv0 + hcx^2 + hcy^2)/hcu0 - hcu0)/2],
         is(ratsimp(t - z - hcu0) = 0) and is(ratsimp((t^2 - hcx^2 - hcy^2 - z^2)/(t - z) - hcv0) = 0)))$
+/* ---------- slicing H^3 by totally geodesic planes (Pitkanen 9.11.2026) ---------- */
+/* The circles theta = const on the sphere at infinity bound the planes m^3 = m^0 tanh s of H^3(a), which are cuts of
+   H^3(a) by hyperplanes through the vertex and so totally geodesic.  The orthogonal surfaces m^1 = u T, m^2 = v T are
+   cones over the curves of H^3 at the distance d from the axis m^1 = m^2 = 0, sinh d = sqrt(u^2 + v^2).  Such a curve
+   is not a geodesic for d > 0, and the cone has a space-like mean curvature of length tanh(d)/T. */
+assume(hcT > 0)$
+block([P, Y, Yp, Yq, B, X, Xt, Xs, Hx, at],
+  P : sqrt(hca^2 + hcp^2 + hcq^2),
+  Y : [P*cosh(hcs), hcp, hcq, P*sinh(hcs)],
+  B : sqrt(1 + hcu^2 + hcv^2),
+  X : hcT*[B*cosh(hcs), hcu, hcv, B*sinh(hcs)],
+  at : [hcp = hca*hcu, hcq = hca*hcv],
+  Yp : subst(at, diff(Y, hcp)), Yq : subst(at, diff(Y, hcq)),
+  Xt : subst(hcT = hca, diff(X, hcT)), Xs : subst(hcT = hca, diff(X, hcs)),
+  Hx : hc_H(emb_setup(hcM4, hcX, X, [hcT, hcs])),
+  hcSlice : [every(lambda([e], is(ratsimp(trigsimp(e)) = 0)), [hc_dot4(Y, Y) - hca^2, Y[4] - tanh(hcs)*Y[1]]),
+             every(lambda([e], is(trigsimp(e) = 0)), hc_H(emb_setup(hcM4, hcX, Y, [hcp, hcq])) + 2*Y/hca^2),
+             every(lambda([e], is(ratsimp(trigsimp(radcan(e))) = 0)),
+                   append(subst(at, Y) - subst(hcT = hca, X),
+                          [hc_dot4(Xt, Yp), hc_dot4(Xt, Yq), hc_dot4(Xs, Yp), hc_dot4(Xs, Yq)])),
+             is(ratsimp(hc_norm(Hx) + (hcu^2 + hcv^2)/((1 + hcu^2 + hcv^2)*hcT^2)) = 0),
+             every(lambda([e], is(ratsimp(e) = 0)), subst([hcu = 0, hcv = 0], Hx))])$
+check("circles theta = const at infinity: the planes m^3 = m^0 tanh s lie on H^3(a) and are totally geodesic, H = -(2/a) N",
+      hcSlice[1] and hcSlice[2])$
+check("the cones m^1 = u T, m^2 = v T meet the planes orthogonally and contain the radial lines from the vertex",
+      hcSlice[3])$
+check("cone over a curve at distance d from the axis: H.H = -tanh(d)^2/T^2 with sinh d = sqrt(u^2 + v^2), minimal only on the axis",
+      hcSlice[4] and hcSlice[5])$
+forget(hcT > 0)$
 forget(hca > 0, hcr > 0, hcrho > 0)$

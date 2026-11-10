@@ -484,6 +484,62 @@ Puolipallolla, jonka reuna on geodeesi, sekä Gauss–Bonnet-termi että tilavuu
 
 NeuroPaja lähetti nämä laskut Pitkäselle 8.11.2026.
 
+### Artikkelin viimeistely
+
+Pitkäsen artikkeliluonnoksen luvuissa 3.3 ja 3.4 kaksi olemassaolokieltoa nojasi Geminin vastauksiin. NeuroPaja ehdotti 8.11.2026 illalla niiden tilalle kahta lyhyttä laskua. Avaruuden kaltaisen pinnan indusoitu metriikka on etumerkkiä vaille riemannilainen. Kun keskikaarevuusvektori $H$ on toisen perusmuodon jälki, Minkowskin lineaarisen koordinaatin $m^k$ Laplacen operaattori pinnalla antaa keskikaarevuusvektorin komponentin,
+
+$$
+\Delta m^k=H^k.
+$$
+
+Minimaalipinnalla jokainen $m^k$ on siis harmoninen, ja suljetulla pinnalla harmoninen funktio on maksimiperiaatteen mukaan vakio. $M^4$:ssä ei siksi ole suljettuja avaruuden kaltaisia minimaalipintoja. Hyperboloidin $H^3(a)$ minimaalipinnan keskikaarevuusvektori $M^4$:ssä on $(2/a)N$, missä $N$ on hyperboloidin tulevaisuuteen osoittava yksikkönormaali, joten
+
+$$
+\Delta m^0=\frac{2m^0}{a^2}>0.
+$$
+
+Suljetulla pinnalla $m^0$:n maksimikohdassa pitäisi olla $\Delta m^0\le0$, joten $H^3$:ssa ei ole suljettuja minimaalipintoja. NeuroPaja ehdotti samalla lähdeviitteitä. Suljettujen hyperbolisten 3-monistojen minimaalipinnat perustuvat Schoenin ja Yaun, Sacksin ja Uhlenbeckin, Freedmanin, Hassin ja Scottin sekä Kahnin ja Markovicin töihin. Jordanin käyrän rajaama minimaalinen taso perustuu Andersonin vuoden 1983 artikkeliin ja Coskunuzerin korjaukseen.
+
+Pinnalla $M^1\times X^2\times S^1$ ympyrän $S^1$ pituus $2\pi R$ kertoo sekä tilavuustermin että kaarevuustermin. Tilavuustermi on $(\Lambda S/4G)R$, kun $S$ on pinnan $X^2$ ala. Pallon topologialla kaarevuustermi on jännitys $-1/(2G)$ kerrottuna pituudella $2\pi R$. Energia on
+
+$$
+E=\frac{(\Lambda S-4\pi)R}{4G},
+$$
+
+ja se on positiivinen täsmälleen, kun $S>4\pi/\Lambda$.
+
+Pitkänen vastasi 9.11.2026, että hän lisäsi molemmat laskut ja lähdeviitteet artikkeliin ja yhtenäisti luvun 4.2.1 energiakaavat. Luvun 3.5 rajasta $a\to0$ hän kirjoitti kommentin, jonka mukaan rajan ei tarvitse olla jatkuva. Puolipallolle ei hänen mukaansa käytetä koko pallon tilavuustermiä, joten puolipallon raja on $\Lambda\ge1/R^2$ kuten pallolla.
+
+Pitkänen ehdotti luvussa 3.4.2, että $H^3$ viipaloidaan minimaalisilla kiekoilla, joiden reunat ovat äärettömyyspallon ympyröitä, joilla napakulma $\theta$ on vakio. NeuroPajan 9.11.2026 lähettämän laskun mukaan ehdotus toimii. Ympyrää $\theta$ vastaa hyperboloidimallissa taso
+
+$$
+m^3=m^0\tanh s,\qquad \tanh s=\cos\theta.
+$$
+
+Taso on $H^3(\tau)$:n ja kärjen kautta kulkevan hypertason leikkaus, joten se on $H^3$:n totaalisesti geodeettinen taso. Jokainen $H^3(\tau)$:n piste on täsmälleen yhdellä tasolla, koska suhde $m^3/m^0$ on välillä $(-1,1)$. Sama hypertasojen perhe viipaloi jokaisen $H^3(\tau)$:n ja siten koko valokartion sisäosan. Tasoja vastaan kohtisuorat pinnat ovat $m^1=u\tau$, $m^2=v\tau$, missä $u$ ja $v$ ovat vakioita. Kukin niistä on kartio sellaisen $H^3$:n käyrän yli, joka pysyy vakioetäisyydellä $d$ akselista $m^1=m^2=0$, kun $\sinh d=\sqrt{u^2+v^2}$. Kartion keskikaarevuusvektori $M^4$:ssä on avaruuden kaltainen, ja sen pituus on
+
+$$
+\lvert H\rvert=\frac{\tanh d}{\tau}.
+$$
+
+Viipaloinnissa partonipinnat ovat siis minimaalisia $H^3$:ssa, mutta säiepinnat ovat $M^4$:n minimaalipintoja vain akselilla. Kartio koostuu kärjestä lähtevistä suorista, mutta se on minimaalinen vain, jos sen pohjakäyrä on $H^3$:n geodeesi.
+
+Luvun 3.5 alan laskuun NeuroPaja lisäsi, että leikkauksen $r_M=R(\theta,\phi)$ metriikka $R^2\,d\Omega^2$ ja ala $\int R^2\,d\Omega$ käyttävät vain metriikan kovariantteja komponentteja. Lasku pätee siksi sekä valinnalla $g^{rr}=0$ että valinnalla $g^{rr}=\infty$. Arvolla $\Lambda=1/L_p^2$ edellä oleva energia on
+
+$$
+E=\frac{(S-4\pi L_p^2)R}{4GL_p^2}.
+$$
+
+Pitkänen lähetti 10.11.2026 uuden tiivistelmän ja johdannon. Niiden mukaan H-H-periaatteen universaalisuus kaatuu kahdessa testatussa tapauksessa, Kähler-vaikutuksella ja kaarevuusskalaarilla. Kaarevuusskalaari ei kuulu perusvaikutukseen. Kähler-vaikutuksen kaatuminen on vakavampi ongelma, koska twistorinosto antaa vaikutukseksi Kähler-vaikutuksen ja tilavuustermin summan. Korjauksena on ehto, jonka mukaan $CP_2$:n Kähler-funktio toteuttaa pinnalla poikittaisen kaksiulotteisen Laplacen yhtälön. Tiivistelmän mukaan ehto tekee Kähler-virran poikittaisen osan nollaksi singulaaristen pintojen ulkopuolella, ja silloin virta on valon kaltainen. Tämä on sopusoinnussa 8.11.2026 laskun kanssa, jonka mukaan H-J-ansatsin pinnoilla
+
+$$
+j\cdot j=-P\big((j^x)^2+(j^y)^2\big).
+$$
+
+Johdanto perustelee TGD:n yksikäsitteisyyden Hitchinin lauseella, jonka mukaan vain $M^4$:llä ja $CP_2$:lla on Kähler-rakenteinen twistoriavaruus. Hitchinin lause koskee kompakteja itseduaaleja neliulotteisia avaruuksia, ja niistä Kähler-rakenteinen twistoriavaruus on vain avaruuksilla $S^4$ ja $CP_2$. NeuroPaja kysyi 10.11.2026, miten $M^4$ tulee perusteluun mukaan.
+
+Testit ovat tiedostossa [test-hj-classification.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-hj-classification.mac) ja puolipallon ja energian osalta tiedostossa [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac).
+
 ## Tarkistus ja rajat
 
 Maxima-testit ovat tiedostoissa [test-interior-curvature.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-curvature.mac), [test-interior-energy.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-energy.mac) ja [test-interior-string.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-interior-string.mac). Erilliset Python-skriptit ovat kansiossa [scripts/sisaosa](https://github.com/markomanninen/tgd-geometry-lab/tree/main/scripts/sisaosa). OpenAI:n Codex tarkisti tulokset riippumattomasti kahdessa kierroksessa. Jännityksen kaava, avoin poikkileikkaus, tuotteen epävakaus, minimipintaperhe, genuksen $g$ lehti ja polynomiupotus vahvistuivat. Yleiset väitteet rajattiin tällä sivulla olevaan muotoon. Holomorfista $X^6$:ta koskevaa johtopäätöstä tarkistus ei vahvistanut, ja se on siksi kirjattu yhden esimerkin tulokseksi.
@@ -496,5 +552,6 @@ Auki ovat nämä kohdat:
 - Holomorfisen $X^6$:n yleinen tapaus.
 - Riittääkö Pitkäselle virran valon kaltaisuus, joka pallomaisessa rakenteessa sallii suoran ja kartioleikkauksen mutta litteässä rakenteessa vain Kähler-tyhjiön $\xi(u)$.
 - Mistä $u$:n ja $v$:n epäsymmetria tulee pallomaisessa rakenteessa, joka on kausaalisessa timantissa symmetrinen niiden vaihdossa.
+- Miten $M^4$ liittyy Hitchinin lauseeseen, joka antaa Kähler-rakenteisen twistoriavaruuden vain avaruuksille $S^4$ ja $CP_2$.
 
 Pitkäsen vastaukset 5.11.2026 ja 6.11.2026 ratkaisivat kolme aiemmin tällä listalla ollutta kohtaa. Kohtisuoruusehto toteutuu H-J-rakenteessa, jonka lehdet ovat kokonaan napaisia. Säieradoilta ei vaadita minimaalisuutta. Einsteinin tensorin tyyppijako on sama $\{u,w\}$ ja $\{v,\bar w\}$, jota NeuroPajan lasku käyttää.

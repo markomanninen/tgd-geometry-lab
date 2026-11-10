@@ -62,6 +62,8 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #35 | Pitkäsen mukaan 6.11.2026 minimaalisuus ei ole välttämätöntä. Valokartion reunan viipaloinnissa pallot eivät ole minimaalipintoja, ja molemmat perheet ovat minimaalisia vain litteässä rakenteessa. Hän lähetti myös artikkeliluonnoksen, jonka tarkistus lähti hänelle. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#valokartion-reunan-viipalointi-ja-minimaalisuus-m4ssa) |
 | #35 | Pitkäsen mukaan 6.11.2026 pallo on minimaalipinta valokartion reunan pintana, koska valokartio on metrisesti pallo. NeuroPajan 7.11.2026 lähettämän laskun mukaan jokainen leikkaus on konformisesti pyöreä, mutta sen ala riippuu säteestä, ja pallo on alan minimi kiinteällä keskisäteellä. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#valokartion-reunan-viipalointi-ja-minimaalisuus-m4ssa) |
 | #35 | Pitkäsen mukaan 8.11.2026 pallo on minimaalipinta valinnalla $g^{rr}=0$, ja hänen lisäehtonsa sanoo Kähler-virran olevan valon kaltainen. NeuroPajan samana päivänä lähettämän laskun mukaan valokartion metriikalle ei ole vääntymätöntä metriikkaa säilyttävää konnektiota, ja tulos pätee avaruuskulmamitassa. Valon kaltaisen hypertason leikkauksilla, kuten horosfäärirakenteen partonipinnoilla, ala säilyy sellaisenaan. Valon kaltainen virta sallii pallomaisessa rakenteessa suoran ja kartioleikkauksen. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#pitkasen-vastaukset-8112026) |
+| #35 | Pitkänen lisäsi 9.11.2026 artikkeliin NeuroPajan laskut, joiden mukaan $M^4$:ssä ei ole suljettuja avaruuden kaltaisia minimaalipintoja eikä $H^3$:ssa suljettuja minimaalipintoja. NeuroPajan laskun mukaan $H^3$:n viipalointi totaalisesti geodeettisilla tasoilla toimii, mutta niitä vastaan kohtisuorat kartiot ovat $M^4$:n minimaalipintoja vain akselilla. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#artikkelin-viimeistely) |
+| #35 | Pitkäsen 10.11.2026 tiivistelmän mukaan Laplacen ehto tekee Kähler-virrasta valon kaltaisen, ja Kähler-vaikutuksen kaatuminen on vakavampi ongelma kuin kaarevuusskalaarin, koska twistorinosto antaa vaikutukseksi Kähler-vaikutuksen ja tilavuustermin summan. | ✅ [kirjattu](sivututkimus/sisaosan-vaikutus.md#artikkelin-viimeistely) |
 
 ### Avoinna – kysytään Matilta
 
@@ -71,6 +73,7 @@ Periaatteena on, että vastaukset haetaan ensin itse TGD-kirjallisuudesta (Pitk�
 | #35 | Pallomainen rakenne on kausaalisessa timantissa symmetrinen $u$:n ja $v$:n vaihdossa, kun timantti peilataan keskikohtansa yli. Mistä H-H-ansatsin $u$-$v$-epäsymmetria silloin tulee, esimerkiksi timantin aktiivisesta reunasta nollaenergiaontologiassa? |
 | #35 | Vastaako valokartioiden kärjen suoran laji, eli aikasuuntainen, valon kaltainen tai avaruussuuntainen, jotain fysikaalista? |
 | #35 | Riittääkö Pitkäselle virran valon kaltaisuus, joka pallomaisessa rakenteessa sallii suoran ja kartioleikkauksen mutta litteässä rakenteessa vain Kähler-tyhjiön $\xi=\xi(u)$? |
+| #35 | Hitchinin lauseen mukaan kompakteista itseduaaleista neliulotteisista avaruuksista vain $S^4$:llä ja $CP_2$:lla on Kähler-rakenteinen twistoriavaruus. Miten $M^4$ tulee mukaan artikkelin perusteluun TGD:n yksikäsitteisyydestä? |
 
 ### Markolle
 
