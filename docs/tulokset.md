@@ -158,6 +158,14 @@ $$
 
 Pitkänen pitää todennäköisenä, ettei $u=t-r$ riko minimipintaominaisuutta, ja pyysi tarkistamaan asian. Hänen artikkelissaan H-J-rakenteen ehto on $\{k\,w\bar w\}=0$, ja pallomaisessa rakenteessa juuri tämä ei päde, koska poikittainen metriikka riippuu $v$:stä.
 
+**Laplacen ehto pallomaisessa rakenteessa.** Kun $\xi(u,w)$ on holomorfinen $w$:n suhteen, pinnan perimän Kähler-funktion Laplacen summa on
+
+$$
+(\partial_x^2+\partial_y^2)K(\xi)=4K_{i\bar j}\,\partial_w\xi^i\,\overline{\partial_w\xi^j},
+$$
+
+eli se on verrannollinen poikittaisen koordinaattineliön Kähler-lukuun alayksikköä kohti. Fubini–Study-metriikka on positiivisesti definiitti, joten Laplacen ehto koko säännöllisellä alueella jättää pallomaisessakin rakenteessa vain pinnat $\xi(u)$. Niiden $CP_2$-kuva on käyrä, joten Kähler-kenttä ja kenttäyhtälöiden Kähler-osa häviävät, ja kenttäyhtälöt vaativat minimipintaa. Keskikaarevuuden komponentti $H^\xi=2r\rho\,\xi_u/\Phi$ ei häviä siellä, missä $\xi_u\ne0$. Laplacen ehdon muodossa pallomaiseen rakenteeseen jäävät siis ratkaisuyritteen pinnoista vain vakiokuvaukset. Valon kaltaisen virran muodossa sinne jäävät lisäksi suora ja kartioleikkaus, joilla virta on nolla mutta Kähler-kenttä ei. Testit ovat tiedostossa [test-solutions.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-solutions.mac).
+
 Tulos on yleinen. Jos $u$:n ja $w$:n gradientit ovat keskenään valon kaltaisia, kaikki funktiot $F(u,w)$ ovat harmonisia täsmälleen, kun $\Box u=\Box w=0$. Bochnerin kaavan mukaan tasopinnat $u=$ vakio ovat silloin valon kaltaisia hypertasoja, ja ehto $\Box w=0$ pakottaa ne yhdensuuntaisiksi. Tällaisista rakenteista ainoa on siis litteä rakenne muunnoksia vaille.
 
 **Kuinka paljon H-J-rakenteita on.** Funktioille $F(w)$ rakenteita on paljon enemmän. Keskenään valon kaltaisilla gradienteilla ne saadaan valokartioista, joiden kärki kulkee radalla $z(\tau)$, ja $w$ on säteen suunta. Tilavuusosa häviää symbolisesti mielivaltaisella radalla. Kähler-osa on tiukempi, sillä se häviää suoralle ja kartioleikkaukselle levossa olevalla kärjellä ja niiden Lorentz-muunnoksille mutta ei testatulla kiihtyvällä kärjellä. Valon kaltaisen gradientin säteet ovat suoria, joten Pitkäsen pohtimat käyräviivaiset säteet jäävät tämän luokan ulkopuolelle. Yksityiskohdat ovat [konventioissa](konventiot.md#mitka-hamiltonjacobi-rakenteet-kantavat-kaikki-holomorfiset-funktiot).

@@ -550,7 +550,7 @@ Auki ovat nämä kohdat:
 - Miten kaksilehtinen vuoputki, jonka poikkileikkaus on suljettu, toteutuu Laplacen ehdon ja minimaalipintaehdon kanssa.
 - Reunatermin johto yleisille upotuksille.
 - Holomorfisen $X^6$:n yleinen tapaus.
-- Riittääkö Pitkäselle virran valon kaltaisuus, joka pallomaisessa rakenteessa sallii suoran ja kartioleikkauksen mutta litteässä rakenteessa vain Kähler-tyhjiön $\xi(u)$.
+- Riittääkö Pitkäselle virran valon kaltaisuus, joka pallomaisessa rakenteessa sallii suoran ja kartioleikkauksen mutta litteässä rakenteessa vain Kähler-tyhjiön $\xi(u)$. Laplacen ehdon muodossa pallomaiseen rakenteeseen jäävät ratkaisuyritteen pinnoista vain vakiokuvaukset ([tulokset](../tulokset.md)).
 - Mistä $u$:n ja $v$:n epäsymmetria tulee pallomaisessa rakenteessa, joka on kausaalisessa timantissa symmetrinen niiden vaihdossa.
 - Miten $M^4$ liittyy Hitchinin lauseeseen, joka antaa Kähler-rakenteisen twistoriavaruuden vain avaruuksille $S^4$ ja $CP_2$.
 

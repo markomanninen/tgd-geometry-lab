@@ -141,6 +141,27 @@ check("spherical H-J: the rotated line xi1 = e^{i a(u)} w is not minimal",
       not rhs(third(sj_lc_rep(rphase*sj_w, 0))))$
 check("spherical H-J: xi1 = u + w is not minimal", not rhs(third(sj_lc_rep(uu + sj_w, 0))))$
 check("spherical H-J: xi1 = u is not minimal", not rhs(third(sj_lc_rep(uu, 0))))$
+/* The Laplace form of Pitkanen's condition on the spherical structure (10.11.2026).  For xi holomorphic
+   in w the Laplace sum of K(xi) is 4 K_{i jbar} xi^i_w conj(xi^j_w), the Kahler number of a transverse
+   coordinate square per unit area, so the condition on a whole regular region leaves xi(u) only.
+   Such a surface is a Kahler vacuum, and on the spherical structure its volume part does not vanish
+   where xi depends on u, so only constant maps remain. */
+check("spherical H-J: xi1 = u/2 is a Kahler vacuum whose volume part does not vanish",
+      report_is(sj_lc_rep(uu/2, 0), true, true, false))$
+check("spherical H-J: xi1 = u/2, xi2 = u^2/4 is a Kahler vacuum whose volume part does not vanish",
+      report_is(sj_lc_rep(uu/2, uu^2/4), true, true, false))$
+check("spherical H-J: a constant xi1 = 1/3 solves both parts",
+      report_is(sj_lc_rep(1/3, 0), true, true, true))$
+declare([lpX, lpY, lpS], real)$
+block([z1, z2, d1, d2, N, K, herm],
+  z1 : (lpX + %i*lpY)^2 + lpS, z2 : (lpX + %i*lpY)/2,
+  d1 : 2*(lpX + %i*lpY), d2 : 1/2,
+  N : 1 + z1*conjugate(z1) + z2*conjugate(z2),
+  K : log(N),
+  herm : (N*(d1*conjugate(d1) + d2*conjugate(d2))
+          - (conjugate(z1)*d1 + conjugate(z2)*d2)*conjugate(conjugate(z1)*d1 + conjugate(z2)*d2))/N^2,
+  check("Laplace sum of K(xi(w)) = 4 K_{i jbar} xi^i_w conj(xi^j_w), the Fubini-Study norm of xi_w",
+        is(ratsimp(rectform(diff(K, lpX, 2) + diff(K, lpY, 2) - 4*herm)) = 0)))$
 check("flat H-J: the rotated line xi1 = e^{i a(u)} w is minimal",
       rhs(third(rep_holo(rphase*lc_w, 0))))$
 check("flat H-J: xi1 = u is minimal", rhs(third(rep_holo(uu, 0))))$
