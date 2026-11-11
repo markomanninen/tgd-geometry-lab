@@ -285,7 +285,7 @@ $$
 \sum_i h^{(i)}_{ab}=\sigma\Bigl(a^2\,\delta_{ab}+\frac{4}{k^2}\,\partial_aa\,\partial_ba\Bigr).
 $$
 
-Kun $a^2=2\phi$, tulos on Newtonin kenttä, ja suhteellinen virhe on luokkaa $1/(kr)^2$. Ympyrän säteen $a/k$ on oltava pieni $CP_2$:n säteeseen verrattuna. Kuvaajan poikkeamalla on sama etumerkki kuin puoleensavetävällä kentällä. Rakenne on kinemaattinen, koska nämä lehdet eivät ole minimipintoja. Valon kaltaiset lehdet eivät riitä staattiseen kenttään, koska niiden Minkowski-jälki on nolla ja Newtonin kentän jälki ei ole. Kysymys siitä, antavatko kenttäyhtälöiden ratkaisut tämän summan, jää auki.
+Kun $a^2=2\phi$, tulos on Newtonin kenttä, ja suhteellinen virhe on luokkaa $1/(kr)^2$. Ympyrän säteen $a/k$ on oltava pieni $CP_2$:n säteeseen verrattuna. Kuvaajan poikkeamalla on sama etumerkki kuin puoleensavetävällä kentällä. Rakenne on kinemaattinen, koska nämä lehdet eivät ole minimipintoja. Isotrooppisella samastuksella valon kaltaiset lehdet eivät riitä staattiseen kenttään, koska niiden Minkowski-jälki on nolla ja Newtonin kentän jälki ei ole. Jälki riippuu kuitenkin koordinaattien samastuksesta, ja Kerrin ja Schildin samastuksella Schwarzschildin poikkeama on yksi valon kaltainen neliö (ks. jakso *Mustien aukkojen metriikat indusoituna metriikkana*). Kysymys siitä, antavatko kenttäyhtälöiden ratkaisut tämän summan, jää auki.
 
 **Geodeesi antaa sanalle likimain suuruusluvun.** Staattisessa kentässä $h_{ab}=-2\Phi\,\delta_{ab}$, jossa $\Phi$ on lehtien potentiaalien summa, pätee $\Gamma^x{}_{tt}=-\Phi'/(1+2\Phi)$. Ensimmäisessä kertaluvussa kiihtyvyydet summautuvat, ja suhteellinen korjaus on $2\Phi$, Maan pinnalla noin $1{,}4\cdot10^{-9}$. Tämä pätee, jos hiukkanen kulkee kootun metriikan geodeesia, eli luku ei testaa postulaattia.
 
@@ -466,7 +466,37 @@ Riippumaton tarkistus Codexilla vahvisti hajotelman, kertoimien merkit, vetäisy
 
 Yhden pinnan upotus ja lehtien summa ovat siis eri kysymyksiä. Yhden pinnan upotuksena Kerrin metriikka kaatuu testatulla yritteellä toisessa kertaluvussa. Summasääntö ei aseta vastaavaa estettä, koska Kerrin metriikan poikkeama laakeasta metriikasta on horisontin ulkopuolella viiden ei-negatiivisen termin summa.
 
-**Tutkimuksen tila 10.11.2026.** Työ on toistaiseksi pysäytetty tähän ([#42](https://github.com/markomanninen/tgd-geometry-lab/issues/42)). Tähän asti on tutkittu seuraavat asiat:
+**Pitkäsen linjaus 11.11.2026.** Pitkäsen mukaan Kerrin metriikkaa ei varmasti saada upotettua yhdelle pinnalle, koska $H$:n dimensio on liian pieni. Hänen mukaansa yleisen Einsteinin teorian avaruusajan upotukseen tarvittaisiin noin sadan ulottuvuuden avaruus. TGD:n ja Einsteinin teorian ratkaisut eivät siksi vastaa toisiaan suoraan. Yhteys kulkee kenttäteoriarajan kautta, jossa avaruusaikapinnan korvaa Einsteinin teorian avaruusaika. Pitkänen pitää rajan olemassaoloa intuitiivisesti selvänä mutta ei pysty todistamaan sitä. Sadan ulottuvuuden luku on samaa suuruusluokkaa kuin Clarken vuonna 1970 antama globaalin upotuksen raja. Paikalliseen upotukseen riittää Janetin ja Cartanin lauseen mukaan kymmenen ulottuvuutta, mikä on sekin enemmän kuin $H$:n kahdeksan. Molemmat rajat koskevat yleistä metriikkaa, ja symmetrinen metriikka voi upota pienempään avaruuteen, kuten Schwarzschildin metriikka osoittaa. Kysymys siitä, mistä ratkaisuperheestä lehdet pitäisi ottaa, jäi avoimeksi, ja seuraavat neljä tulosta rajaavat sitä.
+
+**Kerrin metriikka on laakea metriikka ja yksi valon kaltainen neliö.** Kerrin ja Schildin muoto kirjoitetaan Kerrin sisääntulevissa koordinaateissa $(t,r,\theta,\psi)$. Kun ne samastetaan $M^4$:n litteisiin sferoidikoordinaatteihin $x+iy=(r+ia)\sin\theta\,e^{i\psi}$ ja $z=r\cos\theta$, pätee täsmälleen
+
+$$
+\eta-g=H\,(l\cdot dx)^2,\qquad H=\frac{2mr}{\Sigma}=\frac{2mr^3}{r^4+a^2z^2},\qquad l=dt+dr-a\sin^2\theta\,d\psi.
+$$
+
+Kovektori $l$ on valon kaltainen sekä metriikalle $\eta$ että metriikalle $g$, ja kerroin $H$ on positiivinen, kun $r>0$. Muunnos $dt\mapsto dt+(2mr/\Delta)\,dr$ ja $d\psi\mapsto d\varphi+(a/\Delta)\,dr$ vie metriikan Boyerin–Lindquistin muotoon. Tällä samastuksella Kerrin metriikka tarvitsee summasäännössä yhden valon kaltaisen poikkeaman viiden ympyräpoikkeaman sijaan. Valon kaltaisen lehden poikkeama on juuri tätä muotoa, ja valon kaltaisten pintojen joukossa TGD:ssä tunnetaan kenttäyhtälöiden tarkkoja ratkaisuja, kuten massattomat ekstremaalit. Erotuksen $\eta-g$ Minkowski-jälki on nolla myös Schwarzschildin tapauksessa $a=0$, jossa $\eta-g=(2m/r)(dt+dr)^2$. Newtonin kentän kohdalla esitetty perustelu, jonka mukaan valon kaltaiset lehdet eivät jälkensä vuoksi riitä staattiseen kenttään, pätee siis vain isotrooppisella samastuksella.
+
+**Yksi lehti ei anna valon kaltaista neliötä tarkasti.** Jos lehden vetäisy on $H\,l\otimes l$ ja $H>0$, lehden differentiaali häviää jokaisella vektorilla $v$, jolle $l(v)=0$. Silloin $d\xi^k=c^k\,l$, ja ehto $d(c^k\,l)=0$ antaa ulkotulolla kovektorin $l$ kanssa ehdon $l\wedge dl=0$. Kerrin kovektorille $l\wedge dl=-2a\sin\theta\cos\theta\,(dt+dr)\wedge d\theta\wedge d\psi$. Se häviää ekvaattoritasolla mutta ei millään avoimella alueella, kun $a\neq0$, joten este koskee jokaista avointa aluetta. Schwarzschildin kovektori on $l=d(t+r)$, joten lehti olisi pelkän muuttujan $t+r$ funktio, eikä sen kerroin voisi olla $2m/r$. Päättely ei käytä kenttäyhtälöitä, ja se pätee myös $CP_2$:n täydellä metriikalla. Se koskee kuitenkin vain Kerrin ja Schildin samastusta. Valon kaltaisia lehtiä tarvitaan siis useita, tai niissä on käytettävä värähtelevää vaihetta kuten ympyrälehdissä.
+
+**Pieni ratkaisulehti antaa säteilyn eikä massan kentän.** $CP_2$:n vakiopisteen lähellä pienen kuvaajalehden minimipintayhtälö on ensimmäisessä kertaluvussa aaltoyhtälö $\Box\xi=0$. Kähler-vaikutus alkaa tässä neljännestä kertaluvusta, koska indusoitu Kählerin muoto on toista kertalukua, joten aaltoyhtälö tulee tilavuustermistä. Testi tarkistaa tämän sisääntulevalle palloaallolle $\xi=(B/r)\,e^{ik(t+r)}$, jonka poikkeama on
+
+$$
+\frac{B^2}{r^2}\Bigl(k^2\,du^2+\frac{dr^2}{r^2}\Bigr),\qquad u=t+r.
+$$
+
+Poikkeama pienenee kuten $1/r^2$, mutta massan kenttä vaatii poikkeaman $2m/r$. Se vaatisi amplitudin $r^{-1/2}$, joka ei ratkaise aaltoyhtälöä. Sama pätee jokaiselle kiinteän taajuuden ja äärellisen kulmaliikemäärän säteilevälle multipolille, koska niiden amplitudi kaukana on $1/r$. Tulos ei ole lause kaikista ratkaisuista, sillä äärettömät superpositiot, äärellisen amplitudin lehdet ja lehdet, jotka eivät lähesty $CP_2$:n vakiopistettä, vaativat oman tarkastelunsa.
+
+**Aallonpituuksien hierarkia antaa potenssin $1/r$.** Seisova pallolehti $\xi_k=A_k\,j_0(kr)\,e^{ikt}$, jossa $j_0(x)=\sin x/x$, ratkaisee aaltoyhtälön. Sen poikkeama on $A_k^2\bigl(k^2j_0^2\,dt^2+j_0'^2\,dr^2\bigr)$. Jokainen aaltoluku on oma lehtensä, joten poikkeamat summautuvat ilman ristitermejä. Kun $\lvert A_k\rvert^2=c/k^2$, summa on
+
+$$
+\frac{\pi c}{2r}\,dt^2+\frac{\pi c}{6r}\,dr^2.
+$$
+
+Potenssi on massan kentän potenssi, ja arvolla $c=4m/\pi$ aikakomponentti on Newtonin kenttä. Säteittäinen kerroin on kuitenkin kolmasosa aikakertoimesta. Muodon $(\alpha/r)\,dt^2+(\beta/r)\,dr^2$ ensimmäisen kertaluvun Einsteinin tensori on nolla vain, kun $\beta=\alpha$, joten pelkkä seisovien palloaaltojen perhe ei anna tyhjiötä. Codexin laskun mukaan suuremman kulmaliikemäärän $l$ lehdet eivät korjaa suhdetta, kun niiden spektri on sama. Integraalit $J_l=\int_0^\infty j_l'^2\,dx$ ja $I_l=\int_0^\infty j_l^2\,dx$ toteuttavat ehdon $J_l<I_l$, joten säteittäinen kerroin jää jokaisessa multipolissa aikakerrointa pienemmäksi. Spektri on lisäksi muodollinen, koska amplitudi $\lvert A_k\rvert=\sqrt c/k$ kasvaa rajatta, kun $k$ lähestyy nollaa, eivätkä pitkimmät aallot ole enää pieniä. Diskreetti hierarkia $k_n=2^{n/2}k_0$, jonka suhde on $p$-adisten pituusskaalojen suhde, toistaa aikakomponentin kolmen prosentin ja säteittäisen komponentin yhdeksän prosentin tarkkuudella. Suhteella 2 aikakomponentin poikkeama on noin kymmenen prosenttia.
+
+Kolme viimeistä tulosta ovat ensimmäisen kertaluvun tuloksia $CP_2$:n vakiopisteen lähellä, ja testit ovat tiedostossa `tests/test-kerr-schild.mac`. Riippumaton tarkistus Codexilla vahvisti laskut ja toi rajat, jotka koskevat samastusta, multipoleja, pitkien aaltojen amplitudia ja säteittäistä värähtelyä. Auki on, antaako jokin muu kuin seisovien aaltojen perhe tyhjiön, esimerkiksi ajasta riippuva, epäisotrooppinen tai äärellisen amplitudin perhe, ja mikä fysikaalinen periaate valitsisi spektrin $1/k^2$.
+
+**Tutkimuksen tila 11.11.2026.** Työ jatkuu lehtien ratkaisuperheen rajaamisella ([#42](https://github.com/markomanninen/tgd-geometry-lab/issues/42)). Tähän asti on tutkittu seuraavat asiat:
 
 | Kysymys | Tulos | Varmuus |
 |---|---|---|
@@ -477,6 +507,9 @@ Yhden pinnan upotus ja lehtien summa ovat siis eri kysymyksiä. Yhden pinnan upo
 | Kerr, äärellinen $a$, raja $R\to0$ | Välttämätön ehto ei toteudu testatuissa pisteissä | Numeerinen, Codexin toistama |
 | Puskutyyppinen upotus pyörivänä | Cliffordin toruksen upotus ei pyöri | Käsin tehty päättely |
 | Kerr lehtien koottuna metriikkana | Saadaan viidestä lehdestä paikallisesti virheellä, joka on verrannollinen lukuun $1/k^2$. Lehdet eivät ole sileitä akselilla, eikä rakenne kata horisonttia | Labin testi, Codexin tarkistama |
+| Kerr Kerrin ja Schildin muodossa | Laakea metriikka ja yksi valon kaltainen neliö, jota yksi lehti ei anna tarkasti, koska $l$ kiertyy | Labin testi, Codexin tarkistama |
+| Pieni ratkaisulehti, säteilevä multipoli | Poikkeama pienenee kuten $1/r^2$ eikä kuten $1/r$ | Labin testi, Codexin tarkistama |
+| Seisovien palloaaltojen spektri $1/k^2$ | Antaa muodollisesti potenssin $1/r$, mutta säteittäinen kerroin on kolmasosa, eivätkä multipolit korjaa sitä, joten tyhjiö ei synny | Labin testi, Codexin tarkistama |
 | Yleinen todistus kirjallisuudessa | Ei löytynyt avaruudelle $H$ eikä kahdeksalle laakealle ulottuvuudelle | Kaksi hakua, ei kattava |
 
 Mahdolliset jatkosuunnat ovat nämä:
@@ -487,9 +520,9 @@ Mahdolliset jatkosuunnat ovat nämä:
 - Symmetriaa noudattamattomat upotukset Gaussin, Codazzin ja Riccin yhtälöiden kautta. Tämä on sama kuin yleinen todistus.
 - Kerrin ensimmäisen ja toisen kertaluvun laskujen vienti labin Maxima-testeiksi.
 - Kirjallisuuden varmistus. Luettavana ovat Stephanin ja muiden kirjan luku 37 ja Van den Bergh (1996), ja Sheykiniltä ja Pastonilta voi kysyä, onko Kerrin upotus seitsemään tai kahdeksaan laakeaan ulottuvuuteen ratkaistu.
-- Pitkäsen monilehtinen kuva. Kerrin metriikka saadaan paikallisesti viidestä ympyrälehdestä, joilta ei ole vaadittu kenttäyhtälöitä. Auki on, saadaanko se lehdistä, jotka ovat kenttäyhtälöiden ratkaisuja, ja miten horisontti kuvataan.
+- Pitkäsen monilehtinen kuva. Kerrin metriikka on yksi valon kaltainen neliö, ja ehdokasperhe ovat valon kaltaiset lehdet. Seisovien palloaaltojen perhe antaa potenssin $1/r$ mutta ei tyhjiötä. Seuraava askel on ajasta riippuva tai epäisotrooppinen lehtiperhe, joka antaa ensimmäisessä kertaluvussa tyhjiön, sekä sen vertailu massattomiin ekstremaaleihin ja holomorfisiin ratkaisuihin.
 
-Pitkäselle kuuluvat kysymykset ovat, vaatiiko TGD tarkan upotuksen, mitä vakio $\lambda\sim10^{34}$ tarkoittaisi ja miten pyörivä musta aukko kuvataan, jos Kerrin metriikka ei upotu yhdelle pinnalle.
+Pitkäsen 11.11.2026 mukaan TGD ei vaadi tarkkaa upotusta, ja yhteys Einsteinin teoriaan kulkee kenttäteoriarajan kautta. Auki on vielä, mitä aikakoordinaatin skaalaustekijä $\lambda\sim10^{34}$ tarkoittaisi, koska Pitkäsen vastaus koski kosmologista vakiota $\Lambda$.
 
 ## Avoimet kysymykset
 

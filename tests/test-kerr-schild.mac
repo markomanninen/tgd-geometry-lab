@@ -1,0 +1,107 @@
+/* Kerr in Kerr-Schild form and the family of the sheets (issue #42).
+   1. With the Kerr-Schild identification of coordinates, eta - g_Kerr = H l l with one null
+      covector l and H = 2 m r / Sigma >= 0.  The coordinates are the oblate spheroidal ones of
+      flat M^4, (t, r, th, ps) with x + i y = (r + i a) sin(th) e^(i ps), z = r cos(th), where
+      l = dt + dr - a sin^2(th) dps (ingoing Kerr coordinates).
+   2. A single graph whose pullback is H l l has d xi = c l, so d(c l) = 0 forces l ^ dl = 0.
+      The Kerr l twists when a # 0.
+   3. A small graph sheet near the origin of CP_2 obeys the wave equation at first order.  The
+      spherical solutions have amplitude 1/r and deviation 1/r^2, not the 1/r of a mass.
+   4. A continuum of standing spherical sheets j_0(k r) e^(i k t) with |A_k|^2 = c/k^2 gives a
+      deviation proportional to 1/r, formally: the amplitudes grow as 1/k when k -> 0.
+   Codex check 11.11.2026: laskut-2026-11-10-kerr/codex-tarkistus-4-kerr-schild.md. */
+section("tgd/kerr-schild: Kerr as flat metric plus one null square")$
+kq_null(v) := every(lambda([q], is(ratsimp(trigsimp(q)) = 0)), flatten(if matrixp(v) then args(v) else [v]))$
+declare([kq_m, kq_a, kq_c], real)$
+kq_X : [t, r, th, ps]$
+declare(ps, real)$
+/* flat metric in oblate spheroidal coordinates, as the pullback of the Cartesian one */
+kq_cart : [t, sin(th)*(r*cos(ps) - kq_a*sin(ps)), sin(th)*(r*sin(ps) + kq_a*cos(ps)), r*cos(th)]$
+kq_J : jacobian(kq_cart, kq_X)$
+kq_eta : matrixmap(lambda([q], ratsimp(trigsimp(q))), transpose(kq_J) . minkowski_metric() . kq_J)$
+kq_Sig : r^2 + kq_a^2*cos(th)^2$
+kq_Del : r^2 - 2*kq_m*r + kq_a^2$
+check("spheroidal: eta = dt^2 - dr^2 + 2 a sin^2(th) dr dps - Sigma dth^2 - (r^2+a^2) sin^2(th) dps^2",
+      kq_null(kq_eta - matrix([1, 0, 0, 0], [0, -1, 0, kq_a*sin(th)^2], [0, 0, -kq_Sig, 0],
+                              [0, kq_a*sin(th)^2, 0, -(r^2 + kq_a^2)*sin(th)^2])))$
+/* the standard Cartesian Kerr-Schild covector, pulled back */
+[kq_x, kq_y, kq_z] : rest(kq_cart)$
+kq_lc : [1, (r*kq_x + kq_a*kq_y)/(r^2 + kq_a^2), (r*kq_y - kq_a*kq_x)/(r^2 + kq_a^2), kq_z/r]$
+kq_l : map(lambda([q], ratsimp(trigsimp(q))), list_matrix_entries(matrix(kq_lc) . kq_J))$
+check("l = dt + dr - a sin^2(th) dps", kq_null(kq_l - [1, 1, 0, -kq_a*sin(th)^2]))$
+kq_sq(v) := genmatrix(lambda([i, j], v[i]*v[j]), 4, 4)$
+kq_H : 2*kq_m*r/kq_Sig$
+check("H = 2 m r / Sigma is the Cartesian 2 m r^3 / (r^4 + a^2 z^2)",
+      kq_null(kq_H - 2*kq_m*r^3/(r^4 + kq_a^2*kq_z^2)))$
+kq_g : kq_eta - kq_H*kq_sq(kq_l)$
+check("l is null for eta and for g", kq_null([kq_l . invert(kq_eta) . kq_l, kq_l . invert(kq_g) . kq_l]))$
+/* to Boyer-Lindquist: dt = dt_BL + 2 m r/Delta dr, dps = dph + a/Delta dr */
+kq_B : matrix([1, 2*kq_m*r/kq_Del, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, kq_a/kq_Del, 0, 1])$
+kq_gtp : 2*kq_m*kq_a*r*sin(th)^2/kq_Sig$
+kq_BL : matrix([1 - 2*kq_m*r/kq_Sig, 0, 0, kq_gtp], [0, -kq_Sig/kq_Del, 0, 0], [0, 0, -kq_Sig, 0],
+               [kq_gtp, 0, 0, -(r^2 + kq_a^2 + 2*kq_m*kq_a^2*r*sin(th)^2/kq_Sig)*sin(th)^2])$
+check("eta - H l l is the Kerr metric in Boyer-Lindquist coordinates",
+      kq_null(transpose(kq_B) . kq_g . kq_B - kq_BL))$
+check("the Minkowski trace of eta - g vanishes, also for Schwarzschild (a = 0)",
+      kq_null(ratsimp(sum(sum(invert(kq_eta)[i,j]*kq_H*kq_sq(kq_l)[i,j], i, 1, 4), j, 1, 4))))$
+
+/* 2. twist: the 3-form l ^ dl */
+kq_dl : genmatrix(lambda([i, j], diff(kq_l[j], kq_X[i]) - diff(kq_l[i], kq_X[j])), 4, 4)$
+kq_tw(i, j, k) := ratsimp(trigsimp(kq_l[i]*kq_dl[j,k] + kq_l[j]*kq_dl[k,i] + kq_l[k]*kq_dl[i,j]))$
+kq_twist : [kq_tw(1, 2, 3), kq_tw(1, 2, 4), kq_tw(1, 3, 4), kq_tw(2, 3, 4)]$
+check("l ^ dl vanishes for a = 0 and not for a # 0",
+      kq_null(subst(kq_a = 0, kq_twist)) and not kq_null(kq_twist))$
+check("the twist component (t, th, ps) of l ^ dl is -2 a sin(th) cos(th)",
+      kq_null(kq_tw(1, 3, 4) + 2*kq_a*sin(th)*cos(th)))$
+
+/* 3. a small graph sheet: first order of the minimal surface equation is the wave equation */
+declare([kq_B0, kq_k, kq_e], real)$
+assume(kq_k > 0)$
+kq_box(f) := diff(f, t, 2) - diff(r^2*diff(f, r), r)/r^2$
+check("the ingoing wave (B/r) e^(i k (t + r)) solves the wave equation",
+      kq_null(kq_box(kq_B0/r*exp(%i*kq_k*(t + r)))))$
+check("amplitude r^(-1/2), needed for the deviation 2 m/r, leaves the order-k residual -i k B r^(-3/2) e^(iku)",
+      kq_null(ratsimp(kq_box(kq_B0/sqrt(r)*exp(%i*kq_k*(t + r)))*exp(-%i*kq_k*(t + r))
+                      - (-%i*kq_k*kq_B0*r^(-3/2) + kq_B0*r^(-5/2)/4))))$
+/* linearised mean curvature of a graph sheet near the origin of CP_2, spherical M^4 */
+kq_Fl : cp2_sign*subst([x1 = 0, y1 = 0, x2 = 0, y2 = 0], cp2_metric())$
+kq_HF : metric_direct_sum(matrix([1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -r^2, 0], [0, 0, 0, -r^2*sin(th)^2]), kq_Fl)$
+kq_w : kq_B0/r*exp(%i*kq_k*(t + r))$
+kq_em : emb_setup(kq_HF, sph_H_X, append(sph_X, kq_e*[realpart(kq_w), imagpart(kq_w), 0, 0]), sph_X)$
+kq_Hm : mean_curvature(kq_em, second_fundamental_form(kq_em))$
+check("the sheet (B/r) e^(i k (t + r)) is minimal at first order in its amplitude",
+      kq_null(map(lambda([q], ratsimp(coeff(ratexpand(taylor(trigsimp(q), kq_e, 0, 1)), kq_e, 1))), kq_Hm)))$
+kq_pull(w) := block([d : [diff(w, t), diff(w, r)]],
+  genmatrix(lambda([i, j], ratsimp(trigsimp((d[i]*conjugate(d[j]) + d[j]*conjugate(d[i]))/2))), 2, 2))$
+check("its deviation in (t, r) is (B^2/r^2) (k^2 du^2 + dr^2/r^2) with u = t + r, falling as 1/r^2",
+      kq_null(kq_pull(kq_w) - kq_B0^2/r^2*(kq_k^2*matrix([1, 1], [1, 1]) + matrix([0, 0], [0, 1/r^2]))))$
+
+/* 4. standing waves A j_0(k r) e^(i k t), each its own sheet, so the deviations add */
+kq_j0 : sin(kq_k*r)/(kq_k*r)$
+check("A j_0(k r) e^(i k t) solves the wave equation", kq_null(kq_box(kq_j0*exp(%i*kq_k*t))))$
+check("its deviation is A^2 (k^2 j_0^2 dt^2 + j_0'^2 dr^2) with no dt dr term",
+      kq_null(kq_pull(kq_j0*exp(%i*kq_k*t)) - matrix([kq_k^2*kq_j0^2, 0], [0, diff(kq_j0, r)^2])))$
+/* |A_k|^2 = c/k^2: D_tt = c int sin^2(kr)/r^2 dk / k^2 ... with x = k r */
+kq_It : integrate(sin(x)^2/x^2, x, 0, inf)$
+kq_Ir : integrate(diff(sin(x)/x, x)^2, x, 0, inf)$
+check("with |A_k|^2 = c/k^2 the sum is (pi c/(2 r)) dt^2 + (pi c/(6 r)) dr^2",
+      is(ratsimp(kq_It - %pi/2) = 0) and is(ratsimp(kq_Ir - %pi/6) = 0))$
+/* first order Einstein tensor of h = diag(al/r, be/r) in spherical coordinates */
+declare([kq_al, kq_be], real)$
+kq_gs : matrix([1 - kq_e*kq_al/r, 0, 0, 0], [0, -1 - kq_e*kq_be/r, 0, 0], [0, 0, -r^2, 0], [0, 0, 0, -r^2*sin(th)^2])$
+kq_G1 : eff_order(eff_einstein(kq_gs, sph_X), kq_e, 1)$
+check("the static deviation al/r dt^2 + be/r dr^2 is vacuum at first order only for be = al",
+      kq_null(subst(kq_be = kq_al, kq_G1)) and kq_null(kq_G1[2,2] + (kq_be - kq_al)/r^3)
+      and not kq_null(subst(kq_be = kq_al/3, kq_G1)))$
+/* a discrete hierarchy k_n = 2^(n/2) k_0, the ratio of the p-adic length scales, with
+   |A_n|^2 = c ln(sqrt 2) / k_n, approximates the continuum.  The ripple is log-periodic, so four
+   periods r in [1, 4] cover it.  With the ratio 2 the ripple is about 10 percent. */
+kq_Dn(rr) := float(sum(log(2)/2/2^(n/2)*sin(2^(n/2)*rr)^2/rr^2, n, -80, 80))$
+check("hierarchy k_n = 2^(n/2): r D_tt(r) stays within 3 percent of pi/2",
+      every(lambda([rr], is(abs(rr*kq_Dn(rr)/(float(%pi)/2) - 1) < 0.03)), makelist(1 + 0.01*i, i, 0, 300)))$
+kq_dj0(x) := cos(x)/x - sin(x)/x^2$
+kq_Rn(rr) := float(sum(log(2)/2*2^(n/2)*kq_dj0(2^(n/2)*rr)^2, n, -80, 80))$
+check("hierarchy k_n = 2^(n/2): r D_rr(r) stays within 9 percent of pi/6, a larger ripple than D_tt",
+      every(lambda([rr], is(abs(rr*kq_Rn(rr)/(float(%pi)/6) - 1) < 0.09)), makelist(1 + 0.01*i, i, 0, 300))
+      and some(lambda([rr], is(abs(rr*kq_Rn(rr)/(float(%pi)/6) - 1) > 0.05)), makelist(1 + 0.01*i, i, 0, 300)))$
+forget(kq_k > 0)$
