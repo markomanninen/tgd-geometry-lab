@@ -9,6 +9,12 @@ Explainerit ovat videosarja, joka selittää, mihin projekti pyrkii, miten sen g
 
 Tällä sivulla olevat neljä videota ovat esiversioita, jotka näyttävät sarjan suunnan. Niiden luvut ja sanamuodot muuttuvat vielä, ja Matti Pitkänen tarkistaa fysiikan sisällön ennen lopullisia versioita. Lopulliset jaksot tulevat tälle sivulle, kun koko sarja on valmis.
 
+## Lyhyet videot
+
+Lyhyet videot näyttävät yhden TGD:n ajatuksen 16 sekunnissa, ja jokaisella on oma sivunsa, joka selittää videon osat yksi kerrallaan:
+- [TGD 16 sekunnissa](lyhyt-01-tgd.md) näyttää, miten aika-avaruus on pinta avaruudessa M⁴ × CP₂ ja miten pinta perii siltä metriikan ja kentät.
+- [Energian säilyminen 16 sekunnissa](lyhyt-02-energia.md) näyttää, miksi energia menettää määritelmänsä yleisessä suhteellisuusteoriassa ja miksi se säilyy TGD:ssä.
+
 ## Koko sarja
 
 Jaksot on tarkoitettu katsottaviksi tässä järjestyksessä.
