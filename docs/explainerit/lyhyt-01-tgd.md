@@ -45,9 +45,9 @@ Ensimmäisen pisteen yläpuolelle kasvaa pallo, ja sitten pallo kasvaa jokaisen 
 
 ### Mikä CP₂ on
 
-CP₂:n piste kirjoitetaan kolmella kompleksiluvulla (z₁, z₂, z₃), joista vähintään yksi poikkeaa nollasta. Kaksi kolmikkoa ovat sama piste, kun toinen saadaan kertomalla toinen jollakin nollasta poikkeavalla kompleksiluvulla. Kun z₃ ei ole nolla, kolmikon voi jakaa luvulla z₃, ja piste on (z₁/z₃, z₂/z₃, 1). Pisteen määräävät silloin kaksi kompleksilukua, eli neljä reaalilukua, joten CP₂ on neliulotteinen. Pisteet, joilla z₃ on nolla, kirjoitetaan samalla tavalla jakamalla jollakin toisella luvulla.
+CP₂:n piste annetaan kahdella kompleksiluvulla ξ¹ ja ξ². Kompleksiluvussa on kaksi reaalilukua, reaaliosa ja imaginaariosa, joten pisteen määrää neljä reaalilukua, ja CP₂ on neliulotteinen. Nimi taso tulee siitä, että pisteen määrää kaksi kompleksista koordinaattia, samaan tapaan kuin tavallisen tason pisteen määrää kaksi reaalista koordinaattia.
 
-Nimi taso tulee siitä, että CP₂:n pisteen määrää kaksi kompleksista koordinaattia, samaan tapaan kuin tavallisen tason pisteen määrää kaksi reaalista koordinaattia. Nimi projektiivinen tulee siitä, että kolmikot, jotka eroavat vain kertoimella, samaistetaan.
+Koordinaatit ξ¹ ja ξ² ovat kuitenkin paikallisia, kuten maapallon tasokartan koordinaatit. Yksi kartta kattaa melkein koko CP₂:n, mutta siltä puuttuu yksi kompleksinen suora, joka on kartan koordinaateissa äärettömän kaukana. Koko CP₂ kirjoitetaan siksi kolmella kompleksiluvulla (z₁, z₂, z₃), joista vähintään yksi poikkeaa nollasta, ja kaksi kolmikkoa ovat sama piste, kun ne eroavat vain nollasta poikkeavalla kertoimella. Nimi projektiivinen tulee tästä samaistuksesta. Kartan koordinaatit saadaan jakamalla, eli ξ¹ = z₁/z₃ ja ξ² = z₂/z₃, ja kartalta puuttuvat juuri ne pisteet, joissa z₃ on nolla. Ne saadaan toiselle kartalle jakamalla jollakin toisella luvulla, ja kolme karttaa kattaa koko CP₂:n.
 
 CP₂ on suljettu avaruus. Se on äärellinen, ja siinä ei ole reunaa, samaan tapaan kuin pallon pinnalla. Pitkäsen mukaan CP₂:n koko on noin kymmenentuhatta Planckin pituutta, eli noin 10⁻³¹ metriä. Pienin mittakaava, jonka hiukkaskiihdyttimet erottavat, on noin 10⁻¹⁹ metriä, joten CP₂:n suunnat jäävät havaintojen ulottumattomiin.
 
