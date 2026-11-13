@@ -1,0 +1,66 @@
+/* Pitkanen's radial ansatz (mail 11.11.2026): a static, spherically symmetric surface in
+   M^4 x S^2, S^2 a geodesic sphere of CP_2 (totally geodesic, so minimal there is minimal in H),
+   with S^2 coordinates Theta(r), Phi = om t.  Then g_tt = 1 - R^2 om^2 sin^2(Theta).
+   1. The minimal surface equation is the Euler-Lagrange equation of the reduced volume
+      L = r^2 sqrt((1 + R^2 Theta'^2)(1 - R^2 om^2 sin^2 Theta)); at small amplitude it is
+      Theta'' + 2 Theta'/r + om^2 sin Theta cos Theta = 0, not the Laplace equation.
+   2. Near Theta = 0 the solutions oscillate as sin(om r)/r, so 1 - g_tt falls as 1/r^2.
+      Near Theta = pi/2 they decay as exp(-kappa r)/r, kappa = om/sqrt(1 - R^2 om^2), so g_tt tends to a
+      constant exponentially.
+   3. sin^2 Theta = 1/r (Pitkanen's first guess) is not a solution, nor is any Theta ~ r^(-1/2).
+   4. With om = 0, g_tt = 1 exactly: the static Laplace-type surface carries no time component.
+   The radial time shift Phi = om (t + h(r)) adds a conserved quantity; Codex showed analytically
+   (aineisto laskut-2026-11-10-kerr/codex-tarkistus-5-radiaali.md) that it leaves no branch with
+   g_tt = 1 - 2m/r either.  That argument is not part of this test. */
+section("tgd/radial-minimal: Pitkanen's radial ansatz Theta(r), Phi = om t")$
+rm_null(v) := every(lambda([q], is(ratsimp(trigsimp(q)) = 0)), flatten(if matrixp(v) then args(v) else [v]))$
+declare([rm_om, rm_R, rm_A, rm_e], real)$
+assume(rm_om > 0, rm_R > 0, r > 0)$
+depends(rm_T, r)$
+rm_HX : [t, r, th, ph, rm_TT, rm_PP]$
+rm_HG : metric_direct_sum(matrix([1,0,0,0],[0,-1,0,0],[0,0,-r^2,0],[0,0,0,-r^2*sin(th)^2]),
+                          matrix([-rm_R^2, 0], [0, -rm_R^2*sin(rm_TT)^2]))$
+rm_em : emb_setup(rm_HG, rm_HX, [t, r, th, ph, rm_T, rm_om*t], sph_X)$
+rm_g : emb_get(rm_em, 'g)$
+check("induced metric: g_tt = 1 - R^2 om^2 sin^2 Theta, g_rr = -1 - R^2 Theta'^2, angles flat",
+      rm_null(rm_g - matrix([1 - rm_R^2*rm_om^2*sin(rm_T)^2, 0, 0, 0], [0, -1 - rm_R^2*diff(rm_T, r)^2, 0, 0],
+                            [0, 0, -r^2, 0], [0, 0, 0, -r^2*sin(th)^2])))$
+rm_H : mean_curvature(rm_em, second_fundamental_form(rm_em))$
+/* reduced volume and its Euler-Lagrange expression */
+rm_L(T, Tp) := r^2*sqrt((1 + rm_R^2*Tp^2)*(1 - rm_R^2*rm_om^2*sin(T)^2))$
+rm_EL : block([T0, T1, L],
+  L : rm_L(T0, T1),
+  subst([T0 = rm_T, T1 = diff(rm_T, r)], diff(L, T0))
+  - diff(subst([T0 = rm_T, T1 = diff(rm_T, r)], diff(L, T1)), r))$
+check("minimal surface: H^Theta is proportional to the Euler-Lagrange expression of the reduced volume",
+      block([q : ratsimp(trigsimp(rm_H[5]/rm_EL))], freeof(diff(rm_T, r, 2), q) and not is(q = 0)))$
+check("minimal surface: H^t, H^th, H^ph, H^Phi vanish and H^r is a multiple of H^Theta (normal direction)",
+      rm_null([rm_H[1], rm_H[3], rm_H[4], rm_H[6]])
+      and freeof(diff(rm_T, r, 2), ratsimp(trigsimp(rm_H[2]/rm_H[5]))))$
+/* Euler-Lagrange expression for an explicit profile f(r) */
+depends(rm_u, r)$
+rm_ELf(f) := block([T0, T1, L],
+  L : rm_L(T0, T1),
+  ratsimp(trigsimp(subst([T0 = f, T1 = diff(f, r)], diff(L, T0))
+                   - diff(subst([T0 = f, T1 = diff(f, r)], diff(L, T1)), r))))$
+rm_wave(f) := ratsimp(diff(r^2*diff(f, r), r) + rm_om^2*r^2*f)$
+rm_lin : ratsimp(coeff(ratexpand(taylor(rm_ELf(rm_e*rm_u), rm_e, 0, 1)), rm_e, 1))$
+check("small amplitude: the equation is (r^2 Theta')' + om^2 r^2 Theta = 0 (Helmholtz, not Laplace)",
+      rm_null(rm_lin/(-rm_R^2) - rm_wave(rm_u)))$
+check("near Theta = 0: A sin(om r)/r is a solution", rm_null(rm_wave(rm_A*sin(rm_om*r)/r)))$
+check("near Theta = 0: then 1 - g_tt = R^2 om^2 A^2 sin^2(om r)/r^2 at second order, falling as 1/r^2",
+      rm_null(ratsimp(coeff(taylor(1 - subst(rm_T = rm_e*rm_A*sin(rm_om*r)/r, rm_g[1,1]), rm_e, 0, 2), rm_e, 2))
+              - rm_R^2*rm_om^2*rm_A^2*sin(rm_om*r)^2/r^2))$
+assume(rm_R*rm_om < 1)$
+rm_kap : rm_om/sqrt(1 - rm_R^2*rm_om^2)$
+rm_lin2 : ratsimp(coeff(ratexpand(taylor(rm_ELf(%pi/2 + rm_e*rm_u), rm_e, 0, 1)), rm_e, 1))$
+check("near Theta = pi/2: the equation is (r^2 psi')' = kappa^2 r^2 psi, kappa = om/sqrt(1 - R^2 om^2)",
+      rm_null(rm_lin2/coeff(expand(rm_lin2), diff(rm_u, r, 2)) - (diff(r^2*diff(rm_u, r), r) - rm_kap^2*r^2*rm_u)/r^2))$
+check("near Theta = pi/2: exp(-kappa r)/r solves it, so g_tt -> 1 - R^2 om^2 exponentially",
+      block([f : exp(-rm_kap*r)/r], rm_null(diff(r^2*diff(f, r), r) - rm_kap^2*r^2*f)))$
+check("Pitkanen's first guess sin^2 Theta = 1/r is not a solution", not rm_null(rm_ELf(asin(1/sqrt(r)))))$
+check("no power law: Theta = A r^(-1/2) leaves the residual om^2 A r^(3/2) - A r^(-1/2)/4",
+      rm_null(rm_wave(rm_A*r^(-1/2)) - (rm_om^2*rm_A*r^(3/2) - rm_A*r^(-1/2)/4)))$
+check("om = 0: g_tt = 1 exactly, so the static surface gives no Newtonian potential",
+      is(subst(rm_om = 0, rm_g[1,1]) = 1))$
+forget(rm_om > 0, rm_R > 0, r > 0, rm_R*rm_om < 1)$

@@ -122,6 +122,8 @@ Pinta on aika-akseli kertaa katenoidi avaruudessa $\mathbb R^3\times$ geodeesi, 
 
 Pitkäsen muotoilussa pinta on juurijoukko $f_1=f_2=0$, jossa $f_i$ ovat analyyttisiä koordinaateissa $\xi^1,\xi^2,w$ ja valon kaltaisessa $u$:ssa. Generaattorin funktio `hh_sheets` ratkaisee juuret, ja jokainen juuri on yksi lehti. Esimerkiksi ehdot $(\xi^1)^2=w^2/4$ ja $\xi^2=(\xi^1)^2$ antavat kaksi lehteä, ja molemmat ovat minimipintoja. Täsmällinen muotoilu on [konventioissa](konventiot.md#holografia-holomorfia).
 
+**Julkaistu artikkeli.** Pitkänen ja Manninen julkaisivat 12.11.2026 artikkelin *Problems with Holography = Holomorphy Principle*. Artikkeli kertoo, että holografia = holomorfia -periaate antaa tilavuusvaikutukselle minimipinnat ja että NeuroPajan laskuissa periaatteen yleispätevyys ei toteudu Kähler-vaikutukselle eikä kaarevuusskalaarille. Kähler-vaikutuksen ongelma johtuu siitä, että Kähler-virta ei ole valon kaltainen. Korjaukseksi artikkeli ehdottaa ehtoa, jossa $CP_2$:n Kähler-funktio toteuttaa poikittaisen Laplacen yhtälön, sekä Hamiltonin–Jacobin rakenteen käsittelyä. Tämän jakson laskut ovat artikkelin taustaa. Artikkeli on Pitkäsen [kotisivulla](https://tgdtheory.fi/public_html/articles/HHproblems.pdf), ja hän kirjoitti siitä [blogipostauksen](https://matpitka.blogspot.com/2026/11/problems-with-holography-holomorphy.html).
+
 **Litteä rakenne.** Pitkäsen mukaan H-H-pinnat ovat minimipintoja ja minkä tahansa indusoituun geometriaan perustuvan vaikutuksen ekstremaaleja. Minimipintaominaisuus toteutuu kaikilla testatuilla pinnoilla. Kähler-osa ei sen sijaan häviä pelkällä $CP_2$:n Kähler-muodolla yhdelläkään pinnalla, jolla on $w$-riippuvuus. Pinnalla $\xi^1=w/2$ tensorisupistus $A=J^{\alpha}{}_{\gamma}J^{\gamma\beta}H^k_{\alpha\beta}$ on nolla, mutta virta on poikittainen, eikä Lorentz 4-voima häviä.
 
 Pitkäsen mukaan poikittaisen virran ei tarvitse hävitä, koska riittää, että Lorentz 4-voima häviää, ja H-H takaa tämän. Se laskettiin suoraan koko pintaluokalle $\xi^k=f^k(u,w)$. Virralla ei ole $u$-komponenttia, ja voimalle pätee $f_v=0$, $f_x=-j^yJ_{xy}$ ja $f_y=j^xJ_{xy}$. Voima häviää siis täsmälleen, kun poikittainen virta häviää. Sama ehto seuraa topologisoidusta virrasta ja virran valon kaltaisuudesta, koska instantonivirralla on tällä pintaluokalla vain $v$-komponentti ja $j^\alpha j_\alpha\propto(j^x)^2+(j^y)^2$.
@@ -496,6 +498,22 @@ Potenssi on massan kentän potenssi, ja arvolla $c=4m/\pi$ aikakomponentti on Ne
 
 Kolme viimeistä tulosta ovat ensimmäisen kertaluvun tuloksia $CP_2$:n vakiopisteen lähellä, ja testit ovat tiedostossa `tests/test-kerr-schild.mac`. Riippumaton tarkistus Codexilla vahvisti laskut ja toi rajat, jotka koskevat samastusta, multipoleja, pitkien aaltojen amplitudia ja säteittäistä värähtelyä. Auki on, antaako jokin muu kuin seisovien aaltojen perhe tyhjiön, esimerkiksi ajasta riippuva, epäisotrooppinen tai äärellisen amplitudin perhe, ja mikä fysikaalinen periaate valitsisi spektrin $1/k^2$.
 
+**Pitkäsen pallosymmetrinen minimipintayrite ei anna potentiaalia $1/r$.** Pitkäsen mukaan gravitaatiota välittävät perustasolla monopolivuoputkien silmukat, ja Einsteinin teoria on kenttäteoriarajan approksimaatio. Hän ehdotti 11.11.2026, että pallosymmetrisellä minimipinnalla tutkitaan metriikan aikakomponenttia kaukana. Yritteessä $CP_2$:n geodeettisen pallon koordinaatit ovat $\Theta(r)$ ja $\Phi=\omega t$, jolloin
+
+$$
+g_{tt}=1-R^2\omega^2\sin^2\Theta,\qquad g_{rr}=-1-R^2\Theta'^2 .
+$$
+
+Geodeettinen pallo on täysin geodeettinen, joten minimipinta avaruudessa $M^4\times S^2$ on minimipinta myös $H$:ssa. Minimipintayhtälö on supistetun tilavuuden $r^2\sqrt{(1+R^2\Theta'^2)(1-R^2\omega^2\sin^2\Theta)}$ Eulerin–Lagrangen yhtälö. Pienellä amplitudilla se on
+
+$$
+(r^2\Theta')'+\omega^2r^2\Theta=0 ,
+$$
+
+eli Helmholtzin yhtälö eikä Laplacen yhtälö. Sen ratkaisu $\Theta=A\sin(\omega r)/r$ antaa erotuksen $1-g_{tt}=R^2\omega^2A^2\sin^2(\omega r)/r^2$, joka pienenee kuten $1/r^2$. Pisteen $\Theta=\pi/2$ lähellä ratkaisu vaimenee kuten $e^{-\kappa r}/r$, jossa $\kappa=\omega/\sqrt{1-R^2\omega^2}$, joten $g_{tt}$ lähestyy vakiota eksponentiaalisesti. Pitkäsen ensimmäinen arvaus $\sin^2\Theta=1/r$ ei ole ratkaisu, eikä mikään potenssi $\Theta\propto r^{-1/2}$ ole. Kun $\omega=0$, $g_{tt}=1$ täsmälleen, joten staattinen Laplacen tyyppinen pinta ei anna aikakomponenttia lainkaan. Tulos on sama $1/r^2$-este, joka koski pieniä ratkaisulehtiä. Testit ovat tiedostossa `tests/test-radial-minimal.mac`. Pitkänen mainitsi myös säteittäisen aikasiirron $\Phi=\omega(t+h(r))$. Koska $h$ on syklinen muuttuja, se antaa säilyvän suureen, ja riippumaton Codex-tarkistus osoitti analyyttisesti, että sen korjaus on kaukana kertalukua $r^{-3}$ pienempi kuin termi $\omega^2\Theta$. Siksi yritteellä ei ole yhtään minimipintahaaraa, jossa $g_{tt}=1-2m/r+O(r^{-2})$. Tämä päättely ei ole labin testinä.
+
+**Pitkäsen perustelu Einsteinin yhtälöille 13.11.2026.** Pitkäsen mukaan siirtyminen kenttäteoriarajalle rikkoo Poincarén invarianssin. Einsteinin tensorin kovariantin divergenssin häviäminen on hänen mukaansa pienin mahdollinen Poincarén symmetrian rikko, joten kaarevuusskalaari ja tilavuustermi ovat luonteva osa vaikutusta tällä rajalla. Linjaus koskee kenttäteoriarajaa, ja se on eri asia kuin hänen 4.11.2026 linjauksensa, jonka mukaan kaarevuusskalaari on tarpeeton avaruusaikapinnan sisäosan vaikutuksessa.
+
 **Tutkimuksen tila 11.11.2026.** Työ jatkuu lehtien ratkaisuperheen rajaamisella ([#42](https://github.com/markomanninen/tgd-geometry-lab/issues/42)). Tähän asti on tutkittu seuraavat asiat:
 
 | Kysymys | Tulos | Varmuus |
@@ -509,6 +527,7 @@ Kolme viimeistä tulosta ovat ensimmäisen kertaluvun tuloksia $CP_2$:n vakiopis
 | Kerr lehtien koottuna metriikkana | Saadaan viidestä lehdestä paikallisesti virheellä, joka on verrannollinen lukuun $1/k^2$. Lehdet eivät ole sileitä akselilla, eikä rakenne kata horisonttia | Labin testi, Codexin tarkistama |
 | Kerr Kerrin ja Schildin muodossa | Laakea metriikka ja yksi valon kaltainen neliö, jota yksi lehti ei anna tarkasti, koska $l$ kiertyy | Labin testi, Codexin tarkistama |
 | Pieni ratkaisulehti, säteilevä multipoli | Poikkeama pienenee kuten $1/r^2$ eikä kuten $1/r$ | Labin testi, Codexin tarkistama |
+| Pitkäsen pallosymmetrinen minimipintayrite, $\Phi=\omega t$ | Erotus $1-g_{tt}$ pienenee kuten $1/r^2$ tai eksponentiaalisesti, ei kuten $1/r$ | Labin testi |
 | Seisovien palloaaltojen spektri $1/k^2$ | Antaa muodollisesti potenssin $1/r$, mutta säteittäinen kerroin on kolmasosa, eivätkä multipolit korjaa sitä, joten tyhjiö ei synny | Labin testi, Codexin tarkistama |
 | Yleinen todistus kirjallisuudessa | Ei löytynyt avaruudelle $H$ eikä kahdeksalle laakealle ulottuvuudelle | Kaksi hakua, ei kattava |
 
