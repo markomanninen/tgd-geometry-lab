@@ -56,3 +56,15 @@ check("the vacuum energy with a Planck cutoff, hbar c / L_P^4, exceeds rho_Lambd
       is(abs(bfloat(log(hbar*cc/LP^4/rhoLam)/log(10)) - 122.9) < 0.1))$
 check("with R = 1e4 L_P, (L_Lambda/R)^2 = 10^113.5: the ratio of the largest and the cosmic Lambda",
       is(abs(bfloat(log((LLam/(1.0b4*LP))^2)/log(10)) - 113.5) < 0.1))$
+
+/* Pitkanen's scale argument: the observed Lambda belongs to the p-adic size scale of the observable universe.
+   With that scale taken as the Hubble length c/H0, which is measured from the expansion and not from Lambda,
+   Lambda ~ (H0/c)^2.  Planck 2018: H0 = 67.4 km/s/Mpc. */
+H0 : 67.4b3/3.0857b22$
+LamTGD : (H0/cc)^2$
+check("Lambda ~ (H0/c)^2 = 5.3e-53 1/m^2 for the Hubble length",
+      is(abs(LamTGD/5.31b-53 - 1) < 0.01))$
+check("this is 0.48 times the observed Lambda, the right order of magnitude, against ~10^123 for the naive estimate",
+      is(abs(LamTGD/LamObs - 0.48) < 0.01))$
+check("the factor is 1/(3 Omega_Lambda) with Omega_Lambda = 0.69, so the order of magnitude, not the factor, is the content",
+      is(abs(LamObs/LamTGD - 3*0.6889) < 0.02))$
