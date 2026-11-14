@@ -175,7 +175,7 @@ G on Einsteinin tensori, joka lasketaan metriikasta. Merkki ≡ kertoo, että yh
 
 ### Mitä kuva jättää pois
 
-- Kuva näyttää koordinaattien vapaan valinnan vain sen seurauksena, identiteettinä. Mahdollisia koordinaattimuunnoksia on rajattomasti.
+- Kuva ei näytä koordinaattien vapaata valintaa eikä siitä seuraavaa identiteettiä. Ne kerrotaan vain tällä sivulla.
 
 ## 5. Pinta upotusavaruudessa
 
