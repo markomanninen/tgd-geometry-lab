@@ -3,7 +3,7 @@
 Tämä 16 sekunnin video näyttää TGD:n eli topologisen geometrodynamiikan lähtökohdan. Sen jälkeen jokainen videon osa selitetään erikseen. Selitys kertoo, mitä kuva näyttää, mikä kaava tai käsite sen takana on ja mitä kuva jättää pois. Lukijaksi on ajateltu videon katsoja, joka osaa lukion pitkän matematiikan.
 
 <div class="video">
-<iframe src="https://www.youtube-nocookie.com/embed/LsO8mT4O5b4" title="TGD 16 sekunnissa" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://www.youtube-nocookie.com/embed/QxzQBDSfqxI" title="TGD 16 sekunnissa" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ## 1. Minkowskin avaruus
@@ -113,7 +113,7 @@ Kolme lehteä ovat saman M⁴:n alueen yllä. Pitkäsen mukaan aika-avaruus koos
 - Pinta on piirretty kaksiulotteisena kolmiulotteisessa kuvassa. Kuvassa kaksi suuntaa edustaa neljää.
 - Lehtiä yhdistävät madonreikäkontaktit jäävät kuvan ulkopuolelle.
 
-## 5. Induktio, eli pinnalle projisoitu metriikka ja kentät
+## 5. Induktio, eli pinnalle indusoitu metriikka ja kentät
 
 Videon aika on 8–11 sekuntia. Osan kolmas kaavarivi tulee kohdassa 10,75 sekuntia, jolloin osan 6 kuva on jo alkanut.
 
@@ -135,6 +135,22 @@ Kaava laskee pinnan suuntaisen vektorin aikavälin sen kahdesta osasta. M⁴:n o
 
 Indusoitu metriikka on näin pinnalla pätevä metriikka, joka on laskettu upotusavaruuden metriikasta. Pitkäsen mukaan gravitaatio on TGD:ssä tämän metriikan kaarevuutta.
 
+### Indusointi ja projektio
+
+Indusointi ja projektio ovat eri toimenpiteitä, vaikka kummassakin katsotaan pinnan suuntia. Indusoinnissa valitaan pinnan suuntaiset vektorit ja mitataan ne kokonaisina upotusavaruuden metriikalla. Matematiikassa tätä kutsutaan metriikan rajoittumaksi pinnan suuntiin. Projektiossa vektoria muutetaan, sillä siitä otetaan vain jonkin valitun suunnan osa ja muut osat pudotetaan pois.
+
+Pinnan suuntaiset vektorit saadaan suoraan pinnasta. Kun pinnalla kuljetaan johonkin suuntaan, kulkijan nopeusvektori on pinnan suuntainen, eikä siitä tarvitse poistaa mitään. Indusoitu metriikka mittaa nämä vektorit sellaisinaan.
+
+Ero näkyy mäkisellä tiellä. Tien pinnalla kulkeva mittanauha nousee ja laskee mäkien mukana, joten se antaa matkan, jonka kulkija todella kulkee, ja tämä vastaa indusointia. Tasokartalla mitattu matka pudottaa korkeuden pois ja on lyhyempi, ja tämä vastaa projektiota. TGD:n pinnalla $CP_2$:n suunta on kuin mäkien korkeus. Indusoitu metriikka ottaa pinnan kallistuksen $CP_2$:n suuntaan mukaan matkaan, ja tästä kallistuksesta syntyy pinnan geometria. Projektio $M^4$:ään jättäisi kallistuksen pois.
+
+| | Projektio | Indusointi |
+|---|---|---|
+| mitä vektorille tehdään | siitä otetaan valitun suunnan osa | se mitataan kokonaisena |
+| mitä katoaa | muut osat | ei mitään |
+| esimerkki | tasokartalla mitattu tien pituus | mittanauhalla mitattu tien pituus |
+
+Projektiota tarvitaan silloin, kun lähtökohta on upotusavaruuden vektori, joka ei ole pinnan suuntainen, ja siitä halutaan pinnan suuntainen osa. Energiavideon energian virta saadaan juuri näin ajan siirron projektiona.
+
 ### Kaksi kenttää lisää
 
 Saman laskun avulla CP₂:sta siirtyy pinnalle myös kenttiä. Metriikan kaavan alle kirjoittuu indusoitu Kähler-muoto
@@ -147,7 +163,7 @@ Kolmas rivi on klassinen värikenttä
 
 $$A^A_\alpha=j^A_k\,\partial_\alpha s^k.$$
 
-CP₂:n metriikan säilyttävää kiertoa voi kuvata vektorikentällä, jonka nuoli näyttää jokaisessa pisteessä, mihin suuntaan piste liikkuu pienessä kierrossa. Tällaista vektorikenttää kutsutaan Killingin vektoriksi. Kaavan $j^A$ on CP₂:n värisymmetrian Killingin vektori, ja indeksi A kulkee kahdeksaa vektoria. Pitkäsen katsausartikkelin TGD2024I mukaan klassiset värikentät ovat näiden Killingin vektorien projektioita pinnalle.
+CP₂:n metriikan säilyttävää kiertoa voi kuvata vektorikentällä, jonka nuoli näyttää jokaisessa pisteessä, mihin suuntaan piste liikkuu pienessä kierrossa. Tällaista vektorikenttää kutsutaan Killing-vektoriksi. Kaavan $j^A$ on CP₂:n värisymmetrian Killing-vektori, ja indeksi A kulkee kahdeksaa vektoria. Pitkäsen katsausartikkelin TGD2024I mukaan klassiset värikentät ovat näiden Killing-vektorien projektioita pinnalle.
 
 ### Mitä kuva jättää pois
 
@@ -170,7 +186,7 @@ Aikavälillä 11–12 sekuntia kolmio vilkkuu kahdeksan kertaa, ja indeksin A ar
 
 ### Mitä tämä tarkoittaa
 
-Metriikan säilyttävää kiertoa kutsutaan isometriaksi, ja osassa 5 nähtiin, että sitä vastaa Killingin vektori. CP₂:n kahdeksan Killingin vektoria ovat samat $j^A$, jotka osassa 5 projisoitiin pinnalle värikentäksi. Jatkuva symmetria on muunnos, jonka suuruuden voi valita vapaasti, kuten kierron kulman. Emmy Noetherin lauseen mukaan jokaista jatkuvaa symmetriaa vastaa säilyvä suure. CP₂:n kahdeksasta kierrosta tulee kahdeksan säilyvää suuretta, ja ne ovat Pitkäsen mukaan värivaraukset. Niistä kahdella on samanaikaisesti mitattavat arvot, ja ne ovat kolmion koordinaatit.
+Metriikan säilyttävää kiertoa kutsutaan isometriaksi, ja osassa 5 nähtiin, että sitä vastaa Killing-vektori. CP₂:n kahdeksan Killing-vektoria ovat samat $j^A$, jotka osassa 5 projisoitiin pinnalle värikentäksi. Jatkuva symmetria on muunnos, jonka suuruuden voi valita vapaasti, kuten kierron kulman. Emmy Noetherin lauseen mukaan jokaista jatkuvaa symmetriaa vastaa säilyvä suure. CP₂:n kahdeksasta kierrosta tulee kahdeksan säilyvää suuretta, ja ne ovat Pitkäsen mukaan värivaraukset. Niistä kahdella on samanaikaisesti mitattavat arvot, ja ne ovat kolmion koordinaatit.
 
 ### Mitä kuva jättää pois
 
@@ -191,7 +207,7 @@ Lehdet painuvat takaisin yhdeksi pinnaksi, ja CP₂:ta edustava pallo laskeutuu 
 
 Aiemmat osat antoivat yhdistymisen kaksi puolta:
 - Gravitaatio on pinnan indusoidun metriikan kaarevuutta. Indusoitu metriikka lasketaan upotusavaruuden metriikasta pinnan derivaattojen avulla.
-- Hiukkasfysiikan kentät, kuten värikenttä ja Kähler-muoto, lasketaan CP₂:n Killingin vektoreista ja Kähler-muodosta samojen derivaattojen avulla.
+- Hiukkasfysiikan kentät, kuten värikenttä ja Kähler-muoto, lasketaan CP₂:n Killing-vektoreista ja Kähler-muodosta samojen derivaattojen avulla.
 
 Kumpikin määräytyy siis siitä, miten pinta kulkee upotusavaruudessa, ja pinnan kulun määräävät vaikutuksen kenttäyhtälöt. Tässä mielessä gravitaatio ja hiukkasfysiikan kentät ovat saman geometrian osia.
 
