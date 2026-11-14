@@ -1,0 +1,58 @@
+/* ================================================================
+   TGD Geometry Software Lab -- tests/test-cosmological-lambda.mac
+   Numbers behind Pitkanen's p-adic hierarchy of cosmological
+   constants (14.11.2026).
+
+   In the twistor lift the volume term of the action comes from the
+   twistor sphere, Lambda = 1/(R_cd^2 - r_C^2) (docs/sivututkimus/
+   sisaosan-vaikutus.md), so for R_cd >> r_C it is 1/R_cd^2.
+   Pitkanen's guess is that R_cd is a p-adic length scale
+       L(k) = 2^((k-151)/2) L(151),   L(151) = 10 nm,
+   with k prime.  The test asks which k reproduces the observed
+   cosmological constant and how far the nearest primes miss it.
+   The observed value is Planck 2018: Lambda = 1.1056e-52 1/m^2.
+   ================================================================ */
+
+section("cosmological constant: the p-adic hierarchy against the observed value")$
+
+fpprec : 30$
+LamObs : 1.1056b-52$                 /* 1/m^2, Planck 2018 */
+L151 : 1.0b-8$                       /* m, Pitkanen's L(151) = 10 nm */
+LP : 1.616255b-35$                   /* m, Planck length */
+hbar : 1.054571817b-34$  cc : 2.99792458b8$  GN : 6.67430b-11$  eVJ : 1.602176634b-19$
+Lk(k) := 2^((k - 151)/2) * L151$
+LamK(k) := 1/Lk(k)^2$
+
+LLam : 1/sqrt(LamObs)$
+check("the length of the observed Lambda, 1/sqrt(Lambda), is 9.5e25 m, the size of the Hubble radius",
+      is(abs(LLam/9.51b25 - 1) < 0.01))$
+
+kstar : 151 + 2*log(LLam/L151)/log(2)$
+check("Lambda = 1/L(k)^2 meets the observed value at k = 376.8, which is not an integer",
+      is(abs(kstar - 376.8) < 0.1))$
+
+r379 : LamK(379)/LamObs$
+r373 : LamK(373)/LamObs$
+check("the nearest prime above, k = 379, gives Lambda 0.210 times the observed value",
+      is(abs(r379 - 0.210) < 0.001))$
+check("the nearest prime below, k = 373, gives Lambda 13.4 times the observed value",
+      is(abs(r373 - 13.42) < 0.01))$
+check("so the best prime, k = 379, misses the observed Lambda by a factor of 4.8",
+      is(abs(min(1/r379, r373) - 4.77) < 0.01))$
+
+/* the meso scale: the geometric mean of the Planck length and the length of Lambda */
+Lm : sqrt(LP*LLam)$
+check("the geometric mean sqrt(L_P L_Lambda) is 3.9e-5 m, of the order of 0.1 mm",
+      is(abs(Lm/3.93b-5 - 1) < 0.01))$
+rhoLam : LamObs*cc^4/(8*%pi*GN)$
+Escale : (rhoLam*(hbar*cc)^3)^(1/4)/eVJ$
+check("the dark energy density rho_Lambda = Lambda c^4/(8 pi G) has the energy scale 2.24 meV",
+      is(abs(bfloat(Escale)/2.24b-3 - 1) < 0.01))$
+check("hbar c / Lm^4 is rho_Lambda within a factor 8 pi, the same order of magnitude",
+      is(abs(bfloat(hbar*cc/Lm^4/rhoLam)/(8*bfloat(%pi)) - 1) < 0.01))$
+
+/* the famous mismatch and the scale ratio that the hierarchy puts in its place */
+check("the vacuum energy with a Planck cutoff, hbar c / L_P^4, exceeds rho_Lambda by 10^122.9",
+      is(abs(bfloat(log(hbar*cc/LP^4/rhoLam)/log(10)) - 122.9) < 0.1))$
+check("with R = 1e4 L_P, (L_Lambda/R)^2 = 10^113.5: the ratio of the largest and the cosmic Lambda",
+      is(abs(bfloat(log((LLam/(1.0b4*LP))^2)/log(10)) - 113.5) < 0.1))$
