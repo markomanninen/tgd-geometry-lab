@@ -1,0 +1,56 @@
+/* ================================================================
+   TGD Geometry Software Lab -- tests/test-cosmo-minimal.mac
+   Pitkanen's cosmological minimal surface ansatz (15.11.2026).
+
+   M4 in Robertson-Walker coordinates of the future light cone,
+   ds^2 = da^2 - a^2 (dchi^2 + sinh(chi)^2 dOmega^2), times a
+   geodesic circle S1 of CP2 with ds^2 = -R^2 dPhi^2.  The surface
+   is Phi = f(a).  It is a hypersurface of M4 x S1, so the one
+   Euler-Lagrange equation of f is the whole minimal surface
+   condition, and a geodesic circle is totally geodesic, so the
+   surface is minimal in H as well.
+   ================================================================ */
+
+section("cosmological minimal surface Phi = f(a) in M4 x S1")$
+
+assume(a > 0, R > 0, CC > 0)$
+kill(fa)$
+depends(fa, a)$
+HX5 : [a, chi, th, ph, Phi]$
+H5 : diag_matrix(1, -a^2, -a^2*sinh(chi)^2, -a^2*sinh(chi)^2*sin(th)^2, -R^2)$
+emC : emb_setup(H5, HX5, [a, chi, th, ph, fa], [a, chi, th, ph])$
+gC : emb_get(emC, 'g)$
+check("induced metric: g_aa = 1 - R^2 f'^2 and the spatial part is the hyperbolic space of radius a",
+      zero_matrix_p(gC - diag_matrix(1 - R^2*diff(fa, a)^2, -a^2, -a^2*sinh(chi)^2, -a^2*sinh(chi)^2*sin(th)^2)))$
+
+HC : mean_curvature(emC, second_fundamental_form(emC))$
+
+/* the conserved current of the rotation of the circle and its solution */
+yy : CC/(R*a^3)/sqrt(1 + (CC/(R*a^3))^2)$       /* R f' on the Lorentzian branch */
+check("the solution R f' = k/sqrt(1+k^2), k = C/(R a^3), has a^3 R^2 f'/sqrt(1 - R^2 f'^2) = C",
+      is(radcan(a^3*R*yy/sqrt(1 - yy^2) - CC) = 0))$
+subsol(e) := radcan(subst([diff(fa, a, 2) = diff(yy/R, a), diff(fa, a) = yy/R], e))$
+check("with this f the mean curvature vanishes in every direction: the surface is minimal",
+      every(lambda([e], is(subsol(e) = 0)), HC))$
+check("g_aa = R^2 a^6/(C^2 + R^2 a^6) > 0 for every a > 0: the signature stays Lorentzian",
+      is(radcan(1 - yy^2 - R^2*a^6/(CC^2 + R^2*a^6)) = 0))$
+check("for large a, R f' behaves as C/(R a^3), Pitkanen's 1/a^3",
+      is(limit(a^3*yy, a, inf) = CC/R))$
+check("for small a, sqrt(g_aa) ~ R a^3/C, so the cosmic time is R a^4/(4C) and a grows as tau^(1/4)",
+      is(limit(sqrt(1 - yy^2)*CC/(R*a^3), a, 0, plus) = 1))$
+
+/* the Euclidean branch 1 - R^2 f'^2 < 0 */
+ye : CC/(R*a^3)/sqrt((CC/(R*a^3))^2 - 1)$
+check("the Euclidean branch R f' = k/sqrt(k^2-1) also conserves the current, with |det g| in the volume",
+      is(radcan(a^3*R*ye/sqrt(ye^2 - 1) - CC) = 0))$
+check("it exists only for a < a0 = (C/R)^(1/3), where R f' grows without bound",
+      is(limit(ye, a, (CC/R)^(1/3), minus) = inf))$
+check("at a0 the Lorentzian branch has R f' = 1/sqrt(2), so the two branches do not join continuously",
+      is(radcan(subst(a = (CC/R)^(1/3), yy) - 1/sqrt(2)) = 0))$
+
+/* the current without the square root, R f'/(1 - R^2 f'^2) a^3 = C, does not give a minimal surface */
+kk : CC/(R*a^3)$
+ym : (sqrt(1 + 4*kk^2) - 1)/(2*kk)$
+check("the form without the square root solves y/(1-y^2) = k but leaves a nonzero mean curvature",
+      is(radcan(ym/(1 - ym^2) - kk) = 0) and
+      is(radcan(subst([diff(fa, a, 2) = diff(ym/R, a), diff(fa, a) = ym/R], HC[5])) # 0))$
