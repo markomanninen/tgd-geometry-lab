@@ -68,3 +68,14 @@ check("this is 0.48 times the observed Lambda, the right order of magnitude, aga
       is(abs(LamTGD/LamObs - 0.48) < 0.01))$
 check("the factor is 1/(3 Omega_Lambda) with Omega_Lambda = 0.69, so the order of magnitude, not the factor, is the content",
       is(abs(LamObs/LamTGD - 3*0.6889) < 0.02))$
+
+/* Pitkanen 15.11.2026: Lambda is proportional to 1/L(k)^2 for dimensional reasons, L(151) has an uncertainty from
+   the second order term of the electron mass, the predicted mass lies in [1, sqrt(6/5)] times the minimum, and the
+   observed scale may be one octave below the prime k = 379, at k = 377, as a period doubling. */
+r377 : LamK(377)/LamObs$
+check("one octave below the prime 379, k = 377 gives 0.84 times the observed Lambda",
+      is(abs(r377 - 0.839) < 0.002))$
+check("the mass uncertainty sqrt(6/5) is 9.5 percent, and squared it allows 20 percent in Lambda",
+      is(abs(sqrt(6/5.0b0) - 1.0954) < 0.0001) and is(abs(6/5.0b0 - 1.2) < 1b-10))$
+check("so k = 377 meets the observed Lambda within the uncertainty of the length scale",
+      is(abs(r377 - 1) < 0.2))$
