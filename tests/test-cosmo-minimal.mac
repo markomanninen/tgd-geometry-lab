@@ -54,3 +54,15 @@ ym : (sqrt(1 + 4*kk^2) - 1)/(2*kk)$
 check("the form without the square root solves y/(1-y^2) = k but leaves a nonzero mean curvature",
       is(radcan(ym/(1 - ym^2) - kk) = 0) and
       is(radcan(subst([diff(fa, a, 2) = diff(ym/R, a), diff(fa, a) = ym/R], HC[5])) # 0))$
+
+/* Pitkanen 15.11.2026: the energy density of the volume term.  The
+   Noether current of the M4 time translation m^0 = a cosh(chi) has the
+   a-component sqrt|g| g^aa d_a m^0 = a^3 cosh(chi)/sqrt(g_aa) per unit
+   coordinate volume of H3.  Dividing by a^3 gives the density. */
+rhoV : radcan(sqrt(1 - yy^2)/(1 - yy^2)*cosh(chi))$
+check("volume-term energy density is cosh(chi) sqrt(C^2 + R^2 a^6)/(R a^3)",
+      is(radcan(rhoV - cosh(chi)*sqrt(CC^2 + R^2*a^6)/(R*a^3)) = 0))$
+check("for small a it behaves as C cosh(chi)/(R a^3), the 1/a^3 of matter, and diverges at a -> 0",
+      is(limit(rhoV*a^3, a, 0, plus) = CC*cosh(chi)/R))$
+check("for large a it tends to cosh(chi), a constant density as in the empty Milne limit",
+      is(limit(rhoV, a, inf) = cosh(chi)))$

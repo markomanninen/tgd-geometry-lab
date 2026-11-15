@@ -80,6 +80,24 @@ $$
 
 Suurilla $a$:n arvoilla $a\approx\tau$, eli ratkaisu lähestyy tyhjää Milnen kosmologiaa, ja poikkeama siitä pienenee kuten $1/a^6$.
 
+### Tilavuustermin energiatiheys
+
+Pitkänen arvioi 15.11.2026, että tilavuustermin energiatiheys käyttäytyy kuten $\cosh\eta/a^3$. Energia on $M^4$:n aikasiirron säilyvä varaus. Valokartion koordinaateissa aikakoordinaatti on $m^0=a\cosh\eta$, jossa $\eta$ on $H^3$:n hyperbolinen kulma, joten $\partial_a m^0=\cosh\eta$. Tilavuustermin Noetherin virran $a$-komponentti on $H^3$:n kulmatekijää vaille
+
+$$
+\sqrt{|g|}\,g^{aa}\,\partial_a m^0=\frac{a^3\cosh\eta}{\sqrt{g_{aa}}} .
+$$
+
+Kun virta jaetaan $H^3$:n tilavuustekijällä $a^3$, ratkaisulle saadaan energiatiheys
+
+$$
+\rho_V=\cosh\eta\,\frac{\sqrt{C^2+R^2a^6}}{Ra^3} .
+$$
+
+Pienillä $a$:n arvoilla $\rho_V\approx C\cosh\eta/(Ra^3)$, joten tiheys laimenee kuten aineen dominoimassa kosmologiassa ja divergoi rajalla $a\to0$. Suurilla $a$:n arvoilla $\rho_V\to\cosh\eta$, eli tiheys lähestyy vakiota samalla, kun ratkaisu lähestyy Milnen kosmologiaa. Kähler-termi ei osallistu, koska indusoitu Kähler-muoto on kaksimuoto ja yhden funktion $\Phi=f(a)$ kautta indusoituna se häviää.
+
+Laimeneminen kuten $1/a^3$ on sama kuin pölyllä, mutta laajenemislaki on eri. Einsteinin teoriassa pöly antaa $a\propto\tau^{2/3}$, kun tämä pinta antaa pienillä $a$:n arvoilla $a\propto\tau^{1/4}$. Pinnan laajenemisen määrää minimipintaehto eikä Einsteinin yhtälö.
+
 Tarkistukset ovat tiedostossa [tests/test-cosmo-minimal.mac](https://github.com/markomanninen/tgd-geometry-lab/blob/main/tests/test-cosmo-minimal.mac).
 
 ## Kosmologisen vakion portaikko
